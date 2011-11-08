@@ -1,0 +1,47 @@
+   1               		.file	"main.c"
+   2               		.arch atmega128rfa1
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               		.section	.text.main,"ax",@progbits
+  19               	.global	main
+  21               	main:
+  22               	.LFB3:
+  23               	.LSM0:
+  24               	/* prologue: frame size=0 */
+  25               	/* prologue end (size=0) */
+  26               	.L2:
+  27               	.LSM1:
+  28 0000 6091 0000 		lds r22,__iob+2
+  29 0004 7091 0000 		lds r23,(__iob+2)+1
+  30 0008 81E2      		ldi r24,lo8(33)
+  31 000a 90E0      		ldi r25,hi8(33)
+  32 000c 0E94 0000 		call fputc
+  33               	.LSM2:
+  34 0010 729A      		sbi 46-0x20,2
+  35 0012 00C0      		rjmp .L2
+  36               	/* epilogue: frame size=0 */
+  37               	/* epilogue: noreturn */
+  38               	/* epilogue end (size=0) */
+  39               	/* function main size 10 (10) */
+  40               	.LFE3:
+  66               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+     /tmp/ccyhx6BL.s:3      *ABS*:0000003f __SREG__
+     /tmp/ccyhx6BL.s:4      *ABS*:0000003e __SP_H__
+     /tmp/ccyhx6BL.s:5      *ABS*:0000003d __SP_L__
+     /tmp/ccyhx6BL.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccyhx6BL.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccyhx6BL.s:21     .text.main:00000000 main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__iob
+fputc
