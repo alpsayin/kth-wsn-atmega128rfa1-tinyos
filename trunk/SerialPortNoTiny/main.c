@@ -6,12 +6,12 @@ int main()
 {
 	char buf[64];
 	char myChar = 33;
-	//	printf("Enter your name:\n");
-	//scanf("%s", buf);
-	//printf("Hello %s\n", buf);
+	printf("Enter your name:\n");
+	scanf("%s", buf);
+	printf("Hello %s\n", buf);
 	while(1)
 	  {
-	    //myChar = getchar();
+	    myChar = getchar();
 	    putchar(myChar);
 	    if(myChar & 0x01)
 	      PORTE |= (1 << 2);
