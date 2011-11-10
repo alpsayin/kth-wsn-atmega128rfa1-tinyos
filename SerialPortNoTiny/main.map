@@ -1,18 +1,11 @@
 Archive member included because of file (symbol)
 
+/usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_udivmodhi4.o)
+                              main.o (__udivmodhi4)
 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
                               /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o (exit)
 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
                               main.o (__do_clear_bss)
-/usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
-                              main.o (fputc)
-/usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
-                              main.o (__iob)
-
-Allocating common symbols
-Common symbol       size              file
-
-__iob               0x6               /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
 
 Discarded input sections
 
@@ -22,6 +15,9 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_udivmodhi4.o)
+ .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_udivmodhi4.o)
+ .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_udivmodhi4.o)
  .text          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
  .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
  .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
@@ -30,14 +26,6 @@ Discarded input sections
  .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
  .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc   0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
- .text          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
- .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
- .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
- .stabstr       0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
- .text          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
- .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
- .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
- .stabstr       0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
 
 Memory Configuration
 
@@ -147,7 +135,7 @@ LOAD /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1ca
+.text           0x00000000      0x1cc
  *(.vectors)
  .vectors       0x00000000      0x120 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
                 0x00000000                __vectors
@@ -277,16 +265,17 @@ LOAD /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a
                 0x0000015a                __vector_65
                 0x0000015c                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x0000015c       0x12 main.o
-                0x0000015c                main
- .text.avr-libc
-                0x0000016e       0x5a /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
-                0x0000016e                fputc
-                0x000001c8                . = ALIGN (0x2)
+ .text.delayms  0x0000015c       0x32 main.o
+                0x0000015c                delayms
+ .text.main     0x0000018e       0x14 main.o
+                0x0000018e                main
+ .text.libgcc   0x000001a2       0x28 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x000001a2                __udivmodhi4
+                0x000001ca                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001c8        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
-                0x000001c8                exit
-                0x000001c8                _exit
+ .fini9         0x000001ca        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+                0x000001ca                exit
+                0x000001ca                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -305,11 +294,11 @@ LOAD /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001c8        0x2 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+ .fini0         0x000001ca        0x2 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x000001ca                _etext = .
+                0x000001cc                _etext = .
 
-.data           0x00800200        0x0 load address 0x000001ca
+.data           0x00800200        0x0 load address 0x000001cc
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -320,39 +309,33 @@ LOAD /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a
                 0x00800200                _edata = .
                 0x00800200                PROVIDE (__data_end, .)
 
-.bss            0x00800200        0x6
+.bss            0x00800200        0x0
                 0x00800200                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800200        0x6 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
-                0x00800200                __iob
-                0x00800206                PROVIDE (__bss_end, .)
-                0x000001ca                __data_load_start = LOADADDR (.data)
-                0x000001ca                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800200                PROVIDE (__bss_end, .)
+                0x000001cc                __data_load_start = LOADADDR (.data)
+                0x000001cc                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800206        0x0
-                0x00800206                PROVIDE (__noinit_start, .)
+.noinit         0x00800200        0x0
+                0x00800200                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800206                PROVIDE (__noinit_end, .)
-                0x00800206                _end = .
-                0x00800206                PROVIDE (__heap_start, .)
+                0x00800200                PROVIDE (__noinit_end, .)
+                0x00800200                _end = .
+                0x00800200                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
                 0x00810000                __eeprom_end = .
 
-.stab           0x00000000      0xc24
+.stab           0x00000000      0x750
  *(.stab)
  .stab          0x00000000      0x750 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
- .stab          0x00000750      0x3a8 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
-                                0x3b4 (size before relaxing)
- .stab          0x00000af8      0x12c /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
-                                0x30c (size before relaxing)
 
-.stabstr        0x00000000      0x864
+.stabstr        0x00000000       0x54
  *(.stabstr)
- .stabstr       0x00000000      0x864 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+ .stabstr       0x00000000       0x54 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
 
 .stab.excl
  *(.stab.excl)
@@ -381,41 +364,42 @@ LOAD /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x28
+.debug_aranges  0x00000000       0x30
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x28 main.o
+                0x00000000       0x30 main.o
 
 .debug_pubnames
-                0x00000000       0x1b
+                0x00000000       0x27
  *(.debug_pubnames)
  .debug_pubnames
-                0x00000000       0x1b main.o
+                0x00000000       0x27 main.o
 
-.debug_info     0x00000000      0x18b
+.debug_info     0x00000000      0x142
  *(.debug_info)
- .debug_info    0x00000000      0x18b main.o
+ .debug_info    0x00000000      0x142 main.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000       0xf9
+.debug_abbrev   0x00000000       0xcf
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0xf9 main.o
+ .debug_abbrev  0x00000000       0xcf main.o
 
-.debug_line     0x00000000      0x11c
+.debug_line     0x00000000      0x153
  *(.debug_line)
- .debug_line    0x00000000      0x11c main.o
+ .debug_line    0x00000000      0x153 main.o
 
-.debug_frame    0x00000000       0x20
+.debug_frame    0x00000000       0x30
  *(.debug_frame)
- .debug_frame   0x00000000       0x20 main.o
+ .debug_frame   0x00000000       0x30 main.o
 
-.debug_str      0x00000000       0xaf
+.debug_str      0x00000000       0xd3
  *(.debug_str)
- .debug_str     0x00000000       0xaf main.o
-                                 0xe8 (size before relaxing)
+ .debug_str     0x00000000       0xd3 main.o
+                                0x107 (size before relaxing)
 
-.debug_loc
+.debug_loc      0x00000000       0x28
  *(.debug_loc)
+ .debug_loc     0x00000000       0x28 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -432,18 +416,14 @@ __data_end                                        /usr/lib/gcc/avr/4.1.2/../../.
 __data_load_start                                 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
 __data_start                                      /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
 __do_clear_bss                                    /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
-                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
-                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
                                                   main.o
 __do_copy_data                                    /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
-                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
-                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
                                                   main.o
 __heap_end                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
 __init                                            /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
-__iob                                             /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(iob.o)
-                                                  main.o
 __stack                                           /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__udivmodhi4                                      /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_udivmodhi4.o)
+                                                  main.o
 __vector_1                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
 __vector_10                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
 __vector_11                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
@@ -518,9 +498,8 @@ __vector_9                                        /usr/lib/gcc/avr/4.1.2/../../.
 __vector_default                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
 __vectors                                         /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
 _exit                                             /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+delayms                                           main.o
 exit                                              /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
                                                   /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
-fputc                                             /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(fputc.o)
-                                                  main.o
 main                                              main.o
                                                   /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o

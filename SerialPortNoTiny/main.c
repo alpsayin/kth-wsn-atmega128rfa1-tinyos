@@ -1,24 +1,25 @@
-
-#include <stdio.h>
+#define F_CPU 16000000UL
 #include <avr/io.h>
+#include <util/delay.h>
 
-int main()
-{
-	char buf[64];
-	char myChar = 33;
-	printf("Enter your name:\n");
-	scanf("%s", buf);
-	printf("Hello %s\n", buf);
-	while(1)
-	  {
-	    myChar = getchar();
-	    putchar(myChar);
-	    if(myChar & 0x01)
-	      PORTE |= (1 << 2);
-	    if(myChar & 0x02)
-	      PORTE |= (1 << 3);
-	    if(myChar & 0x04)
-	      PORTE |= (1 << 4);
-	  }
-	return 0;
+void delayms(uint16_t millis) {
+  uint16_t loop;
+  millis = (millis/10)*10;
+  while ( millis ) 
+    {
+      _delay_ms(10);
+      millis-=10;
+    }
+}
+
+int main(void) {
+  DDRE |= 1<<2; /* set PB0 to output */
+  while(1) 
+    {
+      PORTE &= ~(1<<2); /* LED on */
+      delayms(100);
+      PORTE |= 1<<2; /* LED off */
+      delayms(900);
+    }
+  return 0;
 }

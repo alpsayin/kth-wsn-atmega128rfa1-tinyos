@@ -3,27 +3,27 @@ main.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000001ca  00000000  00000000  00000074  2**1
+  0 .text         000001cc  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          00000006  00800200  00800200  0000023e  2**0
-                  ALLOC
-  2 .stab         00000c24  00000000  00000000  00000240  2**2
+  1 .stab         00000750  00000000  00000000  00000220  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00000864  00000000  00000000  00000e64  2**0
+  2 .stabstr      00000054  00000000  00000000  00000970  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_aranges 00000028  00000000  00000000  000016c8  2**0
+  3 .debug_aranges 00000030  00000000  00000000  000009c4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_pubnames 0000001b  00000000  00000000  000016f0  2**0
+  4 .debug_pubnames 00000027  00000000  00000000  000009f4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000018b  00000000  00000000  0000170b  2**0
+  5 .debug_info   00000142  00000000  00000000  00000a1b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000000f9  00000000  00000000  00001896  2**0
+  6 .debug_abbrev 000000cf  00000000  00000000  00000b5d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000011c  00000000  00000000  0000198f  2**0
+  7 .debug_line   00000153  00000000  00000000  00000c2c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000020  00000000  00000000  00001aac  2**2
+  8 .debug_frame  00000030  00000000  00000000  00000d80  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000000af  00000000  00000000  00001acc  2**0
+  9 .debug_str    000000d3  00000000  00000000  00000db0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000028  00000000  00000000  00000e83  2**0
                   CONTENTS, READONLY, DEBUGGING
 Disassembly of section .text:
 
@@ -185,7 +185,7 @@ Disassembly of section .text:
  12c:	12 e0       	ldi	r17, 0x02	; 2
  12e:	a0 e0       	ldi	r26, 0x00	; 0
  130:	b2 e0       	ldi	r27, 0x02	; 2
- 132:	ea ec       	ldi	r30, 0xCA	; 202
+ 132:	ec ec       	ldi	r30, 0xCC	; 204
  134:	f1 e0       	ldi	r31, 0x01	; 1
  136:	00 e0       	ldi	r16, 0x00	; 0
  138:	0b bf       	out	0x3b, r16	; 59
@@ -206,86 +206,106 @@ Disassembly of section .text:
  14e:	1d 92       	st	X+, r1
 
 00000150 <.do_clear_bss_start>:
- 150:	a6 30       	cpi	r26, 0x06	; 6
+ 150:	a0 30       	cpi	r26, 0x00	; 0
  152:	b1 07       	cpc	r27, r17
  154:	e1 f7       	brne	.-8      	; 0x14e <.do_clear_bss_loop>
- 156:	02 d0       	rcall	.+4      	; 0x15c <main>
- 158:	37 c0       	rjmp	.+110    	; 0x1c8 <_exit>
+ 156:	1b d0       	rcall	.+54     	; 0x18e <main>
+ 158:	38 c0       	rjmp	.+112    	; 0x1ca <_exit>
 
 0000015a <__bad_interrupt>:
  15a:	52 cf       	rjmp	.-348    	; 0x0 <__heap_end>
 
-0000015c <main>:
-#include <stdio.h>
+0000015c <delayms>:
+#define F_CPU 16000000UL
 #include <avr/io.h>
+#include <util/delay.h>
 
-int main()
+void delayms(uint16_t millis) {
+ 15c:	6a e0       	ldi	r22, 0x0A	; 10
+ 15e:	70 e0       	ldi	r23, 0x00	; 0
+ 160:	20 d0       	rcall	.+64     	; 0x1a2 <__udivmodhi4>
+ 162:	cb 01       	movw	r24, r22
+ 164:	33 e0       	ldi	r19, 0x03	; 3
+ 166:	88 0f       	add	r24, r24
+ 168:	99 1f       	adc	r25, r25
+ 16a:	3a 95       	dec	r19
+ 16c:	e1 f7       	brne	.-8      	; 0x166 <delayms+0xa>
+ 16e:	66 0f       	add	r22, r22
+ 170:	77 1f       	adc	r23, r23
+ 172:	68 0f       	add	r22, r24
+ 174:	79 1f       	adc	r23, r25
+ 176:	e0 e4       	ldi	r30, 0x40	; 64
+ 178:	fc e9       	ldi	r31, 0x9C	; 156
+ 17a:	05 c0       	rjmp	.+10     	; 0x186 <delayms+0x2a>
+ 17c:	cf 01       	movw	r24, r30
+ */
+void
+_delay_loop_2(uint16_t __count)
 {
- 15c:	60 91 02 02 	lds	r22, 0x0202
- 160:	70 91 03 02 	lds	r23, 0x0203
- 164:	81 e2       	ldi	r24, 0x21	; 33
- 166:	90 e0       	ldi	r25, 0x00	; 0
- 168:	02 d0       	rcall	.+4      	; 0x16e <fputc>
- 16a:	72 9a       	sbi	0x0e, 2	; 14
-	char buf[64];
-	char myChar = 33;
-	//	printf("Enter your name:\n");
-	//scanf("%s", buf);
-	//printf("Hello %s\n", buf);
-	while(1)
-	  {
-	    //myChar = getchar();
-	    putchar(myChar);
-	    if(myChar & 0x01)
-	      PORTE |= (1 << 2);
- 16c:	f7 cf       	rjmp	.-18     	; 0x15c <main>
+	__asm__ volatile (
+ 17e:	01 97       	sbiw	r24, 0x01	; 1
+ 180:	f1 f7       	brne	.-4      	; 0x17e <delayms+0x22>
+ 182:	6a 50       	subi	r22, 0x0A	; 10
+  uint16_t loop;
+  millis = (millis/10)*10;
+  while ( millis ) 
+    {
+      _delay_ms(10);
+      millis-=10;
+ 184:	70 40       	sbci	r23, 0x00	; 0
+ 186:	61 15       	cp	r22, r1
+ 188:	71 05       	cpc	r23, r1
+ 18a:	c1 f7       	brne	.-16     	; 0x17c <delayms+0x20>
+ 18c:	08 95       	ret
 
-0000016e <fputc>:
- 16e:	0f 93       	push	r16
- 170:	1f 93       	push	r17
- 172:	cf 93       	push	r28
- 174:	df 93       	push	r29
- 176:	8c 01       	movw	r16, r24
- 178:	eb 01       	movw	r28, r22
- 17a:	8b 81       	ldd	r24, Y+3	; 0x03
- 17c:	99 27       	eor	r25, r25
- 17e:	81 ff       	sbrs	r24, 1
- 180:	1b c0       	rjmp	.+54     	; 0x1b8 <fputc+0x4a>
- 182:	82 ff       	sbrs	r24, 2
- 184:	0d c0       	rjmp	.+26     	; 0x1a0 <fputc+0x32>
- 186:	2e 81       	ldd	r18, Y+6	; 0x06
- 188:	3f 81       	ldd	r19, Y+7	; 0x07
- 18a:	8c 81       	ldd	r24, Y+4	; 0x04
- 18c:	9d 81       	ldd	r25, Y+5	; 0x05
- 18e:	28 17       	cp	r18, r24
- 190:	39 07       	cpc	r19, r25
- 192:	64 f4       	brge	.+24     	; 0x1ac <fputc+0x3e>
- 194:	e8 81       	ld	r30, Y
- 196:	f9 81       	ldd	r31, Y+1	; 0x01
- 198:	01 93       	st	Z+, r16
- 19a:	f9 83       	std	Y+1, r31	; 0x01
- 19c:	e8 83       	st	Y, r30
- 19e:	06 c0       	rjmp	.+12     	; 0x1ac <fputc+0x3e>
- 1a0:	e8 85       	ldd	r30, Y+8	; 0x08
- 1a2:	f9 85       	ldd	r31, Y+9	; 0x09
- 1a4:	80 2f       	mov	r24, r16
- 1a6:	09 95       	icall
- 1a8:	89 2b       	or	r24, r25
- 1aa:	31 f4       	brne	.+12     	; 0x1b8 <fputc+0x4a>
- 1ac:	8e 81       	ldd	r24, Y+6	; 0x06
- 1ae:	9f 81       	ldd	r25, Y+7	; 0x07
- 1b0:	01 96       	adiw	r24, 0x01	; 1
- 1b2:	9f 83       	std	Y+7, r25	; 0x07
- 1b4:	8e 83       	std	Y+6, r24	; 0x06
- 1b6:	02 c0       	rjmp	.+4      	; 0x1bc <fputc+0x4e>
- 1b8:	0f ef       	ldi	r16, 0xFF	; 255
- 1ba:	1f ef       	ldi	r17, 0xFF	; 255
- 1bc:	c8 01       	movw	r24, r16
- 1be:	df 91       	pop	r29
- 1c0:	cf 91       	pop	r28
- 1c2:	1f 91       	pop	r17
- 1c4:	0f 91       	pop	r16
- 1c6:	08 95       	ret
+0000018e <main>:
+    }
+}
 
-000001c8 <_exit>:
- 1c8:	ff cf       	rjmp	.-2      	; 0x1c8 <_exit>
+int main(void) {
+ 18e:	6a 9a       	sbi	0x0d, 2	; 13
+  DDRE |= 1<<2; /* set PB0 to output */
+  while(1) 
+    {
+      PORTE &= ~(1<<2); /* LED on */
+ 190:	72 98       	cbi	0x0e, 2	; 14
+      delayms(100);
+ 192:	84 e6       	ldi	r24, 0x64	; 100
+ 194:	90 e0       	ldi	r25, 0x00	; 0
+ 196:	e2 df       	rcall	.-60     	; 0x15c <delayms>
+ 198:	72 9a       	sbi	0x0e, 2	; 14
+      PORTE |= 1<<2; /* LED off */
+ 19a:	84 e8       	ldi	r24, 0x84	; 132
+      delayms(900);
+ 19c:	93 e0       	ldi	r25, 0x03	; 3
+ 19e:	de df       	rcall	.-68     	; 0x15c <delayms>
+ 1a0:	f7 cf       	rjmp	.-18     	; 0x190 <main+0x2>
+
+000001a2 <__udivmodhi4>:
+ 1a2:	aa 1b       	sub	r26, r26
+ 1a4:	bb 1b       	sub	r27, r27
+ 1a6:	51 e1       	ldi	r21, 0x11	; 17
+ 1a8:	07 c0       	rjmp	.+14     	; 0x1b8 <__udivmodhi4_ep>
+
+000001aa <__udivmodhi4_loop>:
+ 1aa:	aa 1f       	adc	r26, r26
+ 1ac:	bb 1f       	adc	r27, r27
+ 1ae:	a6 17       	cp	r26, r22
+ 1b0:	b7 07       	cpc	r27, r23
+ 1b2:	10 f0       	brcs	.+4      	; 0x1b8 <__udivmodhi4_ep>
+ 1b4:	a6 1b       	sub	r26, r22
+ 1b6:	b7 0b       	sbc	r27, r23
+
+000001b8 <__udivmodhi4_ep>:
+ 1b8:	88 1f       	adc	r24, r24
+ 1ba:	99 1f       	adc	r25, r25
+ 1bc:	5a 95       	dec	r21
+ 1be:	a9 f7       	brne	.-22     	; 0x1aa <__udivmodhi4_loop>
+ 1c0:	80 95       	com	r24
+ 1c2:	90 95       	com	r25
+ 1c4:	bc 01       	movw	r22, r24
+ 1c6:	cd 01       	movw	r24, r26
+ 1c8:	08 95       	ret
+
+000001ca <_exit>:
+ 1ca:	ff cf       	rjmp	.-2      	; 0x1ca <_exit>
