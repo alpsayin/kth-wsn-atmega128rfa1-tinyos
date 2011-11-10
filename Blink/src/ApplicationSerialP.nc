@@ -11,8 +11,9 @@ module ApplicationSerialP
 	provides interface UartByte as Uart1Byte;
 	provides interface UartStream as Uart1Stream;
 	
-	provides interface SerialInterrupts as Uart1Interrupts;
+	uses interface SerialInterrupts as Uart1Interrupts;
 	
+	uses interface Leds;
 //	provides interface Init as Uart0Init;
 //	provides interface UartStream as UartStream0;
 //	provides interface SerialInterrupts as Uart0Interrupts;
@@ -20,7 +21,12 @@ module ApplicationSerialP
 }
 implementation
 {
-
+	uint8_t *txBuf, *rxBuf;
+	uint16_t txLen, rxLen;
+	error_t txResult, rxResult;
+	task void sendDoneTask();
+	task void receiveDoneTask();
+	
 	command error_t Uart1Init.init()
 	{
 		uint16_t brr = 34;
@@ -57,46 +63,86 @@ implementation
 
 	async command error_t Uart1Stream.disableReceiveInterrupt()
 	{
-		call Uart1Interrupts.clearRxInterrupt();
+		call Uart1Interrupts.disableRxInterrupt();
 		return SUCCESS;
 	}
 
 	async command error_t Uart1Stream.receive(uint8_t *buf, uint16_t len)
 	{
+		static bool busy = FALSE;
 		uint16_t i;
+//		atomic
+		{
+			if(busy)
+				return FAIL;
+			busy = TRUE;	
+		}
+		rxBuf = buf;
+		rxLen = len;
 		for(i=0; i<len; i++)
 		{
 			if( call Uart1Byte.receive(&(buf[i]), 0xFF) == FAIL)
+			{
+				rxResult = FAIL;	
+//				atomic
+				{
+					busy = FALSE;
+				}	
 				return FAIL;
+			}
+		}
+		rxResult = SUCCESS;
+		post receiveDoneTask();
+//		atomic
+		{
+			busy = FALSE;
 		}
 		return SUCCESS;
 	}
 
 	async command error_t Uart1Stream.send(uint8_t *buf, uint16_t len)
 	{
-//		static bool busy = FALSE;
+		static bool busy = FALSE;
 		uint16_t i;
 		
-//		if(busy)
-//			return FAIL;
-//		busy = TRUE;	
-		
+//		atomic
+		{
+			if(busy)
+				return FAIL;
+			busy = TRUE;	
+		}
+		txBuf = buf;
+		txLen = len;
 		for(i=0; i<len; i++)
 		{
 			if(call Uart1Byte.send(buf[i]) == FAIL)
+			{
+//				atomic
+				{
+					busy = FALSE;
+				}
+				txResult = FAIL;
 				return FAIL;		
+			}
 		}
-//		busy = FALSE;
-		
+//		atomic
+		{
+			busy = FALSE;
+		}
+		txResult = FAIL;
+		post sendDoneTask();
 		return SUCCESS;
 	}
 
 	async command error_t Uart1Byte.send(uint8_t byte)
 	{
-//		static bool busy = FALSE;
-//		if(busy)
-//			return FAIL;
-//		busy = TRUE;
+		static bool busy = FALSE;
+//		atomic
+		{
+			if(busy)
+				return FAIL;
+			busy = TRUE;
+		}
 		call Uart1Interrupts.clearTxInterrupt();
 		call Uart1Interrupts.disableTxInterrupt();
 		UDR1 = byte;
@@ -104,38 +150,47 @@ implementation
 		while( !call Uart1Interrupts.isTxInterruptPending() );
 		call Uart1Interrupts.clearTxInterrupt();
 		call Uart1Interrupts.enableTxInterrupt();
-//		busy = FALSE;
-		
+//		atomic
+		{
+			busy = FALSE;
+		}
 		return SUCCESS;
 	}
 
 	async command error_t Uart1Byte.receive(uint8_t *byte, uint8_t timeout)
 	{
-//		static bool busy = FALSE;
+		static bool busy = FALSE;
 		uint16_t biggerTimeout = ((uint16_t)timeout)<<8;
 		
-//		if(busy)
-//			return FAIL;
-//		busy = TRUE;
-		
+//		atomic
+		{
+			if(busy)
+				return FAIL;
+			busy = TRUE;
+		}
 		call Uart1Interrupts.disableRxInterrupt(); 
 		call Uart1Interrupts.clearRxInterrupt();
-		while(biggerTimeout /**|| timeout==0**/)
+		while(biggerTimeout || timeout==0)
 		{
 			if( call Uart1Interrupts.isRxInterruptPending() )
 			{
 				*byte = UDR1;
 				call Uart1Interrupts.clearRxInterrupt();
 				call Uart1Interrupts.enableRxInterrupt();
-//				busy = FALSE;
+//				atomic
+				{
+					busy = FALSE;
+				}
 				return SUCCESS;
 			}				
 			biggerTimeout--;
 		}
 		call Uart1Interrupts.clearRxInterrupt();
 		call Uart1Interrupts.enableRxInterrupt();
-		
-//		busy = FALSE;
+//		atomic
+		{
+			busy = FALSE;
+		}
 		return FAIL;
 	}
 	
@@ -146,50 +201,19 @@ implementation
 		return SUCCESS;
 	}
 	
-
-	async command void Uart1Interrupts.enableTxInterrupt()
+	async event void Uart1Interrupts.rxInterruptHandler(uint8_t byte)
 	{
-    	SET_BIT(UCSR1A, TXC1);
-		SET_BIT(UCSR1B, TXCIE1);
+//		call Leds.set(byte);
 	}
-
-	async command void Uart1Interrupts.clearRxInterrupt()
-	{		
-		CLR_BIT(UCSR1A, RXC1);
-	}
-
-	async command void Uart1Interrupts.disableRxInterrupt()
+	
+	
+	async event void Uart1Interrupts.txInterruptHandler()
 	{
-		CLR_BIT(UCSR1B, RXCIE1);
+		
 	}
 
-	async command void Uart1Interrupts.clearTxInterrupt()
-	{
-    	CLR_BIT(UCSR1A, TXC1);
-	}
+	task void sendDoneTask(){ signal Uart1Stream.sendDone(txBuf, txLen, txResult); }
+	task void receiveDoneTask() { signal Uart1Stream.receiveDone(rxBuf,  rxLen, rxResult); }
 
-	async command void Uart1Interrupts.enableRxInterrupt()
-	{
-		SET_BIT(UCSR1B, RXCIE1);
-	}
-
-	async command void Uart1Interrupts.disableTxInterrupt()
-	{
-		CLR_BIT(UCSR1B, TXCIE1);
-	}
-
-	async command void Uart1Interrupts.setSendData()
-	{
-		SET_BIT(UCSR1A, TXC1);
-	}
-
-	async command bool Uart1Interrupts.isTxInterruptPending()
-	{
-		return READ_BIT(UCSR1A, TXC1);
-	}
-
-	async command bool Uart1Interrupts.isRxInterruptPending()
-	{
-		return READ_BIT(UCSR1A, RXC1);
-	}
+	
 }

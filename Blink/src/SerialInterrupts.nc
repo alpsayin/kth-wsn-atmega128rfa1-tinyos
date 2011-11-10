@@ -15,4 +15,7 @@ interface SerialInterrupts
 	async command bool isTxInterruptPending();
 	
 	async command void setSendData();
+	
+	async event void rxInterruptHandler(uint8_t byte);
+	async event void txInterruptHandler();
 }

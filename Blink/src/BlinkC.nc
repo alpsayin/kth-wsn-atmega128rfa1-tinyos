@@ -49,35 +49,37 @@ implementation
     dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
     if(runOnce)
     {
-//	    post echoSerialTask();
+		call Uart1Stream.send("Hello World!\n", 13);
+		call Uart1Stream.send(signature, signatureLength);
+	    post echoSerialTask();
 	    runOnce = FALSE;
     }
-    call Leds.led0Toggle();
+//    call Leds.led0Toggle();
   }
   
   event void Timer1.fired()
   {
     dbg("BlinkC", "Timer 1 fired @ %s \n", sim_time_string());
-    call Leds.led1Toggle();
+//    call Leds.led1Toggle();
   }
   
   event void Timer2.fired()
   {
     dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
-    call Leds.led2Toggle();
-	call Uart1Stream.send("Hello World!\n", 13);
+//    call Leds.led2Toggle();
   }
 
 	async event void Uart1Stream.sendDone(uint8_t *buf, uint16_t len, error_t error){
-		// TODO Auto-generated method stub
+		// TODO do not do anything
+//		call Leds.led2Toggle();
 	}
 
 	async event void Uart1Stream.receivedByte(uint8_t byte){
-		// TODO Auto-generated method stub
+		// TODO do not do anything
 	}
 
 	async event void Uart1Stream.receiveDone(uint8_t *buf, uint16_t len, error_t error){
-		// TODO Auto-generated method stub
+		// TODO do not do anything
 	}
 
 }
