@@ -8,40 +8,102 @@
    8               		.global __do_copy_data
    9               		.global __do_clear_bss
   17               	.Ltext0:
-  18               		.section	.text.main,"ax",@progbits
-  19               	.global	main
-  21               	main:
-  22               	.LFB3:
+  18               		.section	.text.delayms,"ax",@progbits
+  19               	.global	delayms
+  21               	delayms:
+  22               	.LFB6:
   23               	.LSM0:
   24               	/* prologue: frame size=0 */
   25               	/* prologue end (size=0) */
-  26               	.L2:
+  26               	.LVL0:
   27               	.LSM1:
-  28 0000 6091 0000 		lds r22,__iob+2
-  29 0004 7091 0000 		lds r23,(__iob+2)+1
-  30 0008 81E2      		ldi r24,lo8(33)
-  31 000a 90E0      		ldi r25,hi8(33)
-  32 000c 0E94 0000 		call fputc
-  33               	.LSM2:
-  34 0010 729A      		sbi 46-0x20,2
-  35 0012 00C0      		rjmp .L2
-  36               	/* epilogue: frame size=0 */
-  37               	/* epilogue: noreturn */
-  38               	/* epilogue end (size=0) */
-  39               	/* function main size 10 (10) */
-  40               	.LFE3:
-  66               	.Letext0:
+  28 0000 6AE0      		ldi r22,lo8(10)
+  29 0002 70E0      		ldi r23,hi8(10)
+  30               	.LVL1:
+  31 0004 0E94 0000 		call __udivmodhi4
+  32 0008 CB01      		movw r24,r22
+  33 000a 33E0      		ldi r19,3
+  34 000c 880F      	1:	lsl r24
+  35 000e 991F      		rol r25
+  36 0010 3A95      		dec r19
+  37 0012 01F4      		brne 1b
+  38 0014 660F      		lsl r22
+  39 0016 771F      		rol r23
+  40               	.LVL2:
+  41 0018 680F      		add r22,r24
+  42 001a 791F      		adc r23,r25
+  43 001c E0E4      		ldi r30,lo8(-25536)
+  44 001e FCE9      		ldi r31,hi8(-25536)
+  45 0020 00C0      		rjmp .L2
+  46               	.LVL3:
+  47               	.L3:
+  48               	.LBB12:
+  49               	.LBB13:
+  50               	.LBB14:
+  51               	.LBB15:
+  52               	.LSM2:
+  53 0022 CF01      		movw r24,r30
+  54               	/* #APP */
+  55 0024 0197      		1: sbiw r24,1
+  56 0026 01F4      		brne 1b
+  57               	/* #NOAPP */
+  58               	.LBE15:
+  59               	.LBE14:
+  60               	.LBE13:
+  61               	.LBE12:
+  62               	.LSM3:
+  63 0028 6A50      		subi r22,lo8(-(-10))
+  64 002a 7040      		sbci r23,hi8(-(-10))
+  65               	.L2:
+  66               	.LSM4:
+  67 002c 6115      		cp r22,__zero_reg__
+  68 002e 7105      		cpc r23,__zero_reg__
+  69 0030 01F4      		brne .L3
+  70               	/* epilogue: frame size=0 */
+  71 0032 0895      		ret
+  72               	/* epilogue end (size=1) */
+  73               	/* function delayms size 28 (27) */
+  74               	.LFE6:
+  76               		.section	.text.main,"ax",@progbits
+  77               	.global	main
+  79               	main:
+  80               	.LFB7:
+  81               	.LSM5:
+  82               	/* prologue: frame size=0 */
+  83               	/* prologue end (size=0) */
+  84               	.LSM6:
+  85 0000 6A9A      		sbi 45-0x20,2
+  86               	.L7:
+  87               	.LSM7:
+  88 0002 7298      		cbi 46-0x20,2
+  89               	.LSM8:
+  90 0004 84E6      		ldi r24,lo8(100)
+  91 0006 90E0      		ldi r25,hi8(100)
+  92 0008 0E94 0000 		call delayms
+  93               	.LSM9:
+  94 000c 729A      		sbi 46-0x20,2
+  95               	.LSM10:
+  96 000e 84E8      		ldi r24,lo8(900)
+  97 0010 93E0      		ldi r25,hi8(900)
+  98 0012 0E94 0000 		call delayms
+  99 0016 00C0      		rjmp .L7
+ 100               	/* epilogue: frame size=0 */
+ 101               	/* epilogue: noreturn */
+ 102               	/* epilogue end (size=0) */
+ 103               	/* function main size 12 (12) */
+ 104               	.LFE7:
+ 138               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccJXopaz.s:3      *ABS*:0000003f __SREG__
-     /tmp/ccJXopaz.s:4      *ABS*:0000003e __SP_H__
-     /tmp/ccJXopaz.s:5      *ABS*:0000003d __SP_L__
-     /tmp/ccJXopaz.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccJXopaz.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccJXopaz.s:21     .text.main:00000000 main
+     /tmp/ccWJSLSC.s:3      *ABS*:0000003f __SREG__
+     /tmp/ccWJSLSC.s:4      *ABS*:0000003e __SP_H__
+     /tmp/ccWJSLSC.s:5      *ABS*:0000003d __SP_L__
+     /tmp/ccWJSLSC.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccWJSLSC.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccWJSLSC.s:21     .text.delayms:00000000 delayms
+     /tmp/ccWJSLSC.s:79     .text.main:00000000 main
 
 UNDEFINED SYMBOLS
 __do_copy_data
 __do_clear_bss
-__iob
-fputc
+__udivmodhi4
