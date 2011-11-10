@@ -1623,8 +1623,8 @@ struct __file {
 #line 261
   int size;
   int len;
-  int (*put)(char arg_0x40422788, struct __file *arg_0x40422970);
-  int (*get)(struct __file *arg_0x40422d60);
+  int (*put)(char arg_0x40422738, struct __file *arg_0x40422920);
+  int (*get)(struct __file *arg_0x40422d10);
   void *udata;
 };
 #line 405
@@ -2103,10 +2103,16 @@ enum __nesc_unnamed4282 {
   ENDL = '\n'
 };
 
+enum __nesc_unnamed4283 {
+
+  TX_BUFFER_SIZE = 64, 
+  RX_BUFFER_SIZE = 64
+};
+
 unsigned char hexTable[18] = "01234567890ABCDEF";
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281Usart.h"
 #line 42
-typedef union __nesc_unnamed4283 {
+typedef union __nesc_unnamed4284 {
   struct Atm1281_UCSRA_t {
     uint8_t mpcm : 1;
     uint8_t u2x : 1;
@@ -2121,7 +2127,7 @@ typedef union __nesc_unnamed4283 {
 } Atm1281UsartStatus_t;
 #line 69
 #line 57
-typedef union __nesc_unnamed4284 {
+typedef union __nesc_unnamed4285 {
   struct Atm1281_UCSRB_t {
     uint8_t txb8 : 1;
     uint8_t rxb8 : 1;
@@ -2135,7 +2141,7 @@ typedef union __nesc_unnamed4284 {
   uint8_t flat;
 } Atm1281UsartControl_t;
 
-enum __nesc_unnamed4285 {
+enum __nesc_unnamed4286 {
   ATM1281_UART_DATA_SIZE_5_BITS = 0, 
   ATM1281_UART_DATA_SIZE_6_BITS = 1, 
   ATM1281_UART_DATA_SIZE_7_BITS = 2, 
@@ -2143,7 +2149,7 @@ enum __nesc_unnamed4285 {
 };
 #line 88
 #line 79
-typedef union __nesc_unnamed4286 {
+typedef union __nesc_unnamed4287 {
   uint8_t flat;
   struct Atm1281_UCSRC_t {
     uint8_t ucpol : 1;
@@ -2158,7 +2164,7 @@ typedef union __nesc_unnamed4286 {
 
 
 
-enum __nesc_unnamed4287 {
+enum __nesc_unnamed4288 {
   ATM1281_4800_BAUD_1MHZ = 12, 
   ATM1281_9600_BAUD_1MHZ = 6, 
   ATM1281_19200_BAUD_1MHZ = 2, 
@@ -2229,7 +2235,7 @@ enum __nesc_unnamed4287 {
 };
 #line 190
 #line 165
-typedef struct __nesc_unnamed4288 {
+typedef struct __nesc_unnamed4289 {
   uint16_t ubr : 16;
   uint8_t mpcm : 1;
   uint8_t u2x : 1;
@@ -2263,7 +2269,7 @@ Atm1281UartConfig_t;
 
 
 #line 192
-typedef struct __nesc_unnamed4289 {
+typedef struct __nesc_unnamed4290 {
   uint8_t UBBRL;
   uint8_t UBBRH;
   uint8_t UCSRA;
@@ -2275,7 +2281,7 @@ typedef struct __nesc_unnamed4289 {
 
 
 #line 200
-typedef union __nesc_unnamed4290 {
+typedef union __nesc_unnamed4291 {
   Atm1281UartConfig_t uartConfig;
   Atm1281UartRegisters_t uartRegisters;
 } Atm1281UartUnionConfig_t;
@@ -2305,7 +2311,7 @@ Atm1281UartUnionConfig_t atm1281_uart_default_config = { {
 .umsel = 0 } };
 #line 284
 #line 269
-typedef struct __nesc_unnamed4291 {
+typedef struct __nesc_unnamed4292 {
   uint16_t ubr : 16;
   uint8_t  : 8;
   uint8_t  : 3;
@@ -2329,7 +2335,7 @@ Atm1281SpiConfig_t;
 
 
 #line 286
-typedef struct __nesc_unnamed4292 {
+typedef struct __nesc_unnamed4293 {
   uint8_t UBBRL;
   uint8_t UBBRH;
   uint8_t UCSRA;
@@ -2341,7 +2347,7 @@ typedef struct __nesc_unnamed4292 {
 
 
 #line 294
-typedef union __nesc_unnamed4293 {
+typedef union __nesc_unnamed4294 {
   Atm1281SpiConfig_t uartConfig;
   Atm1281SpiRegisters_t uartRegisters;
 } Atm1281SpiUnionConfig_t;
@@ -2415,7 +2421,7 @@ typedef /*TimerMilliP.AlarmToTimerC*/AlarmToTimerC__0__precision_tag /*TimerMill
 typedef TMilli /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__precision_tag;
 typedef /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__precision_tag /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__precision_tag;
 typedef /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__precision_tag /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__precision_tag;
-enum /*PlatformSerialC.Uart1*/Atm1281Uart1C__0____nesc_unnamed4294 {
+enum /*PlatformSerialC.Uart1*/Atm1281Uart1C__0____nesc_unnamed4295 {
   Atm1281Uart1C__0__CLIENT_ID = 0U
 };
 typedef TMicro /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Counter__precision_tag;
@@ -2446,7 +2452,7 @@ typedef /*CounterMcu16C.AtmegaCounterP*/AtmegaCounterP__1__size_type /*CounterMc
 typedef uint16_t HplAtmRfa1Timer1P__CompareA__size_type;
 typedef uint16_t HplAtmRfa1Timer1P__Capture__size_type;
 typedef uint16_t HplAtmRfa1Timer1P__Timer__size_type;
-enum /*PlatformSerialC.Uart1.UsartC*/Atm1281Usart1C__0____nesc_unnamed4295 {
+enum /*PlatformSerialC.Uart1.UsartC*/Atm1281Usart1C__0____nesc_unnamed4296 {
   Atm1281Usart1C__0__CLIENT_ID = 0U
 };
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
@@ -2618,37 +2624,37 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406828f0);
+uint8_t arg_0x406818f0);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406828f0, 
+uint8_t arg_0x406818f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__ResourceConfigure__configure(
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406e51e8);
+uint8_t arg_0x406fa1e8);
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
 static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartByte__send(
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406e5938, 
+uint8_t arg_0x406fa938, 
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
 uint8_t byte);
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartConfigure.nc"
 static Atm1281UartUnionConfig_t */*Atm1281Uart1P.UartP*/Atm1281UartP__0__Atm1281UartConfigure__default__getConfig(
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406f97b0);
+uint8_t arg_0x406f87b0);
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__receivedByte(
 # 47 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fa0c0, 
+uint8_t arg_0x406f90c0, 
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 uint8_t byte);
 #line 99
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__receiveDone(
 # 47 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fa0c0, 
+uint8_t arg_0x406f90c0, 
 # 95 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -2658,7 +2664,7 @@ uint16_t len, error_t error);
 #line 57
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__sendDone(
 # 47 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fa0c0, 
+uint8_t arg_0x406f90c0, 
 # 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -2670,33 +2676,33 @@ static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Counter__overflow(void );
 # 88 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__default__request(
 # 49 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fad18);
+uint8_t arg_0x406f9d18);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__granted(
 # 49 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fad18);
+uint8_t arg_0x406f9d18);
 # 128 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static bool /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__default__isOwner(
 # 49 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fad18);
+uint8_t arg_0x406f9d18);
 # 88 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__request(
 # 44 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406e7790);
+uint8_t arg_0x406e6790);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__default__granted(
 # 44 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406e7790);
+uint8_t arg_0x406e6790);
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartInterrupts__rxDone(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406f7408, 
+uint8_t arg_0x406f6408, 
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
 uint8_t data);
 #line 49
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartInterrupts__txDone(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406f7408);
+uint8_t arg_0x406f6408);
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281Usart.nc"
 static void HplAtm1281Usart1P__HplUsart__resetUsart(void );
 
@@ -2735,13 +2741,13 @@ static void HplAtmRfa1Timer1P__Timer__start(void );
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
 static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__default__rxDone(
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UsartShareP.nc"
-uint8_t arg_0x407da8c8, 
+uint8_t arg_0x407d98c8, 
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
 uint8_t data);
 #line 49
 static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__default__txDone(
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UsartShareP.nc"
-uint8_t arg_0x407da8c8);
+uint8_t arg_0x407d98c8);
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
 static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__RawInterrupts__rxDone(uint8_t data);
 #line 49
@@ -2755,23 +2761,23 @@ static bool /*Atm1281UsartShare1P.ArbiterC.Queue*/FcfsResourceQueueC__0__FcfsQue
 # 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
 static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x407eee18);
+uint8_t arg_0x407ede18);
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x407eda58);
+uint8_t arg_0x407eca58);
 # 88 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static error_t /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Resource__request(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x407ee3f0);
+uint8_t arg_0x407ed3f0);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x407ee3f0);
+uint8_t arg_0x407ed3f0);
 # 128 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static bool /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Resource__isOwner(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x407ee3f0);
+uint8_t arg_0x407ed3f0);
 # 90 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ArbiterInfo.nc"
 static bool /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ArbiterInfo__inUse(void );
 
@@ -2818,7 +2824,7 @@ uint16_t MeasureClockC__cycles;
 
 static inline error_t MeasureClockC__Init__init(void );
 #line 135
-enum MeasureClockC____nesc_unnamed4296 {
+enum MeasureClockC____nesc_unnamed4297 {
   MeasureClockC__MAGIC = 31250 / (16 / 16)
 };
 # 38 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/radio/RFA1RadioOffP.nc"
@@ -2844,7 +2850,7 @@ uint8_t arg_0x403c9860);
 # 76 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/McuSleep.nc"
 static void SchedulerBasicP__McuSleep__sleep(void );
 # 61 "/opt/tinyos-main/src/tinyos-main/tos/system/SchedulerBasicP.nc"
-enum SchedulerBasicP____nesc_unnamed4297 {
+enum SchedulerBasicP____nesc_unnamed4298 {
 
   SchedulerBasicP__NUM_TASKS = 3U, 
   SchedulerBasicP__NO_TASK = 255
@@ -2942,7 +2948,7 @@ static void BlinkC__Timer2__startPeriodic(uint32_t dt);
 static bool BlinkC__PushButton0__get(void );
 # 95 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/StdControl.nc"
 static error_t BlinkC__UartControl__start(void );
-# 70 "/home/alpsayin/tinyos_workspace/BlinkWithSwitch/src/BlinkC.nc"
+# 30 "/home/alpsayin/tinyos_workspace/BlinkWithSwitch/src/BlinkC.nc"
 uint8_t BlinkC__myByte = 0x35;
 
 
@@ -2964,9 +2970,9 @@ static inline void BlinkC__Boot__booted(void );
 
 
 static inline void BlinkC__Timer0__fired(void );
-#line 109
+#line 69
 static inline void BlinkC__Timer1__fired(void );
-#line 132
+#line 92
 static inline void BlinkC__Timer2__fired(void );
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
 static void LedsP__Led0__makeOutput(void );
@@ -3241,7 +3247,7 @@ static void /*CounterMilli32C.TransformCounterC*/TransformCounterC__0__Counter__
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc"
 /*CounterMilli32C.TransformCounterC*/TransformCounterC__0__upper_count_type /*CounterMilli32C.TransformCounterC*/TransformCounterC__0__m_upper;
 
-enum /*CounterMilli32C.TransformCounterC*/TransformCounterC__0____nesc_unnamed4298 {
+enum /*CounterMilli32C.TransformCounterC*/TransformCounterC__0____nesc_unnamed4299 {
 
   TransformCounterC__0__LOW_SHIFT_RIGHT = 6, 
   TransformCounterC__0__HIGH_SHIFT_LEFT = 8 * sizeof(/*CounterMilli32C.TransformCounterC*/TransformCounterC__0__from_size_type ) - /*CounterMilli32C.TransformCounterC*/TransformCounterC__0__LOW_SHIFT_RIGHT, 
@@ -3267,7 +3273,7 @@ static /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__Counter_
 /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__to_size_type /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__m_t0;
 /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__to_size_type /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__m_dt;
 
-enum /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0____nesc_unnamed4299 {
+enum /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0____nesc_unnamed4300 {
 
   TransformAlarmC__0__MAX_DELAY_LOG2 = 8 * sizeof(/*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__from_size_type ) - 1 - 6, 
   TransformAlarmC__0__MAX_DELAY = (/*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__to_size_type )1 << /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__MAX_DELAY_LOG2
@@ -3314,7 +3320,7 @@ static void /*TimerMilliP.AlarmToTimerC*/AlarmToTimerC__0__Alarm__stop(void );
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.AlarmToTimerC*/AlarmToTimerC__0__Timer__fired(void );
 # 74 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/AlarmToTimerC.nc"
-enum /*TimerMilliP.AlarmToTimerC*/AlarmToTimerC__0____nesc_unnamed4300 {
+enum /*TimerMilliP.AlarmToTimerC*/AlarmToTimerC__0____nesc_unnamed4301 {
 #line 74
   AlarmToTimerC__0__fired = 0U
 };
@@ -3356,16 +3362,16 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406828f0);
+uint8_t arg_0x406818f0);
 #line 71
-enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4301 {
+enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4302 {
 #line 71
   VirtualizeTimerC__0__updateFromTimer = 1U
 };
 #line 71
 typedef int /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_sillytask_updateFromTimer[/*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer];
 #line 53
-enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4302 {
+enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4303 {
 
   VirtualizeTimerC__0__NUM_TIMERS = 3U, 
   VirtualizeTimerC__0__END_OF_LIST = 255
@@ -3379,7 +3385,7 @@ enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4302 {
 
 
 #line 59
-typedef struct /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4303 {
+typedef struct /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4304 {
 
   uint32_t t0;
   uint32_t dt;
@@ -3418,7 +3424,7 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartConfigure.nc"
 static Atm1281UartUnionConfig_t */*Atm1281Uart1P.UartP*/Atm1281UartP__0__Atm1281UartConfigure__getConfig(
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406f97b0);
+uint8_t arg_0x406f87b0);
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281Usart.nc"
 static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Usart__enableTxIntr(void );
 static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Usart__disableTxIntr(void );
@@ -3435,13 +3441,13 @@ static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Usart__clrTxIntr(void );
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__receivedByte(
 # 47 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fa0c0, 
+uint8_t arg_0x406f90c0, 
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 uint8_t byte);
 #line 99
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__receiveDone(
 # 47 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fa0c0, 
+uint8_t arg_0x406f90c0, 
 # 95 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -3451,7 +3457,7 @@ uint16_t len, error_t error);
 #line 57
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__sendDone(
 # 47 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fa0c0, 
+uint8_t arg_0x406f90c0, 
 # 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -3461,15 +3467,15 @@ uint16_t len, error_t error);
 # 88 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__request(
 # 49 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fad18);
+uint8_t arg_0x406f9d18);
 # 128 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static bool /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__isOwner(
 # 49 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406fad18);
+uint8_t arg_0x406f9d18);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__granted(
 # 44 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartP.nc"
-uint8_t arg_0x406e7790);
+uint8_t arg_0x406e6790);
 #line 61
 uint16_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__m_tx_len;
 #line 61
@@ -3569,7 +3575,7 @@ static void /*CounterMicro32C.TransformCounterC*/TransformCounterC__1__Counter__
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc"
 /*CounterMicro32C.TransformCounterC*/TransformCounterC__1__upper_count_type /*CounterMicro32C.TransformCounterC*/TransformCounterC__1__m_upper;
 
-enum /*CounterMicro32C.TransformCounterC*/TransformCounterC__1____nesc_unnamed4304 {
+enum /*CounterMicro32C.TransformCounterC*/TransformCounterC__1____nesc_unnamed4305 {
 
   TransformCounterC__1__LOW_SHIFT_RIGHT = 1, 
   TransformCounterC__1__HIGH_SHIFT_LEFT = 8 * sizeof(/*CounterMicro32C.TransformCounterC*/TransformCounterC__1__from_size_type ) - /*CounterMicro32C.TransformCounterC*/TransformCounterC__1__LOW_SHIFT_RIGHT, 
@@ -3586,7 +3592,7 @@ static void /*CounterMcu32C.TransformCounterC*/TransformCounterC__2__Counter__ov
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc"
 /*CounterMcu32C.TransformCounterC*/TransformCounterC__2__upper_count_type /*CounterMcu32C.TransformCounterC*/TransformCounterC__2__m_upper;
 
-enum /*CounterMcu32C.TransformCounterC*/TransformCounterC__2____nesc_unnamed4305 {
+enum /*CounterMcu32C.TransformCounterC*/TransformCounterC__2____nesc_unnamed4306 {
 
   TransformCounterC__2__LOW_SHIFT_RIGHT = 0, 
   TransformCounterC__2__HIGH_SHIFT_LEFT = 8 * sizeof(/*CounterMcu32C.TransformCounterC*/TransformCounterC__2__from_size_type ) - /*CounterMcu32C.TransformCounterC*/TransformCounterC__2__LOW_SHIFT_RIGHT, 
@@ -3639,13 +3645,13 @@ static inline mcu_power_t HplAtmRfa1Timer1P__McuPowerOverride__lowestState(void 
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
 static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__rxDone(
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UsartShareP.nc"
-uint8_t arg_0x407da8c8, 
+uint8_t arg_0x407d98c8, 
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
 uint8_t data);
 #line 49
 static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__txDone(
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UsartShareP.nc"
-uint8_t arg_0x407da8c8);
+uint8_t arg_0x407d98c8);
 # 90 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ArbiterInfo.nc"
 static bool /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__ArbiterInfo__inUse(void );
 
@@ -3670,7 +3676,7 @@ static inline void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Raw
 static inline void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__default__txDone(uint8_t id);
 static inline void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__default__rxDone(uint8_t id, uint8_t data);
 # 49 "/opt/tinyos-main/src/tinyos-main/tos/system/FcfsResourceQueueC.nc"
-enum /*Atm1281UsartShare1P.ArbiterC.Queue*/FcfsResourceQueueC__0____nesc_unnamed4306 {
+enum /*Atm1281UsartShare1P.ArbiterC.Queue*/FcfsResourceQueueC__0____nesc_unnamed4307 {
 #line 49
   FcfsResourceQueueC__0__NO_ENTRY = 0xFF
 };
@@ -3693,33 +3699,33 @@ static inline error_t /*Atm1281UsartShare1P.ArbiterC.Queue*/FcfsResourceQueueC__
 # 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
 static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x407eee18);
+uint8_t arg_0x407ede18);
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x407eda58);
+uint8_t arg_0x407eca58);
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceQueue.nc"
 static error_t /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Queue__enqueue(resource_client_id_t id);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Resource__granted(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x407ee3f0);
+uint8_t arg_0x407ed3f0);
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__grantedTask__postTask(void );
 # 69 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-enum /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0____nesc_unnamed4307 {
+enum /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0____nesc_unnamed4308 {
 #line 69
   SimpleArbiterP__0__grantedTask = 2U
 };
 #line 69
 typedef int /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0____nesc_sillytask_grantedTask[/*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__grantedTask];
 #line 62
-enum /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0____nesc_unnamed4308 {
+enum /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0____nesc_unnamed4309 {
 #line 62
   SimpleArbiterP__0__RES_IDLE = 0, SimpleArbiterP__0__RES_GRANTING = 1, SimpleArbiterP__0__RES_BUSY = 2
 };
 #line 63
-enum /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0____nesc_unnamed4309 {
+enum /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0____nesc_unnamed4310 {
 #line 63
   SimpleArbiterP__0__NO_RES = 0xFF
 };
@@ -4400,13 +4406,13 @@ static inline Atm1281UartUnionConfig_t */*Atm1281Uart1P.UartP*/Atm1281UartP__0__
 }
 
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/Atm1281UartConfigure.nc"
-inline static Atm1281UartUnionConfig_t */*Atm1281Uart1P.UartP*/Atm1281UartP__0__Atm1281UartConfigure__getConfig(uint8_t arg_0x406f97b0){
+inline static Atm1281UartUnionConfig_t */*Atm1281Uart1P.UartP*/Atm1281UartP__0__Atm1281UartConfigure__getConfig(uint8_t arg_0x406f87b0){
 #line 39
-  union __nesc_unnamed4290 *__nesc_result;
+  union __nesc_unnamed4291 *__nesc_result;
 #line 39
 
 #line 39
-  switch (arg_0x406f97b0) {
+  switch (arg_0x406f87b0) {
 #line 39
     case /*PlatformSerialC.Uart1*/Atm1281Uart1C__0__CLIENT_ID:
 #line 39
@@ -4416,7 +4422,7 @@ inline static Atm1281UartUnionConfig_t */*Atm1281Uart1P.UartP*/Atm1281UartP__0__
 #line 39
     default:
 #line 39
-      __nesc_result = /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Atm1281UartConfigure__default__getConfig(arg_0x406f97b0);
+      __nesc_result = /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Atm1281UartConfigure__default__getConfig(arg_0x406f87b0);
 #line 39
       break;
 #line 39
@@ -4458,9 +4464,9 @@ static inline void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Re
 }
 
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
-inline static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x407eda58){
+inline static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x407eca58){
 #line 59
-  switch (arg_0x407eda58) {
+  switch (arg_0x407eca58) {
 #line 59
     case /*PlatformSerialC.Uart1.UsartC*/Atm1281Usart1C__0__CLIENT_ID:
 #line 59
@@ -4470,7 +4476,7 @@ inline static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Re
 #line 59
     default:
 #line 59
-      /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x407eda58);
+      /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x407eca58);
 #line 59
       break;
 #line 59
@@ -4491,9 +4497,9 @@ static inline void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__default__gr
 }
 
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
-inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__granted(uint8_t arg_0x406e7790){
+inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__granted(uint8_t arg_0x406e6790){
 #line 102
-  switch (arg_0x406e7790) {
+  switch (arg_0x406e6790) {
 #line 102
     case /*PlatformSerialC.Uart1*/Atm1281Uart1C__0__CLIENT_ID:
 #line 102
@@ -4503,7 +4509,7 @@ inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__granted(uin
 #line 102
     default:
 #line 102
-      /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__default__granted(arg_0x406e7790);
+      /*Atm1281Uart1P.UartP*/Atm1281UartP__0__Resource__default__granted(arg_0x406e6790);
 #line 102
       break;
 #line 102
@@ -4525,9 +4531,9 @@ static inline void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Re
 }
 
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
-inline static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x407ee3f0){
+inline static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x407ed3f0){
 #line 102
-  switch (arg_0x407ee3f0) {
+  switch (arg_0x407ed3f0) {
 #line 102
     case /*PlatformSerialC.Uart1.UsartC*/Atm1281Usart1C__0__CLIENT_ID:
 #line 102
@@ -4537,7 +4543,7 @@ inline static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Re
 #line 102
     default:
 #line 102
-      /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x407ee3f0);
+      /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x407ed3f0);
 #line 102
       break;
 #line 102
@@ -4689,12 +4695,12 @@ inline static error_t BlinkC__UartByte__send(uint8_t byte){
 #line 46
 }
 #line 46
-# 90 "/home/alpsayin/tinyos_workspace/BlinkWithSwitch/src/BlinkC.nc"
+# 50 "/home/alpsayin/tinyos_workspace/BlinkWithSwitch/src/BlinkC.nc"
 static inline void BlinkC__Timer0__fired(void )
 {
   unsigned char word;
 
-#line 93
+#line 53
   ;
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
     {
@@ -4710,7 +4716,7 @@ static inline void BlinkC__Timer0__fired(void )
       BlinkC__UartByte__send(word);
       BlinkC__UartByte__send(ENDL);
     }
-#line 107
+#line 67
     __nesc_atomic_end(__nesc_atomic); }
 }
 
@@ -4887,7 +4893,7 @@ inline static bool BlinkC__PushButton0__get(void ){
 #line 4
 }
 #line 4
-# 109 "/home/alpsayin/tinyos_workspace/BlinkWithSwitch/src/BlinkC.nc"
+# 69 "/home/alpsayin/tinyos_workspace/BlinkWithSwitch/src/BlinkC.nc"
 static inline void BlinkC__Timer1__fired(void )
 {
   ;
@@ -4899,32 +4905,32 @@ static inline void BlinkC__Timer1__fired(void )
             BlinkC__Leds__led0On();
             }
           else {
-#line 119
+#line 79
             BlinkC__Leds__led0Off();
             }
-#line 120
+#line 80
           if (BlinkC__myByte & 0x02) {
             BlinkC__Leds__led1On();
             }
           else {
-#line 123
+#line 83
             BlinkC__Leds__led1Off();
             }
-#line 124
+#line 84
           if (BlinkC__myByte & 0x04) {
             BlinkC__Leds__led2On();
             }
           else {
-#line 127
+#line 87
             BlinkC__Leds__led2Off();
             }
         }
-#line 129
+#line 89
         __nesc_atomic_end(__nesc_atomic); }
     }
 }
 
-#line 132
+#line 92
 static inline void BlinkC__Timer2__fired(void )
 {
   ;
@@ -4932,7 +4938,7 @@ static inline void BlinkC__Timer2__fired(void )
     {
       BlinkC__myByte++;
     }
-#line 138
+#line 98
     __nesc_atomic_end(__nesc_atomic); }
 }
 
@@ -4942,9 +4948,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406828f0){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406818f0){
 #line 83
-  switch (arg_0x406828f0) {
+  switch (arg_0x406818f0) {
 #line 83
     case 0U:
 #line 83
@@ -4966,7 +4972,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406828f0);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406818f0);
 #line 83
       break;
 #line 83
@@ -5011,13 +5017,13 @@ static inline error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__def
 }
 
 # 128 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
-inline static bool /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__isOwner(uint8_t arg_0x406fad18){
+inline static bool /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__isOwner(uint8_t arg_0x406f9d18){
 #line 128
   unsigned char __nesc_result;
 #line 128
 
 #line 128
-  switch (arg_0x406fad18) {
+  switch (arg_0x406f9d18) {
 #line 128
     case /*PlatformSerialC.Uart1*/Atm1281Uart1C__0__CLIENT_ID:
 #line 128
@@ -5027,7 +5033,7 @@ inline static bool /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__isOwne
 #line 128
     default:
 #line 128
-      __nesc_result = /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__default__isOwner(arg_0x406fad18);
+      __nesc_result = /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__default__isOwner(arg_0x406f9d18);
 #line 128
       break;
 #line 128
@@ -5524,9 +5530,9 @@ static inline void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__Re
 }
 
 # 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
-inline static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(uint8_t arg_0x407eee18){
+inline static void /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(uint8_t arg_0x407ede18){
 #line 53
-    /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(arg_0x407eee18);
+    /*Atm1281UsartShare1P.ArbiterC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(arg_0x407ede18);
 #line 53
 }
 #line 53
@@ -5582,13 +5588,13 @@ static inline error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__def
 }
 
 # 88 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
-inline static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__request(uint8_t arg_0x406fad18){
+inline static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__request(uint8_t arg_0x406f9d18){
 #line 88
   unsigned char __nesc_result;
 #line 88
 
 #line 88
-  switch (arg_0x406fad18) {
+  switch (arg_0x406f9d18) {
 #line 88
     case /*PlatformSerialC.Uart1*/Atm1281Uart1C__0__CLIENT_ID:
 #line 88
@@ -5598,7 +5604,7 @@ inline static error_t /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__req
 #line 88
     default:
 #line 88
-      __nesc_result = /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__default__request(arg_0x406fad18);
+      __nesc_result = /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UsartResource__default__request(arg_0x406f9d18);
 #line 88
       break;
 #line 88
@@ -5654,7 +5660,7 @@ inline static error_t BlinkC__UartControl__start(void ){
 #line 95
 }
 #line 95
-# 81 "/home/alpsayin/tinyos_workspace/BlinkWithSwitch/src/BlinkC.nc"
+# 41 "/home/alpsayin/tinyos_workspace/BlinkWithSwitch/src/BlinkC.nc"
 static inline void BlinkC__Boot__booted(void )
 {
   BlinkC__UartControl__start();
@@ -6042,9 +6048,9 @@ static inline void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__
 }
 
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
-inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__receivedByte(uint8_t arg_0x406fa0c0, uint8_t byte){
+inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__receivedByte(uint8_t arg_0x406f90c0, uint8_t byte){
 #line 79
-    /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__receivedByte(arg_0x406fa0c0, byte);
+    /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__receivedByte(arg_0x406f90c0, byte);
 #line 79
 }
 #line 79
@@ -6055,9 +6061,9 @@ static inline void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__
 }
 
 # 99 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
-inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__receiveDone(uint8_t arg_0x406fa0c0, uint8_t * buf, uint16_t len, error_t error){
+inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__receiveDone(uint8_t arg_0x406f90c0, uint8_t * buf, uint16_t len, error_t error){
 #line 99
-    /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__receiveDone(arg_0x406fa0c0, buf, len, error);
+    /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__receiveDone(arg_0x406f90c0, buf, len, error);
 #line 99
 }
 #line 99
@@ -6089,9 +6095,9 @@ static inline void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Int
 }
 
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
-inline static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__rxDone(uint8_t arg_0x407da8c8, uint8_t data){
+inline static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__rxDone(uint8_t arg_0x407d98c8, uint8_t data){
 #line 54
-  switch (arg_0x407da8c8) {
+  switch (arg_0x407d98c8) {
 #line 54
     case /*PlatformSerialC.Uart1.UsartC*/Atm1281Usart1C__0__CLIENT_ID:
 #line 54
@@ -6101,7 +6107,7 @@ inline static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Int
 #line 54
     default:
 #line 54
-      /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__default__rxDone(arg_0x407da8c8, data);
+      /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__default__rxDone(arg_0x407d98c8, data);
 #line 54
       break;
 #line 54
@@ -6147,9 +6153,9 @@ static inline void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__
 }
 
 # 57 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
-inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__sendDone(uint8_t arg_0x406fa0c0, uint8_t * buf, uint16_t len, error_t error){
+inline static void /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__sendDone(uint8_t arg_0x406f90c0, uint8_t * buf, uint16_t len, error_t error){
 #line 57
-    /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__sendDone(arg_0x406fa0c0, buf, len, error);
+    /*Atm1281Uart1P.UartP*/Atm1281UartP__0__UartStream__default__sendDone(arg_0x406f90c0, buf, len, error);
 #line 57
 }
 #line 57
@@ -6193,9 +6199,9 @@ static inline void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Int
 }
 
 # 49 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm1281/usart/HplAtm1281UsartInterrupts.nc"
-inline static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__txDone(uint8_t arg_0x407da8c8){
+inline static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__txDone(uint8_t arg_0x407d98c8){
 #line 49
-  switch (arg_0x407da8c8) {
+  switch (arg_0x407d98c8) {
 #line 49
     case /*PlatformSerialC.Uart1.UsartC*/Atm1281Usart1C__0__CLIENT_ID:
 #line 49
@@ -6205,7 +6211,7 @@ inline static void /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Int
 #line 49
     default:
 #line 49
-      /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__default__txDone(arg_0x407da8c8);
+      /*Atm1281UsartShare1P.UsartShareP*/Atm1281UsartShareP__0__Interrupts__default__txDone(arg_0x407d98c8);
 #line 49
       break;
 #line 49

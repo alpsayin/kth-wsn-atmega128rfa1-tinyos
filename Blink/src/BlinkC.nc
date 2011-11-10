@@ -54,19 +54,19 @@ implementation
 	    post echoSerialTask();
 	    runOnce = FALSE;
     }
-//    call Leds.led0Toggle();
+    call Leds.led0Toggle();
   }
   
   event void Timer1.fired()
   {
     dbg("BlinkC", "Timer 1 fired @ %s \n", sim_time_string());
-//    call Leds.led1Toggle();
+    call Leds.led1Toggle();
   }
   
   event void Timer2.fired()
   {
     dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
-//    call Leds.led2Toggle();
+    call Leds.led2Toggle();
   }
 
 	async event void Uart1Stream.sendDone(uint8_t *buf, uint16_t len, error_t error){
