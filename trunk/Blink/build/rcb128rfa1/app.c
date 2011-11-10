@@ -1846,12 +1846,22 @@ static void BlinkC__Timer2__fired(void );
 static void BlinkC__echoSerialTask__runTask(void );
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
 static error_t LedsP__Init__init(void );
-# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
+# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
+static void LedsP__Leds__led0Toggle(void );
+#line 83
+static void LedsP__Leds__led1Toggle(void );
+#line 100
+static void LedsP__Leds__led2Toggle(void );
+# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
+static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void );
+
+
+
 static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__makeOutput(void );
 #line 40
 static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__set(void );
 
-
+static void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle(void );
 
 
 
@@ -1859,7 +1869,7 @@ static void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__ma
 #line 40
 static void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__set(void );
 
-
+static void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__toggle(void );
 
 
 
@@ -2171,6 +2181,12 @@ uint16_t len);
 static void BlinkC__Timer1__startPeriodic(uint32_t dt);
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
 static error_t BlinkC__Uart1Init__init(void );
+# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
+static void BlinkC__Leds__led0Toggle(void );
+#line 83
+static void BlinkC__Leds__led1Toggle(void );
+#line 100
+static void BlinkC__Leds__led2Toggle(void );
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void BlinkC__Timer2__startPeriodic(uint32_t dt);
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
@@ -2228,12 +2244,16 @@ static inline void BlinkC__Uart1Stream__sendDone(uint8_t *buf, uint16_t len, err
 
 
 static inline void BlinkC__Uart1Stream__receiveDone(uint8_t *buf, uint16_t len, error_t error);
-# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
+# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
+static void LedsP__Led0__toggle(void );
+
+
+
 static void LedsP__Led0__makeOutput(void );
 #line 40
 static void LedsP__Led0__set(void );
 
-
+static void LedsP__Led1__toggle(void );
 
 
 
@@ -2241,7 +2261,7 @@ static void LedsP__Led1__makeOutput(void );
 #line 40
 static void LedsP__Led1__set(void );
 
-
+static void LedsP__Led2__toggle(void );
 
 
 
@@ -2250,10 +2270,16 @@ static void LedsP__Led2__makeOutput(void );
 static void LedsP__Led2__set(void );
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
 static inline error_t LedsP__Init__init(void );
+#line 72
+static inline void LedsP__Leds__led0Toggle(void );
+#line 86
+static inline void LedsP__Leds__led1Toggle(void );
+#line 98
+static inline void LedsP__Leds__led2Toggle(void );
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__set(void );
 
-
+static inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void );
 
 
 
@@ -2261,7 +2287,7 @@ static __inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__1
 #line 55
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__set(void );
 
-
+static inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle(void );
 
 
 
@@ -2269,7 +2295,7 @@ static __inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__1
 #line 55
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__set(void );
 
-
+static inline void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__toggle(void );
 
 
 
@@ -3586,6 +3612,39 @@ inline static bool /*CounterMilli32C.TransformCounterC*/TransformCounterC__0__Co
 #line 71
 }
 #line 71
+# 57 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
+static inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void )
+#line 57
+{
+#line 57
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 57
+    * (volatile uint8_t * )46U ^= 1 << 2;
+#line 57
+    __nesc_atomic_end(__nesc_atomic); }
+}
+
+# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
+inline static void LedsP__Led0__toggle(void ){
+#line 42
+  /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle();
+#line 42
+}
+#line 42
+# 72 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
+static inline void LedsP__Leds__led0Toggle(void )
+#line 72
+{
+  LedsP__Led0__toggle();
+}
+
+# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
+inline static void BlinkC__Leds__led0Toggle(void ){
+#line 67
+  LedsP__Leds__led0Toggle();
+#line 67
+}
+#line 67
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 inline static error_t BlinkC__echoSerialTask__postTask(void ){
 #line 67
@@ -3627,18 +3686,87 @@ static inline void BlinkC__Timer0__fired(void )
       BlinkC__echoSerialTask__postTask();
       BlinkC__runOnce = FALSE;
     }
+  BlinkC__Leds__led0Toggle();
 }
 
+# 57 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
+static inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle(void )
+#line 57
+{
+#line 57
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 57
+    * (volatile uint8_t * )46U ^= 1 << 3;
+#line 57
+    __nesc_atomic_end(__nesc_atomic); }
+}
 
+# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
+inline static void LedsP__Led1__toggle(void ){
+#line 42
+  /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle();
+#line 42
+}
+#line 42
+# 86 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
+static inline void LedsP__Leds__led1Toggle(void )
+#line 86
+{
+  LedsP__Led1__toggle();
+}
+
+# 83 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
+inline static void BlinkC__Leds__led1Toggle(void ){
+#line 83
+  LedsP__Leds__led1Toggle();
+#line 83
+}
+#line 83
+# 60 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__Timer1__fired(void )
 {
   ;
+  BlinkC__Leds__led1Toggle();
 }
 
+# 57 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
+static inline void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__toggle(void )
+#line 57
+{
+#line 57
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 57
+    * (volatile uint8_t * )46U ^= 1 << 4;
+#line 57
+    __nesc_atomic_end(__nesc_atomic); }
+}
 
+# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
+inline static void LedsP__Led2__toggle(void ){
+#line 42
+  /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__toggle();
+#line 42
+}
+#line 42
+# 98 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
+static inline void LedsP__Leds__led2Toggle(void )
+#line 98
+{
+  LedsP__Led2__toggle();
+}
+
+# 100 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
+inline static void BlinkC__Leds__led2Toggle(void ){
+#line 100
+  LedsP__Leds__led2Toggle();
+#line 100
+}
+#line 100
+# 66 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__Timer2__fired(void )
 {
   ;
+  BlinkC__Leds__led2Toggle();
 }
 
 # 204 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
