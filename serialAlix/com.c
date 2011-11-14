@@ -348,7 +348,7 @@ main(int Parm_Count, char *Parms[])
 
       }  //while stop==FALSE
       // restore old port settings
-      //tcsetattr(fd,TCSANOW,&oldtio);
+      tcsetattr(fd,TCSANOW,&oldtio);
       tcsetattr(tty,TCSANOW,&oldkey);
       close(tty);
       close(fd);        //close the com port
