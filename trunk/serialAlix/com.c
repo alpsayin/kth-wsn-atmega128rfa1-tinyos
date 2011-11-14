@@ -8,7 +8,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 
-#define INITIAL_WRITE 1
+#define INITIAL_WRITE 0
 #define BAUDRATE B57600
 #define MODEMDEVICE "/dev/ttyUSB0"
 #define _POSIX_SOURCE 1         //POSIX compliant source
