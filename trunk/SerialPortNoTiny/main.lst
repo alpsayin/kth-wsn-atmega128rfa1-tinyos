@@ -75,33 +75,35 @@
   85 0000 6A9A      		sbi 45-0x20,2
   86               	.L7:
   87               	.LSM7:
-  88 0002 7298      		cbi 46-0x20,2
+  88 0002 729A      		sbi 46-0x20,2
   89               	.LSM8:
-  90 0004 84E6      		ldi r24,lo8(100)
-  91 0006 90E0      		ldi r25,hi8(100)
-  92 0008 0E94 0000 		call delayms
-  93               	.LSM9:
-  94 000c 729A      		sbi 46-0x20,2
+  90 0004 7298      		cbi 46-0x20,2
+  91               	.LSM9:
+  92 0006 84E6      		ldi r24,lo8(100)
+  93 0008 90E0      		ldi r25,hi8(100)
+  94 000a 0E94 0000 		call delayms
   95               	.LSM10:
-  96 000e 84E8      		ldi r24,lo8(900)
-  97 0010 93E0      		ldi r25,hi8(900)
-  98 0012 0E94 0000 		call delayms
-  99 0016 00C0      		rjmp .L7
- 100               	/* epilogue: frame size=0 */
- 101               	/* epilogue: noreturn */
- 102               	/* epilogue end (size=0) */
- 103               	/* function main size 12 (12) */
- 104               	.LFE7:
- 138               	.Letext0:
+  96 000e 729A      		sbi 46-0x20,2
+  97               	.LSM11:
+  98 0010 84E8      		ldi r24,lo8(900)
+  99 0012 93E0      		ldi r25,hi8(900)
+ 100 0014 0E94 0000 		call delayms
+ 101 0018 00C0      		rjmp .L7
+ 102               	/* epilogue: frame size=0 */
+ 103               	/* epilogue: noreturn */
+ 104               	/* epilogue end (size=0) */
+ 105               	/* function main size 13 (13) */
+ 106               	.LFE7:
+ 140               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccWJSLSC.s:3      *ABS*:0000003f __SREG__
-     /tmp/ccWJSLSC.s:4      *ABS*:0000003e __SP_H__
-     /tmp/ccWJSLSC.s:5      *ABS*:0000003d __SP_L__
-     /tmp/ccWJSLSC.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccWJSLSC.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccWJSLSC.s:21     .text.delayms:00000000 delayms
-     /tmp/ccWJSLSC.s:79     .text.main:00000000 main
+     /tmp/cc2CD82P.s:3      *ABS*:0000003f __SREG__
+     /tmp/cc2CD82P.s:4      *ABS*:0000003e __SP_H__
+     /tmp/cc2CD82P.s:5      *ABS*:0000003d __SP_L__
+     /tmp/cc2CD82P.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/cc2CD82P.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/cc2CD82P.s:21     .text.delayms:00000000 delayms
+     /tmp/cc2CD82P.s:79     .text.main:00000000 main
 
 UNDEFINED SYMBOLS
 __do_copy_data
