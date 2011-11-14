@@ -1608,7 +1608,7 @@ typedef struct __nesc_unnamed4266 {
 } 
 #line 44
 TMicro;
-# 6 "/home/alpsayin/tinyos_workspace/Blink/src/MyDummyConstants.h"
+# 7 "/home/alpsayin/tinyos_workspace/Blink/src/MyDummyConstants.h"
 enum __nesc_unnamed4267 {
 
   ALP = 'A', 
@@ -1618,8 +1618,8 @@ enum __nesc_unnamed4267 {
 
 
 
-unsigned int signatureLength = 404;
-unsigned char signature[384] = "################################################################\r\n#\r\n#	Alp Sayin\r\n#	alp_sayin[at]ieee[dot]org\r\n#	02/11/2011\r\n#	KTH Royal Institute of Technology\r\n#\r\n#	Notes:\r\n#	Welcome to TinyOS 2.1.1 on Atmega128RFA1\r\n#	This is the working demo for BlinkC\r\n#	It should also echo the keys coming from serial port\r\n#\r\n################################################################\r\n";
+const unsigned char signature[384] = "################################################################\r\n#\r\n#	Alp Sayin\r\n#	alp_sayin[at]ieee[dot]org\r\n#	14/11/2011\r\n#	KTH Royal Institute of Technology\r\n#\r\n#	Notes:\r\n#	Welcome to TinyOS 2.1.1 on Atmega128RFA1\r\n#	This is the working demo for BlinkC\r\n#	It should also echo the keys coming from serial port\r\n#\r\n################################################################\r\n";
+const int signatureLength = sizeof signature / sizeof signature[0] - 1;
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1Timer.h"
 typedef struct T62khz {
 } 
@@ -1798,8 +1798,6 @@ static error_t McuInitP__Init__init(void );
 static error_t MeasureClockC__Init__init(void );
 #line 62
 static error_t RFA1RadioOffP__RFA1RadioOff__init(void );
-#line 62
-static error_t RealMainP__SoftwareInit__default__init(void );
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t SchedulerBasicP__TaskBasic__postTask(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SchedulerBasicP.nc"
@@ -1822,6 +1820,8 @@ static void McuSleepC__McuPowerState__update(void );
 static void BlinkC__Timer0__fired(void );
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Boot.nc"
 static void BlinkC__Boot__booted(void );
+# 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
+static error_t BlinkC__BlinkCInit__init(void );
 # 99 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 static void BlinkC__Uart1Stream__receiveDone(
 #line 95
@@ -1846,67 +1846,26 @@ static void BlinkC__Timer2__fired(void );
 static void BlinkC__echoSerialTask__runTask(void );
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
 static error_t LedsP__Init__init(void );
-# 61 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-static void LedsP__Leds__led0Off(void );
-
-
-
-
-
-static void LedsP__Leds__led0Toggle(void );
-
-
-
-
-static void LedsP__Leds__led1On(void );
-
-
-
-
-
-
-
-
-
-
-static void LedsP__Leds__led1Toggle(void );
-#line 100
-static void LedsP__Leds__led2Toggle(void );
-#line 77
-static void LedsP__Leds__led1Off(void );
-#line 94
-static void LedsP__Leds__led2Off(void );
-#line 134
-static void LedsP__Leds__set(uint8_t val);
-#line 56
-static void LedsP__Leds__led0On(void );
-#line 89
-static void LedsP__Leds__led2On(void );
-# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void );
-
-
-
+# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
 static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__makeOutput(void );
 #line 40
 static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__set(void );
-static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__clr(void );
-static void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle(void );
+
+
 
 
 
 static void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__makeOutput(void );
 #line 40
 static void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__set(void );
-static void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__clr(void );
-static void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__toggle(void );
+
+
 
 
 
 static void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__makeOutput(void );
 #line 40
 static void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__set(void );
-static void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__clr(void );
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__fired(void );
 # 103 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Alarm.nc"
@@ -1991,11 +1950,11 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40625030);
+uint8_t arg_0x40624030);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40625030, 
+uint8_t arg_0x40624030, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
@@ -2109,8 +2068,6 @@ static void RealMainP__Scheduler__taskLoop(void );
 static bool RealMainP__Scheduler__runNextTask(void );
 # 63 "/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc"
 int main(void )   ;
-#line 105
-static inline error_t RealMainP__SoftwareInit__default__init(void );
 # 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SchedulerBasicP__TaskBasic__runTask(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SchedulerBasicP.nc"
@@ -2210,30 +2167,32 @@ uint8_t * buf,
 uint16_t len);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void BlinkC__Timer1__startPeriodic(uint32_t dt);
-# 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
-static error_t BlinkC__Uart1Init__init(void );
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-static void BlinkC__Leds__led0Toggle(void );
-#line 83
-static void BlinkC__Leds__led1Toggle(void );
-#line 100
-static void BlinkC__Leds__led2Toggle(void );
-# 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+#line 64
 static void BlinkC__Timer2__startPeriodic(uint32_t dt);
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t BlinkC__echoSerialTask__postTask(void );
-# 27 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
+# 28 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 enum BlinkC____nesc_unnamed4278 {
-#line 27
+#line 28
   BlinkC__echoSerialTask = 0U
 };
-#line 27
+#line 28
 typedef int BlinkC____nesc_sillytask_echoSerialTask[BlinkC__echoSerialTask];
-#line 26
+#line 27
 bool BlinkC__runOnce = TRUE;
 
 
 static inline void BlinkC__Boot__booted(void );
+
+
+
+
+
+
+static inline error_t BlinkC__BlinkCInit__init(void );
+
+
+
 
 
 
@@ -2252,7 +2211,15 @@ static inline void BlinkC__echoSerialTask__runTask(void );
 
 
 static inline void BlinkC__Timer0__fired(void );
-#line 60
+
+
+
+
+
+
+
+
+
 static inline void BlinkC__Timer1__fired(void );
 
 
@@ -2275,91 +2242,48 @@ static inline void BlinkC__Uart1Stream__sendDone(uint8_t *buf, uint16_t len, err
 
 
 static inline void BlinkC__Uart1Stream__receiveDone(uint8_t *buf, uint16_t len, error_t error);
-# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-static void LedsP__Led0__toggle(void );
-
-
-
+# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
 static void LedsP__Led0__makeOutput(void );
 #line 40
 static void LedsP__Led0__set(void );
-static void LedsP__Led0__clr(void );
-static void LedsP__Led1__toggle(void );
+
+
 
 
 
 static void LedsP__Led1__makeOutput(void );
 #line 40
 static void LedsP__Led1__set(void );
-static void LedsP__Led1__clr(void );
-static void LedsP__Led2__toggle(void );
+
+
 
 
 
 static void LedsP__Led2__makeOutput(void );
 #line 40
 static void LedsP__Led2__set(void );
-static void LedsP__Led2__clr(void );
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
 static inline error_t LedsP__Init__init(void );
-#line 64
-static inline void LedsP__Leds__led0On(void );
-
-
-
-static inline void LedsP__Leds__led0Off(void );
-
-
-
-static inline void LedsP__Leds__led0Toggle(void );
-
-
-
-
-
-static inline void LedsP__Leds__led1On(void );
-
-
-
-static inline void LedsP__Leds__led1Off(void );
-
-
-
-static inline void LedsP__Leds__led1Toggle(void );
-
-
-
-static inline void LedsP__Leds__led2On(void );
-
-
-
-static inline void LedsP__Leds__led2Off(void );
-
-
-
-static inline void LedsP__Leds__led2Toggle(void );
-#line 119
-static inline void LedsP__Leds__set(uint8_t val);
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__set(void );
-static __inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__clr(void );
-static inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void );
+
+
 
 
 
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__makeOutput(void );
 #line 55
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__set(void );
-static __inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__clr(void );
-static inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle(void );
+
+
 
 
 
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__makeOutput(void );
 #line 55
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__set(void );
-static __inline void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__clr(void );
-static inline void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__toggle(void );
+
+
 
 
 
@@ -2667,7 +2591,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40625030);
+uint8_t arg_0x40624030);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4282 {
 #line 71
@@ -2772,8 +2696,6 @@ static void ApplicationSerialP__Uart1Interrupts__disableTxInterrupt(void );
 static void ApplicationSerialP__Uart1Interrupts__setSendData(void );
 #line 12
 static void ApplicationSerialP__Uart1Interrupts__clearRxInterrupt(void );
-# 134 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-static void ApplicationSerialP__Leds__set(uint8_t val);
 # 29 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
 enum ApplicationSerialP____nesc_unnamed4285 {
 #line 29
@@ -2805,14 +2727,16 @@ error_t ApplicationSerialP__rxResult;
 
 
 static inline error_t ApplicationSerialP__Uart1Init__init(void );
-#line 107
-static error_t ApplicationSerialP__Uart1Stream__send(uint8_t *buf, uint16_t len);
-#line 140
+#line 112
+static inline error_t ApplicationSerialP__Uart1Stream__send(uint8_t *buf, uint16_t len);
+#line 143
 static error_t ApplicationSerialP__Uart1Byte__send(uint8_t byte);
-#line 162
+#line 165
 static inline error_t ApplicationSerialP__Uart1Byte__receive(uint8_t *byte, uint8_t timeout);
-#line 205
+#line 208
 static inline void ApplicationSerialP__Uart1Interrupts__rxInterruptHandler(uint8_t byte);
+
+
 
 
 
@@ -2824,6 +2748,10 @@ static inline void ApplicationSerialP__Uart1Interrupts__txInterruptHandler(void 
 
 
 static inline void ApplicationSerialP__sendDoneTask__runTask(void );
+
+
+
+
 static inline void ApplicationSerialP__receiveDoneTask__runTask(void );
 # 20 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
 static void Uart1InterruptsP__Uart1Interrupts__txInterruptHandler(void );
@@ -3381,9 +3309,9 @@ inline static bool RealMainP__Scheduler__runNextTask(void ){
 #line 65
 }
 #line 65
-# 81 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
+# 89 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__Uart1Stream__receiveDone(uint8_t *buf, uint16_t len, error_t error)
-#line 81
+#line 89
 {
 }
 
@@ -3394,17 +3322,15 @@ inline static void ApplicationSerialP__Uart1Stream__receiveDone(uint8_t * buf, u
 #line 99
 }
 #line 99
-# 217 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
+# 226 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
 static inline void ApplicationSerialP__receiveDoneTask__runTask(void )
-#line 217
 {
-#line 217
   ApplicationSerialP__Uart1Stream__receiveDone(ApplicationSerialP__rxBuf, ApplicationSerialP__rxLen, ApplicationSerialP__rxResult);
 }
 
-# 72 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
+# 80 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__Uart1Stream__sendDone(uint8_t *buf, uint16_t len, error_t error)
-#line 72
+#line 80
 {
 }
 
@@ -3415,11 +3341,9 @@ inline static void ApplicationSerialP__Uart1Stream__sendDone(uint8_t * buf, uint
 #line 57
 }
 #line 57
-# 216 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
+# 221 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
 static inline void ApplicationSerialP__sendDoneTask__runTask(void )
-#line 216
 {
-#line 216
   ApplicationSerialP__Uart1Stream__sendDone(ApplicationSerialP__txBuf, ApplicationSerialP__txLen, ApplicationSerialP__txResult);
 }
 
@@ -3682,161 +3606,26 @@ inline static bool /*CounterMilli32C.TransformCounterC*/TransformCounterC__0__Co
 #line 71
 }
 #line 71
-# 57 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void )
-#line 57
-{
-#line 57
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 57
-    * (volatile uint8_t * )46U ^= 1 << 2;
-#line 57
-    __nesc_atomic_end(__nesc_atomic); }
-}
-
-# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-inline static void LedsP__Led0__toggle(void ){
-#line 42
-  /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle();
-#line 42
-}
-#line 42
-# 72 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
-static inline void LedsP__Leds__led0Toggle(void )
-#line 72
-{
-  LedsP__Led0__toggle();
-}
-
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-inline static void BlinkC__Leds__led0Toggle(void ){
-#line 67
-  LedsP__Leds__led0Toggle();
-#line 67
-}
-#line 67
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
-inline static error_t BlinkC__echoSerialTask__postTask(void ){
-#line 67
-  unsigned char __nesc_result;
-#line 67
-
-#line 67
-  __nesc_result = SchedulerBasicP__TaskBasic__postTask(BlinkC__echoSerialTask);
-#line 67
-
-#line 67
-  return __nesc_result;
-#line 67
-}
-#line 67
-# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
-inline static error_t BlinkC__Uart1Stream__send(uint8_t * buf, uint16_t len){
-#line 48
-  unsigned char __nesc_result;
-#line 48
-
-#line 48
-  __nesc_result = ApplicationSerialP__Uart1Stream__send(buf, len);
-#line 48
-
-#line 48
-  return __nesc_result;
-#line 48
-}
-#line 48
-# 47 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
+# 58 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__Timer0__fired(void )
 {
   ;
   if (BlinkC__runOnce) 
     {
-      BlinkC__Uart1Stream__send("Hello World!\n", 13);
-      BlinkC__Uart1Stream__send(signature, signatureLength);
-      BlinkC__echoSerialTask__postTask();
       BlinkC__runOnce = FALSE;
     }
-  BlinkC__Leds__led0Toggle();
 }
 
-# 57 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle(void )
-#line 57
-{
-#line 57
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 57
-    * (volatile uint8_t * )46U ^= 1 << 3;
-#line 57
-    __nesc_atomic_end(__nesc_atomic); }
-}
 
-# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-inline static void LedsP__Led1__toggle(void ){
-#line 42
-  /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle();
-#line 42
-}
-#line 42
-# 86 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
-static inline void LedsP__Leds__led1Toggle(void )
-#line 86
-{
-  LedsP__Led1__toggle();
-}
-
-# 83 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-inline static void BlinkC__Leds__led1Toggle(void ){
-#line 83
-  LedsP__Leds__led1Toggle();
-#line 83
-}
-#line 83
-# 60 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__Timer1__fired(void )
 {
   ;
-  BlinkC__Leds__led1Toggle();
 }
 
-# 57 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static inline void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__toggle(void )
-#line 57
-{
-#line 57
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 57
-    * (volatile uint8_t * )46U ^= 1 << 4;
-#line 57
-    __nesc_atomic_end(__nesc_atomic); }
-}
 
-# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-inline static void LedsP__Led2__toggle(void ){
-#line 42
-  /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__toggle();
-#line 42
-}
-#line 42
-# 98 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
-static inline void LedsP__Leds__led2Toggle(void )
-#line 98
-{
-  LedsP__Led2__toggle();
-}
-
-# 100 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-inline static void BlinkC__Leds__led2Toggle(void ){
-#line 100
-  LedsP__Leds__led2Toggle();
-#line 100
-}
-#line 100
-# 66 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__Timer2__fired(void )
 {
   ;
-  BlinkC__Leds__led2Toggle();
 }
 
 # 204 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
@@ -3845,9 +3634,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x40625030){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x40624030){
 #line 83
-  switch (arg_0x40625030) {
+  switch (arg_0x40624030) {
 #line 83
     case 0U:
 #line 83
@@ -3869,7 +3658,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x40625030);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x40624030);
 #line 83
       break;
 #line 83
@@ -3877,95 +3666,6 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
 }
 #line 83
-# 23 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
-static inline void Uart1InterruptsP__Uart1Interrupts__clearTxInterrupt(void )
-{
-  * (volatile uint8_t *)0xC8 &= ~(1 << 6);
-}
-
-# 11 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
-inline static void ApplicationSerialP__Uart1Interrupts__clearTxInterrupt(void ){
-#line 11
-  Uart1InterruptsP__Uart1Interrupts__clearTxInterrupt();
-#line 11
-}
-#line 11
-# 33 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
-static inline void Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt(void )
-{
-  * (volatile uint8_t *)0xC9 &= ~(1 << 6);
-}
-
-# 8 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
-inline static void ApplicationSerialP__Uart1Interrupts__disableTxInterrupt(void ){
-#line 8
-  Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt();
-#line 8
-}
-#line 8
-# 38 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
-static inline void Uart1InterruptsP__Uart1Interrupts__setSendData(void )
-{
-  * (volatile uint8_t *)0xC8 |= 1 << 6;
-}
-
-# 17 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
-inline static void ApplicationSerialP__Uart1Interrupts__setSendData(void ){
-#line 17
-  Uart1InterruptsP__Uart1Interrupts__setSendData();
-#line 17
-}
-#line 17
-# 43 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
-static inline bool Uart1InterruptsP__Uart1Interrupts__isTxInterruptPending(void )
-{
-  return (* (volatile uint8_t *)0xC8 & (1 << 6)) != 0;
-}
-
-# 15 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
-inline static bool ApplicationSerialP__Uart1Interrupts__isTxInterruptPending(void ){
-#line 15
-  unsigned char __nesc_result;
-#line 15
-
-#line 15
-  __nesc_result = Uart1InterruptsP__Uart1Interrupts__isTxInterruptPending();
-#line 15
-
-#line 15
-  return __nesc_result;
-#line 15
-}
-#line 15
-# 7 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
-static inline void Uart1InterruptsP__Uart1Interrupts__enableTxInterrupt(void )
-{
-  * (volatile uint8_t *)0xC8 |= 1 << 6;
-  * (volatile uint8_t *)0xC9 |= 1 << 6;
-}
-
-# 5 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
-inline static void ApplicationSerialP__Uart1Interrupts__enableTxInterrupt(void ){
-#line 5
-  Uart1InterruptsP__Uart1Interrupts__enableTxInterrupt();
-#line 5
-}
-#line 5
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
-inline static error_t ApplicationSerialP__sendDoneTask__postTask(void ){
-#line 67
-  unsigned char __nesc_result;
-#line 67
-
-#line 67
-  __nesc_result = SchedulerBasicP__TaskBasic__postTask(ApplicationSerialP__sendDoneTask);
-#line 67
-
-#line 67
-  return __nesc_result;
-#line 67
-}
-#line 67
 # 97 "/opt/tinyos-main/src/tinyos-main/tos/system/SchedulerBasicP.nc"
 static inline bool SchedulerBasicP__isWaiting(uint8_t id)
 {
@@ -4152,6 +3852,21 @@ static inline void /*TimerMilliP.AlarmToTimerC*/AlarmToTimerC__0__fired__runTask
   /*TimerMilliP.AlarmToTimerC*/AlarmToTimerC__0__Timer__fired();
 }
 
+# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
+inline static error_t BlinkC__echoSerialTask__postTask(void ){
+#line 67
+  unsigned char __nesc_result;
+#line 67
+
+#line 67
+  __nesc_result = SchedulerBasicP__TaskBasic__postTask(BlinkC__echoSerialTask);
+#line 67
+
+#line 67
+  return __nesc_result;
+#line 67
+}
+#line 67
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
 inline static error_t BlinkC__Uart1Byte__send(uint8_t byte){
 #line 46
@@ -4227,7 +3942,7 @@ inline static void ApplicationSerialP__Uart1Interrupts__disableRxInterrupt(void 
 #line 9
 }
 #line 9
-# 162 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
+# 165 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
 static inline error_t ApplicationSerialP__Uart1Byte__receive(uint8_t *byte, uint8_t timeout)
 {
   uint16_t biggerTimeout = (uint16_t )timeout << 8;
@@ -4237,20 +3952,20 @@ static inline error_t ApplicationSerialP__Uart1Byte__receive(uint8_t *byte, uint
       if (ApplicationSerialP__rxBusy) 
         {
           unsigned char __nesc_temp = 
-#line 169
+#line 172
           FAIL;
 
           {
-#line 169
+#line 172
             __nesc_atomic_end(__nesc_atomic); 
-#line 169
+#line 172
             return __nesc_temp;
           }
         }
-#line 170
+#line 173
       ApplicationSerialP__rxBusy = TRUE;
     }
-#line 171
+#line 174
     __nesc_atomic_end(__nesc_atomic); }
   ApplicationSerialP__Uart1Interrupts__disableRxInterrupt();
   ApplicationSerialP__Uart1Interrupts__clearRxInterrupt();
@@ -4265,7 +3980,7 @@ static inline error_t ApplicationSerialP__Uart1Byte__receive(uint8_t *byte, uint
             {
               ApplicationSerialP__rxBusy = FALSE;
             }
-#line 184
+#line 187
             __nesc_atomic_end(__nesc_atomic); }
           return SUCCESS;
         }
@@ -4277,7 +3992,7 @@ static inline error_t ApplicationSerialP__Uart1Byte__receive(uint8_t *byte, uint
     {
       ApplicationSerialP__rxBusy = FALSE;
     }
-#line 194
+#line 197
     __nesc_atomic_end(__nesc_atomic); }
   return FAIL;
 }
@@ -4297,12 +4012,12 @@ inline static error_t BlinkC__Uart1Byte__receive(uint8_t * byte, uint8_t timeout
 #line 56
 }
 #line 56
-# 37 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
+# 48 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__echoSerialTask__runTask(void )
 {
   uint8_t buf[1];
 
-#line 40
+#line 51
   if (BlinkC__Uart1Byte__receive(buf, 255) == SUCCESS) 
     {
       BlinkC__Uart1Byte__send(buf[0]);
@@ -4310,11 +4025,203 @@ static inline void BlinkC__echoSerialTask__runTask(void )
   BlinkC__echoSerialTask__postTask();
 }
 
-# 105 "/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc"
-static inline error_t RealMainP__SoftwareInit__default__init(void )
-#line 105
+# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
+inline static error_t ApplicationSerialP__sendDoneTask__postTask(void ){
+#line 67
+  unsigned char __nesc_result;
+#line 67
+
+#line 67
+  __nesc_result = SchedulerBasicP__TaskBasic__postTask(ApplicationSerialP__sendDoneTask);
+#line 67
+
+#line 67
+  return __nesc_result;
+#line 67
+}
+#line 67
+# 7 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
+static inline void Uart1InterruptsP__Uart1Interrupts__enableTxInterrupt(void )
 {
-#line 105
+  * (volatile uint8_t *)0xC8 |= 1 << 6;
+  * (volatile uint8_t *)0xC9 |= 1 << 6;
+}
+
+# 5 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
+inline static void ApplicationSerialP__Uart1Interrupts__enableTxInterrupt(void ){
+#line 5
+  Uart1InterruptsP__Uart1Interrupts__enableTxInterrupt();
+#line 5
+}
+#line 5
+# 23 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
+static inline void Uart1InterruptsP__Uart1Interrupts__clearTxInterrupt(void )
+{
+  * (volatile uint8_t *)0xC8 &= ~(1 << 6);
+}
+
+# 11 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
+inline static void ApplicationSerialP__Uart1Interrupts__clearTxInterrupt(void ){
+#line 11
+  Uart1InterruptsP__Uart1Interrupts__clearTxInterrupt();
+#line 11
+}
+#line 11
+# 43 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
+static inline bool Uart1InterruptsP__Uart1Interrupts__isTxInterruptPending(void )
+{
+  return (* (volatile uint8_t *)0xC8 & (1 << 6)) != 0;
+}
+
+# 15 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
+inline static bool ApplicationSerialP__Uart1Interrupts__isTxInterruptPending(void ){
+#line 15
+  unsigned char __nesc_result;
+#line 15
+
+#line 15
+  __nesc_result = Uart1InterruptsP__Uart1Interrupts__isTxInterruptPending();
+#line 15
+
+#line 15
+  return __nesc_result;
+#line 15
+}
+#line 15
+# 38 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
+static inline void Uart1InterruptsP__Uart1Interrupts__setSendData(void )
+{
+  * (volatile uint8_t *)0xC8 |= 1 << 6;
+}
+
+# 17 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
+inline static void ApplicationSerialP__Uart1Interrupts__setSendData(void ){
+#line 17
+  Uart1InterruptsP__Uart1Interrupts__setSendData();
+#line 17
+}
+#line 17
+# 33 "/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc"
+static inline void Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt(void )
+{
+  * (volatile uint8_t *)0xC9 &= ~(1 << 6);
+}
+
+# 8 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
+inline static void ApplicationSerialP__Uart1Interrupts__disableTxInterrupt(void ){
+#line 8
+  Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt();
+#line 8
+}
+#line 8
+# 112 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
+static inline error_t ApplicationSerialP__Uart1Stream__send(uint8_t *buf, uint16_t len)
+{
+  uint16_t i;
+
+  /* atomic removed: atomic calls only */
+  {
+    if (ApplicationSerialP__txBusy) 
+      {
+        unsigned char __nesc_temp = 
+#line 119
+        FAIL;
+
+#line 119
+        return __nesc_temp;
+      }
+#line 120
+    ApplicationSerialP__txBusy = TRUE;
+  }
+  ApplicationSerialP__txBuf = buf;
+  ApplicationSerialP__txLen = len;
+  for (i = 0; i < len; i++) 
+    {
+      ApplicationSerialP__Uart1Interrupts__clearTxInterrupt();
+      ApplicationSerialP__Uart1Interrupts__disableTxInterrupt();
+      * (volatile uint8_t *)0xCE = buf[i];
+      ApplicationSerialP__Uart1Interrupts__setSendData();
+      while (!ApplicationSerialP__Uart1Interrupts__isTxInterruptPending()) ;
+      ApplicationSerialP__Uart1Interrupts__clearTxInterrupt();
+      ApplicationSerialP__Uart1Interrupts__enableTxInterrupt();
+    }
+  /* atomic removed: atomic calls only */
+  {
+    ApplicationSerialP__txBusy = FALSE;
+  }
+  ApplicationSerialP__txResult = FAIL;
+  ApplicationSerialP__sendDoneTask__postTask();
+  return SUCCESS;
+}
+
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+inline static error_t BlinkC__Uart1Stream__send(uint8_t * buf, uint16_t len){
+#line 48
+  unsigned char __nesc_result;
+#line 48
+
+#line 48
+  __nesc_result = ApplicationSerialP__Uart1Stream__send(buf, len);
+#line 48
+
+#line 48
+  return __nesc_result;
+#line 48
+}
+#line 48
+# 37 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
+static inline error_t BlinkC__BlinkCInit__init(void )
+{
+
+
+  if (BlinkC__Uart1Stream__send(signature, signatureLength)) {
+    BlinkC__Uart1Byte__send('F');
+    }
+#line 43
+  BlinkC__echoSerialTask__postTask();
+
+  return SUCCESS;
+}
+
+# 32 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
+static inline error_t ApplicationSerialP__Uart1Init__init(void )
+{
+  uint16_t brr = 34;
+
+  * (volatile uint8_t *)0xC8 &= ~(1 << 7);
+  * (volatile uint8_t *)0xC8 &= ~(1 << 6);
+
+  * (volatile uint8_t *)0xC8 |= 1 << 1;
+
+  * (volatile uint8_t *)0xC9 &= ~(1 << 5);
+  * (volatile uint8_t *)0xC9 &= ~(1 << 2);
+
+  * (volatile uint8_t *)0xC9 |= 1 << 7;
+  * (volatile uint8_t *)0xC9 |= 1 << 6;
+
+  * (volatile uint8_t *)0xC9 |= 1 << 4;
+  * (volatile uint8_t *)0xC9 |= 1 << 3;
+
+  * (volatile uint8_t *)0xCA &= ~(1 << 7);
+  * (volatile uint8_t *)0xCA &= ~(1 << 6);
+  * (volatile uint8_t *)0xCA &= ~(1 << 5);
+  * (volatile uint8_t *)0xCA &= ~(1 << 4);
+  * (volatile uint8_t *)0xCA &= ~(1 << 0);
+
+  * (volatile uint8_t *)0xCA |= 1 << 2;
+  * (volatile uint8_t *)0xCA |= 1 << 1;
+
+  * (volatile uint8_t *)0xCD = (uint8_t )(brr >> 8);
+  * (volatile uint8_t *)0xCC = (uint8_t )(brr & 0xFF);
+  /* atomic removed: atomic calls only */
+
+  {
+    ApplicationSerialP__rxBusy = FALSE;
+  }
+  /* atomic removed: atomic calls only */
+  {
+    ApplicationSerialP__txBusy = FALSE;
+  }
   return SUCCESS;
 }
 
@@ -4325,7 +4232,9 @@ inline static error_t RealMainP__SoftwareInit__init(void ){
 #line 62
 
 #line 62
-  __nesc_result = RealMainP__SoftwareInit__default__init();
+  __nesc_result = ApplicationSerialP__Uart1Init__init();
+#line 62
+  __nesc_result = ecombine(__nesc_result, BlinkC__BlinkCInit__init());
 #line 62
 
 #line 62
@@ -4358,62 +4267,9 @@ inline static void BlinkC__Timer0__startPeriodic(uint32_t dt){
 #line 64
 }
 #line 64
-# 32 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
-static inline error_t ApplicationSerialP__Uart1Init__init(void )
-{
-  uint16_t brr = 34;
-
-  * (volatile uint8_t *)0xC8 &= ~(1 << 7);
-  * (volatile uint8_t *)0xC8 &= ~(1 << 6);
-
-  * (volatile uint8_t *)0xC8 |= 1 << 1;
-
-  * (volatile uint8_t *)0xC9 &= ~(1 << 5);
-  * (volatile uint8_t *)0xC9 &= ~(1 << 2);
-
-  * (volatile uint8_t *)0xC9 |= 1 << 7;
-  * (volatile uint8_t *)0xC9 |= 1 << 6;
-
-  * (volatile uint8_t *)0xC9 |= 1 << 4;
-  * (volatile uint8_t *)0xC9 |= 1 << 3;
-
-  * (volatile uint8_t *)0xCA &= ~(1 << 7);
-  * (volatile uint8_t *)0xCA &= ~(1 << 6);
-  * (volatile uint8_t *)0xCA &= ~(1 << 5);
-  * (volatile uint8_t *)0xCA &= ~(1 << 4);
-  * (volatile uint8_t *)0xCA &= ~(1 << 0);
-
-  * (volatile uint8_t *)0xCA |= 1 << 2;
-  * (volatile uint8_t *)0xCA |= 1 << 1;
-
-  * (volatile uint8_t *)0xCD = (uint8_t )(brr >> 8);
-  * (volatile uint8_t *)0xCC = (uint8_t )(brr & 0xFF);
-
-  ApplicationSerialP__rxBusy = FALSE;
-  ApplicationSerialP__txBusy = FALSE;
-
-  return SUCCESS;
-}
-
-# 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
-inline static error_t BlinkC__Uart1Init__init(void ){
-#line 62
-  unsigned char __nesc_result;
-#line 62
-
-#line 62
-  __nesc_result = ApplicationSerialP__Uart1Init__init();
-#line 62
-
-#line 62
-  return __nesc_result;
-#line 62
-}
-#line 62
-# 29 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
+# 30 "/home/alpsayin/tinyos_workspace/Blink/src/BlinkC.nc"
 static inline void BlinkC__Boot__booted(void )
 {
-  BlinkC__Uart1Init__init();
   BlinkC__Timer0__startPeriodic(250);
   BlinkC__Timer1__startPeriodic(500);
   BlinkC__Timer2__startPeriodic(1000);
@@ -4715,132 +4571,9 @@ inline static void HplAtmRfa1TimerMacP__CompareC__fired(void ){
 #line 48
 }
 #line 48
-# 94 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
-static inline void LedsP__Leds__led2Off(void )
-#line 94
-{
-  LedsP__Led2__set();
-}
-
-# 56 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static __inline void /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__clr(void )
-#line 56
-{
-#line 56
-  * (volatile uint8_t * )46U &= ~(1 << 4);
-}
-
-# 41 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-inline static void LedsP__Led2__clr(void ){
-#line 41
-  /*HplAtm128GeneralIOC.PortE.Bit4*/HplAtm128GeneralIOPinP__20__IO__clr();
-#line 41
-}
-#line 41
-# 90 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
-static inline void LedsP__Leds__led2On(void )
-#line 90
-{
-  LedsP__Led2__clr();
-}
-
-#line 82
-static inline void LedsP__Leds__led1Off(void )
-#line 82
-{
-  LedsP__Led1__set();
-}
-
-# 56 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static __inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__clr(void )
-#line 56
-{
-#line 56
-  * (volatile uint8_t * )46U &= ~(1 << 3);
-}
-
-# 41 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-inline static void LedsP__Led1__clr(void ){
-#line 41
-  /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__clr();
-#line 41
-}
-#line 41
-# 78 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
-static inline void LedsP__Leds__led1On(void )
-#line 78
-{
-  LedsP__Led1__clr();
-}
-
-#line 68
-static inline void LedsP__Leds__led0Off(void )
-#line 68
-{
-  LedsP__Led0__set();
-}
-
-# 56 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static __inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__clr(void )
-#line 56
-{
-#line 56
-  * (volatile uint8_t * )46U &= ~(1 << 2);
-}
-
-# 41 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-inline static void LedsP__Led0__clr(void ){
-#line 41
-  /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__clr();
-#line 41
-}
-#line 41
-# 64 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
-static inline void LedsP__Leds__led0On(void )
-#line 64
-{
-  LedsP__Led0__clr();
-}
-
-#line 119
-static inline void LedsP__Leds__set(uint8_t val)
-#line 119
-{
-  /* atomic removed: atomic calls only */
-#line 120
-  {
-    if (val & LEDS_LED0) {
-        LedsP__Leds__led0On();
-      }
-    else {
-        LedsP__Leds__led0Off();
-      }
-    if (val & LEDS_LED1) {
-        LedsP__Leds__led1On();
-      }
-    else {
-        LedsP__Leds__led1Off();
-      }
-    if (val & LEDS_LED2) {
-        LedsP__Leds__led2On();
-      }
-    else {
-        LedsP__Leds__led2Off();
-      }
-  }
-}
-
-# 134 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-inline static void ApplicationSerialP__Leds__set(uint8_t val){
-#line 134
-  LedsP__Leds__set(val);
-#line 134
-}
-#line 134
-# 205 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
+# 208 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
 static inline void ApplicationSerialP__Uart1Interrupts__rxInterruptHandler(uint8_t byte)
 {
-  ApplicationSerialP__Leds__set(byte);
 }
 
 # 19 "/home/alpsayin/tinyos_workspace/Blink/src/SerialInterrupts.nc"
@@ -4850,7 +4583,7 @@ inline static void Uart1InterruptsP__Uart1Interrupts__rxInterruptHandler(uint8_t
 #line 19
 }
 #line 19
-# 211 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
+# 216 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
 static inline void ApplicationSerialP__Uart1Interrupts__txInterruptHandler(void )
 {
 }
@@ -5072,96 +4805,6 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__fireTimers(uint
   /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask();
 }
 
-# 107 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
-static error_t ApplicationSerialP__Uart1Stream__send(uint8_t *buf, uint16_t len)
-{
-  uint16_t i;
-
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-    {
-      if (ApplicationSerialP__txBusy) 
-        {
-          unsigned char __nesc_temp = 
-#line 114
-          FAIL;
-
-          {
-#line 114
-            __nesc_atomic_end(__nesc_atomic); 
-#line 114
-            return __nesc_temp;
-          }
-        }
-#line 115
-      ApplicationSerialP__txBusy = TRUE;
-    }
-#line 116
-    __nesc_atomic_end(__nesc_atomic); }
-  ApplicationSerialP__txBuf = buf;
-  ApplicationSerialP__txLen = len;
-  for (i = 0; i < len; i++) 
-    {
-      if (ApplicationSerialP__Uart1Byte__send(buf[i]) == FAIL) 
-        {
-          { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-            {
-              ApplicationSerialP__txBusy = FALSE;
-            }
-#line 126
-            __nesc_atomic_end(__nesc_atomic); }
-          ApplicationSerialP__txResult = FAIL;
-          return FAIL;
-        }
-    }
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-    {
-      ApplicationSerialP__txBusy = FALSE;
-    }
-#line 134
-    __nesc_atomic_end(__nesc_atomic); }
-  ApplicationSerialP__txResult = FAIL;
-  ApplicationSerialP__sendDoneTask__postTask();
-  return SUCCESS;
-}
-
-static error_t ApplicationSerialP__Uart1Byte__send(uint8_t byte)
-{
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-    {
-      if (ApplicationSerialP__txBusy) 
-        {
-          unsigned char __nesc_temp = 
-#line 145
-          FAIL;
-
-          {
-#line 145
-            __nesc_atomic_end(__nesc_atomic); 
-#line 145
-            return __nesc_temp;
-          }
-        }
-#line 146
-      ApplicationSerialP__txBusy = TRUE;
-    }
-#line 147
-    __nesc_atomic_end(__nesc_atomic); }
-  ApplicationSerialP__Uart1Interrupts__clearTxInterrupt();
-  ApplicationSerialP__Uart1Interrupts__disableTxInterrupt();
-  * (volatile uint8_t *)0xCE = byte;
-  ApplicationSerialP__Uart1Interrupts__setSendData();
-  while (!ApplicationSerialP__Uart1Interrupts__isTxInterruptPending()) ;
-  ApplicationSerialP__Uart1Interrupts__clearTxInterrupt();
-  ApplicationSerialP__Uart1Interrupts__enableTxInterrupt();
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-    {
-      ApplicationSerialP__txBusy = FALSE;
-    }
-#line 158
-    __nesc_atomic_end(__nesc_atomic); }
-  return SUCCESS;
-}
-
 # 170 "/opt/tinyos-main/src/tinyos-main/tos/system/SchedulerBasicP.nc"
 static error_t SchedulerBasicP__TaskBasic__postTask(uint8_t id)
 {
@@ -5244,6 +4887,45 @@ static void /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__set
     }
   /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__AlarmFrom__startAt((/*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__from_size_type )now << 6, 
   (/*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__from_size_type )remaining << 6);
+}
+
+# 143 "/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc"
+static error_t ApplicationSerialP__Uart1Byte__send(uint8_t byte)
+{
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      if (ApplicationSerialP__txBusy) 
+        {
+          unsigned char __nesc_temp = 
+#line 148
+          FAIL;
+
+          {
+#line 148
+            __nesc_atomic_end(__nesc_atomic); 
+#line 148
+            return __nesc_temp;
+          }
+        }
+#line 149
+      ApplicationSerialP__txBusy = TRUE;
+    }
+#line 150
+    __nesc_atomic_end(__nesc_atomic); }
+  ApplicationSerialP__Uart1Interrupts__clearTxInterrupt();
+  ApplicationSerialP__Uart1Interrupts__disableTxInterrupt();
+  * (volatile uint8_t *)0xCE = byte;
+  ApplicationSerialP__Uart1Interrupts__setSendData();
+  while (!ApplicationSerialP__Uart1Interrupts__isTxInterruptPending()) ;
+  ApplicationSerialP__Uart1Interrupts__clearTxInterrupt();
+  ApplicationSerialP__Uart1Interrupts__enableTxInterrupt();
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      ApplicationSerialP__txBusy = FALSE;
+    }
+#line 161
+    __nesc_atomic_end(__nesc_atomic); }
+  return SUCCESS;
 }
 
 # 154 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"

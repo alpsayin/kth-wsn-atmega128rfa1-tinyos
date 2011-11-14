@@ -6,11 +6,12 @@ configuration ApplicationSerialC
 }
 implementation
 {
-	components ApplicationSerialP, Uart1InterruptsP, LedsC;
+	components ApplicationSerialP, Uart1InterruptsP, MainC, LedsC;
 	
 	Uart1Init = ApplicationSerialP.Uart1Init; 
 	Uart1Byte = ApplicationSerialP.Uart1Byte;
 	Uart1Stream = ApplicationSerialP.Uart1Stream;
 	ApplicationSerialP.Uart1Interrupts -> Uart1InterruptsP;
 	ApplicationSerialP.Leds -> LedsC;
+	MainC.SoftwareInit -> ApplicationSerialP.Uart1Init;
 }

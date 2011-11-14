@@ -22,7 +22,8 @@ implementation
   BlinkC.Uart1Init -> ApplicationSerialC;
   BlinkC.Uart1Byte -> ApplicationSerialC;
   BlinkC.Uart1Stream -> ApplicationSerialC;
-  BlinkC -> MainC.Boot;
+  BlinkC.Boot -> MainC.Boot;
+  MainC.SoftwareInit -> BlinkC.BlinkCInit;
   BlinkC.Timer0 -> Timer0;
   BlinkC.Timer1 -> Timer1;
   BlinkC.Timer2 -> Timer2;

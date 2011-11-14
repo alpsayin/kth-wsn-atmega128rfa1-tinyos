@@ -20,6 +20,7 @@ module BlinkC @safe()
 	interface UartStream as Uart1Stream;
 	interface UartByte as Uart1Byte;
   }
+  provides interface Init as BlinkCInit;
 }
 implementation
 {
@@ -28,10 +29,20 @@ implementation
 
   event void Boot.booted()
   {
-  	call Uart1Init.init();
-    call Timer0.startPeriodic( 250 );
+  	call Timer0.startPeriodic( 250 );
     call Timer1.startPeriodic( 500 );
     call Timer2.startPeriodic( 1000 );
+  }
+  
+  command error_t BlinkCInit.init()
+  {
+  	//call Uart1Init.init();  
+	
+	if(call Uart1Stream.send(signature, signatureLength))
+		call Uart1Byte.send('F');
+	post echoSerialTask();
+	
+	return SUCCESS;
   }
   
   task void echoSerialTask()
@@ -49,24 +60,21 @@ implementation
     dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
     if(runOnce)
     {
-		call Uart1Stream.send("Hello World!\n", 13);
-		call Uart1Stream.send(signature, signatureLength);
-	    post echoSerialTask();
 	    runOnce = FALSE;
     }
-    call Leds.led0Toggle();
+    //call Leds.led0Toggle();
   }
   
   event void Timer1.fired()
   {
     dbg("BlinkC", "Timer 1 fired @ %s \n", sim_time_string());
-    call Leds.led1Toggle();
+    //call Leds.led1Toggle();
   }
   
   event void Timer2.fired()
   {
     dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
-    call Leds.led2Toggle();
+    //call Leds.led2Toggle();
   }
 
 	async event void Uart1Stream.sendDone(uint8_t *buf, uint16_t len, error_t error){
