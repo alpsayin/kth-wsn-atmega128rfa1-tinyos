@@ -41,11 +41,11 @@ implementation
 		CLR_BIT(UCSR1B, UDRIE1);
 		CLR_BIT(UCSR1B, UCSZ12);  //disable data register empty interrupt & set character size bit 3 to 0 = 0x011
 		
-		SET_BIT(UCSR1B, RXCIE1);
-		SET_BIT(UCSR1B, TXCIE1);  // enable rx intr, tx intr
+		SET_BIT(UCSR1B, RXCIE1);	//enable rx intr
+		SET_BIT(UCSR1B, TXCIE1);  // enable tx intr
 		
-		SET_BIT(UCSR1B, RXEN1);
-		SET_BIT(UCSR1B, TXEN1);  // enable rx, tx
+		SET_BIT(UCSR1B, RXEN1); //enable rx
+		SET_BIT(UCSR1B, TXEN1);  // enable tx
 		
 		CLR_BIT(UCSR1C, UMSEL11);
 		CLR_BIT(UCSR1C, UMSEL10);
@@ -59,9 +59,14 @@ implementation
 		UBRR1H = (uint8_t)(brr>>8);
 		UBRR1L = (uint8_t)(brr&0xFF);
 		
-		rxBusy = FALSE;
-		txBusy = FALSE;
-		
+		atomic
+		{
+			rxBusy = FALSE;
+		}
+		atomic
+		{
+			txBusy = FALSE;
+		}
 		return SUCCESS;
 	}
 
@@ -118,15 +123,13 @@ implementation
 		txLen = len;
 		for(i=0; i<len; i++)
 		{
-			if(call Uart1Byte.send(buf[i]) == FAIL)
-			{
-				atomic
-				{
-					txBusy = FALSE;
-				}
-				txResult = FAIL;
-				return FAIL;		
-			}
+			call Uart1Interrupts.clearTxInterrupt();
+			call Uart1Interrupts.disableTxInterrupt();
+			UDR1 = buf[i];
+			call Uart1Interrupts.setSendData();
+			while( !call Uart1Interrupts.isTxInterruptPending() );
+			call Uart1Interrupts.clearTxInterrupt();
+			call Uart1Interrupts.enableTxInterrupt();
 		}
 		atomic
 		{
@@ -204,17 +207,26 @@ implementation
 	
 	async event void Uart1Interrupts.rxInterruptHandler(uint8_t byte)
 	{
-		call Leds.set(byte);
+		// for debugging
+		//call Leds.set(byte);
+		
 	}
 	
 	
 	async event void Uart1Interrupts.txInterruptHandler()
 	{
-		
+			
 	}
 
-	task void sendDoneTask(){ signal Uart1Stream.sendDone(txBuf, txLen, txResult); }
-	task void receiveDoneTask() { signal Uart1Stream.receiveDone(rxBuf,  rxLen, rxResult); }
+	task void sendDoneTask()
+	{ 
+		signal Uart1Stream.sendDone(txBuf, txLen, txResult); 
+	}
+	
+	task void receiveDoneTask() 
+	{ 
+		signal Uart1Stream.receiveDone(rxBuf,  rxLen, rxResult); 
+	}
 
 	
 }
