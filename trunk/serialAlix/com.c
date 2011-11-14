@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 
+#define INITIAL_WRITE 1
 #define BAUDRATE B57600
 #define MODEMDEVICE "/dev/ttyUSB0"
 #define _POSIX_SOURCE 1         //POSIX compliant source
@@ -33,6 +34,17 @@ int Format = 3;
 FILE *input;
 FILE *output;
 int status;
+
+int delayed_write(int fd, const char* buf, int len)
+{
+  int i, result=0;
+  for(i=0; i<len; i++)
+    {
+      usleep(100000);
+      result += write(fd, &buf[i], 1);
+    }
+  return result;
+}
 
 main(int Parm_Count, char *Parms[])
 {
@@ -104,7 +116,7 @@ main(int Parm_Count, char *Parms[])
       newkey.c_cflag = BAUDRATE | CRTSCTS | CS8 | CLOCAL | CREAD;
       newkey.c_iflag = IGNPAR;
       newkey.c_oflag = OPOST | ONLCR;
-      newkey.c_lflag = 0;       //ICANON;
+      newkey.c_lflag = ~(ICANON | ECHO | ECHOE | ISIG);       //ICANON;
       newkey.c_cc[VMIN]=1;
       newkey.c_cc[VTIME]=0;
       tcflush(tty, TCIFLUSH);
@@ -248,10 +260,12 @@ main(int Parm_Count, char *Parms[])
       cfsetospeed(&newtio, BAUD);
 
       // set new port settings for canonical input processing 
-      newtio.c_cflag = BAUD | CRTSCTS | DATABITS | STOPBITS | PARITYON | PARITY | CLOCAL | CREAD;
-      newtio.c_iflag = IGNPAR;
-      newtio.c_oflag = 0;  
-      newtio.c_lflag = 0;       //ICANON;
+      newtio.c_cflag |= BAUD | DATABITS | STOPBITS | PARITYON | PARITY | CLOCAL | CREAD;
+      newtio.c_cflag &= ~CRTSCTS;
+      newtio.c_iflag |= IGNPAR;
+      newtio.c_iflag &= ~(IXON | IXOFF | IXANY);
+      newtio.c_oflag &= ~OPOST;  
+      newtio.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);       //ICANON;
       newtio.c_cc[VMIN]=1;
       newtio.c_cc[VTIME]=0;
       tcflush(fd, TCIFLUSH);
@@ -260,10 +274,11 @@ main(int Parm_Count, char *Parms[])
       //now that the attributes are actually set, flush the previously received data just to make sure
       usleep(200000);
       tcflush(fd, TCIOFLUSH); //what made the difference was the first tcflush call, but still keeping this, can't hurt
+            
       
-
       //send out the signature data
-      if(write(fd, signature, signatureLength)==signatureLength)
+#if INITIAL_WRITE==1
+      if(delayed_write(fd, signature, signatureLength)==signatureLength)
 	{
 	  fputs("[initial write success]\n", output);
 	}
@@ -271,23 +286,24 @@ main(int Parm_Count, char *Parms[])
 	{
 	  fputs("[initial write fail]\n", output);
 	}
-
+#endif
       // loop while waiting for input. normally we would do something useful here
       while (STOP==FALSE)
-      {
-         status = fread(&Key,1,1,input);
-         if (status==1)  //if a key was hit
-         {
-            switch (Key)
-            { /* branch to appropiate key handler */
-               case 0x1b: /* Esc */
+	{
+	  status = fread(&Key,1,1,input);
+	  //usleep(200);
+	  if (status==1)  //if a key was hit
+	    {
+	      switch (Key)
+		{ /* branch to appropiate key handler */
+		case 0x1b: /* Esc */
                   STOP=TRUE;
                   break;
-               default:
-//                  fputc((int) Key,output);
-//                  sprintf(message,"%x ",Key);  //debug
-//                  fputs(message,output);
-                  if(write(fd,&Key,1)!=1)
+		default:
+		  //                  fputc((int) Key,output);
+		  //                  sprintf(message,"%x ",Key);  //debug
+		  //                  fputs(message,output);
+                  if(delayed_write(fd,&Key,1)!=1)
 		    {
 		      fputs("write fail\n", output);
 		    }  
@@ -296,57 +312,60 @@ main(int Parm_Count, char *Parms[])
 		  //		      fputs("write success\n", output);
 		  //		    }
                   break;
-            }  //end of switch key
-         }  //end if a key was hit
-         // after receiving SIGIO, wait_flag = FALSE, input is available and can be read
-         if (wait_flag==FALSE)  //if input is available
-         {
-            res = read(fd,buf,255);
-            if (res>0)
-            {
-               for (i=0; i<res; i++)  //for all chars in string
-               {
-                  In1 = buf[i];
-                  switch (Format)
-                  {
-                     case 1:         //hex
-                        sprintf(message,"%x ",In1);
-                        fputs(message,output);
-                        break;
-                     case 2:         //decimal
-                        sprintf(message,"%d ",In1);
-                        fputs(message,output);
-                        break;
-                     case 3:         //hex and asc
-                        if ((In1<32) || (In1>125))
-                        {
-                           sprintf(message,"%x",In1);
-                           fputs(message,output);
-                        }
-                        else fputc ((int) In1, output);
-                        break;
-                     case 4:         //decimal and asc
-                     default:
-                        if ((In1<32) || (In1>125))
-                        {
-                           sprintf(message,"%d",In1);
-                           fputs(message,output);
-                        }
-                        else fputc ((int) In1, output);
-                        break;
-                     case 5:         //asc
-                        fputc ((int) In1, output);
-                        break;
-                  }  //end of switch format
-               }  //end of for all chars in string
-            }  //end if res>0
-//            buf[res]=0;
-//            printf(":%s:%d\n", buf, res);
-//            if (res==1) STOP=TRUE; /* stop loop if only a CR was input */
-            wait_flag = TRUE;      /* wait for new input */
-         }  //end if wait flag == FALSE
-
-      }  //while stop==FALSE
+		}  //end of switch key
+	    }  //end if a key was hit
+	  // after receiving SIGIO, wait_flag = FALSE, input is available and can be read
+	  if (wait_flag==FALSE)  //if input is available
+	    {
+	      //	      printf("wait flag = false\n");
+	      res = read(fd,buf,255);
+	      //	      printf("num of characters read = %d -> [%s]\n",res,buf);
+	      if (res>0)
+		{
+		  for (i=0; i<res; i++)  //for all chars in string
+		    {
+		      In1 = buf[i];
+		      switch (Format)
+			{
+			case 1:         //hex
+			  sprintf(message,"%x ",In1);
+			  fputs(message,output);
+			  break;
+			case 2:         //decimal
+			  sprintf(message,"%d ",In1);
+			  fputs(message,output);
+			  break;
+			case 3:         //hex and asc
+			  if ((In1<32) || (In1>125))
+			    {
+			      sprintf(message,"%x",In1);
+			      fputs(message,output);
+			    }
+			  else fputc ((int) In1, output);
+			  break;
+			case 4:         //decimal and asc
+			default:
+			  if ((In1<32) || (In1>125))
+			    {
+			      sprintf(message,"%d",In1);
+			      fputs(message,output);
+			    }
+			  else fputc ((int) In1, output);
+			  break;
+			case 5:         //asc
+			  fputc ((char) In1, output);
+			  break;
+			}  //end of switch format
+		    }  //end of for all chars in string
+		  fflush(output);
+		}  //end if res>0
+	      //            buf[res]=0;
+	      //            printf(":%s:%d\n", buf, res);
+	      //            if (res==1) STOP=TRUE; /* stop loop if only a CR was input */
+	      wait_flag = TRUE;      /* wait for new input */
+	    }  //end if wait flag == FALSE
+	  
+	}  //while stop==FALSE
       // restore old port settings
       tcsetattr(fd,TCSANOW,&oldtio);
       tcsetattr(tty,TCSANOW,&oldkey);
@@ -354,16 +373,16 @@ main(int Parm_Count, char *Parms[])
       close(fd);        //close the com port
    }  //end if command line entrys were correct
    else  //give instructions on how to use the command line
-   {
-      fputs(instr,output);
-      fputs(instr1,output);
-      fputs(instr2,output);
-      fputs(instr3,output);
-      fputs(instr4,output);
-      fputs(instr5,output);
-      fputs(instr6,output);
-      fputs(instr7,output);
-   }
+     {
+       fputs(instr,output);
+       fputs(instr1,output);
+       fputs(instr2,output);
+       fputs(instr3,output);
+       fputs(instr4,output);
+       fputs(instr5,output);
+       fputs(instr6,output);
+       fputs(instr7,output);
+     }
    fclose(input);
    fclose(output);
 }  //end of main
@@ -375,7 +394,7 @@ main(int Parm_Count, char *Parms[])
 
 void signal_handler_IO (int status)
 {
-//    printf("received SIGIO signal.\n");
-   wait_flag = FALSE;
+  //  printf("received SIGIO signal = %d\n", status);
+  wait_flag = FALSE;
 }
 
