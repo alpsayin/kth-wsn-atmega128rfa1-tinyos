@@ -14,4 +14,4 @@ clean:
 	rm -rf $(OUTPUT)
 
 install: all
-	./$(OUTPUT) /dev/ttyACM0 57600 8 1 0 5
+	./$(OUTPUT) /dev/ttyUSB0 57600 8 1 0 5
