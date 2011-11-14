@@ -128,7 +128,7 @@
     </wire>
     <wire>
       <from><interface-ref name="TimerInit" scoped="" ref="0x403f9ea8"/></from>
-      <to><interface-ref name="Init" scoped="" ref="0x407c70a8"/></to>
+      <to><interface-ref name="Init" scoped="" ref="0x407df0a8"/></to>
     </wire>
     <wire loc="50:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/McuInitC.nc">
       <from><interface-ref name="TimerInit" scoped="" ref="0x404000e0"/></from>
@@ -206,11 +206,11 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin1" scoped="" ref="0x404b6b80"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406f0de0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406efde0"/></to>
     </wire>
     <wire>
       <from><interface-ref name="Pin3" scoped="" ref="0x404bb7d0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x40723c08"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x40722c08"/></to>
     </wire>
     <wire loc="122:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortF3" scoped="" ref="0x4047fce8"/></from>
@@ -218,7 +218,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin3" scoped="" ref="0x404c0030"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x407617f8"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x407607f8"/></to>
     </wire>
     <wire loc="128:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortG0" scoped="" ref="0x4047b0a0"/></from>
@@ -226,7 +226,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin0" scoped="" ref="0x404c8dc8"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4078e538"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4078d538"/></to>
     </wire>
     <wire loc="133:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortG5" scoped="" ref="0x404842f0"/></from>
@@ -234,7 +234,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin5" scoped="" ref="0x404d3e48"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4079e9e8"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4079c9e8"/></to>
     </wire>
     <wire loc="120:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortF1" scoped="" ref="0x40475830"/></from>
@@ -242,7 +242,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin1" scoped="" ref="0x404c2d30"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x407643b0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x407633b0"/></to>
     </wire>
     <wire loc="92:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortB0" scoped="" ref="0x40464698"/></from>
@@ -250,7 +250,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin0" scoped="" ref="0x404b18e0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406a45e8"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406a35e8"/></to>
     </wire>
     <wire loc="105:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD4" scoped="" ref="0x40471210"/></from>
@@ -258,7 +258,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin4" scoped="" ref="0x404b47d0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406ebc08"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406eac08"/></to>
     </wire>
     <wire loc="95:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortB3" scoped="" ref="0x4046b590"/></from>
@@ -266,7 +266,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin3" scoped="" ref="0x404af5d0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406b7538"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406b6538"/></to>
     </wire>
     <wire loc="108:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD7" scoped="" ref="0x4046f210"/></from>
@@ -274,7 +274,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin7" scoped="" ref="0x404b24f0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406fca88"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406fba88"/></to>
     </wire>
     <wire loc="116:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortE6" scoped="" ref="0x404778e0"/></from>
@@ -282,7 +282,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin6" scoped="" ref="0x404c64f0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4071ea88"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x40733a88"/></to>
     </wire>
     <wire loc="111:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortE1" scoped="" ref="0x4047a670"/></from>
@@ -290,7 +290,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin1" scoped="" ref="0x404bc4f0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x407267f8"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x407257f8"/></to>
     </wire>
     <wire loc="125:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortF6" scoped="" ref="0x4047dc08"/></from>
@@ -298,7 +298,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin6" scoped="" ref="0x404cdc88"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4075c6c0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4075b6c0"/></to>
     </wire>
     <wire loc="131:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortG3" scoped="" ref="0x40486ea8"/></from>
@@ -306,7 +306,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin3" scoped="" ref="0x404d4ac8"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x40789538"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x407a0538"/></to>
     </wire>
     <wire loc="98:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortB6" scoped="" ref="0x404694b0"/></from>
@@ -314,7 +314,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin6" scoped="" ref="0x404ad250"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406b2538"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406b1538"/></to>
     </wire>
     <wire loc="129:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortG1" scoped="" ref="0x4047ba98"/></from>
@@ -322,7 +322,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin1" scoped="" ref="0x404c7790"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4078c010"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4078b010"/></to>
     </wire>
     <wire loc="103:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD2" scoped="" ref="0x40473ce8"/></from>
@@ -330,11 +330,11 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin2" scoped="" ref="0x404b54f0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406ee7f8"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406ed7f8"/></to>
     </wire>
     <wire>
       <from><interface-ref name="Pin4" scoped="" ref="0x404ba170"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x407216c0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x407206c0"/></to>
     </wire>
     <wire loc="123:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortF4" scoped="" ref="0x4047e750"/></from>
@@ -342,7 +342,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin4" scoped="" ref="0x404c0988"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4075f228"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4075e228"/></to>
     </wire>
     <wire loc="93:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortB1" scoped="" ref="0x4046c0c0"/></from>
@@ -350,7 +350,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin1" scoped="" ref="0x404b0250"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406ba0b0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406b90b0"/></to>
     </wire>
     <wire loc="106:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD5" scoped="" ref="0x40471c88"/></from>
@@ -358,7 +358,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin5" scoped="" ref="0x404b3170"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406e96c0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406e86c0"/></to>
     </wire>
     <wire loc="96:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortB4" scoped="" ref="0x4046a010"/></from>
@@ -366,7 +366,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin4" scoped="" ref="0x404aff28"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406b5010"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406b4010"/></to>
     </wire>
     <wire loc="117:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortE7" scoped="" ref="0x404762f0"/></from>
@@ -374,7 +374,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin7" scoped="" ref="0x404c6e48"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x40733538"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x40731538"/></to>
     </wire>
     <wire loc="126:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortF7" scoped="" ref="0x4047c670"/></from>
@@ -382,7 +382,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin7" scoped="" ref="0x404cc6b0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4075a0b0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x407590b0"/></to>
     </wire>
     <wire loc="101:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD0" scoped="" ref="0x404748e0"/></from>
@@ -390,11 +390,11 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin0" scoped="" ref="0x404b6228"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406f1418"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406f0418"/></to>
     </wire>
     <wire>
       <from><interface-ref name="Pin2" scoped="" ref="0x404bce48"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x40724228"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x40723228"/></to>
     </wire>
     <wire loc="121:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortF2" scoped="" ref="0x4047f2f0"/></from>
@@ -402,7 +402,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin2" scoped="" ref="0x404c16b0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x40763d70"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x40762d70"/></to>
     </wire>
     <wire loc="132:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortG4" scoped="" ref="0x404858e0"/></from>
@@ -410,7 +410,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin4" scoped="" ref="0x404d34f0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4079f010"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4079d010"/></to>
     </wire>
     <wire loc="99:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortB7" scoped="" ref="0x40469ea8"/></from>
@@ -418,7 +418,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin7" scoped="" ref="0x404adba8"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406b0010"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406c4010"/></to>
     </wire>
     <wire loc="104:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD3" scoped="" ref="0x40472750"/></from>
@@ -426,7 +426,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin3" scoped="" ref="0x404b5e48"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406ec228"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406eb228"/></to>
     </wire>
     <wire loc="115:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortE5" scoped="" ref="0x40478ea8"/></from>
@@ -434,7 +434,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin5" scoped="" ref="0x404baac8"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4071f0b0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x407340b0"/></to>
     </wire>
     <wire loc="94:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortB2" scoped="" ref="0x4046cab8"/></from>
@@ -442,7 +442,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin2" scoped="" ref="0x404b0ba8"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406b9a88"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406b8a88"/></to>
     </wire>
     <wire loc="107:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD6" scoped="" ref="0x40470750"/></from>
@@ -450,7 +450,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin6" scoped="" ref="0x404b3ac8"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406e70b0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406fc0b0"/></to>
     </wire>
     <wire loc="119:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortF0" scoped="" ref="0x40476ce8"/></from>
@@ -458,7 +458,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin0" scoped="" ref="0x404c23d8"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4074e938"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4074d938"/></to>
     </wire>
     <wire loc="124:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortF5" scoped="" ref="0x4047d210"/></from>
@@ -466,7 +466,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin5" scoped="" ref="0x404cd330"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4075ec08"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4075dc08"/></to>
     </wire>
     <wire loc="110:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortE0" scoped="" ref="0x4046fc08"/></from>
@@ -474,7 +474,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin0" scoped="" ref="0x404bdb00"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x40715de8"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x40714de8"/></to>
     </wire>
     <wire loc="130:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortG2" scoped="" ref="0x404864b0"/></from>
@@ -482,7 +482,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin2" scoped="" ref="0x404d4170"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4078b9e8"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4078a9e8"/></to>
     </wire>
     <wire loc="97:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortB5" scoped="" ref="0x4046aa08"/></from>
@@ -490,15 +490,15 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin5" scoped="" ref="0x404ae890"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x406b49e8"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x406b39e8"/></to>
     </wire>
     <wire>
       <from><interface-ref name="Pin6" scoped="" ref="0x404d27d0"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x4079c538"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x4079a538"/></to>
     </wire>
     <wire>
       <from><interface-ref name="Pin7" scoped="" ref="0x404d1170"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x40799010"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x40798010"/></to>
     </wire>
     <wire loc="53:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/TimerMilliP.nc">
       <from><interface-ref name="TimerMilli" scoped="" ref="0x404f45a0"/></from>
@@ -510,22 +510,22 @@
     </wire>
     <wire>
       <from><interface-ref name="Alarm" scoped="" ref="0x404fe750"/></from>
-      <to><interface-ref name="Alarm" scoped="" ref="0x407d0d18"/></to>
+      <to><interface-ref name="Alarm" scoped="" ref="0x407cfd18"/></to>
     </wire>
     <wire loc="54:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/TimerMilliP.nc">
       <from><interface-ref name="TimerFrom" scoped="" ref="0x4064f688"/></from>
       <to><interface-ref name="Timer" scoped="" ref="0x4060c0a0"/></to>
     </wire>
     <wire>
-      <from><interface-ref name="AlarmFrom" scoped="" ref="0x407cda00"/></from>
-      <to><interface-ref name="Alarm" scoped="" ref="0x407d23c8"/></to>
+      <from><interface-ref name="AlarmFrom" scoped="" ref="0x407cba00"/></from>
+      <to><interface-ref name="Alarm" scoped="" ref="0x407d13c8"/></to>
     </wire>
     <wire>
-      <from><interface-ref name="Alarm" scoped="" ref="0x407d23c8"/></from>
-      <to><interface-ref name="Alarm" scoped="" ref="0x407c74e0"/></to>
+      <from><interface-ref name="Alarm" scoped="" ref="0x407d13c8"/></from>
+      <to><interface-ref name="Alarm" scoped="" ref="0x407df4e0"/></to>
     </wire>
     <wire>
-      <from><interface-ref name="Counter" scoped="" ref="0x407ce7b0"/></from>
+      <from><interface-ref name="Counter" scoped="" ref="0x407cd7b0"/></from>
       <to><interface-ref name="Counter" scoped="" ref="0x405caea0"/></to>
     </wire>
     <wire loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/CounterMilli32C.nc">
@@ -533,7 +533,7 @@
       <to><interface-ref name="Counter" scoped="" ref="0x405d67f0"/></to>
     </wire>
     <wire>
-      <from><interface-ref name="AtmegaCounter" scoped="" ref="0x407dfee8"/></from>
+      <from><interface-ref name="AtmegaCounter" scoped="" ref="0x407deee8"/></from>
       <to><interface-ref name="Counter" scoped="" ref="0x4052c4b8"/></to>
     </wire>
     <wire loc="52:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
@@ -541,7 +541,7 @@
       <to><interface-ref name="Counter" scoped="" ref="0x4054a5f8"/></to>
     </wire>
     <wire>
-      <from><interface-ref name="AtmegaCompare" scoped="" ref="0x407dc010"/></from>
+      <from><interface-ref name="AtmegaCompare" scoped="" ref="0x407da010"/></from>
       <to><interface-ref name="Compare" scoped="" ref="0x40538898"/>
       <arguments>
         <value cst="I:0">
@@ -626,14 +626,14 @@
     </wire>
     <wire loc="14:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialC.nc">
       <from><interface-ref name="Uart1Interrupts" scoped="" ref="0x4065ddf0"/></from>
-      <to><interface-ref name="Uart1Interrupts" scoped="" ref="0x40679bd8"/></to>
+      <to><interface-ref name="Uart1Interrupts" scoped="" ref="0x40663b20"/></to>
     </wire>
     <wire loc="15:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialC.nc">
       <from><interface-ref name="Leds" scoped="" ref="0x40661a60"/></from>
       <to><interface-ref name="Leds" scoped="" ref="0x403fae20"/></to>
     </wire>
-    <wire loc="27:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
-      <from><interface-ref name="sendDoneTask" scoped="" ref="0x4065b708"/></from>
+    <wire loc="29:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
+      <from><interface-ref name="sendDoneTask" scoped="" ref="0x4065ba68"/></from>
       <to><interface-ref name="TaskBasic" scoped="" ref="0x40304a98"/>
       <arguments>
         <value cst="I:3">
@@ -642,8 +642,8 @@
       </arguments>
       </to>
     </wire>
-    <wire loc="28:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
-      <from><interface-ref name="receiveDoneTask" scoped="" ref="0x4065bf28"/></from>
+    <wire loc="30:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
+      <from><interface-ref name="receiveDoneTask" scoped="" ref="0x4066e298"/></from>
       <to><interface-ref name="TaskBasic" scoped="" ref="0x40304a98"/>
       <arguments>
         <value cst="I:4">
@@ -3908,140 +3908,140 @@
         <function-ref name="clr" scoped="" ref="0x404ac470"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406a45e8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406a35e8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit0"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406a45e8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406a35e8"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406a47c0"/>
-        <function-ref name="isInput" scoped="" ref="0x406a48a0"/>
-        <function-ref name="toggle" scoped="" ref="0x406a4980"/>
-        <function-ref name="isOutput" scoped="" ref="0x406a4a60"/>
-        <function-ref name="get" scoped="" ref="0x406a4b40"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406a4c20"/>
-        <function-ref name="set" scoped="" ref="0x406a4d00"/>
-        <function-ref name="clr" scoped="" ref="0x406a4de0"/>
+        <function-ref name="makeInput" scoped="" ref="0x406a37c0"/>
+        <function-ref name="isInput" scoped="" ref="0x406a38a0"/>
+        <function-ref name="toggle" scoped="" ref="0x406a3980"/>
+        <function-ref name="isOutput" scoped="" ref="0x406a3a60"/>
+        <function-ref name="get" scoped="" ref="0x406a3b40"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406a3c20"/>
+        <function-ref name="set" scoped="" ref="0x406a3d00"/>
+        <function-ref name="clr" scoped="" ref="0x406a3de0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406ba0b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406b90b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit1"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406ba0b0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b90b0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406ba288"/>
-        <function-ref name="isInput" scoped="" ref="0x406ba368"/>
-        <function-ref name="toggle" scoped="" ref="0x406ba448"/>
-        <function-ref name="isOutput" scoped="" ref="0x406ba528"/>
-        <function-ref name="get" scoped="" ref="0x406ba608"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406ba6e8"/>
-        <function-ref name="set" scoped="" ref="0x406ba7c8"/>
-        <function-ref name="clr" scoped="" ref="0x406ba8a8"/>
+        <function-ref name="makeInput" scoped="" ref="0x406b9288"/>
+        <function-ref name="isInput" scoped="" ref="0x406b9368"/>
+        <function-ref name="toggle" scoped="" ref="0x406b9448"/>
+        <function-ref name="isOutput" scoped="" ref="0x406b9528"/>
+        <function-ref name="get" scoped="" ref="0x406b9608"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406b96e8"/>
+        <function-ref name="set" scoped="" ref="0x406b97c8"/>
+        <function-ref name="clr" scoped="" ref="0x406b98a8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406b9a88" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406b8a88" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit2"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b9a88"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b8a88"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406b9c60"/>
-        <function-ref name="isInput" scoped="" ref="0x406b9d40"/>
-        <function-ref name="toggle" scoped="" ref="0x406b9e20"/>
-        <function-ref name="isOutput" scoped="" ref="0x406b9f00"/>
-        <function-ref name="get" scoped="" ref="0x406b8010"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406b80f0"/>
-        <function-ref name="set" scoped="" ref="0x406b81d0"/>
-        <function-ref name="clr" scoped="" ref="0x406b82b0"/>
+        <function-ref name="makeInput" scoped="" ref="0x406b8c60"/>
+        <function-ref name="isInput" scoped="" ref="0x406b8d40"/>
+        <function-ref name="toggle" scoped="" ref="0x406b8e20"/>
+        <function-ref name="isOutput" scoped="" ref="0x406b8f00"/>
+        <function-ref name="get" scoped="" ref="0x406b7010"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406b70f0"/>
+        <function-ref name="set" scoped="" ref="0x406b71d0"/>
+        <function-ref name="clr" scoped="" ref="0x406b72b0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406b7538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406b6538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit3"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b7538"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b6538"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406b7710"/>
-        <function-ref name="isInput" scoped="" ref="0x406b77f0"/>
-        <function-ref name="toggle" scoped="" ref="0x406b78d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x406b79b0"/>
-        <function-ref name="get" scoped="" ref="0x406b7a90"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406b7b70"/>
-        <function-ref name="set" scoped="" ref="0x406b7c50"/>
-        <function-ref name="clr" scoped="" ref="0x406b7d30"/>
+        <function-ref name="makeInput" scoped="" ref="0x406b6710"/>
+        <function-ref name="isInput" scoped="" ref="0x406b67f0"/>
+        <function-ref name="toggle" scoped="" ref="0x406b68d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x406b69b0"/>
+        <function-ref name="get" scoped="" ref="0x406b6a90"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406b6b70"/>
+        <function-ref name="set" scoped="" ref="0x406b6c50"/>
+        <function-ref name="clr" scoped="" ref="0x406b6d30"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406b5010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406b4010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit4"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b5010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b4010"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406b51e8"/>
-        <function-ref name="isInput" scoped="" ref="0x406b52c8"/>
-        <function-ref name="toggle" scoped="" ref="0x406b53a8"/>
-        <function-ref name="isOutput" scoped="" ref="0x406b5488"/>
-        <function-ref name="get" scoped="" ref="0x406b5568"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406b5648"/>
-        <function-ref name="set" scoped="" ref="0x406b5728"/>
-        <function-ref name="clr" scoped="" ref="0x406b5808"/>
+        <function-ref name="makeInput" scoped="" ref="0x406b41e8"/>
+        <function-ref name="isInput" scoped="" ref="0x406b42c8"/>
+        <function-ref name="toggle" scoped="" ref="0x406b43a8"/>
+        <function-ref name="isOutput" scoped="" ref="0x406b4488"/>
+        <function-ref name="get" scoped="" ref="0x406b4568"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406b4648"/>
+        <function-ref name="set" scoped="" ref="0x406b4728"/>
+        <function-ref name="clr" scoped="" ref="0x406b4808"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406b49e8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406b39e8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit5"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b49e8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b39e8"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406b4bc0"/>
-        <function-ref name="isInput" scoped="" ref="0x406b4ca0"/>
-        <function-ref name="toggle" scoped="" ref="0x406b4d80"/>
-        <function-ref name="isOutput" scoped="" ref="0x406b4e60"/>
-        <function-ref name="get" scoped="" ref="0x406b3010"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406b30f0"/>
-        <function-ref name="set" scoped="" ref="0x406b31d0"/>
-        <function-ref name="clr" scoped="" ref="0x406b32b0"/>
+        <function-ref name="makeInput" scoped="" ref="0x406b3bc0"/>
+        <function-ref name="isInput" scoped="" ref="0x406b3ca0"/>
+        <function-ref name="toggle" scoped="" ref="0x406b3d80"/>
+        <function-ref name="isOutput" scoped="" ref="0x406b3e60"/>
+        <function-ref name="get" scoped="" ref="0x406b2010"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406b20f0"/>
+        <function-ref name="set" scoped="" ref="0x406b21d0"/>
+        <function-ref name="clr" scoped="" ref="0x406b22b0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406b2538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406b1538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit6"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b2538"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b1538"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406b2710"/>
-        <function-ref name="isInput" scoped="" ref="0x406b27f0"/>
-        <function-ref name="toggle" scoped="" ref="0x406b28d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x406b29b0"/>
-        <function-ref name="get" scoped="" ref="0x406b2a90"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406b2b70"/>
-        <function-ref name="set" scoped="" ref="0x406b2c50"/>
-        <function-ref name="clr" scoped="" ref="0x406b2d30"/>
+        <function-ref name="makeInput" scoped="" ref="0x406b1710"/>
+        <function-ref name="isInput" scoped="" ref="0x406b17f0"/>
+        <function-ref name="toggle" scoped="" ref="0x406b18d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x406b19b0"/>
+        <function-ref name="get" scoped="" ref="0x406b1a90"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406b1b70"/>
+        <function-ref name="set" scoped="" ref="0x406b1c50"/>
+        <function-ref name="clr" scoped="" ref="0x406b1d30"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406b0010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406c4010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit7"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406b0010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406c4010"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406b01e8"/>
-        <function-ref name="isInput" scoped="" ref="0x406b02c8"/>
-        <function-ref name="toggle" scoped="" ref="0x406b03a8"/>
-        <function-ref name="isOutput" scoped="" ref="0x406b0488"/>
-        <function-ref name="get" scoped="" ref="0x406b0568"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406b0648"/>
-        <function-ref name="set" scoped="" ref="0x406b0728"/>
-        <function-ref name="clr" scoped="" ref="0x406b0808"/>
+        <function-ref name="makeInput" scoped="" ref="0x406c41e8"/>
+        <function-ref name="isInput" scoped="" ref="0x406c42c8"/>
+        <function-ref name="toggle" scoped="" ref="0x406c43a8"/>
+        <function-ref name="isOutput" scoped="" ref="0x406c4488"/>
+        <function-ref name="get" scoped="" ref="0x406c4568"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406c4648"/>
+        <function-ref name="set" scoped="" ref="0x406c4728"/>
+        <function-ref name="clr" scoped="" ref="0x406c4808"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="Pin2" ref="0x404b54f0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPortP.nc">
@@ -4180,140 +4180,140 @@
         <function-ref name="clr" scoped="" ref="0x404b2ce8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406f1418" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406f0418" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortD.Bit0"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406f1418"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406f0418"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406f15f0"/>
-        <function-ref name="isInput" scoped="" ref="0x406f16d0"/>
-        <function-ref name="toggle" scoped="" ref="0x406f17b0"/>
-        <function-ref name="isOutput" scoped="" ref="0x406f1890"/>
-        <function-ref name="get" scoped="" ref="0x406f1970"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406f1a50"/>
-        <function-ref name="set" scoped="" ref="0x406f1b30"/>
-        <function-ref name="clr" scoped="" ref="0x406f1c10"/>
+        <function-ref name="makeInput" scoped="" ref="0x406f05f0"/>
+        <function-ref name="isInput" scoped="" ref="0x406f06d0"/>
+        <function-ref name="toggle" scoped="" ref="0x406f07b0"/>
+        <function-ref name="isOutput" scoped="" ref="0x406f0890"/>
+        <function-ref name="get" scoped="" ref="0x406f0970"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406f0a50"/>
+        <function-ref name="set" scoped="" ref="0x406f0b30"/>
+        <function-ref name="clr" scoped="" ref="0x406f0c10"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406f0de0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406efde0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortD.Bit1"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406f0de0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406efde0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406ef010"/>
-        <function-ref name="isInput" scoped="" ref="0x406ef0f0"/>
-        <function-ref name="toggle" scoped="" ref="0x406ef1d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x406ef2b0"/>
-        <function-ref name="get" scoped="" ref="0x406ef390"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406ef470"/>
-        <function-ref name="set" scoped="" ref="0x406ef550"/>
-        <function-ref name="clr" scoped="" ref="0x406ef630"/>
+        <function-ref name="makeInput" scoped="" ref="0x406ee010"/>
+        <function-ref name="isInput" scoped="" ref="0x406ee0f0"/>
+        <function-ref name="toggle" scoped="" ref="0x406ee1d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x406ee2b0"/>
+        <function-ref name="get" scoped="" ref="0x406ee390"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406ee470"/>
+        <function-ref name="set" scoped="" ref="0x406ee550"/>
+        <function-ref name="clr" scoped="" ref="0x406ee630"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406ee7f8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406ed7f8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortD.Bit2"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406ee7f8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406ed7f8"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406ee9d0"/>
-        <function-ref name="isInput" scoped="" ref="0x406eeab0"/>
-        <function-ref name="toggle" scoped="" ref="0x406eeb90"/>
-        <function-ref name="isOutput" scoped="" ref="0x406eec70"/>
-        <function-ref name="get" scoped="" ref="0x406eed50"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406eee30"/>
-        <function-ref name="set" scoped="" ref="0x406eef10"/>
-        <function-ref name="clr" scoped="" ref="0x406ed010"/>
+        <function-ref name="makeInput" scoped="" ref="0x406ed9d0"/>
+        <function-ref name="isInput" scoped="" ref="0x406edab0"/>
+        <function-ref name="toggle" scoped="" ref="0x406edb90"/>
+        <function-ref name="isOutput" scoped="" ref="0x406edc70"/>
+        <function-ref name="get" scoped="" ref="0x406edd50"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406ede30"/>
+        <function-ref name="set" scoped="" ref="0x406edf10"/>
+        <function-ref name="clr" scoped="" ref="0x406ec010"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406ec228" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406eb228" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortD.Bit3"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406ec228"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406eb228"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406ec400"/>
-        <function-ref name="isInput" scoped="" ref="0x406ec4e0"/>
-        <function-ref name="toggle" scoped="" ref="0x406ec5c0"/>
-        <function-ref name="isOutput" scoped="" ref="0x406ec6a0"/>
-        <function-ref name="get" scoped="" ref="0x406ec780"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406ec860"/>
-        <function-ref name="set" scoped="" ref="0x406ec940"/>
-        <function-ref name="clr" scoped="" ref="0x406eca20"/>
+        <function-ref name="makeInput" scoped="" ref="0x406eb400"/>
+        <function-ref name="isInput" scoped="" ref="0x406eb4e0"/>
+        <function-ref name="toggle" scoped="" ref="0x406eb5c0"/>
+        <function-ref name="isOutput" scoped="" ref="0x406eb6a0"/>
+        <function-ref name="get" scoped="" ref="0x406eb780"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406eb860"/>
+        <function-ref name="set" scoped="" ref="0x406eb940"/>
+        <function-ref name="clr" scoped="" ref="0x406eba20"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406ebc08" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406eac08" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortD.Bit4"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406ebc08"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406eac08"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406ebde0"/>
-        <function-ref name="isInput" scoped="" ref="0x406ebec0"/>
-        <function-ref name="toggle" scoped="" ref="0x406ea010"/>
-        <function-ref name="isOutput" scoped="" ref="0x406ea0f0"/>
-        <function-ref name="get" scoped="" ref="0x406ea1d0"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406ea2b0"/>
-        <function-ref name="set" scoped="" ref="0x406ea390"/>
-        <function-ref name="clr" scoped="" ref="0x406ea470"/>
+        <function-ref name="makeInput" scoped="" ref="0x406eade0"/>
+        <function-ref name="isInput" scoped="" ref="0x406eaec0"/>
+        <function-ref name="toggle" scoped="" ref="0x406e9010"/>
+        <function-ref name="isOutput" scoped="" ref="0x406e90f0"/>
+        <function-ref name="get" scoped="" ref="0x406e91d0"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406e92b0"/>
+        <function-ref name="set" scoped="" ref="0x406e9390"/>
+        <function-ref name="clr" scoped="" ref="0x406e9470"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406e96c0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406e86c0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortD.Bit5"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406e96c0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406e86c0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406e9898"/>
-        <function-ref name="isInput" scoped="" ref="0x406e9978"/>
-        <function-ref name="toggle" scoped="" ref="0x406e9a58"/>
-        <function-ref name="isOutput" scoped="" ref="0x406e9b38"/>
-        <function-ref name="get" scoped="" ref="0x406e9c18"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406e9cf8"/>
-        <function-ref name="set" scoped="" ref="0x406e9dd8"/>
-        <function-ref name="clr" scoped="" ref="0x406e9eb8"/>
+        <function-ref name="makeInput" scoped="" ref="0x406e8898"/>
+        <function-ref name="isInput" scoped="" ref="0x406e8978"/>
+        <function-ref name="toggle" scoped="" ref="0x406e8a58"/>
+        <function-ref name="isOutput" scoped="" ref="0x406e8b38"/>
+        <function-ref name="get" scoped="" ref="0x406e8c18"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406e8cf8"/>
+        <function-ref name="set" scoped="" ref="0x406e8dd8"/>
+        <function-ref name="clr" scoped="" ref="0x406e8eb8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406e70b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406fc0b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortD.Bit6"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406e70b0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406fc0b0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406e7288"/>
-        <function-ref name="isInput" scoped="" ref="0x406e7368"/>
-        <function-ref name="toggle" scoped="" ref="0x406e7448"/>
-        <function-ref name="isOutput" scoped="" ref="0x406e7528"/>
-        <function-ref name="get" scoped="" ref="0x406e7608"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406e76e8"/>
-        <function-ref name="set" scoped="" ref="0x406e77c8"/>
-        <function-ref name="clr" scoped="" ref="0x406e78a8"/>
+        <function-ref name="makeInput" scoped="" ref="0x406fc288"/>
+        <function-ref name="isInput" scoped="" ref="0x406fc368"/>
+        <function-ref name="toggle" scoped="" ref="0x406fc448"/>
+        <function-ref name="isOutput" scoped="" ref="0x406fc528"/>
+        <function-ref name="get" scoped="" ref="0x406fc608"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406fc6e8"/>
+        <function-ref name="set" scoped="" ref="0x406fc7c8"/>
+        <function-ref name="clr" scoped="" ref="0x406fc8a8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x406fca88" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x406fba88" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortD.Bit7"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406fca88"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x406fba88"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x406fcc60"/>
-        <function-ref name="isInput" scoped="" ref="0x406fcd40"/>
-        <function-ref name="toggle" scoped="" ref="0x406fce20"/>
-        <function-ref name="isOutput" scoped="" ref="0x406fcf00"/>
-        <function-ref name="get" scoped="" ref="0x406fb010"/>
-        <function-ref name="makeOutput" scoped="" ref="0x406fb0f0"/>
-        <function-ref name="set" scoped="" ref="0x406fb1d0"/>
-        <function-ref name="clr" scoped="" ref="0x406fb2b0"/>
+        <function-ref name="makeInput" scoped="" ref="0x406fbc60"/>
+        <function-ref name="isInput" scoped="" ref="0x406fbd40"/>
+        <function-ref name="toggle" scoped="" ref="0x406fbe20"/>
+        <function-ref name="isOutput" scoped="" ref="0x406fbf00"/>
+        <function-ref name="get" scoped="" ref="0x406fa010"/>
+        <function-ref name="makeOutput" scoped="" ref="0x406fa0f0"/>
+        <function-ref name="set" scoped="" ref="0x406fa1d0"/>
+        <function-ref name="clr" scoped="" ref="0x406fa2b0"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="Pin2" ref="0x404bce48" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPortP.nc">
@@ -4452,140 +4452,140 @@
         <function-ref name="clr" scoped="" ref="0x404c5670"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x40715de8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x40714de8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortE.Bit0"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40715de8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40714de8"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40727010"/>
-        <function-ref name="isInput" scoped="" ref="0x407270f0"/>
-        <function-ref name="toggle" scoped="" ref="0x407271d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x407272b0"/>
-        <function-ref name="get" scoped="" ref="0x40727390"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40727470"/>
-        <function-ref name="set" scoped="" ref="0x40727550"/>
-        <function-ref name="clr" scoped="" ref="0x40727630"/>
+        <function-ref name="makeInput" scoped="" ref="0x40726010"/>
+        <function-ref name="isInput" scoped="" ref="0x407260f0"/>
+        <function-ref name="toggle" scoped="" ref="0x407261d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x407262b0"/>
+        <function-ref name="get" scoped="" ref="0x40726390"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40726470"/>
+        <function-ref name="set" scoped="" ref="0x40726550"/>
+        <function-ref name="clr" scoped="" ref="0x40726630"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x407267f8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x407257f8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortE.Bit1"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407267f8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407257f8"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x407269d0"/>
-        <function-ref name="isInput" scoped="" ref="0x40726ab0"/>
-        <function-ref name="toggle" scoped="" ref="0x40726b90"/>
-        <function-ref name="isOutput" scoped="" ref="0x40726c70"/>
-        <function-ref name="get" scoped="" ref="0x40726d50"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40726e30"/>
-        <function-ref name="set" scoped="" ref="0x40726f10"/>
-        <function-ref name="clr" scoped="" ref="0x40725010"/>
+        <function-ref name="makeInput" scoped="" ref="0x407259d0"/>
+        <function-ref name="isInput" scoped="" ref="0x40725ab0"/>
+        <function-ref name="toggle" scoped="" ref="0x40725b90"/>
+        <function-ref name="isOutput" scoped="" ref="0x40725c70"/>
+        <function-ref name="get" scoped="" ref="0x40725d50"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40725e30"/>
+        <function-ref name="set" scoped="" ref="0x40725f10"/>
+        <function-ref name="clr" scoped="" ref="0x40724010"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x40724228" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x40723228" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortE.Bit2"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40724228"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40723228"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40724400"/>
-        <function-ref name="isInput" scoped="" ref="0x407244e0"/>
-        <function-ref name="toggle" scoped="" ref="0x407245c0"/>
-        <function-ref name="isOutput" scoped="" ref="0x407246a0"/>
-        <function-ref name="get" scoped="" ref="0x40724780"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40724860"/>
-        <function-ref name="set" scoped="" ref="0x40724940"/>
-        <function-ref name="clr" scoped="" ref="0x40724a20"/>
+        <function-ref name="makeInput" scoped="" ref="0x40723400"/>
+        <function-ref name="isInput" scoped="" ref="0x407234e0"/>
+        <function-ref name="toggle" scoped="" ref="0x407235c0"/>
+        <function-ref name="isOutput" scoped="" ref="0x407236a0"/>
+        <function-ref name="get" scoped="" ref="0x40723780"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40723860"/>
+        <function-ref name="set" scoped="" ref="0x40723940"/>
+        <function-ref name="clr" scoped="" ref="0x40723a20"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x40723c08" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x40722c08" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortE.Bit3"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40723c08"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40722c08"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40723de0"/>
-        <function-ref name="isInput" scoped="" ref="0x40723ec0"/>
-        <function-ref name="toggle" scoped="" ref="0x40722010"/>
-        <function-ref name="isOutput" scoped="" ref="0x407220f0"/>
-        <function-ref name="get" scoped="" ref="0x407221d0"/>
-        <function-ref name="makeOutput" scoped="" ref="0x407222b0"/>
-        <function-ref name="set" scoped="" ref="0x40722390"/>
-        <function-ref name="clr" scoped="" ref="0x40722470"/>
+        <function-ref name="makeInput" scoped="" ref="0x40722de0"/>
+        <function-ref name="isInput" scoped="" ref="0x40722ec0"/>
+        <function-ref name="toggle" scoped="" ref="0x40721010"/>
+        <function-ref name="isOutput" scoped="" ref="0x407210f0"/>
+        <function-ref name="get" scoped="" ref="0x407211d0"/>
+        <function-ref name="makeOutput" scoped="" ref="0x407212b0"/>
+        <function-ref name="set" scoped="" ref="0x40721390"/>
+        <function-ref name="clr" scoped="" ref="0x40721470"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x407216c0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x407206c0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortE.Bit4"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407216c0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407206c0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40721898"/>
-        <function-ref name="isInput" scoped="" ref="0x40721978"/>
-        <function-ref name="toggle" scoped="" ref="0x40721a58"/>
-        <function-ref name="isOutput" scoped="" ref="0x40721b38"/>
-        <function-ref name="get" scoped="" ref="0x40721c18"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40721cf8"/>
-        <function-ref name="set" scoped="" ref="0x40721dd8"/>
-        <function-ref name="clr" scoped="" ref="0x40721eb8"/>
+        <function-ref name="makeInput" scoped="" ref="0x40720898"/>
+        <function-ref name="isInput" scoped="" ref="0x40720978"/>
+        <function-ref name="toggle" scoped="" ref="0x40720a58"/>
+        <function-ref name="isOutput" scoped="" ref="0x40720b38"/>
+        <function-ref name="get" scoped="" ref="0x40720c18"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40720cf8"/>
+        <function-ref name="set" scoped="" ref="0x40720dd8"/>
+        <function-ref name="clr" scoped="" ref="0x40720eb8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4071f0b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x407340b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortE.Bit5"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4071f0b0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407340b0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4071f288"/>
-        <function-ref name="isInput" scoped="" ref="0x4071f368"/>
-        <function-ref name="toggle" scoped="" ref="0x4071f448"/>
-        <function-ref name="isOutput" scoped="" ref="0x4071f528"/>
-        <function-ref name="get" scoped="" ref="0x4071f608"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4071f6e8"/>
-        <function-ref name="set" scoped="" ref="0x4071f7c8"/>
-        <function-ref name="clr" scoped="" ref="0x4071f8a8"/>
+        <function-ref name="makeInput" scoped="" ref="0x40734288"/>
+        <function-ref name="isInput" scoped="" ref="0x40734368"/>
+        <function-ref name="toggle" scoped="" ref="0x40734448"/>
+        <function-ref name="isOutput" scoped="" ref="0x40734528"/>
+        <function-ref name="get" scoped="" ref="0x40734608"/>
+        <function-ref name="makeOutput" scoped="" ref="0x407346e8"/>
+        <function-ref name="set" scoped="" ref="0x407347c8"/>
+        <function-ref name="clr" scoped="" ref="0x407348a8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4071ea88" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x40733a88" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortE.Bit6"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4071ea88"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40733a88"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4071ec60"/>
-        <function-ref name="isInput" scoped="" ref="0x4071ed40"/>
-        <function-ref name="toggle" scoped="" ref="0x4071ee20"/>
-        <function-ref name="isOutput" scoped="" ref="0x4071ef00"/>
-        <function-ref name="get" scoped="" ref="0x40734010"/>
-        <function-ref name="makeOutput" scoped="" ref="0x407340f0"/>
-        <function-ref name="set" scoped="" ref="0x407341d0"/>
-        <function-ref name="clr" scoped="" ref="0x407342b0"/>
+        <function-ref name="makeInput" scoped="" ref="0x40733c60"/>
+        <function-ref name="isInput" scoped="" ref="0x40733d40"/>
+        <function-ref name="toggle" scoped="" ref="0x40733e20"/>
+        <function-ref name="isOutput" scoped="" ref="0x40733f00"/>
+        <function-ref name="get" scoped="" ref="0x40732010"/>
+        <function-ref name="makeOutput" scoped="" ref="0x407320f0"/>
+        <function-ref name="set" scoped="" ref="0x407321d0"/>
+        <function-ref name="clr" scoped="" ref="0x407322b0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x40733538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x40731538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortE.Bit7"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40733538"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40731538"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40733710"/>
-        <function-ref name="isInput" scoped="" ref="0x407337f0"/>
-        <function-ref name="toggle" scoped="" ref="0x407338d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x407339b0"/>
-        <function-ref name="get" scoped="" ref="0x40733a90"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40733b70"/>
-        <function-ref name="set" scoped="" ref="0x40733c50"/>
-        <function-ref name="clr" scoped="" ref="0x40733d30"/>
+        <function-ref name="makeInput" scoped="" ref="0x40731710"/>
+        <function-ref name="isInput" scoped="" ref="0x407317f0"/>
+        <function-ref name="toggle" scoped="" ref="0x407318d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x407319b0"/>
+        <function-ref name="get" scoped="" ref="0x40731a90"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40731b70"/>
+        <function-ref name="set" scoped="" ref="0x40731c50"/>
+        <function-ref name="clr" scoped="" ref="0x40731d30"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="Pin2" ref="0x404c16b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPortP.nc">
@@ -4724,140 +4724,140 @@
         <function-ref name="clr" scoped="" ref="0x404ccea8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4074e938" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4074d938" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit0"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4074e938"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4074d938"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4074eb10"/>
-        <function-ref name="isInput" scoped="" ref="0x4074ebf0"/>
-        <function-ref name="toggle" scoped="" ref="0x4074ecd0"/>
-        <function-ref name="isOutput" scoped="" ref="0x4074edb0"/>
-        <function-ref name="get" scoped="" ref="0x4074ee90"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4074d010"/>
-        <function-ref name="set" scoped="" ref="0x4074d0f0"/>
-        <function-ref name="clr" scoped="" ref="0x4074d1d0"/>
+        <function-ref name="makeInput" scoped="" ref="0x4074db10"/>
+        <function-ref name="isInput" scoped="" ref="0x4074dbf0"/>
+        <function-ref name="toggle" scoped="" ref="0x4074dcd0"/>
+        <function-ref name="isOutput" scoped="" ref="0x4074ddb0"/>
+        <function-ref name="get" scoped="" ref="0x4074de90"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40764010"/>
+        <function-ref name="set" scoped="" ref="0x407640f0"/>
+        <function-ref name="clr" scoped="" ref="0x407641d0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x407643b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x407633b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit1"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407643b0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407633b0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40764588"/>
-        <function-ref name="isInput" scoped="" ref="0x40764668"/>
-        <function-ref name="toggle" scoped="" ref="0x40764748"/>
-        <function-ref name="isOutput" scoped="" ref="0x40764828"/>
-        <function-ref name="get" scoped="" ref="0x40764908"/>
-        <function-ref name="makeOutput" scoped="" ref="0x407649e8"/>
-        <function-ref name="set" scoped="" ref="0x40764ac8"/>
-        <function-ref name="clr" scoped="" ref="0x40764ba8"/>
+        <function-ref name="makeInput" scoped="" ref="0x40763588"/>
+        <function-ref name="isInput" scoped="" ref="0x40763668"/>
+        <function-ref name="toggle" scoped="" ref="0x40763748"/>
+        <function-ref name="isOutput" scoped="" ref="0x40763828"/>
+        <function-ref name="get" scoped="" ref="0x40763908"/>
+        <function-ref name="makeOutput" scoped="" ref="0x407639e8"/>
+        <function-ref name="set" scoped="" ref="0x40763ac8"/>
+        <function-ref name="clr" scoped="" ref="0x40763ba8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x40763d70" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x40762d70" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit2"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40763d70"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40762d70"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40762010"/>
-        <function-ref name="isInput" scoped="" ref="0x407620f0"/>
-        <function-ref name="toggle" scoped="" ref="0x407621d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x407622b0"/>
-        <function-ref name="get" scoped="" ref="0x40762390"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40762470"/>
-        <function-ref name="set" scoped="" ref="0x40762550"/>
-        <function-ref name="clr" scoped="" ref="0x40762630"/>
+        <function-ref name="makeInput" scoped="" ref="0x40761010"/>
+        <function-ref name="isInput" scoped="" ref="0x407610f0"/>
+        <function-ref name="toggle" scoped="" ref="0x407611d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x407612b0"/>
+        <function-ref name="get" scoped="" ref="0x40761390"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40761470"/>
+        <function-ref name="set" scoped="" ref="0x40761550"/>
+        <function-ref name="clr" scoped="" ref="0x40761630"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x407617f8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x407607f8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit3"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407617f8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407607f8"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x407619d0"/>
-        <function-ref name="isInput" scoped="" ref="0x40761ab0"/>
-        <function-ref name="toggle" scoped="" ref="0x40761b90"/>
-        <function-ref name="isOutput" scoped="" ref="0x40761c70"/>
-        <function-ref name="get" scoped="" ref="0x40761d50"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40761e30"/>
-        <function-ref name="set" scoped="" ref="0x40761f10"/>
-        <function-ref name="clr" scoped="" ref="0x40760010"/>
+        <function-ref name="makeInput" scoped="" ref="0x407609d0"/>
+        <function-ref name="isInput" scoped="" ref="0x40760ab0"/>
+        <function-ref name="toggle" scoped="" ref="0x40760b90"/>
+        <function-ref name="isOutput" scoped="" ref="0x40760c70"/>
+        <function-ref name="get" scoped="" ref="0x40760d50"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40760e30"/>
+        <function-ref name="set" scoped="" ref="0x40760f10"/>
+        <function-ref name="clr" scoped="" ref="0x4075f010"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4075f228" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4075e228" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit4"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4075f228"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4075e228"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4075f400"/>
-        <function-ref name="isInput" scoped="" ref="0x4075f4e0"/>
-        <function-ref name="toggle" scoped="" ref="0x4075f5c0"/>
-        <function-ref name="isOutput" scoped="" ref="0x4075f6a0"/>
-        <function-ref name="get" scoped="" ref="0x4075f780"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4075f860"/>
-        <function-ref name="set" scoped="" ref="0x4075f940"/>
-        <function-ref name="clr" scoped="" ref="0x4075fa20"/>
+        <function-ref name="makeInput" scoped="" ref="0x4075e400"/>
+        <function-ref name="isInput" scoped="" ref="0x4075e4e0"/>
+        <function-ref name="toggle" scoped="" ref="0x4075e5c0"/>
+        <function-ref name="isOutput" scoped="" ref="0x4075e6a0"/>
+        <function-ref name="get" scoped="" ref="0x4075e780"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4075e860"/>
+        <function-ref name="set" scoped="" ref="0x4075e940"/>
+        <function-ref name="clr" scoped="" ref="0x4075ea20"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4075ec08" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4075dc08" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit5"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4075ec08"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4075dc08"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4075ede0"/>
-        <function-ref name="isInput" scoped="" ref="0x4075eec0"/>
-        <function-ref name="toggle" scoped="" ref="0x4075d010"/>
-        <function-ref name="isOutput" scoped="" ref="0x4075d0f0"/>
-        <function-ref name="get" scoped="" ref="0x4075d1d0"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4075d2b0"/>
-        <function-ref name="set" scoped="" ref="0x4075d390"/>
-        <function-ref name="clr" scoped="" ref="0x4075d470"/>
+        <function-ref name="makeInput" scoped="" ref="0x4075dde0"/>
+        <function-ref name="isInput" scoped="" ref="0x4075dec0"/>
+        <function-ref name="toggle" scoped="" ref="0x4075c010"/>
+        <function-ref name="isOutput" scoped="" ref="0x4075c0f0"/>
+        <function-ref name="get" scoped="" ref="0x4075c1d0"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4075c2b0"/>
+        <function-ref name="set" scoped="" ref="0x4075c390"/>
+        <function-ref name="clr" scoped="" ref="0x4075c470"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4075c6c0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4075b6c0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit6"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4075c6c0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4075b6c0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4075c898"/>
-        <function-ref name="isInput" scoped="" ref="0x4075c978"/>
-        <function-ref name="toggle" scoped="" ref="0x4075ca58"/>
-        <function-ref name="isOutput" scoped="" ref="0x4075cb38"/>
-        <function-ref name="get" scoped="" ref="0x4075cc18"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4075ccf8"/>
-        <function-ref name="set" scoped="" ref="0x4075cdd8"/>
-        <function-ref name="clr" scoped="" ref="0x4075ceb8"/>
+        <function-ref name="makeInput" scoped="" ref="0x4075b898"/>
+        <function-ref name="isInput" scoped="" ref="0x4075b978"/>
+        <function-ref name="toggle" scoped="" ref="0x4075ba58"/>
+        <function-ref name="isOutput" scoped="" ref="0x4075bb38"/>
+        <function-ref name="get" scoped="" ref="0x4075bc18"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4075bcf8"/>
+        <function-ref name="set" scoped="" ref="0x4075bdd8"/>
+        <function-ref name="clr" scoped="" ref="0x4075beb8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4075a0b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x407590b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit7"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4075a0b0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407590b0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4075a288"/>
-        <function-ref name="isInput" scoped="" ref="0x4075a368"/>
-        <function-ref name="toggle" scoped="" ref="0x4075a448"/>
-        <function-ref name="isOutput" scoped="" ref="0x4075a528"/>
-        <function-ref name="get" scoped="" ref="0x4075a608"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4075a6e8"/>
-        <function-ref name="set" scoped="" ref="0x4075a7c8"/>
-        <function-ref name="clr" scoped="" ref="0x4075a8a8"/>
+        <function-ref name="makeInput" scoped="" ref="0x40759288"/>
+        <function-ref name="isInput" scoped="" ref="0x40759368"/>
+        <function-ref name="toggle" scoped="" ref="0x40759448"/>
+        <function-ref name="isOutput" scoped="" ref="0x40759528"/>
+        <function-ref name="get" scoped="" ref="0x40759608"/>
+        <function-ref name="makeOutput" scoped="" ref="0x407596e8"/>
+        <function-ref name="set" scoped="" ref="0x407597c8"/>
+        <function-ref name="clr" scoped="" ref="0x407598a8"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="Pin2" ref="0x404d4170" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPortP.nc">
@@ -4996,140 +4996,140 @@
         <function-ref name="clr" scoped="" ref="0x404d1968"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4078e538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4078d538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortG.Bit0"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4078e538"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4078d538"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4078e710"/>
-        <function-ref name="isInput" scoped="" ref="0x4078e7f0"/>
-        <function-ref name="toggle" scoped="" ref="0x4078e8d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x4078e9b0"/>
-        <function-ref name="get" scoped="" ref="0x4078ea90"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4078eb70"/>
-        <function-ref name="set" scoped="" ref="0x4078ec50"/>
-        <function-ref name="clr" scoped="" ref="0x4078ed30"/>
+        <function-ref name="makeInput" scoped="" ref="0x4078d710"/>
+        <function-ref name="isInput" scoped="" ref="0x4078d7f0"/>
+        <function-ref name="toggle" scoped="" ref="0x4078d8d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x4078d9b0"/>
+        <function-ref name="get" scoped="" ref="0x4078da90"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4078db70"/>
+        <function-ref name="set" scoped="" ref="0x4078dc50"/>
+        <function-ref name="clr" scoped="" ref="0x4078dd30"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4078c010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4078b010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortG.Bit1"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4078c010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4078b010"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4078c1e8"/>
-        <function-ref name="isInput" scoped="" ref="0x4078c2c8"/>
-        <function-ref name="toggle" scoped="" ref="0x4078c3a8"/>
-        <function-ref name="isOutput" scoped="" ref="0x4078c488"/>
-        <function-ref name="get" scoped="" ref="0x4078c568"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4078c648"/>
-        <function-ref name="set" scoped="" ref="0x4078c728"/>
-        <function-ref name="clr" scoped="" ref="0x4078c808"/>
+        <function-ref name="makeInput" scoped="" ref="0x4078b1e8"/>
+        <function-ref name="isInput" scoped="" ref="0x4078b2c8"/>
+        <function-ref name="toggle" scoped="" ref="0x4078b3a8"/>
+        <function-ref name="isOutput" scoped="" ref="0x4078b488"/>
+        <function-ref name="get" scoped="" ref="0x4078b568"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4078b648"/>
+        <function-ref name="set" scoped="" ref="0x4078b728"/>
+        <function-ref name="clr" scoped="" ref="0x4078b808"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4078b9e8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4078a9e8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortG.Bit2"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4078b9e8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4078a9e8"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4078bbc0"/>
-        <function-ref name="isInput" scoped="" ref="0x4078bca0"/>
-        <function-ref name="toggle" scoped="" ref="0x4078bd80"/>
-        <function-ref name="isOutput" scoped="" ref="0x4078be60"/>
-        <function-ref name="get" scoped="" ref="0x4078a010"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4078a0f0"/>
-        <function-ref name="set" scoped="" ref="0x4078a1d0"/>
-        <function-ref name="clr" scoped="" ref="0x4078a2b0"/>
+        <function-ref name="makeInput" scoped="" ref="0x4078abc0"/>
+        <function-ref name="isInput" scoped="" ref="0x4078aca0"/>
+        <function-ref name="toggle" scoped="" ref="0x4078ad80"/>
+        <function-ref name="isOutput" scoped="" ref="0x4078ae60"/>
+        <function-ref name="get" scoped="" ref="0x40789010"/>
+        <function-ref name="makeOutput" scoped="" ref="0x407890f0"/>
+        <function-ref name="set" scoped="" ref="0x407891d0"/>
+        <function-ref name="clr" scoped="" ref="0x407892b0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x40789538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x407a0538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortG.Bit3"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40789538"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407a0538"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40789710"/>
-        <function-ref name="isInput" scoped="" ref="0x407897f0"/>
-        <function-ref name="toggle" scoped="" ref="0x407898d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x407899b0"/>
-        <function-ref name="get" scoped="" ref="0x40789a90"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40789b70"/>
-        <function-ref name="set" scoped="" ref="0x40789c50"/>
-        <function-ref name="clr" scoped="" ref="0x40789d30"/>
+        <function-ref name="makeInput" scoped="" ref="0x407a0710"/>
+        <function-ref name="isInput" scoped="" ref="0x407a07f0"/>
+        <function-ref name="toggle" scoped="" ref="0x407a08d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x407a09b0"/>
+        <function-ref name="get" scoped="" ref="0x407a0a90"/>
+        <function-ref name="makeOutput" scoped="" ref="0x407a0b70"/>
+        <function-ref name="set" scoped="" ref="0x407a0c50"/>
+        <function-ref name="clr" scoped="" ref="0x407a0d30"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4079f010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4079d010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortG.Bit4"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4079f010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4079d010"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4079f1e8"/>
-        <function-ref name="isInput" scoped="" ref="0x4079f2c8"/>
-        <function-ref name="toggle" scoped="" ref="0x4079f3a8"/>
-        <function-ref name="isOutput" scoped="" ref="0x4079f488"/>
-        <function-ref name="get" scoped="" ref="0x4079f568"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4079f648"/>
-        <function-ref name="set" scoped="" ref="0x4079f728"/>
-        <function-ref name="clr" scoped="" ref="0x4079f808"/>
+        <function-ref name="makeInput" scoped="" ref="0x4079d1e8"/>
+        <function-ref name="isInput" scoped="" ref="0x4079d2c8"/>
+        <function-ref name="toggle" scoped="" ref="0x4079d3a8"/>
+        <function-ref name="isOutput" scoped="" ref="0x4079d488"/>
+        <function-ref name="get" scoped="" ref="0x4079d568"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4079d648"/>
+        <function-ref name="set" scoped="" ref="0x4079d728"/>
+        <function-ref name="clr" scoped="" ref="0x4079d808"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4079e9e8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4079c9e8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortG.Bit5"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4079e9e8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4079c9e8"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4079ebc0"/>
-        <function-ref name="isInput" scoped="" ref="0x4079eca0"/>
-        <function-ref name="toggle" scoped="" ref="0x4079ed80"/>
-        <function-ref name="isOutput" scoped="" ref="0x4079ee60"/>
-        <function-ref name="get" scoped="" ref="0x4079d010"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4079d0f0"/>
-        <function-ref name="set" scoped="" ref="0x4079d1d0"/>
-        <function-ref name="clr" scoped="" ref="0x4079d2b0"/>
+        <function-ref name="makeInput" scoped="" ref="0x4079cbc0"/>
+        <function-ref name="isInput" scoped="" ref="0x4079cca0"/>
+        <function-ref name="toggle" scoped="" ref="0x4079cd80"/>
+        <function-ref name="isOutput" scoped="" ref="0x4079ce60"/>
+        <function-ref name="get" scoped="" ref="0x4079b010"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4079b0f0"/>
+        <function-ref name="set" scoped="" ref="0x4079b1d0"/>
+        <function-ref name="clr" scoped="" ref="0x4079b2b0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x4079c538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x4079a538" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortG.Bit6"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4079c538"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x4079a538"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x4079c710"/>
-        <function-ref name="isInput" scoped="" ref="0x4079c7f0"/>
-        <function-ref name="toggle" scoped="" ref="0x4079c8d0"/>
-        <function-ref name="isOutput" scoped="" ref="0x4079c9b0"/>
-        <function-ref name="get" scoped="" ref="0x4079ca90"/>
-        <function-ref name="makeOutput" scoped="" ref="0x4079cb70"/>
-        <function-ref name="set" scoped="" ref="0x4079cc50"/>
-        <function-ref name="clr" scoped="" ref="0x4079cd30"/>
+        <function-ref name="makeInput" scoped="" ref="0x4079a710"/>
+        <function-ref name="isInput" scoped="" ref="0x4079a7f0"/>
+        <function-ref name="toggle" scoped="" ref="0x4079a8d0"/>
+        <function-ref name="isOutput" scoped="" ref="0x4079a9b0"/>
+        <function-ref name="get" scoped="" ref="0x4079aa90"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4079ab70"/>
+        <function-ref name="set" scoped="" ref="0x4079ac50"/>
+        <function-ref name="clr" scoped="" ref="0x4079ad30"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x40799010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x40798010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortG.Bit7"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40799010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40798010"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x407991e8"/>
-        <function-ref name="isInput" scoped="" ref="0x407992c8"/>
-        <function-ref name="toggle" scoped="" ref="0x407993a8"/>
-        <function-ref name="isOutput" scoped="" ref="0x40799488"/>
-        <function-ref name="get" scoped="" ref="0x40799568"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40799648"/>
-        <function-ref name="set" scoped="" ref="0x40799728"/>
-        <function-ref name="clr" scoped="" ref="0x40799808"/>
+        <function-ref name="makeInput" scoped="" ref="0x407981e8"/>
+        <function-ref name="isInput" scoped="" ref="0x407982c8"/>
+        <function-ref name="toggle" scoped="" ref="0x407983a8"/>
+        <function-ref name="isOutput" scoped="" ref="0x40798488"/>
+        <function-ref name="get" scoped="" ref="0x40798568"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40798648"/>
+        <function-ref name="set" scoped="" ref="0x40798728"/>
+        <function-ref name="clr" scoped="" ref="0x40798808"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="Timer" ref="0x404eb930" loc="45:/opt/tinyos-main/src/tinyos-main/tos/system/TimerMilliC.nc">
@@ -5211,9 +5211,9 @@
         <function-ref name="stop" scoped="" ref="0x404fd170"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Alarm" ref="0x407d23c8" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/Alarm62khz32C.nc">
+    <interface provided="1" name="Alarm" ref="0x407d13c8" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/Alarm62khz32C.nc">
       <component-ref qname="TimerMilliP.AlarmMilli32C.Alarm62khz32C"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Alarm" scoped="" ref="0x407d23c8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Alarm" scoped="" ref="0x407d13c8"/></type-interface>
       <instance>
         <interfacedef-ref qname="Alarm"/>
         <arguments>
@@ -5226,18 +5226,18 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="getNow" scoped="" ref="0x407d1878"/>
-        <function-ref name="fired" scoped="" ref="0x407d1048"/>
-        <function-ref name="startAt" scoped="" ref="0x407d1538"/>
-        <function-ref name="isRunning" scoped="" ref="0x407d12c0"/>
-        <function-ref name="getAlarm" scoped="" ref="0x407d1af0"/>
-        <function-ref name="start" scoped="" ref="0x407d2b18"/>
-        <function-ref name="stop" scoped="" ref="0x407d2db8"/>
+        <function-ref name="getNow" scoped="" ref="0x407d0878"/>
+        <function-ref name="fired" scoped="" ref="0x407d0048"/>
+        <function-ref name="startAt" scoped="" ref="0x407d0538"/>
+        <function-ref name="isRunning" scoped="" ref="0x407d02c0"/>
+        <function-ref name="getAlarm" scoped="" ref="0x407d0af0"/>
+        <function-ref name="start" scoped="" ref="0x407d1b18"/>
+        <function-ref name="stop" scoped="" ref="0x407d1db8"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="AtmegaCompare" ref="0x407dc010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompareP.nc">
+    <interface provided="0" name="AtmegaCompare" ref="0x407da010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompareP.nc">
       <component-ref qname="TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="AtmegaCompare" scoped="" ref="0x407dc010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="AtmegaCompare" scoped="" ref="0x407da010"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCompare"/>
         <arguments>
@@ -5247,22 +5247,22 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x407daa68"/>
-        <function-ref name="test" scoped="" ref="0x407dcde8"/>
-        <function-ref name="fired" scoped="" ref="0x407dcb70"/>
-        <function-ref name="force" scoped="" ref="0x407d9010"/>
-        <function-ref name="get" scoped="" ref="0x407dc658"/>
-        <function-ref name="reset" scoped="" ref="0x407da088"/>
-        <function-ref name="getMode" scoped="" ref="0x407dad08"/>
-        <function-ref name="isOn" scoped="" ref="0x407da7f0"/>
-        <function-ref name="set" scoped="" ref="0x407dc8d0"/>
-        <function-ref name="start" scoped="" ref="0x407da300"/>
-        <function-ref name="stop" scoped="" ref="0x407da578"/>
+        <function-ref name="setMode" scoped="" ref="0x407d9a68"/>
+        <function-ref name="test" scoped="" ref="0x407dade8"/>
+        <function-ref name="fired" scoped="" ref="0x407dab70"/>
+        <function-ref name="force" scoped="" ref="0x407d8010"/>
+        <function-ref name="get" scoped="" ref="0x407da658"/>
+        <function-ref name="reset" scoped="" ref="0x407d9088"/>
+        <function-ref name="getMode" scoped="" ref="0x407d9d08"/>
+        <function-ref name="isOn" scoped="" ref="0x407d97f0"/>
+        <function-ref name="set" scoped="" ref="0x407da8d0"/>
+        <function-ref name="start" scoped="" ref="0x407d9300"/>
+        <function-ref name="stop" scoped="" ref="0x407d9578"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Alarm" ref="0x407c74e0" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompareP.nc">
+    <interface provided="1" name="Alarm" ref="0x407df4e0" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompareP.nc">
       <component-ref qname="TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Alarm" scoped="" ref="0x407c74e0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Alarm" scoped="" ref="0x407df4e0"/></type-interface>
       <instance>
         <interfacedef-ref qname="Alarm"/>
         <arguments>
@@ -5275,18 +5275,18 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="getNow" scoped="" ref="0x407df9a0"/>
-        <function-ref name="fired" scoped="" ref="0x407df170"/>
-        <function-ref name="startAt" scoped="" ref="0x407df660"/>
-        <function-ref name="isRunning" scoped="" ref="0x407df3e8"/>
-        <function-ref name="getAlarm" scoped="" ref="0x407dfc18"/>
-        <function-ref name="start" scoped="" ref="0x407c7c30"/>
-        <function-ref name="stop" scoped="" ref="0x407c7ed0"/>
+        <function-ref name="getNow" scoped="" ref="0x407de9a0"/>
+        <function-ref name="fired" scoped="" ref="0x407de170"/>
+        <function-ref name="startAt" scoped="" ref="0x407de660"/>
+        <function-ref name="isRunning" scoped="" ref="0x407de3e8"/>
+        <function-ref name="getAlarm" scoped="" ref="0x407dec18"/>
+        <function-ref name="start" scoped="" ref="0x407dfc30"/>
+        <function-ref name="stop" scoped="" ref="0x407dfed0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Init" ref="0x407c70a8" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompareP.nc">
+    <interface provided="1" name="Init" ref="0x407df0a8" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompareP.nc">
       <component-ref qname="TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Init" scoped="" ref="0x407c70a8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Init" scoped="" ref="0x407df0a8"/></type-interface>
       <attribute-value>
         <attribute-ref name="exactlyonce" ref="0x402f97d0"/>
         <value-structured>
@@ -5297,12 +5297,12 @@
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x407c7280"/>
+        <function-ref name="init" scoped="" ref="0x407df280"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="AtmegaCounter" ref="0x407dfee8" loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompareP.nc">
+    <interface provided="0" name="AtmegaCounter" ref="0x407deee8" loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompareP.nc">
       <component-ref qname="TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="AtmegaCounter" scoped="" ref="0x407dfee8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="AtmegaCounter" scoped="" ref="0x407deee8"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCounter"/>
         <arguments>
@@ -5312,16 +5312,16 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x407dd9f0"/>
-        <function-ref name="test" scoped="" ref="0x407ded08"/>
-        <function-ref name="get" scoped="" ref="0x407de578"/>
-        <function-ref name="reset" scoped="" ref="0x407dd010"/>
-        <function-ref name="getMode" scoped="" ref="0x407ddc90"/>
-        <function-ref name="overflow" scoped="" ref="0x407dea90"/>
-        <function-ref name="isOn" scoped="" ref="0x407dd778"/>
-        <function-ref name="set" scoped="" ref="0x407de7f0"/>
-        <function-ref name="start" scoped="" ref="0x407dd288"/>
-        <function-ref name="stop" scoped="" ref="0x407dd500"/>
+        <function-ref name="setMode" scoped="" ref="0x407dc9f0"/>
+        <function-ref name="test" scoped="" ref="0x407ddd08"/>
+        <function-ref name="get" scoped="" ref="0x407dd578"/>
+        <function-ref name="reset" scoped="" ref="0x407dc010"/>
+        <function-ref name="getMode" scoped="" ref="0x407dcc90"/>
+        <function-ref name="overflow" scoped="" ref="0x407dda90"/>
+        <function-ref name="isOn" scoped="" ref="0x407dc778"/>
+        <function-ref name="set" scoped="" ref="0x407dd7f0"/>
+        <function-ref name="start" scoped="" ref="0x407dc288"/>
+        <function-ref name="stop" scoped="" ref="0x407dc500"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="BeaconCapture" ref="0x4053ecc8" loc="44:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
@@ -5738,9 +5738,9 @@
         <function-ref name="overflow" scoped="" ref="0x405d5778"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Alarm" ref="0x407d0d18" loc="61:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformAlarmC.nc">
+    <interface provided="1" name="Alarm" ref="0x407cfd18" loc="61:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformAlarmC.nc">
       <component-ref qname="TimerMilliP.AlarmMilli32C.TransformAlarmC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Alarm" scoped="" ref="0x407d0d18"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Alarm" scoped="" ref="0x407cfd18"/></type-interface>
       <instance>
         <interfacedef-ref qname="Alarm"/>
         <arguments>
@@ -5753,18 +5753,18 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="getNow" scoped="" ref="0x407ce1e8"/>
-        <function-ref name="fired" scoped="" ref="0x407cf990"/>
-        <function-ref name="startAt" scoped="" ref="0x407cfe80"/>
-        <function-ref name="isRunning" scoped="" ref="0x407cfc08"/>
-        <function-ref name="getAlarm" scoped="" ref="0x407ce460"/>
-        <function-ref name="start" scoped="" ref="0x407cf478"/>
-        <function-ref name="stop" scoped="" ref="0x407cf718"/>
+        <function-ref name="getNow" scoped="" ref="0x407cd1e8"/>
+        <function-ref name="fired" scoped="" ref="0x407ce990"/>
+        <function-ref name="startAt" scoped="" ref="0x407cee80"/>
+        <function-ref name="isRunning" scoped="" ref="0x407cec08"/>
+        <function-ref name="getAlarm" scoped="" ref="0x407cd460"/>
+        <function-ref name="start" scoped="" ref="0x407ce478"/>
+        <function-ref name="stop" scoped="" ref="0x407ce718"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="AlarmFrom" ref="0x407cda00" loc="73:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformAlarmC.nc">
+    <interface provided="0" name="AlarmFrom" ref="0x407cba00" loc="73:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformAlarmC.nc">
       <component-ref qname="TimerMilliP.AlarmMilli32C.TransformAlarmC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="AlarmFrom" scoped="" ref="0x407cda00"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="AlarmFrom" scoped="" ref="0x407cba00"/></type-interface>
       <instance>
         <interfacedef-ref qname="Alarm"/>
         <arguments>
@@ -5777,18 +5777,18 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="getNow" scoped="" ref="0x407ca010"/>
-        <function-ref name="fired" scoped="" ref="0x407cb718"/>
-        <function-ref name="startAt" scoped="" ref="0x407cbc08"/>
-        <function-ref name="isRunning" scoped="" ref="0x407cb990"/>
-        <function-ref name="getAlarm" scoped="" ref="0x407ca288"/>
-        <function-ref name="start" scoped="" ref="0x407cb200"/>
-        <function-ref name="stop" scoped="" ref="0x407cb4a0"/>
+        <function-ref name="getNow" scoped="" ref="0x407c9010"/>
+        <function-ref name="fired" scoped="" ref="0x407ca718"/>
+        <function-ref name="startAt" scoped="" ref="0x407cac08"/>
+        <function-ref name="isRunning" scoped="" ref="0x407ca990"/>
+        <function-ref name="getAlarm" scoped="" ref="0x407c9288"/>
+        <function-ref name="start" scoped="" ref="0x407ca200"/>
+        <function-ref name="stop" scoped="" ref="0x407ca4a0"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Counter" ref="0x407ce7b0" loc="68:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformAlarmC.nc">
+    <interface provided="0" name="Counter" ref="0x407cd7b0" loc="68:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformAlarmC.nc">
       <component-ref qname="TimerMilliP.AlarmMilli32C.TransformAlarmC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x407ce7b0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x407cd7b0"/></type-interface>
       <instance>
         <interfacedef-ref qname="Counter"/>
         <arguments>
@@ -5801,10 +5801,10 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="get" scoped="" ref="0x407cef00"/>
-        <function-ref name="clearOverflow" scoped="" ref="0x407cd418"/>
-        <function-ref name="isOverflowPending" scoped="" ref="0x407cd1a0"/>
-        <function-ref name="overflow" scoped="" ref="0x407cd690"/>
+        <function-ref name="get" scoped="" ref="0x407cdf00"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x407cb418"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x407cb1a0"/>
+        <function-ref name="overflow" scoped="" ref="0x407cb690"/>
       </interface-functions>
     </interface>
     <interface provided="0" name="fired" ref="0x40618d08" loc="74:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/AlarmToTimerC.nc">
@@ -6031,15 +6031,15 @@
         <function-ref name="receive" scoped="" ref="0x40651f00"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="sendDoneTask" ref="0x4065b708" loc="27:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
+    <interface provided="0" name="sendDoneTask" ref="0x4065ba68" loc="29:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
       <component-ref qname="ApplicationSerialP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="sendDoneTask" scoped="" ref="0x4065b708"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="sendDoneTask" scoped="" ref="0x4065ba68"/></type-interface>
       <instance>
         <interfacedef-ref qname="TaskBasic"/>
       </instance>
       <interface-functions>
-        <function-ref name="postTask" scoped="" ref="0x4065b8e0"/>
-        <function-ref name="runTask" scoped="" ref="0x4065b9c0"/>
+        <function-ref name="postTask" scoped="" ref="0x4065bc40"/>
+        <function-ref name="runTask" scoped="" ref="0x4065bd20"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="Uart1Stream" ref="0x40662188" loc="12:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
@@ -6108,35 +6108,35 @@
         <function-ref name="led2On" scoped="" ref="0x40660470"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="receiveDoneTask" ref="0x4065bf28" loc="28:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
+    <interface provided="0" name="receiveDoneTask" ref="0x4066e298" loc="30:/home/alpsayin/tinyos_workspace/Blink/src/ApplicationSerialP.nc">
       <component-ref qname="ApplicationSerialP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="receiveDoneTask" scoped="" ref="0x4065bf28"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="receiveDoneTask" scoped="" ref="0x4066e298"/></type-interface>
       <instance>
         <interfacedef-ref qname="TaskBasic"/>
       </instance>
       <interface-functions>
-        <function-ref name="postTask" scoped="" ref="0x4066e110"/>
-        <function-ref name="runTask" scoped="" ref="0x4066e1f0"/>
+        <function-ref name="postTask" scoped="" ref="0x4066e470"/>
+        <function-ref name="runTask" scoped="" ref="0x4066e550"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Uart1Interrupts" ref="0x40679bd8" loc="3:/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc">
+    <interface provided="1" name="Uart1Interrupts" ref="0x40663b20" loc="3:/home/alpsayin/tinyos_workspace/Blink/src/Uart1InterruptsP.nc">
       <component-ref qname="Uart1InterruptsP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Uart1Interrupts" scoped="" ref="0x40679bd8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Uart1Interrupts" scoped="" ref="0x40663b20"/></type-interface>
       <instance>
         <interfacedef-ref qname="SerialInterrupts"/>
       </instance>
       <interface-functions>
-        <function-ref name="isTxInterruptPending" scoped="" ref="0x4068a710"/>
-        <function-ref name="txInterruptHandler" scoped="" ref="0x40679e90"/>
-        <function-ref name="rxInterruptHandler" scoped="" ref="0x4068a010"/>
-        <function-ref name="enableRxInterrupt" scoped="" ref="0x4068a0f0"/>
-        <function-ref name="enableTxInterrupt" scoped="" ref="0x4068a1d0"/>
-        <function-ref name="disableRxInterrupt" scoped="" ref="0x4068a2b0"/>
-        <function-ref name="clearTxInterrupt" scoped="" ref="0x4068a390"/>
-        <function-ref name="isRxInterruptPending" scoped="" ref="0x4068a470"/>
-        <function-ref name="disableTxInterrupt" scoped="" ref="0x4068a550"/>
-        <function-ref name="setSendData" scoped="" ref="0x40679db0"/>
-        <function-ref name="clearRxInterrupt" scoped="" ref="0x4068a630"/>
+        <function-ref name="isTxInterruptPending" scoped="" ref="0x40689630"/>
+        <function-ref name="txInterruptHandler" scoped="" ref="0x40663dd8"/>
+        <function-ref name="rxInterruptHandler" scoped="" ref="0x40663eb8"/>
+        <function-ref name="enableRxInterrupt" scoped="" ref="0x40689010"/>
+        <function-ref name="enableTxInterrupt" scoped="" ref="0x406890f0"/>
+        <function-ref name="disableRxInterrupt" scoped="" ref="0x406891d0"/>
+        <function-ref name="clearTxInterrupt" scoped="" ref="0x406892b0"/>
+        <function-ref name="isRxInterruptPending" scoped="" ref="0x40689390"/>
+        <function-ref name="disableTxInterrupt" scoped="" ref="0x40689470"/>
+        <function-ref name="setSendData" scoped="" ref="0x40663cf8"/>
+        <function-ref name="clearRxInterrupt" scoped="" ref="0x40689550"/>
       </interface-functions>
     </interface>
   </interfaces>
@@ -6613,9 +6613,9 @@
         <long>&#10; A Timer is TinyOS's general purpose timing interface. For more precise&#10; timing, you may wish to use a (platform-specific) component offering&#10; an Alarm interface.&#10;&#10; &#60;p>A Timer is parameterised by its &#34;precision&#34; (milliseconds,&#10; microseconds, etc), identified by a type. This prevents, e.g.,&#10; unintentionally mixing components expecting milliseconds with those&#10; expecting microseconds as those interfaces have a different type.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param precision_tag A type indicating the precision of this Alarm.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
       </documentation>
       <parameters>
-        <typedef name="precision_tag" ref="0x4042b5c8" loc="53:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+        <typedef name="precision_tag" ref="0x4042b600" loc="53:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
           <interfacedef-ref qname="Timer"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x4042b5c8"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x4042b600"/></type-var>
         </typedef>
       </parameters>
       <function command="" provided="0" name="getNow" ref="0x40432f00" loc="136:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
@@ -6634,7 +6634,7 @@
         <parameters>
         </parameters>
       </function>
-      <function event="" provided="0" name="fired" ref="0x40428b68" loc="83:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+      <function event="" provided="0" name="fired" ref="0x40428bb8" loc="83:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
         <documentation loc="80:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
           <short>&#10; Signaled when the timer expires (one-shot) or repeats (periodic).</short>
           <long>&#10; Signaled when the timer expires (one-shot) or repeats (periodic).&#10;</long>
@@ -6648,7 +6648,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="startPeriodicAt" ref="0x40427cc0" loc="114:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+      <function command="" provided="0" name="startPeriodicAt" ref="0x40427d20" loc="114:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
         <documentation loc="100:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
           <short>&#10; Set a periodic timer to repeat every dt time units.</short>
           <long>&#10; Set a periodic timer to repeat every dt time units. Replaces any&#10; current timer settings. The &#60;code>fired&#60;/code> will be signaled every&#10; dt units (first event at t0+dt units). Periodic timers set in the past&#10; will get a bunch of events in succession, until the timer &#34;catches up&#34;.&#10;&#10; &#60;p>Because the current time may wrap around, it is possible to use&#10; values of t0 greater than the &#60;code>getNow&#60;/code>'s result. These&#10; values represent times in the past, i.e., the time at which getNow()&#10; would last of returned that value.&#10;&#10; @param t0 Base time for timer.&#10; @param dt Time until the timer fires.&#10;</long>
@@ -6666,19 +6666,19 @@
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="t0" ref="0x40427978" loc="114:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+          <variable name="t0" ref="0x404279d8" loc="114:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
             <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
               <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
             </type-int>
           </variable>
-          <variable name="dt" ref="0x40427b60" loc="114:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+          <variable name="dt" ref="0x40427bc0" loc="114:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
             <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
               <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
             </type-int>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="isOneShot" ref="0x404274d0" loc="98:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+      <function command="" provided="0" name="isOneShot" ref="0x40427530" loc="98:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
         <documentation loc="94:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
           <short>&#10; Check if this is a one-shot timer.</short>
           <long>&#10; Check if this is a one-shot timer.&#10; @return TRUE for one-shot timers, FALSE for periodic timers.&#10;</long>
@@ -6726,7 +6726,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="isRunning" ref="0x40427010" loc="92:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+      <function command="" provided="0" name="isRunning" ref="0x40427070" loc="92:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
         <documentation loc="86:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
           <short>&#10; Check if timer is running.</short>
           <long>&#10; Check if timer is running. Periodic timers run until stopped or&#10; replaced, one-shot timers run until their deadline expires.&#10;&#10; @return TRUE if the timer is still running.&#10;</long>
@@ -6742,7 +6742,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="startPeriodic" ref="0x4042bc20" loc="64:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+      <function command="" provided="0" name="startPeriodic" ref="0x4042bc58" loc="64:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
         <documentation loc="56:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
           <short>&#10; Set a periodic timer to repeat every dt time units.</short>
           <long>&#10; Set a periodic timer to repeat every dt time units. Replaces any&#10; current timer settings. Equivalent to startPeriodicAt(getNow(),&#10; dt). The &#60;code>fired&#60;/code> will be signaled every dt units (first&#10; event in dt units).&#10;&#10; @param dt Time until the timer fires.&#10;</long>
@@ -6757,7 +6757,7 @@
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="dt" ref="0x4042bac8" loc="64:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+          <variable name="dt" ref="0x4042bb00" loc="64:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
             <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
               <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
             </type-int>
@@ -6794,7 +6794,7 @@
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="startOneShot" ref="0x404282d0" loc="73:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+      <function command="" provided="0" name="startOneShot" ref="0x40428320" loc="73:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
         <documentation loc="66:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
           <short>&#10; Set a single-short timer to some time units in the future.</short>
           <long>&#10; Set a single-short timer to some time units in the future. Replaces&#10; any current timer settings. Equivalent to startOneShotAt(getNow(),&#10; dt). The &#60;code>fired&#60;/code> will be signaled when the timer expires.&#10;&#10; @param dt Time until the timer fires.&#10;</long>
@@ -6809,14 +6809,14 @@
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="dt" ref="0x40428178" loc="73:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+          <variable name="dt" ref="0x404281c8" loc="73:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
             <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
               <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
             </type-int>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="stop" ref="0x404287a0" loc="78:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
+      <function command="" provided="0" name="stop" ref="0x404287f0" loc="78:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
         <documentation loc="75:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc">
           <short>&#10; Cancel a timer.</short>
           <long>&#10; Cancel a timer.&#10;</long>
