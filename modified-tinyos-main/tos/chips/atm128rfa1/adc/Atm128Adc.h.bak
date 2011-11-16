@@ -157,12 +157,6 @@ enum {
     ATM128_ADC_FREE_RUNNING_ON,
 };
 
-/* ADC Auto Trigger Settings */		//Added by zn : 20111114
-enum {
-    ATM128_ADC_AUTO_TRIGGER_OFF = 0,
-    ATM128_ADC_AUTO_TRIGGER_ON,
-};
-
 /* ADC Interrupt Flag Settings */
 enum {
     ATM128_ADC_INT_FLAG_OFF = 0,
@@ -181,7 +175,7 @@ typedef struct
     uint8_t adps  : 3;  //!< ADC Prescaler Select Bits
     uint8_t adie  : 1;  //!< ADC Interrupt Enable
     uint8_t adif  : 1;  //!< ADC Interrupt Flag
-    uint8_t adate : 1;  //!< ADC Auto Trigger Disable	//changed by zn : 20111114
+    uint8_t adate : 1;  //!< ADC Auto Trigger Disable
     uint8_t adsc  : 1;  //!< ADC Not Start Conversion
     uint8_t aden  : 1;  //!< ADC Enable
 } Atm128Adcsra_t;

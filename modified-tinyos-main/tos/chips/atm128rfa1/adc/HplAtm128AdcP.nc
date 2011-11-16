@@ -63,6 +63,7 @@ implementation {
 
   DEFINE_UNION_CAST(Admux2int, Atm128Admux_t, uint8_t);
   DEFINE_UNION_CAST(Adcsra2int, Atm128Adcsra_t, uint8_t);
+  
 
   //=== Direct write of HW registers. ================================
   async command void HplAtm128Adc.setAdmux( Atm128Admux_t x ) {
@@ -71,7 +72,7 @@ implementation {
   async command void HplAtm128Adc.setAdcsra( Atm128Adcsra_t x ) {
     ADCSRA = Adcsra2int(x);
   }
-
+  
   async command void HplAtm128Adc.setPrescaler(uint8_t scale){
     Atm128Adcsra_t  current_val = call HplAtm128Adc.getAdcsra();
     current_val.adif = FALSE;
