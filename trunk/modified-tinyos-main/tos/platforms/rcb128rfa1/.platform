@@ -10,7 +10,6 @@
   %T/chips/atm1281
   %T/chips/atm128rfa1/adc
   %T/chips/atm1281/timer
-  %T/chips/atm1281/usart
   %T/chips/atm1281/pins
   %T/chips/atm128
   %T/chips/atm128/pins
