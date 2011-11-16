@@ -1,0 +1,1 @@
+sudo cp -rvf tos /opt/tinyos-main/src/tinyos-main
