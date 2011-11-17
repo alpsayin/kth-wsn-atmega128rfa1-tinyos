@@ -48,12 +48,12 @@ configuration PlatformC
 implementation
 {
 	components PlatformP, McuInitC, RFA1RadioOffP;
-  
+  		   	
 	Init = PlatformP;
 
 	LedsInit = PlatformP.LedsInit;
-    PlatformP.McuInit -> McuInitC;
+    	PlatformP.McuInit -> McuInitC;
 
-   PlatformP.RadioInit -> RFA1RadioOffP.RFA1RadioOff;
+   	PlatformP.RadioInit -> RFA1RadioOffP.RFA1RadioOff;
 
 }

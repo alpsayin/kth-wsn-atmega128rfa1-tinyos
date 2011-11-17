@@ -33,21 +33,16 @@
 * 
 */
 
-configuration PlatformSerialC {
-  
+configuration PlatformSerialC 
+{  
   provides interface UartStream;
   provides interface UartByte;
-  provides interface StdControl;
+  provides interface UartStream as UartStreamBlocking;
 }
-implementation {
-
-  components new Atm1281Uart1C() as Uart1;
-  UartStream = Uart1;
-  UartByte = Uart1;
-
-  components PlatformSerialP;
-  StdControl = PlatformSerialP;
-  PlatformSerialP.Resource -> Uart1;
-  Uart1.Atm1281UartConfigure -> PlatformSerialP; 
-  
+implementation 
+{
+  components Atm128Rfa1SerialC as Uart1;
+  UartStream = Uart1.Uart1Stream;
+  UartByte = Uart1.Uart1Byte;
+  UartStreamBlocking = Uart1.Uart1StreamBlocking;
 }
