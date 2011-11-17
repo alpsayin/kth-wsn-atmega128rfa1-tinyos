@@ -76,17 +76,19 @@
 #include "atm128const.h"
 
 /* We need slightly different defs than SIGNAL, INTERRUPT */
+#define AVR_ATOMIC_HANDLER(signame)					\
+  void signame() __attribute__ ((signal)) @atomic_hwevent() @C()
+
+#define AVR_NONATOMIC_HANDLER(signame)			\
+  void signame() __attribute__ ((interrupt)) @hwevent() @C()
+
+/* DOESNT WORK!!!
 //#define AVR_ATOMIC_HANDLER(signame)					\
-//  void signame() __attribute__ ((signal)) @atomic_hwevent() @C()
+//  void signame() __attribute__ ((signal)) __VA_ARGS__; void signame(void) @atomic_hwevent() @C()
 
-//#define AVR_NONATOMIC_HANDLER(signame)			\
-//  void signame() __attribute__ ((interrupt)) @hwevent() @C()
-
-#define AVR_ATOMIC_HANDLER(signame) \
-  void signame() __attribute__ ((signal)) __VA_ARGS__; void signame(void) @atomic_hwevent() @C()
-
-#define AVR_NONATOMIC_HANDLER(signame) \
-  void signame() __attribute__ ((interrupt)) __VA_ARGS__; void signame(void) @hwevent() @C() __VA_ARGS__;
+//#define AVR_NONATOMIC_HANDLER(signame)				\
+//  void signame() __attribute__ ((interrupt)) __VA_ARGS__; void signame(void) @hwevent() @C() __VA_ARGS__;
+*/
 
 /* Macro to create union casting functions. */
 #define DEFINE_UNION_CAST(func_name, from_type, to_type) \
