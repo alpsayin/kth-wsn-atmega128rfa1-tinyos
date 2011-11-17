@@ -15,6 +15,14 @@
 enum { 
  TOS_SLEEP_NONE = ATM128_POWER_IDLE, 
 }; 
+
+#ifndef RX_BUFFER_SIZE
+#define RX_BUFFER_SIZE 128
+#endif
+
+#ifndef TX_BUFFER_SIZE
+#define TX_BUFFER_SIZE 32
+#endif
  
 
 #ifndef PLATFORM_BAUDRATE 

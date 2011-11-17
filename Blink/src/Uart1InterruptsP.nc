@@ -1,9 +1,15 @@
+
+#include "atm128hardware.h"
+#include "avr/interrupt.h"
+
 module Uart1InterruptsP
 {
 	provides interface SerialInterrupts as Uart1Interrupts;
+	uses interface Leds;
 }
 implementation
 {
+	uint8_t privReceivedByte=0;
 	async command void Uart1Interrupts.enableTxInterrupt()
 	{
     	SET_BIT(UCSR1A, TXC1);
@@ -49,16 +55,24 @@ implementation
 	{
 		return READ_BIT(UCSR1A, RXC1);
 	}
+	
+	default async event void Uart1Interrupts.rxInterruptHandler(uint8_t byte) { }
+	default async event void Uart1Interrupts.txInterruptHandler() { }
+
 	  
-	AVR_ATOMIC_HANDLER(SIG_USART1_RECV) 
+	AVR_ATOMIC_HANDLER(USART1_RX_vect/*__vector_36*/) 
 	{
 		if (READ_BIT(UCSR1A, RXC1)) 
 		{
-			signal Uart1Interrupts.rxInterruptHandler(UDR1);
+			privReceivedByte = UDR1;
+			//debug
+//			UDR1 = privReceivedByte;
+			signal Uart1Interrupts.rxInterruptHandler(privReceivedByte);
     	}
   	}
+	  
   
-  	AVR_NONATOMIC_HANDLER(SIG_USART1_TRANS) 
+  	AVR_ATOMIC_HANDLER(USART1_TX_vect/*__vector_38*/) 
   	{
   		signal Uart1Interrupts.txInterruptHandler();
   	}

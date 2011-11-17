@@ -1,15 +1,14 @@
 
 
 #include "atm128hardware.h"
-
-#define RX_BUFFER_SIZE 64
-#define TX_BUFFER_SIZE 64
+#include "hardware.h"
 
 module ApplicationSerialP
 {
 	provides interface Init as Uart1Init;
 	provides interface UartByte as Uart1Byte;
 	provides interface UartStream as Uart1Stream;
+	provides interface McuPowerOverride as Uart1PowerOverride;
 	
 	uses interface SerialInterrupts as Uart1Interrupts;
 	
@@ -22,9 +21,10 @@ module ApplicationSerialP
 implementation
 {
 	bool rxBusy, txBusy;
-	uint8_t *txBuf, *rxBuf;
-	uint16_t txLen, rxLen;
-	error_t txResult, rxResult;
+	norace uint8_t *txBuf, *rxBuf;
+	norace uint16_t txLen, rxLen;
+	norace error_t txResult, rxResult;
+	norace uint8_t recvBuffer[RX_BUFFER_SIZE];
 	
 	task void sendDoneTask();
 	task void receiveDoneTask();
@@ -112,7 +112,6 @@ implementation
 	async command error_t Uart1Stream.send(uint8_t *buf, uint16_t len)
 	{
 		uint16_t i;
-		
 		atomic
 		{
 			if(txBusy)
@@ -123,19 +122,20 @@ implementation
 		txLen = len;
 		for(i=0; i<len; i++)
 		{
-			call Uart1Interrupts.clearTxInterrupt();
+//			call Uart1Interrupts.clearTxInterrupt();
 			call Uart1Interrupts.disableTxInterrupt();
+			while(!READ_BIT(UCSR1A, UDRE1));
 			UDR1 = buf[i];
-			call Uart1Interrupts.setSendData();
+//			call Uart1Interrupts.setSendData();
 			while( !call Uart1Interrupts.isTxInterruptPending() );
-			call Uart1Interrupts.clearTxInterrupt();
+//			call Uart1Interrupts.clearTxInterrupt();
 			call Uart1Interrupts.enableTxInterrupt();
 		}
 		atomic
 		{
 			txBusy = FALSE;
 		}
-		txResult = FAIL;
+		txResult = SUCCESS;
 		post sendDoneTask();
 		return SUCCESS;
 	}
@@ -208,14 +208,14 @@ implementation
 	async event void Uart1Interrupts.rxInterruptHandler(uint8_t byte)
 	{
 		// for debugging
-		//call Leds.set(byte);
+//		call Uart1Byte.send(byte);
+		call Leds.led0Toggle();
 		
 	}
 	
-	
 	async event void Uart1Interrupts.txInterruptHandler()
 	{
-			
+		call Leds.led1Toggle();	
 	}
 
 	task void sendDoneTask()
@@ -229,4 +229,9 @@ implementation
 	}
 
 	
+
+	async command mcu_power_t Uart1PowerOverride.lowestState()
+	{
+		return ATM128_POWER_IDLE;
+	}
 }

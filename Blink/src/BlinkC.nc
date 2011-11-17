@@ -6,6 +6,9 @@
 
 #include "Timer.h"
 #include "MyDummyConstants.h"
+#include "atm128hardware.h"
+#include "util/delay.h"
+
 
 module BlinkC @safe()
 {
@@ -14,81 +17,93 @@ module BlinkC @safe()
   uses interface Timer<TMilli> as Timer2;
   uses interface Leds;
   uses interface Boot;
+  uses interface PushButton;
   uses
   {
 	interface Init as Uart1Init;
 	interface UartStream as Uart1Stream;
 	interface UartByte as Uart1Byte;
   }
-  provides interface Init as BlinkCInit;
+  provides interface McuPowerOverride as BlinkPowerOverride;
 }
 implementation
 {
-  bool runOnce = TRUE;
-  task void echoSerialTask();	
+	task void toggleLed0Task();	
+	task void toggleLed1Task();	
+	task void toggleLed2Task();
 
-  event void Boot.booted()
-  {
-  	call Timer0.startPeriodic( 250 );
-    call Timer1.startPeriodic( 500 );
-    call Timer2.startPeriodic( 1000 );
-  }
-  
-  command error_t BlinkCInit.init()
-  {
-  	//call Uart1Init.init();  
-	
-	if(call Uart1Stream.send(signature, signatureLength))
-		call Uart1Byte.send('F');
-	post echoSerialTask();
-	
-	return SUCCESS;
-  }
-  
-  task void echoSerialTask()
-  {
-  	uint8_t buf[1];
-    if(call Uart1Byte.receive(buf, 255) == SUCCESS)
-    {
-		call Uart1Byte.send(buf[0]);
-	}
-    post echoSerialTask();
-  }
+  	event void Boot.booted()
+	{   
+		while(!call PushButton.get())
+		{
+			PORTE &= ~(1<<2); /* LED on */
+	     	_delay_ms(500);
+	      	PORTE |= 1<<2; /* LED off */
+	      	_delay_ms(500);
+		}
+		call Timer0.startPeriodic( 250 );
+    	call Timer1.startPeriodic( 500 );
+    	call Timer2.startPeriodic( 1000 );
+		if(call Uart1Stream.send(signature, signatureLength))
+			call Uart1Byte.send('F');
+  	}
  
   event void Timer0.fired()
   {
-    dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
-    if(runOnce)
-    {
-	    runOnce = FALSE;
-    }
-    //call Leds.led0Toggle();
+    post toggleLed0Task();
   }
   
   event void Timer1.fired()
   {
-    dbg("BlinkC", "Timer 1 fired @ %s \n", sim_time_string());
-    //call Leds.led1Toggle();
+	post toggleLed1Task();
   }
   
   event void Timer2.fired()
   {
-    dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
-    //call Leds.led2Toggle();
+  	post toggleLed2Task();
   }
 
 	async event void Uart1Stream.sendDone(uint8_t *buf, uint16_t len, error_t error){
 		// TODO do not do anything
-//		call Leds.led2Toggle();
 	}
 
 	async event void Uart1Stream.receivedByte(uint8_t byte){
 		// TODO do not do anything
+		call Leds.led1Toggle();
 	}
 
 	async event void Uart1Stream.receiveDone(uint8_t *buf, uint16_t len, error_t error){
 		// TODO do not do anything
 	}
 
+	task void toggleLed0Task()
+	{
+//		call Leds.led0Toggle();
+	}	
+	task void toggleLed1Task()
+	{
+//		call Leds.led1Toggle();
+	}	
+	task void toggleLed2Task()
+	{
+		call Leds.led2Toggle();
+////		call Uart1Byte.send(UCSR1A);
+////		call Uart1Byte.send(UCSR1B);
+////		call Uart1Byte.send(UCSR1C);
+////		call Uart1Byte.send(0);
+//		call Uart1Byte.send(hexTable[HIGH(UCSR1A)]);
+//		call Uart1Byte.send(hexTable[LOW(UCSR1A)]);
+//		call Uart1Byte.send(SPACE);
+//		call Uart1Byte.send(hexTable[HIGH(UCSR1B)]);
+//		call Uart1Byte.send(hexTable[LOW(UCSR1B)]);
+//		call Uart1Byte.send(SPACE);
+//		call Uart1Byte.send(hexTable[HIGH(UCSR1C)]);
+//		call Uart1Byte.send(hexTable[LOW(UCSR1C)]);
+//		call Uart1Byte.send(ENDL);
+	}
+
+	async command mcu_power_t BlinkPowerOverride.lowestState(){
+		return ATM128_POWER_IDLE;
+	}
 }
 
