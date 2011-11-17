@@ -17,13 +17,13 @@ implementation
   components new TimerMilliC() as Timer0;
   components new TimerMilliC() as Timer1;
   components new TimerMilliC() as Timer2;
-  components ApplicationSerialC;
+//  components ApplicationSerialC;
+  components PlatformSerialC;
   components PushButtonC;
   components McuSleepC;
   
-  BlinkC.Uart1Init -> ApplicationSerialC;
-  BlinkC.Uart1Byte -> ApplicationSerialC;
-  BlinkC.Uart1Stream -> ApplicationSerialC;
+  BlinkC.Uart1Byte -> PlatformSerialC.UartByte;
+  BlinkC.Uart1Stream -> PlatformSerialC.UartStream;
   BlinkC.Boot -> MainC.Boot;
   BlinkC.Timer0 -> Timer0;
   BlinkC.Timer1 -> Timer1;

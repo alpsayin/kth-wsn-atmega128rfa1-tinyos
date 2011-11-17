@@ -36,15 +36,18 @@ module MotePlatformP @safe()
   provides interface Init as PlatformInit;
   uses interface Init as SubInit;
 }
-implementation {
+implementation 
+{
 
-  command error_t PlatformInit.init() {
+  command error_t PlatformInit.init() 
+  {
     
     // nothing to do here
     return call SubInit.init();
   }
 
-  default command error_t SubInit.init() {
+  default command error_t SubInit.init() 
+  {
     return SUCCESS;
   }
 }

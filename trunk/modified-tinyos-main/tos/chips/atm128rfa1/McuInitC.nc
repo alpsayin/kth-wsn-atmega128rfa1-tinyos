@@ -44,10 +44,10 @@ configuration McuInitC @safe()
 
 implementation
 {
-	components McuInitP, MeasureClockC;
+	components McuInitP, MeasureClockC, Atm128Rfa1SerialC;
 
 	Init = McuInitP.Init;
 	TimerInit = McuInitP.TimerInit;
-
+	McuInitP.SerialInit -> Atm128Rfa1SerialC;
 	McuInitP.MeasureClock -> MeasureClockC;
 }

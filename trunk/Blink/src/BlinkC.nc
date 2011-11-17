@@ -20,7 +20,6 @@ module BlinkC @safe()
   uses interface PushButton;
   uses
   {
-	interface Init as Uart1Init;
 	interface UartStream as Uart1Stream;
 	interface UartByte as Uart1Byte;
   }
@@ -28,13 +27,17 @@ module BlinkC @safe()
 }
 implementation
 {
+	bool once;
 	task void toggleLed0Task();	
 	task void toggleLed1Task();	
 	task void toggleLed2Task();
-
+	uint8_t key;
+	uint8_t buf[16];
+	
   	event void Boot.booted()
 	{   
-		while(!call PushButton.get())
+//		while(call Uart1Byte.receive(&key, 255) == FAIL)
+		while(call PushButton.get() == FALSE)
 		{
 			PORTE &= ~(1<<2); /* LED on */
 	     	_delay_ms(500);
@@ -44,13 +47,22 @@ implementation
 		call Timer0.startPeriodic( 250 );
     	call Timer1.startPeriodic( 500 );
     	call Timer2.startPeriodic( 1000 );
-		if(call Uart1Stream.send(signature, signatureLength))
-			call Uart1Byte.send('F');
+		once = FALSE;
   	}
  
   event void Timer0.fired()
   {
     post toggleLed0Task();
+    if(!once)
+    {		
+    
+    	if(call Uart1Stream.send(signature, signatureLength))
+			call Uart1Byte.send('F');
+		
+		while(call Uart1Stream.send("Enter your name:\n", STRLEN("Enter your name:\n")) == EBUSY);
+		call Uart1Stream.receive(buf, 16);
+    	once = TRUE;	
+    }
   }
   
   event void Timer1.fired()
@@ -67,13 +79,22 @@ implementation
 		// TODO do not do anything
 	}
 
-	async event void Uart1Stream.receivedByte(uint8_t byte){
+	async event void Uart1Stream.receivedByte(uint8_t byte)
+	{
 		// TODO do not do anything
-		call Leds.led1Toggle();
+		call Leds.set(byte);
+		call Uart1Byte.send(byte);
+		call Uart1Stream.send("ALP", 3);
 	}
 
-	async event void Uart1Stream.receiveDone(uint8_t *buf, uint16_t len, error_t error){
+	async event void Uart1Stream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
+	{
 		// TODO do not do anything
+//		call Leds.set(error);
+		if(error==SUCCESS)
+			call Uart1Stream.send(buf, len);
+		else
+			call Uart1Byte.send(error);
 	}
 
 	task void toggleLed0Task()
@@ -86,7 +107,7 @@ implementation
 	}	
 	task void toggleLed2Task()
 	{
-		call Leds.led2Toggle();
+//		call Leds.led2Toggle();
 ////		call Uart1Byte.send(UCSR1A);
 ////		call Uart1Byte.send(UCSR1B);
 ////		call Uart1Byte.send(UCSR1C);
@@ -100,6 +121,8 @@ implementation
 //		call Uart1Byte.send(hexTable[HIGH(UCSR1C)]);
 //		call Uart1Byte.send(hexTable[LOW(UCSR1C)]);
 //		call Uart1Byte.send(ENDL);
+		call Uart1Stream.send("CAN", 3);
+		
 	}
 
 	async command mcu_power_t BlinkPowerOverride.lowestState(){
