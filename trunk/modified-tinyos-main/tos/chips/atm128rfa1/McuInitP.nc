@@ -41,6 +41,7 @@ module McuInitP @safe()
 	  interface Init as SerialInit;
 	  interface Init as MeasureClock;
 	  interface Init as TimerInit;
+	  interface Init as AdcInit;
 	}
 }
 
@@ -80,7 +81,7 @@ implementation
 		ok = ecombine(ok, call MeasureClock.init());
 		ok = ecombine(ok, call TimerInit.init());
 		ok = ecombine(ok, call SerialInit.init());
-		
+		ok = ecombine(ok, call AdcInit.init());
 		return ok;
 	}
 

@@ -46,10 +46,11 @@
 
 module HplAtm128AdcP @safe() {
   provides interface HplAtm128Adc;
-	provides interface McuPowerOverride;
+  provides interface McuPowerOverride;
   uses interface McuPowerState;
 }
 implementation {
+  //uint16_t priv_adc_val;
   //=== Direct read of HW registers. =================================
   async command Atm128Admux_t HplAtm128Adc.getAdmux() {
     return *(Atm128Admux_t*)&ADMUX;
@@ -59,6 +60,9 @@ implementation {
   }
   async command uint16_t HplAtm128Adc.getValue() {
     return ADC;
+    //priv_adc_val = ADCL;
+    //priv_adc_val |= (((uint16_t)ADCH)<<8);
+    //return priv_adc_val;
   }
 
   DEFINE_UNION_CAST(Admux2int, Atm128Admux_t, uint8_t);

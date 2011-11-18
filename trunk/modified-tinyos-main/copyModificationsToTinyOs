@@ -1,1 +1,1 @@
-sudo cp -rvf tos /opt/tinyos-main/src/tinyos-main
+sudo cp -rvf ~/tinyos_workspace/modified-tinyos-main/tos /opt/tinyos-main/src/tinyos-main
