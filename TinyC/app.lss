@@ -1,0 +1,3755 @@
+
+app.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000194  00800200  00001122  000011b6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00001122  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000054  00800394  00800394  0000134a  2**0
+                  ALLOC
+  3 .stab         000007bc  00000000  00000000  0000134c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000082  00000000  00000000  00001b08  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000128  00000000  00000000  00001b8a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 000004c5  00000000  00000000  00001cb2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   000048f1  00000000  00000000  00002177  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000003ba  00000000  00000000  00006a68  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00001ba6  00000000  00000000  00006e22  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000220  00000000  00000000  000089c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    0000324b  00000000  00000000  00008be8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    00000868  00000000  00000000  0000be33  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 000001d0  00000000  00000000  0000c69b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+       0:	92 c0       	rjmp	.+292    	; 0x126 <__ctors_end>
+       2:	00 00       	nop
+       4:	ad c0       	rjmp	.+346    	; 0x160 <__bad_interrupt>
+       6:	00 00       	nop
+       8:	ab c0       	rjmp	.+342    	; 0x160 <__bad_interrupt>
+       a:	00 00       	nop
+       c:	a9 c0       	rjmp	.+338    	; 0x160 <__bad_interrupt>
+       e:	00 00       	nop
+      10:	a7 c0       	rjmp	.+334    	; 0x160 <__bad_interrupt>
+      12:	00 00       	nop
+      14:	a5 c0       	rjmp	.+330    	; 0x160 <__bad_interrupt>
+      16:	00 00       	nop
+      18:	a3 c0       	rjmp	.+326    	; 0x160 <__bad_interrupt>
+      1a:	00 00       	nop
+      1c:	a1 c0       	rjmp	.+322    	; 0x160 <__bad_interrupt>
+      1e:	00 00       	nop
+      20:	9f c0       	rjmp	.+318    	; 0x160 <__bad_interrupt>
+      22:	00 00       	nop
+      24:	9d c0       	rjmp	.+314    	; 0x160 <__bad_interrupt>
+      26:	00 00       	nop
+      28:	9b c0       	rjmp	.+310    	; 0x160 <__bad_interrupt>
+      2a:	00 00       	nop
+      2c:	99 c0       	rjmp	.+306    	; 0x160 <__bad_interrupt>
+      2e:	00 00       	nop
+      30:	97 c0       	rjmp	.+302    	; 0x160 <__bad_interrupt>
+      32:	00 00       	nop
+      34:	95 c0       	rjmp	.+298    	; 0x160 <__bad_interrupt>
+      36:	00 00       	nop
+      38:	93 c0       	rjmp	.+294    	; 0x160 <__bad_interrupt>
+      3a:	00 00       	nop
+      3c:	91 c0       	rjmp	.+290    	; 0x160 <__bad_interrupt>
+      3e:	00 00       	nop
+      40:	8f c0       	rjmp	.+286    	; 0x160 <__bad_interrupt>
+      42:	00 00       	nop
+      44:	8d c0       	rjmp	.+282    	; 0x160 <__bad_interrupt>
+      46:	00 00       	nop
+      48:	8b c0       	rjmp	.+278    	; 0x160 <__bad_interrupt>
+      4a:	00 00       	nop
+      4c:	89 c0       	rjmp	.+274    	; 0x160 <__bad_interrupt>
+      4e:	00 00       	nop
+      50:	87 c0       	rjmp	.+270    	; 0x160 <__bad_interrupt>
+      52:	00 00       	nop
+      54:	85 c0       	rjmp	.+266    	; 0x160 <__bad_interrupt>
+      56:	00 00       	nop
+      58:	83 c0       	rjmp	.+262    	; 0x160 <__bad_interrupt>
+      5a:	00 00       	nop
+      5c:	81 c0       	rjmp	.+258    	; 0x160 <__bad_interrupt>
+      5e:	00 00       	nop
+      60:	7f c0       	rjmp	.+254    	; 0x160 <__bad_interrupt>
+      62:	00 00       	nop
+      64:	7d c0       	rjmp	.+250    	; 0x160 <__bad_interrupt>
+      66:	00 00       	nop
+      68:	7b c0       	rjmp	.+246    	; 0x160 <__bad_interrupt>
+      6a:	00 00       	nop
+      6c:	79 c0       	rjmp	.+242    	; 0x160 <__bad_interrupt>
+      6e:	00 00       	nop
+      70:	77 c0       	rjmp	.+238    	; 0x160 <__bad_interrupt>
+      72:	00 00       	nop
+      74:	80 c6       	rjmp	.+3328   	; 0xd76 <__vector_29>
+      76:	00 00       	nop
+      78:	73 c0       	rjmp	.+230    	; 0x160 <__bad_interrupt>
+      7a:	00 00       	nop
+      7c:	71 c0       	rjmp	.+226    	; 0x160 <__bad_interrupt>
+      7e:	00 00       	nop
+      80:	6f c0       	rjmp	.+222    	; 0x160 <__bad_interrupt>
+      82:	00 00       	nop
+      84:	6d c0       	rjmp	.+218    	; 0x160 <__bad_interrupt>
+      86:	00 00       	nop
+      88:	6b c0       	rjmp	.+214    	; 0x160 <__bad_interrupt>
+      8a:	00 00       	nop
+      8c:	69 c0       	rjmp	.+210    	; 0x160 <__bad_interrupt>
+      8e:	00 00       	nop
+      90:	d4 c0       	rjmp	.+424    	; 0x23a <__vector_36>
+      92:	00 00       	nop
+      94:	65 c0       	rjmp	.+202    	; 0x160 <__bad_interrupt>
+      96:	00 00       	nop
+      98:	29 c1       	rjmp	.+594    	; 0x2ec <__vector_38>
+      9a:	00 00       	nop
+      9c:	61 c0       	rjmp	.+194    	; 0x160 <__bad_interrupt>
+      9e:	00 00       	nop
+      a0:	5f c0       	rjmp	.+190    	; 0x160 <__bad_interrupt>
+      a2:	00 00       	nop
+      a4:	5d c0       	rjmp	.+186    	; 0x160 <__bad_interrupt>
+      a6:	00 00       	nop
+      a8:	5b c0       	rjmp	.+182    	; 0x160 <__bad_interrupt>
+      aa:	00 00       	nop
+      ac:	59 c0       	rjmp	.+178    	; 0x160 <__bad_interrupt>
+      ae:	00 00       	nop
+      b0:	57 c0       	rjmp	.+174    	; 0x160 <__bad_interrupt>
+      b2:	00 00       	nop
+      b4:	55 c0       	rjmp	.+170    	; 0x160 <__bad_interrupt>
+      b6:	00 00       	nop
+      b8:	53 c0       	rjmp	.+166    	; 0x160 <__bad_interrupt>
+      ba:	00 00       	nop
+      bc:	51 c0       	rjmp	.+162    	; 0x160 <__bad_interrupt>
+      be:	00 00       	nop
+      c0:	4f c0       	rjmp	.+158    	; 0x160 <__bad_interrupt>
+      c2:	00 00       	nop
+      c4:	4d c0       	rjmp	.+154    	; 0x160 <__bad_interrupt>
+      c6:	00 00       	nop
+      c8:	4b c0       	rjmp	.+150    	; 0x160 <__bad_interrupt>
+      ca:	00 00       	nop
+      cc:	49 c0       	rjmp	.+146    	; 0x160 <__bad_interrupt>
+      ce:	00 00       	nop
+      d0:	47 c0       	rjmp	.+142    	; 0x160 <__bad_interrupt>
+      d2:	00 00       	nop
+      d4:	45 c0       	rjmp	.+138    	; 0x160 <__bad_interrupt>
+      d6:	00 00       	nop
+      d8:	43 c0       	rjmp	.+134    	; 0x160 <__bad_interrupt>
+      da:	00 00       	nop
+      dc:	41 c0       	rjmp	.+130    	; 0x160 <__bad_interrupt>
+      de:	00 00       	nop
+      e0:	3f c0       	rjmp	.+126    	; 0x160 <__bad_interrupt>
+      e2:	00 00       	nop
+      e4:	3d c0       	rjmp	.+122    	; 0x160 <__bad_interrupt>
+      e6:	00 00       	nop
+      e8:	3b c0       	rjmp	.+118    	; 0x160 <__bad_interrupt>
+      ea:	00 00       	nop
+      ec:	39 c0       	rjmp	.+114    	; 0x160 <__bad_interrupt>
+      ee:	00 00       	nop
+      f0:	37 c0       	rjmp	.+110    	; 0x160 <__bad_interrupt>
+      f2:	00 00       	nop
+      f4:	35 c0       	rjmp	.+106    	; 0x160 <__bad_interrupt>
+      f6:	00 00       	nop
+      f8:	33 c0       	rjmp	.+102    	; 0x160 <__bad_interrupt>
+      fa:	00 00       	nop
+      fc:	31 c0       	rjmp	.+98     	; 0x160 <__bad_interrupt>
+      fe:	00 00       	nop
+     100:	2f c0       	rjmp	.+94     	; 0x160 <__bad_interrupt>
+     102:	00 00       	nop
+     104:	7b c2       	rjmp	.+1270   	; 0x5fc <__vector_65>
+     106:	00 00       	nop
+     108:	b5 c2       	rjmp	.+1386   	; 0x674 <__vector_66>
+     10a:	00 00       	nop
+     10c:	bd c2       	rjmp	.+1402   	; 0x688 <__vector_67>
+     10e:	00 00       	nop
+     110:	48 c1       	rjmp	.+656    	; 0x3a2 <__vector_68>
+     112:	00 00       	nop
+     114:	25 c0       	rjmp	.+74     	; 0x160 <__bad_interrupt>
+     116:	00 00       	nop
+     118:	23 c0       	rjmp	.+70     	; 0x160 <__bad_interrupt>
+     11a:	00 00       	nop
+     11c:	21 c0       	rjmp	.+66     	; 0x160 <__bad_interrupt>
+     11e:	00 00       	nop
+
+00000120 <McuSleepC__atm128PowerBits>:
+     120:	00 02 0e 06 0c 04                                   ......
+
+00000126 <__ctors_end>:
+     126:	11 24       	eor	r1, r1
+     128:	1f be       	out	0x3f, r1	; 63
+     12a:	cf ef       	ldi	r28, 0xFF	; 255
+     12c:	d1 e4       	ldi	r29, 0x41	; 65
+     12e:	de bf       	out	0x3e, r29	; 62
+     130:	cd bf       	out	0x3d, r28	; 61
+
+00000132 <__do_copy_data>:
+     132:	13 e0       	ldi	r17, 0x03	; 3
+     134:	a0 e0       	ldi	r26, 0x00	; 0
+     136:	b2 e0       	ldi	r27, 0x02	; 2
+     138:	e2 e2       	ldi	r30, 0x22	; 34
+     13a:	f1 e1       	ldi	r31, 0x11	; 17
+     13c:	00 e0       	ldi	r16, 0x00	; 0
+     13e:	0b bf       	out	0x3b, r16	; 59
+     140:	02 c0       	rjmp	.+4      	; 0x146 <__do_copy_data+0x14>
+     142:	07 90       	elpm	r0, Z+
+     144:	0d 92       	st	X+, r0
+     146:	a4 39       	cpi	r26, 0x94	; 148
+     148:	b1 07       	cpc	r27, r17
+     14a:	d9 f7       	brne	.-10     	; 0x142 <__do_copy_data+0x10>
+
+0000014c <__do_clear_bss>:
+     14c:	13 e0       	ldi	r17, 0x03	; 3
+     14e:	a4 e9       	ldi	r26, 0x94	; 148
+     150:	b3 e0       	ldi	r27, 0x03	; 3
+     152:	01 c0       	rjmp	.+2      	; 0x156 <.do_clear_bss_start>
+
+00000154 <.do_clear_bss_loop>:
+     154:	1d 92       	st	X+, r1
+
+00000156 <.do_clear_bss_start>:
+     156:	a8 3e       	cpi	r26, 0xE8	; 232
+     158:	b1 07       	cpc	r27, r17
+     15a:	e1 f7       	brne	.-8      	; 0x154 <.do_clear_bss_loop>
+     15c:	86 d6       	rcall	.+3340   	; 0xe6a <main>
+     15e:	e0 c7       	rjmp	.+4032   	; 0x1120 <_exit>
+
+00000160 <__bad_interrupt>:
+     160:	4f cf       	rjmp	.-354    	; 0x0 <__heap_end>
+
+00000162 <Atm128AdcP__isPrecise>:
+  /* Return TRUE if switching to 'channel' with reference voltage 'refVoltage'
+     will give a precise result (the first sample after changing reference
+     voltage or switching to/between a differential channel is imprecise)
+  */
+  inline bool isPrecise(Atm128Admux_t admux, uint8_t channel, uint8_t refVoltage) {
+     162:	78 2f       	mov	r23, r24
+     164:	7f 71       	andi	r23, 0x1F	; 31
+    return refVoltage == admux.refs &&
+     166:	55 27       	eor	r21, r21
+     168:	82 95       	swap	r24
+     16a:	86 95       	lsr	r24
+     16c:	86 95       	lsr	r24
+     16e:	83 70       	andi	r24, 0x03	; 3
+     170:	99 27       	eor	r25, r25
+     172:	48 17       	cp	r20, r24
+     174:	59 07       	cpc	r21, r25
+     176:	19 f0       	breq	.+6      	; 0x17e <Atm128AdcP__isPrecise+0x1c>
+     178:	80 e0       	ldi	r24, 0x00	; 0
+     17a:	90 e0       	ldi	r25, 0x00	; 0
+     17c:	13 c0       	rjmp	.+38     	; 0x1a4 <Atm128AdcP__isPrecise+0x42>
+     17e:	86 2f       	mov	r24, r22
+     180:	88 50       	subi	r24, 0x08	; 8
+     182:	86 31       	cpi	r24, 0x16	; 22
+     184:	18 f0       	brcs	.+6      	; 0x18c <Atm128AdcP__isPrecise+0x2a>
+     186:	81 e0       	ldi	r24, 0x01	; 1
+     188:	90 e0       	ldi	r25, 0x00	; 0
+     18a:	0c c0       	rjmp	.+24     	; 0x1a4 <Atm128AdcP__isPrecise+0x42>
+     18c:	40 e0       	ldi	r20, 0x00	; 0
+     18e:	50 e0       	ldi	r21, 0x00	; 0
+     190:	26 2f       	mov	r18, r22
+     192:	33 27       	eor	r19, r19
+     194:	87 2f       	mov	r24, r23
+     196:	99 27       	eor	r25, r25
+     198:	28 17       	cp	r18, r24
+     19a:	39 07       	cpc	r19, r25
+     19c:	11 f4       	brne	.+4      	; 0x1a2 <Atm128AdcP__isPrecise+0x40>
+     19e:	41 e0       	ldi	r20, 0x01	; 1
+     1a0:	50 e0       	ldi	r21, 0x00	; 0
+     1a2:	ca 01       	movw	r24, r20
+      (channel <= ATM128_ADC_SNGL_ADC7 || channel >= ATM128_ADC_SNGL_1_23 || channel == admux.mux);
+  }
+     1a4:	99 27       	eor	r25, r25
+     1a6:	08 95       	ret
+
+000001a8 <Atm128AdcP__HplAtm128Adc__getAdmux>:
+  /**
+   * Read the ADMUX (ADC selection) register
+   * @return Current ADMUX value
+   */
+  async command Atm128Admux_t getAdmux();
+     1a8:	80 91 7c 00 	lds	r24, 0x007C
+     1ac:	08 95       	ret
+
+000001ae <SchedulerBasicP__popTask>:
+  // move the head forward
+  // if the head is at the end, mark the tail at the end, too
+  // mark the task as not in the queue
+  inline uint8_t popTask()
+  {
+     1ae:	80 91 e1 03 	lds	r24, 0x03E1
+     1b2:	8f 3f       	cpi	r24, 0xFF	; 255
+     1b4:	19 f4       	brne	.+6      	; 0x1bc <SchedulerBasicP__popTask+0xe>
+    if( m_head != NO_TASK )
+     1b6:	2f ef       	ldi	r18, 0xFF	; 255
+     1b8:	30 e0       	ldi	r19, 0x00	; 0
+     1ba:	0e c0       	rjmp	.+28     	; 0x1d8 <SchedulerBasicP__popTask+0x2a>
+    {
+      uint8_t id = m_head;
+      m_head = m_next[m_head];
+     1bc:	28 2f       	mov	r18, r24
+     1be:	33 27       	eor	r19, r19
+     1c0:	f9 01       	movw	r30, r18
+     1c2:	e4 56       	subi	r30, 0x64	; 100
+     1c4:	fc 4f       	sbci	r31, 0xFC	; 252
+     1c6:	80 81       	ld	r24, Z
+     1c8:	80 93 e1 03 	sts	0x03E1, r24
+      if( m_head == NO_TASK )
+     1cc:	8f 3f       	cpi	r24, 0xFF	; 255
+     1ce:	11 f4       	brne	.+4      	; 0x1d4 <SchedulerBasicP__popTask+0x26>
+      {
+	m_tail = NO_TASK;
+     1d0:	80 93 e7 03 	sts	0x03E7, r24
+      }
+      m_next[id] = NO_TASK;
+     1d4:	8f ef       	ldi	r24, 0xFF	; 255
+     1d6:	80 83       	st	Z, r24
+      return id;
+    }
+    else
+    {
+      return NO_TASK;
+    }
+  }
+     1d8:	c9 01       	movw	r24, r18
+     1da:	08 95       	ret
+
+000001dc <SchedulerBasicP__TaskBasic__postTask>:
+  
+  bool isWaiting( uint8_t id )
+  {
+    return (m_next[id] != NO_TASK) || (m_tail == id);
+  }
+
+  bool pushTask( uint8_t id )
+  {
+    if( !isWaiting(id) )
+    {
+      if( m_head == NO_TASK )
+      {
+	m_head = id;
+	m_tail = id;
+      }
+      else
+      {
+	m_next[m_tail] = id;
+	m_tail = id;
+      }
+      return TRUE;
+    }
+    else
+    {
+      return FALSE;
+    }
+  }
+  
+  command void Scheduler.init()
+  {
+    atomic
+    {
+      memset( (void *)m_next, NO_TASK, sizeof(m_next) );
+      m_head = NO_TASK;
+      m_tail = NO_TASK;
+    }
+  }
+  
+  command bool Scheduler.runNextTask()
+  {
+    uint8_t nextTask;
+    atomic
+    {
+      nextTask = popTask();
+      if( nextTask == NO_TASK )
+      {
+	return FALSE;
+      }
+    }
+    signal TaskBasic.runTask[nextTask]();
+    return TRUE;
+  }
+
+  command void Scheduler.taskLoop()
+  {
+    for (;;)
+    {
+      uint8_t nextTask;
+
+      atomic
+      {
+	while ((nextTask = popTask()) == NO_TASK)
+	{
+	  call McuSleep.sleep();
+	}
+      }
+      signal TaskBasic.runTask[nextTask]();
+    }
+  }
+
+  /**
+   * Return SUCCESS if the post succeeded, EBUSY if it was already posted.
+   */
+  
+  async command error_t TaskBasic.postTask[uint8_t id]()
+  {
+     1dc:	28 2f       	mov	r18, r24
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     1de:	9f b7       	in	r25, 0x3f	; 63
+     1e0:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     1e2:	e8 2f       	mov	r30, r24
+     1e4:	ff 27       	eor	r31, r31
+     1e6:	e4 56       	subi	r30, 0x64	; 100
+     1e8:	fc 4f       	sbci	r31, 0xFC	; 252
+     1ea:	80 81       	ld	r24, Z
+     1ec:	8f 3f       	cpi	r24, 0xFF	; 255
+     1ee:	81 f4       	brne	.+32     	; 0x210 <SchedulerBasicP__TaskBasic__postTask+0x34>
+     1f0:	e0 91 e7 03 	lds	r30, 0x03E7
+     1f4:	e2 17       	cp	r30, r18
+     1f6:	71 f4       	brne	.+28     	; 0x214 <SchedulerBasicP__TaskBasic__postTask+0x38>
+     1f8:	0b c0       	rjmp	.+22     	; 0x210 <SchedulerBasicP__TaskBasic__postTask+0x34>
+     1fa:	20 93 e1 03 	sts	0x03E1, r18
+     1fe:	04 c0       	rjmp	.+8      	; 0x208 <SchedulerBasicP__TaskBasic__postTask+0x2c>
+     200:	ff 27       	eor	r31, r31
+     202:	e4 56       	subi	r30, 0x64	; 100
+     204:	fc 4f       	sbci	r31, 0xFC	; 252
+     206:	20 83       	st	Z, r18
+     208:	20 93 e7 03 	sts	0x03E7, r18
+     20c:	20 e0       	ldi	r18, 0x00	; 0
+     20e:	07 c0       	rjmp	.+14     	; 0x21e <SchedulerBasicP__TaskBasic__postTask+0x42>
+     210:	25 e0       	ldi	r18, 0x05	; 5
+     212:	05 c0       	rjmp	.+10     	; 0x21e <SchedulerBasicP__TaskBasic__postTask+0x42>
+     214:	80 91 e1 03 	lds	r24, 0x03E1
+     218:	8f 3f       	cpi	r24, 0xFF	; 255
+     21a:	91 f7       	brne	.-28     	; 0x200 <SchedulerBasicP__TaskBasic__postTask+0x24>
+     21c:	ee cf       	rjmp	.-36     	; 0x1fa <SchedulerBasicP__TaskBasic__postTask+0x1e>
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     21e:	89 2f       	mov	r24, r25
+     220:	99 27       	eor	r25, r25
+  SREG = original_SREG;
+     222:	8f bf       	out	0x3f, r24	; 63
+    atomic { return pushTask(id) ? SUCCESS : EBUSY; }
+  }
+
+  default event void TaskBasic.runTask[uint8_t id]()
+  {
+     224:	82 2f       	mov	r24, r18
+     226:	99 27       	eor	r25, r25
+     228:	08 95       	ret
+
+0000022a <VirtualizeTimerC__0__updateFromTimer__postTask>:
+   * posted; the semantics of a non-SUCCESS return value depend on the
+   * implementation of this interface (the class of task).
+   */
+  
+  async command error_t postTask();
+     22a:	86 e0       	ldi	r24, 0x06	; 6
+     22c:	d7 df       	rcall	.-82     	; 0x1dc <SchedulerBasicP__TaskBasic__postTask>
+     22e:	99 27       	eor	r25, r25
+     230:	08 95       	ret
+
+00000232 <ArbiterP__0__grantedTask__postTask>:
+     232:	87 e0       	ldi	r24, 0x07	; 7
+     234:	d3 df       	rcall	.-90     	; 0x1dc <SchedulerBasicP__TaskBasic__postTask>
+     236:	99 27       	eor	r25, r25
+     238:	08 95       	ret
+
+0000023a <__vector_36>:
+	default async event void Uart1Interrupts.txInterruptHandler() { }
+
+	  
+	AVR_ATOMIC_HANDLER(USART1_RX_vect/*__vector_36*/) 
+	{
+     23a:	1f 92       	push	r1
+     23c:	0f 92       	push	r0
+     23e:	0f b6       	in	r0, 0x3f	; 63
+     240:	0f 92       	push	r0
+     242:	11 24       	eor	r1, r1
+     244:	2f 93       	push	r18
+     246:	3f 93       	push	r19
+     248:	4f 93       	push	r20
+     24a:	5f 93       	push	r21
+     24c:	6f 93       	push	r22
+     24e:	7f 93       	push	r23
+     250:	8f 93       	push	r24
+     252:	9f 93       	push	r25
+     254:	af 93       	push	r26
+     256:	bf 93       	push	r27
+     258:	ef 93       	push	r30
+     25a:	ff 93       	push	r31
+		if (READ_BIT(UCSR1A, RXC1)) 
+     25c:	80 91 c8 00 	lds	r24, 0x00C8
+     260:	87 ff       	sbrs	r24, 7
+     262:	33 c0       	rjmp	.+102    	; 0x2ca <__vector_36+0x90>
+		{
+			privReceivedByte = UDR1;
+     264:	40 91 ce 00 	lds	r20, 0x00CE
+     268:	40 93 94 03 	sts	0x0394, r20
+	}
+	
+	async event void Uart1Interrupts.rxInterruptHandler(uint8_t byte)
+	{
+		if(rxBuf) //if we're receiving something large
+     26c:	e0 91 e4 03 	lds	r30, 0x03E4
+     270:	f0 91 e5 03 	lds	r31, 0x03E5
+     274:	30 97       	sbiw	r30, 0x00	; 0
+     276:	01 f1       	breq	.+64     	; 0x2b8 <__vector_36+0x7e>
+		{
+			if(rxPos < rxLen) //there are still some bytes to capture
+     278:	20 91 b3 03 	lds	r18, 0x03B3
+     27c:	30 91 b4 03 	lds	r19, 0x03B4
+     280:	80 91 d9 03 	lds	r24, 0x03D9
+     284:	90 91 da 03 	lds	r25, 0x03DA
+     288:	28 17       	cp	r18, r24
+     28a:	39 07       	cpc	r19, r25
+     28c:	c8 f4       	brcc	.+50     	; 0x2c0 <__vector_36+0x86>
+			{
+				rxBuf[ rxPos ] = byte;
+     28e:	e2 0f       	add	r30, r18
+     290:	f3 1f       	adc	r31, r19
+     292:	40 83       	st	Z, r20
+				rxPos++;
+     294:	80 91 b3 03 	lds	r24, 0x03B3
+     298:	90 91 b4 03 	lds	r25, 0x03B4
+     29c:	01 96       	adiw	r24, 0x01	; 1
+     29e:	90 93 b4 03 	sts	0x03B4, r25
+     2a2:	80 93 b3 03 	sts	0x03B3, r24
+				if(rxPos == rxLen) //finished
+     2a6:	20 91 d9 03 	lds	r18, 0x03D9
+     2aa:	30 91 da 03 	lds	r19, 0x03DA
+     2ae:	82 17       	cp	r24, r18
+     2b0:	93 07       	cpc	r25, r19
+     2b2:	31 f4       	brne	.+12     	; 0x2c0 <__vector_36+0x86>
+     2b4:	83 e0       	ldi	r24, 0x03	; 3
+     2b6:	03 c0       	rjmp	.+6      	; 0x2be <__vector_36+0x84>
+				{
+					post receiveDoneTask();
+				}
+			}
+		}
+		else
+		{
+			rxUnexpectedByte = byte;
+     2b8:	40 93 b7 03 	sts	0x03B7, r20
+     2bc:	84 e0       	ldi	r24, 0x04	; 4
+     2be:	8e df       	rcall	.-228    	; 0x1dc <SchedulerBasicP__TaskBasic__postTask>
+     2c0:	80 91 c8 00 	lds	r24, 0x00C8
+     2c4:	8f 77       	andi	r24, 0x7F	; 127
+     2c6:	80 93 c8 00 	sts	0x00C8, r24
+     2ca:	ff 91       	pop	r31
+     2cc:	ef 91       	pop	r30
+     2ce:	bf 91       	pop	r27
+     2d0:	af 91       	pop	r26
+     2d2:	9f 91       	pop	r25
+     2d4:	8f 91       	pop	r24
+     2d6:	7f 91       	pop	r23
+     2d8:	6f 91       	pop	r22
+     2da:	5f 91       	pop	r21
+     2dc:	4f 91       	pop	r20
+     2de:	3f 91       	pop	r19
+     2e0:	2f 91       	pop	r18
+     2e2:	0f 90       	pop	r0
+     2e4:	0f be       	out	0x3f, r0	; 63
+     2e6:	0f 90       	pop	r0
+     2e8:	1f 90       	pop	r1
+     2ea:	18 95       	reti
+
+000002ec <__vector_38>:
+			//debug
+//			UDR1 = privReceivedByte;
+			signal Uart1Interrupts.rxInterruptHandler(privReceivedByte);
+    	}
+  	}
+	  
+  
+  	AVR_ATOMIC_HANDLER(USART1_TX_vect/*__vector_38*/) 
+  	{
+     2ec:	1f 92       	push	r1
+     2ee:	0f 92       	push	r0
+     2f0:	0f b6       	in	r0, 0x3f	; 63
+     2f2:	0f 92       	push	r0
+     2f4:	11 24       	eor	r1, r1
+     2f6:	2f 93       	push	r18
+     2f8:	3f 93       	push	r19
+     2fa:	4f 93       	push	r20
+     2fc:	5f 93       	push	r21
+     2fe:	6f 93       	push	r22
+     300:	7f 93       	push	r23
+     302:	8f 93       	push	r24
+     304:	9f 93       	push	r25
+     306:	af 93       	push	r26
+     308:	bf 93       	push	r27
+     30a:	ef 93       	push	r30
+     30c:	ff 93       	push	r31
+			post unexpectedByteReceivedTask();	
+		}
+		call Uart1Interrupts.clearRxInterrupt(); //for convenience
+	}
+	
+	async event void Uart1Interrupts.txInterruptHandler()
+	{
+		if(txBuf != NULL) //means that we're sending something large
+     30e:	e0 91 98 03 	lds	r30, 0x0398
+     312:	f0 91 99 03 	lds	r31, 0x0399
+     316:	30 97       	sbiw	r30, 0x00	; 0
+     318:	71 f1       	breq	.+92     	; 0x376 <__vector_38+0x8a>
+		{
+			if( txPos < txLen ) //there are still some bytes to be sent
+     31a:	20 91 df 03 	lds	r18, 0x03DF
+     31e:	30 91 e0 03 	lds	r19, 0x03E0
+     322:	80 91 a5 03 	lds	r24, 0x03A5
+     326:	90 91 a6 03 	lds	r25, 0x03A6
+     32a:	28 17       	cp	r18, r24
+     32c:	39 07       	cpc	r19, r25
+     32e:	80 f4       	brcc	.+32     	; 0x350 <__vector_38+0x64>
+			{
+				while(!READ_BIT(UCSR1A, UDRE1)); //for convenience, expected overhead is low
+     330:	80 91 c8 00 	lds	r24, 0x00C8
+     334:	85 ff       	sbrs	r24, 5
+     336:	fc cf       	rjmp	.-8      	; 0x330 <__vector_38+0x44>
+				UDR1 = txBuf[ txPos ];
+     338:	e2 0f       	add	r30, r18
+     33a:	f3 1f       	adc	r31, r19
+     33c:	80 81       	ld	r24, Z
+     33e:	80 93 ce 00 	sts	0x00CE, r24
+				txPos++;
+     342:	2f 5f       	subi	r18, 0xFF	; 255
+     344:	3f 4f       	sbci	r19, 0xFF	; 255
+     346:	30 93 e0 03 	sts	0x03E0, r19
+     34a:	20 93 df 03 	sts	0x03DF, r18
+     34e:	13 c0       	rjmp	.+38     	; 0x376 <__vector_38+0x8a>
+			}	
+			else if( txPos == txLen )
+     350:	28 17       	cp	r18, r24
+     352:	39 07       	cpc	r19, r25
+     354:	81 f4       	brne	.+32     	; 0x376 <__vector_38+0x8a>
+			{
+				txLen = 0;
+     356:	10 92 a6 03 	sts	0x03A6, r1
+     35a:	10 92 a5 03 	sts	0x03A5, r1
+				txPos = 0;
+     35e:	10 92 e0 03 	sts	0x03E0, r1
+     362:	10 92 df 03 	sts	0x03DF, r1
+				txBuf = NULL;
+     366:	10 92 99 03 	sts	0x0399, r1
+     36a:	10 92 98 03 	sts	0x0398, r1
+				atomic
+				{
+					txBusy = FALSE;	
+     36e:	10 92 b2 03 	sts	0x03B2, r1
+     372:	82 e0       	ldi	r24, 0x02	; 2
+     374:	33 df       	rcall	.-410    	; 0x1dc <SchedulerBasicP__TaskBasic__postTask>
+     376:	80 91 c8 00 	lds	r24, 0x00C8
+     37a:	8f 7b       	andi	r24, 0xBF	; 191
+     37c:	80 93 c8 00 	sts	0x00C8, r24
+     380:	ff 91       	pop	r31
+     382:	ef 91       	pop	r30
+     384:	bf 91       	pop	r27
+     386:	af 91       	pop	r26
+     388:	9f 91       	pop	r25
+     38a:	8f 91       	pop	r24
+     38c:	7f 91       	pop	r23
+     38e:	6f 91       	pop	r22
+     390:	5f 91       	pop	r21
+     392:	4f 91       	pop	r20
+     394:	3f 91       	pop	r19
+     396:	2f 91       	pop	r18
+     398:	0f 90       	pop	r0
+     39a:	0f be       	out	0x3f, r0	; 63
+     39c:	0f 90       	pop	r0
+     39e:	1f 90       	pop	r1
+     3a0:	18 95       	reti
+
+000003a2 <__vector_68>:
+// ----- COUNTER: symbol counter interrupt status register (SCIRQS), overflow flag (IRQSOF)
+
+	default async event void Counter.overflow() { }
+
+	AVR_ATOMIC_HANDLER(SCNT_OVFL_vect) { signal Counter.overflow(); }
+     3a2:	1f 92       	push	r1
+     3a4:	0f 92       	push	r0
+     3a6:	0f b6       	in	r0, 0x3f	; 63
+     3a8:	0f 92       	push	r0
+     3aa:	11 24       	eor	r1, r1
+     3ac:	8f 93       	push	r24
+  async event void CounterFrom.overflow()
+  {
+    atomic
+    {
+      m_upper++;
+     3ae:	80 91 b8 03 	lds	r24, 0x03B8
+     3b2:	8f 5f       	subi	r24, 0xFF	; 255
+     3b4:	80 93 b8 03 	sts	0x03B8, r24
+     3b8:	8f 91       	pop	r24
+     3ba:	0f 90       	pop	r0
+     3bc:	0f be       	out	0x3f, r0	; 63
+     3be:	0f 90       	pop	r0
+     3c0:	1f 90       	pop	r1
+     3c2:	18 95       	reti
+
+000003c4 <TransformAlarmC__0__Counter__get>:
+   * Return counter value. Counters start at boot - some time sources may
+   * stop counting while the processor is in low-power mode.
+   * @return Current counter value.
+   */
+  async command size_type get();
+     3c4:	ef 92       	push	r14
+     3c6:	ff 92       	push	r15
+     3c8:	0f 93       	push	r16
+     3ca:	1f 93       	push	r17
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     3cc:	7f b7       	in	r23, 0x3f	; 63
+     3ce:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     3d0:	60 91 b8 03 	lds	r22, 0x03B8
+     3d4:	20 91 e1 00 	lds	r18, 0x00E1
+     3d8:	82 2f       	mov	r24, r18
+     3da:	20 91 e2 00 	lds	r18, 0x00E2
+     3de:	92 2f       	mov	r25, r18
+     3e0:	20 91 e3 00 	lds	r18, 0x00E3
+     3e4:	a2 2f       	mov	r26, r18
+     3e6:	20 91 e4 00 	lds	r18, 0x00E4
+     3ea:	b2 2f       	mov	r27, r18
+     3ec:	9c 01       	movw	r18, r24
+     3ee:	ad 01       	movw	r20, r26
+
+	async command bool Counter.test() { return SCIRQS & (1 << IRQSOF); }
+     3f0:	80 91 e0 00 	lds	r24, 0x00E0
+     3f4:	83 ff       	sbrs	r24, 3
+     3f6:	0f c0       	rjmp	.+30     	; 0x416 <TransformAlarmC__0__Counter__get+0x52>
+     3f8:	6f 5f       	subi	r22, 0xFF	; 255
+     3fa:	80 91 e1 00 	lds	r24, 0x00E1
+     3fe:	e8 2e       	mov	r14, r24
+     400:	80 91 e2 00 	lds	r24, 0x00E2
+     404:	f8 2e       	mov	r15, r24
+     406:	80 91 e3 00 	lds	r24, 0x00E3
+     40a:	08 2f       	mov	r16, r24
+     40c:	80 91 e4 00 	lds	r24, 0x00E4
+     410:	18 2f       	mov	r17, r24
+     412:	a8 01       	movw	r20, r16
+     414:	97 01       	movw	r18, r14
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     416:	87 2f       	mov	r24, r23
+     418:	99 27       	eor	r25, r25
+  SREG = original_SREG;
+     41a:	8f bf       	out	0x3f, r24	; 63
+     41c:	77 27       	eor	r23, r23
+     41e:	88 27       	eor	r24, r24
+     420:	99 27       	eor	r25, r25
+     422:	fa e1       	ldi	r31, 0x1A	; 26
+     424:	66 0f       	add	r22, r22
+     426:	77 1f       	adc	r23, r23
+     428:	88 1f       	adc	r24, r24
+     42a:	99 1f       	adc	r25, r25
+     42c:	fa 95       	dec	r31
+     42e:	d1 f7       	brne	.-12     	; 0x424 <TransformAlarmC__0__Counter__get+0x60>
+     430:	e6 e0       	ldi	r30, 0x06	; 6
+     432:	56 95       	lsr	r21
+     434:	47 95       	ror	r20
+     436:	37 95       	ror	r19
+     438:	27 95       	ror	r18
+     43a:	ea 95       	dec	r30
+     43c:	d1 f7       	brne	.-12     	; 0x432 <TransformAlarmC__0__Counter__get+0x6e>
+     43e:	62 2b       	or	r22, r18
+     440:	73 2b       	or	r23, r19
+     442:	84 2b       	or	r24, r20
+     444:	95 2b       	or	r25, r21
+     446:	1f 91       	pop	r17
+     448:	0f 91       	pop	r16
+     44a:	ff 90       	pop	r15
+     44c:	ef 90       	pop	r14
+     44e:	08 95       	ret
+
+00000450 <TransformAlarmC__0__set_alarm>:
+    call AlarmFrom.stop();
+  }
+
+  void set_alarm()
+  {
+     450:	6f 92       	push	r6
+     452:	7f 92       	push	r7
+     454:	8f 92       	push	r8
+     456:	9f 92       	push	r9
+     458:	af 92       	push	r10
+     45a:	bf 92       	push	r11
+     45c:	cf 92       	push	r12
+     45e:	df 92       	push	r13
+     460:	ef 92       	push	r14
+     462:	ff 92       	push	r15
+     464:	0f 93       	push	r16
+     466:	1f 93       	push	r17
+    to_size_type now = call Counter.get(), expires, remaining;
+     468:	ad df       	rcall	.-166    	; 0x3c4 <TransformAlarmC__0__Counter__get>
+     46a:	7b 01       	movw	r14, r22
+     46c:	8c 01       	movw	r16, r24
+     46e:	20 91 ae 03 	lds	r18, 0x03AE
+
+    /* m_t0 is assumed to be in the past. If it's > now, we assume
+       that time has wrapped around */
+
+    expires = m_t0 + m_dt;
+     472:	30 91 af 03 	lds	r19, 0x03AF
+     476:	40 91 b0 03 	lds	r20, 0x03B0
+     47a:	50 91 b1 03 	lds	r21, 0x03B1
+     47e:	80 91 aa 03 	lds	r24, 0x03AA
+     482:	90 91 ab 03 	lds	r25, 0x03AB
+     486:	a0 91 ac 03 	lds	r26, 0x03AC
+     48a:	b0 91 ad 03 	lds	r27, 0x03AD
+     48e:	82 0f       	add	r24, r18
+     490:	93 1f       	adc	r25, r19
+     492:	a4 1f       	adc	r26, r20
+     494:	b5 1f       	adc	r27, r21
+     496:	e2 16       	cp	r14, r18
+
+    /* The cast is necessary to get correct wrap-around arithmetic */
+    remaining = (to_size_type)(expires - now);
+
+    /* if (expires <= now) remaining = 0; in wrap-around arithmetic */
+    if (m_t0 <= now)
+     498:	f3 06       	cpc	r15, r19
+     49a:	04 07       	cpc	r16, r20
+     49c:	15 07       	cpc	r17, r21
+     49e:	30 f0       	brcs	.+12     	; 0x4ac <TransformAlarmC__0__set_alarm+0x5c>
+     4a0:	82 17       	cp	r24, r18
+      {
+	if (expires >= m_t0 && // if it wraps, it's > now
+     4a2:	93 07       	cpc	r25, r19
+     4a4:	a4 07       	cpc	r26, r20
+     4a6:	b5 07       	cpc	r27, r21
+     4a8:	58 f0       	brcs	.+22     	; 0x4c0 <TransformAlarmC__0__set_alarm+0x70>
+     4aa:	05 c0       	rjmp	.+10     	; 0x4b6 <TransformAlarmC__0__set_alarm+0x66>
+     4ac:	82 17       	cp	r24, r18
+	    expires <= now)
+	  remaining = 0;
+      }
+    else
+      {
+	if (expires >= m_t0 || // didn't wrap so < now
+     4ae:	93 07       	cpc	r25, r19
+     4b0:	a4 07       	cpc	r26, r20
+     4b2:	b5 07       	cpc	r27, r21
+     4b4:	e0 f5       	brcc	.+120    	; 0x52e <TransformAlarmC__0__set_alarm+0xde>
+     4b6:	e8 16       	cp	r14, r24
+     4b8:	f9 06       	cpc	r15, r25
+     4ba:	0a 07       	cpc	r16, r26
+     4bc:	1b 07       	cpc	r17, r27
+     4be:	b8 f5       	brcc	.+110    	; 0x52e <TransformAlarmC__0__set_alarm+0xde>
+     4c0:	9c 01       	movw	r18, r24
+     4c2:	ad 01       	movw	r20, r26
+     4c4:	2e 19       	sub	r18, r14
+     4c6:	3f 09       	sbc	r19, r15
+     4c8:	40 0b       	sbc	r20, r16
+     4ca:	51 0b       	sbc	r21, r17
+     4cc:	21 30       	cpi	r18, 0x01	; 1
+	    expires <= now)
+	  remaining = 0;
+      }
+    if (remaining > MAX_DELAY)
+     4ce:	60 e0       	ldi	r22, 0x00	; 0
+     4d0:	36 07       	cpc	r19, r22
+     4d2:	60 e0       	ldi	r22, 0x00	; 0
+     4d4:	46 07       	cpc	r20, r22
+     4d6:	62 e0       	ldi	r22, 0x02	; 2
+     4d8:	56 07       	cpc	r21, r22
+     4da:	68 f1       	brcs	.+90     	; 0x536 <TransformAlarmC__0__set_alarm+0xe6>
+     4dc:	80 e0       	ldi	r24, 0x00	; 0
+      {
+	m_t0 = now + MAX_DELAY;
+     4de:	90 e0       	ldi	r25, 0x00	; 0
+     4e0:	a0 e0       	ldi	r26, 0x00	; 0
+     4e2:	b2 e0       	ldi	r27, 0x02	; 2
+     4e4:	e8 0e       	add	r14, r24
+     4e6:	f9 1e       	adc	r15, r25
+     4e8:	0a 1f       	adc	r16, r26
+     4ea:	1b 1f       	adc	r17, r27
+     4ec:	e0 92 ae 03 	sts	0x03AE, r14
+     4f0:	f0 92 af 03 	sts	0x03AF, r15
+     4f4:	00 93 b0 03 	sts	0x03B0, r16
+     4f8:	10 93 b1 03 	sts	0x03B1, r17
+     4fc:	80 e0       	ldi	r24, 0x00	; 0
+     4fe:	90 e0       	ldi	r25, 0x00	; 0
+     500:	a0 e0       	ldi	r26, 0x00	; 0
+     502:	be ef       	ldi	r27, 0xFE	; 254
+     504:	e8 0e       	add	r14, r24
+     506:	f9 1e       	adc	r15, r25
+     508:	0a 1f       	adc	r16, r26
+     50a:	1b 1f       	adc	r17, r27
+     50c:	20 50       	subi	r18, 0x00	; 0
+	m_dt = remaining - MAX_DELAY;
+     50e:	30 40       	sbci	r19, 0x00	; 0
+     510:	40 40       	sbci	r20, 0x00	; 0
+     512:	52 40       	sbci	r21, 0x02	; 2
+     514:	20 93 aa 03 	sts	0x03AA, r18
+     518:	30 93 ab 03 	sts	0x03AB, r19
+     51c:	40 93 ac 03 	sts	0x03AC, r20
+     520:	50 93 ad 03 	sts	0x03AD, r21
+     524:	20 e0       	ldi	r18, 0x00	; 0
+     526:	30 e0       	ldi	r19, 0x00	; 0
+     528:	40 e0       	ldi	r20, 0x00	; 0
+     52a:	52 e0       	ldi	r21, 0x02	; 2
+     52c:	14 c0       	rjmp	.+40     	; 0x556 <TransformAlarmC__0__set_alarm+0x106>
+     52e:	20 e0       	ldi	r18, 0x00	; 0
+     530:	30 e0       	ldi	r19, 0x00	; 0
+     532:	40 e0       	ldi	r20, 0x00	; 0
+     534:	50 e0       	ldi	r21, 0x00	; 0
+     536:	80 93 ae 03 	sts	0x03AE, r24
+	remaining = MAX_DELAY;
+      }
+    else
+      {
+	m_t0 += m_dt;
+     53a:	90 93 af 03 	sts	0x03AF, r25
+     53e:	a0 93 b0 03 	sts	0x03B0, r26
+     542:	b0 93 b1 03 	sts	0x03B1, r27
+     546:	10 92 aa 03 	sts	0x03AA, r1
+	m_dt = 0;
+     54a:	10 92 ab 03 	sts	0x03AB, r1
+     54e:	10 92 ac 03 	sts	0x03AC, r1
+     552:	10 92 ad 03 	sts	0x03AD, r1
+     556:	39 01       	movw	r6, r18
+      }
+    call AlarmFrom.startAt((from_size_type)now << bit_shift_right,
+     558:	4a 01       	movw	r8, r20
+     55a:	b6 e0       	ldi	r27, 0x06	; 6
+     55c:	66 0c       	add	r6, r6
+     55e:	77 1c       	adc	r7, r7
+     560:	88 1c       	adc	r8, r8
+     562:	99 1c       	adc	r9, r9
+     564:	ba 95       	dec	r27
+     566:	d1 f7       	brne	.-12     	; 0x55c <TransformAlarmC__0__set_alarm+0x10c>
+     568:	a6 e0       	ldi	r26, 0x06	; 6
+     56a:	ee 0c       	add	r14, r14
+     56c:	ff 1c       	adc	r15, r15
+     56e:	00 1f       	adc	r16, r16
+     570:	11 1f       	adc	r17, r17
+     572:	aa 95       	dec	r26
+     574:	d1 f7       	brne	.-12     	; 0x56a <TransformAlarmC__0__set_alarm+0x11a>
+     576:	80 91 e1 00 	lds	r24, 0x00E1
+     57a:	a8 2e       	mov	r10, r24
+     57c:	80 91 e2 00 	lds	r24, 0x00E2
+     580:	b8 2e       	mov	r11, r24
+     582:	80 91 e3 00 	lds	r24, 0x00E3
+     586:	c8 2e       	mov	r12, r24
+     588:	80 91 e4 00 	lds	r24, 0x00E4
+     58c:	d8 2e       	mov	r13, r24
+     58e:	a6 01       	movw	r20, r12
+	{
+		atomic
+		{
+			// current time + time needed to set alarm
+			size_type n = call AtmegaCounter.get() + mindt;
+     590:	95 01       	movw	r18, r10
+     592:	2e 5f       	subi	r18, 0xFE	; 254
+     594:	3f 4f       	sbci	r19, 0xFF	; 255
+     596:	4f 4f       	sbci	r20, 0xFF	; 255
+     598:	5f 4f       	sbci	r21, 0xFF	; 255
+     59a:	da 01       	movw	r26, r20
+
+			// if alarm is set in the future, where n-nt0 is the time passed since nt0
+			if( (size_type)(n - nt0) < ndt )
+     59c:	c9 01       	movw	r24, r18
+     59e:	8e 19       	sub	r24, r14
+     5a0:	9f 09       	sbc	r25, r15
+     5a2:	a0 0b       	sbc	r26, r16
+     5a4:	b1 0b       	sbc	r27, r17
+     5a6:	86 15       	cp	r24, r6
+     5a8:	97 05       	cpc	r25, r7
+     5aa:	a8 05       	cpc	r26, r8
+     5ac:	b9 05       	cpc	r27, r9
+     5ae:	30 f4       	brcc	.+12     	; 0x5bc <TransformAlarmC__0__set_alarm+0x16c>
+     5b0:	a8 01       	movw	r20, r16
+				n = nt0 + ndt;
+     5b2:	97 01       	movw	r18, r14
+     5b4:	26 0d       	add	r18, r6
+     5b6:	37 1d       	adc	r19, r7
+     5b8:	48 1d       	adc	r20, r8
+     5ba:	59 1d       	adc	r21, r9
+     5bc:	50 93 f8 00 	sts	0x00F8, r21
+
+	async command void Counter.reset() { SCIRQS = 1 << IRQSOF; }
+
+// ----- COUNTER: symbol counter interrupt mask register (SCIRQM), overflow interrupt enable (IRQMOF)
+
+	async command void Counter.start()
+	{
+		SET_BIT(SCIRQM, IRQMOF);
+	}
+
+	async command void Counter.stop()
+	{
+		CLR_BIT(SCIRQM, IRQMOF);
+	}
+
+	async command bool Counter.isOn() { return SCIRQM & (1 << IRQMOF); }
+
+// ----- COUNTER: symbol counter control register (SCCR), counter enable (SCEN) and clock select (SCCKSEL)
+
+	async command void Counter.setMode(uint8_t mode)
+	{
+		mode &= (1 << SCEN) | (1 << SCCKSEL);
+
+		// RTC needs to be enabled, otherwise it does not work
+		if( (mode & (1 << SCCKSEL)) != 0 )
+			ASSR = 1 << AS2;
+
+		atomic SCCR0 = (SCCR0 & ~((1 << SCEN) | (1 << SCCKSEL))) | mode;
+
+		call McuPowerState.update();
+	}
+
+	async command uint8_t Counter.getMode()
+	{
+		return SCCR0 & ((1 << SCEN) | (1 << SCCKSEL));
+	}
+
+
+// ----- COMPARE A: symbol counter output compare register (SCOCR)
+
+	async command uint32_t CompareA.get()
+	{
+		reg32_t time;
+
+		atomic
+		{
+			time.ll = SCOCR1LL;
+			time.lh = SCOCR1LH;
+			time.hl = SCOCR1HL;
+			time.hh	= SCOCR1HH;
+		}
+
+		return time.full;
+	}
+
+	async command void CompareA.set(uint32_t value)
+	{
+		reg32_t time;
+		
+		time.full = value;
+
+		atomic
+		{
+			SCOCR1HH = time.hh;
+     5c0:	40 93 f7 00 	sts	0x00F7, r20
+			SCOCR1HL = time.hl;
+     5c4:	30 93 f6 00 	sts	0x00F6, r19
+			SCOCR1LH = time.lh;
+     5c8:	20 93 f5 00 	sts	0x00F5, r18
+			SCOCR1LL = time.ll;
+     5cc:	81 e0       	ldi	r24, 0x01	; 1
+		}
+	}
+
+// ----- COMPARE A: symbol counter interrupt status register (SCIRQS), comare match flag (IRQSCP)
+
+	default async event void CompareA.fired() { }
+
+	AVR_ATOMIC_HANDLER(SCNT_CMP1_vect) { signal CompareA.fired(); }
+
+	async command bool CompareA.test() { return SCIRQS & (1 << IRQSCP1); }
+
+	async command void CompareA.reset() { SCIRQS = 1 << IRQSCP1; }
+     5ce:	80 93 e0 00 	sts	0x00E0, r24
+     5d2:	80 91 df 00 	lds	r24, 0x00DF
+
+// ----- COMPARE A: symbol counter interrupt mask register (SCIRQM), compare interrupt enable (IRQMCP)
+
+	async command void CompareA.start()
+	{
+		SET_BIT(SCIRQM, IRQMCP1);
+     5d6:	81 60       	ori	r24, 0x01	; 1
+     5d8:	80 93 df 00 	sts	0x00DF, r24
+     5dc:	8f ef       	ldi	r24, 0xFF	; 255
+  }
+
+  async command void McuPowerState.update()
+  {
+   	powerState = -1;
+     5de:	80 93 91 03 	sts	0x0391, r24
+     5e2:	1f 91       	pop	r17
+     5e4:	0f 91       	pop	r16
+     5e6:	ff 90       	pop	r15
+     5e8:	ef 90       	pop	r14
+     5ea:	df 90       	pop	r13
+     5ec:	cf 90       	pop	r12
+     5ee:	bf 90       	pop	r11
+     5f0:	af 90       	pop	r10
+     5f2:	9f 90       	pop	r9
+     5f4:	8f 90       	pop	r8
+     5f6:	7f 90       	pop	r7
+     5f8:	6f 90       	pop	r6
+     5fa:	08 95       	ret
+
+000005fc <__vector_65>:
+     5fc:	1f 92       	push	r1
+     5fe:	0f 92       	push	r0
+     600:	0f b6       	in	r0, 0x3f	; 63
+     602:	0f 92       	push	r0
+     604:	11 24       	eor	r1, r1
+     606:	2f 93       	push	r18
+     608:	3f 93       	push	r19
+     60a:	4f 93       	push	r20
+     60c:	5f 93       	push	r21
+     60e:	6f 93       	push	r22
+     610:	7f 93       	push	r23
+     612:	8f 93       	push	r24
+     614:	9f 93       	push	r25
+     616:	af 93       	push	r26
+     618:	bf 93       	push	r27
+     61a:	ef 93       	push	r30
+     61c:	ff 93       	push	r31
+
+		call McuPowerState.update();
+	}
+
+	async command void CompareA.stop()
+	{
+		CLR_BIT(SCIRQM, IRQMCP1);
+     61e:	80 91 df 00 	lds	r24, 0x00DF
+     622:	8e 7f       	andi	r24, 0xFE	; 254
+     624:	80 93 df 00 	sts	0x00DF, r24
+     628:	8f ef       	ldi	r24, 0xFF	; 255
+     62a:	80 93 91 03 	sts	0x0391, r24
+			   (from_size_type)remaining << bit_shift_right);
+  }
+
+  async command void Alarm.startAt(to_size_type t0, to_size_type dt)
+  {
+    atomic
+    {
+      m_t0 = t0;
+      m_dt = dt;
+      set_alarm();
+    }
+  }
+
+  async command void Alarm.start(to_size_type dt)
+  {
+    call Alarm.startAt(call Alarm.getNow(), dt);
+  }
+
+  async event void AlarmFrom.fired()
+  {
+    atomic
+    {
+      if(m_dt == 0)
+     62e:	80 91 aa 03 	lds	r24, 0x03AA
+     632:	90 91 ab 03 	lds	r25, 0x03AB
+     636:	a0 91 ac 03 	lds	r26, 0x03AC
+     63a:	b0 91 ad 03 	lds	r27, 0x03AD
+     63e:	00 97       	sbiw	r24, 0x00	; 0
+     640:	a1 05       	cpc	r26, r1
+     642:	b1 05       	cpc	r27, r1
+     644:	19 f4       	brne	.+6      	; 0x64c <__vector_65+0x50>
+     646:	85 e0       	ldi	r24, 0x05	; 5
+     648:	c9 dd       	rcall	.-1134   	; 0x1dc <SchedulerBasicP__TaskBasic__postTask>
+     64a:	01 c0       	rjmp	.+2      	; 0x64e <__vector_65+0x52>
+     64c:	01 df       	rcall	.-510    	; 0x450 <TransformAlarmC__0__set_alarm>
+      {
+	signal Alarm.fired();
+      }
+      else
+      {
+	set_alarm();
+     64e:	ff 91       	pop	r31
+     650:	ef 91       	pop	r30
+     652:	bf 91       	pop	r27
+     654:	af 91       	pop	r26
+     656:	9f 91       	pop	r25
+     658:	8f 91       	pop	r24
+     65a:	7f 91       	pop	r23
+     65c:	6f 91       	pop	r22
+     65e:	5f 91       	pop	r21
+     660:	4f 91       	pop	r20
+     662:	3f 91       	pop	r19
+     664:	2f 91       	pop	r18
+     666:	0f 90       	pop	r0
+     668:	0f be       	out	0x3f, r0	; 63
+     66a:	0f 90       	pop	r0
+     66c:	1f 90       	pop	r1
+     66e:	18 95       	reti
+
+00000670 <VirtualizeTimerC__0__TimerFrom__getNow>:
+  /**
+   * Return the current time.
+   * @return Current time.
+   */
+  command uint32_t getNow();
+     670:	a9 ce       	rjmp	.-686    	; 0x3c4 <TransformAlarmC__0__Counter__get>
+     672:	08 95       	ret
+
+00000674 <__vector_66>:
+
+		call McuPowerState.update();
+	}
+
+	async command bool CompareA.isOn() { return SCIRQM & (1 << IRQMCP1); }
+
+// ----- COMPARE A: symbol counter control register (SCCR), compare mode (SCCMP)
+
+	async command void CompareA.setMode(uint8_t mode)
+	{
+		atomic
+		{
+			SCCR0 = (SCCR0 & ~(1 << SCCMP1)) 
+				| (mode & 0x1) << SCCMP1;
+		}
+	}
+
+	async command uint8_t CompareA.getMode()
+	{
+		return (SCCR0 >> SCCMP1) & 0x1;
+	}
+
+// ----- COMPARE A: ignore force for the symbol counter
+
+	async command void CompareA.force() { }
+
+// ----- COMPARE B: symbol counter output compare register (SCOCR)
+
+	async command uint32_t CompareB.get()
+	{
+		reg32_t time;
+
+		atomic
+		{
+			time.ll = SCOCR2LL;
+			time.lh = SCOCR2LH;
+			time.hl = SCOCR2HL;
+			time.hh	= SCOCR2HH;
+		}
+
+		return time.full;
+	}
+
+	async command void CompareB.set(uint32_t value)
+	{
+		reg32_t time;
+		
+		time.full = value;
+
+		atomic
+		{
+			SCOCR2HH = time.hh;
+			SCOCR2HL = time.hl;
+			SCOCR2LH = time.lh;
+			SCOCR2LL = time.ll;
+		}
+	}
+
+// ----- COMPARE B: symbol counter interrupt status register (SCIRQS), comare match flag (IRQSCP)
+
+	default async event void CompareB.fired() { }
+
+	AVR_ATOMIC_HANDLER(SCNT_CMP2_vect) { signal CompareB.fired(); }
+     674:	1f 92       	push	r1
+     676:	0f 92       	push	r0
+     678:	0f b6       	in	r0, 0x3f	; 63
+     67a:	0f 92       	push	r0
+     67c:	11 24       	eor	r1, r1
+     67e:	0f 90       	pop	r0
+     680:	0f be       	out	0x3f, r0	; 63
+     682:	0f 90       	pop	r0
+     684:	1f 90       	pop	r1
+     686:	18 95       	reti
+
+00000688 <__vector_67>:
+
+	async command bool CompareB.test() { return SCIRQS & (1 << IRQSCP2); }
+
+	async command void CompareB.reset() { SCIRQS = 1 << IRQSCP2; }
+
+// ----- COMPARE B: symbol counter interrupt mask register (SCIRQM), compare interrupt enable (IRQMCP)
+
+	async command void CompareB.start()
+	{
+		SET_BIT(SCIRQM, IRQMCP2);
+
+		call McuPowerState.update();
+	}
+
+	async command void CompareB.stop()
+	{
+		CLR_BIT(SCIRQM, IRQMCP2);
+
+		call McuPowerState.update();
+	}
+
+	async command bool CompareB.isOn() { return SCIRQM & (1 << IRQMCP2); }
+
+// ----- COMPARE B: symbol counter control register (SCCR), compare mode (SCCMP)
+
+	async command void CompareB.setMode(uint8_t mode)
+	{
+		atomic
+		{
+			SCCR0 = (SCCR0 & ~(1 << SCCMP2)) 
+				| (mode & 0x1) << SCCMP2;
+		}
+	}
+
+	async command uint8_t CompareB.getMode()
+	{
+		return (SCCR0 >> SCCMP2) & 0x1;
+	}
+
+// ----- COMPARE B: ignore force for the symbol counter
+
+	async command void CompareB.force() { }
+
+// ----- COMPARE C: symbol counter output compare register (SCOCR)
+
+	async command uint32_t CompareC.get()
+	{
+		reg32_t time;
+
+		atomic
+		{
+			time.ll = SCOCR3LL;
+			time.lh = SCOCR3LH;
+			time.hl = SCOCR3HL;
+			time.hh	= SCOCR3HH;
+		}
+
+		return time.full;
+	}
+
+	async command void CompareC.set(uint32_t value)
+	{
+		reg32_t time;
+		
+		time.full = value;
+
+		atomic
+		{
+			SCOCR3HH = time.hh;
+			SCOCR3HL = time.hl;
+			SCOCR3LH = time.lh;
+			SCOCR3LL = time.ll;
+		}
+	}
+
+// ----- COMPARE C: symbol counter interrupt status register (SCIRQS), comare match flag (IRQSCP)
+
+	default async event void CompareC.fired() { }
+
+	AVR_ATOMIC_HANDLER(SCNT_CMP3_vect) { signal CompareC.fired(); }
+     688:	1f 92       	push	r1
+     68a:	0f 92       	push	r0
+     68c:	0f b6       	in	r0, 0x3f	; 63
+     68e:	0f 92       	push	r0
+     690:	11 24       	eor	r1, r1
+     692:	0f 90       	pop	r0
+     694:	0f be       	out	0x3f, r0	; 63
+     696:	0f 90       	pop	r0
+     698:	1f 90       	pop	r1
+     69a:	18 95       	reti
+
+0000069c <RoundRobinResourceQueueC__0__RoundRobinQueue__isEnqueued>:
+      return TRUE;
+    }
+  }
+  	
+  async command bool RoundRobinQueue.isEnqueued(resource_client_id_t id) {
+     69c:	98 2f       	mov	r25, r24
+     69e:	96 95       	lsr	r25
+     6a0:	96 95       	lsr	r25
+     6a2:	96 95       	lsr	r25
+     6a4:	ea eb       	ldi	r30, 0xBA	; 186
+     6a6:	f3 e0       	ldi	r31, 0x03	; 3
+     6a8:	e9 0f       	add	r30, r25
+     6aa:	f1 1d       	adc	r31, r1
+     6ac:	87 70       	andi	r24, 0x07	; 7
+     6ae:	21 e0       	ldi	r18, 0x01	; 1
+     6b0:	30 e0       	ldi	r19, 0x00	; 0
+     6b2:	02 c0       	rjmp	.+4      	; 0x6b8 <RoundRobinResourceQueueC__0__RoundRobinQueue__isEnqueued+0x1c>
+     6b4:	22 0f       	add	r18, r18
+     6b6:	33 1f       	adc	r19, r19
+     6b8:	8a 95       	dec	r24
+     6ba:	e2 f7       	brpl	.-8      	; 0x6b4 <RoundRobinResourceQueueC__0__RoundRobinQueue__isEnqueued+0x18>
+     6bc:	80 81       	ld	r24, Z
+     6be:	82 23       	and	r24, r18
+  	return resQ[id / 8] & (1 << (id % 8));
+  }
+     6c0:	99 27       	eor	r25, r25
+     6c2:	08 95       	ret
+
+000006c4 <ArbiterP__0__Resource__release>:
+    atomic state = RES_CONTROLLED;
+    return FAIL;
+  }
+  
+  async command error_t Resource.release[uint8_t id]() {
+     6c4:	ef 92       	push	r14
+     6c6:	ff 92       	push	r15
+     6c8:	0f 93       	push	r16
+     6ca:	1f 93       	push	r17
+     6cc:	cf 93       	push	r28
+     6ce:	df 93       	push	r29
+     6d0:	98 2f       	mov	r25, r24
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     6d2:	8f b7       	in	r24, 0x3f	; 63
+     6d4:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     6d6:	e8 2e       	mov	r14, r24
+    atomic {
+      if(state == RES_BUSY && resId == id) {
+     6d8:	80 91 96 03 	lds	r24, 0x0396
+     6dc:	83 30       	cpi	r24, 0x03	; 3
+     6de:	09 f0       	breq	.+2      	; 0x6e2 <ArbiterP__0__Resource__release+0x1e>
+     6e0:	42 c0       	rjmp	.+132    	; 0x766 <ArbiterP__0__Resource__release+0xa2>
+     6e2:	80 91 92 03 	lds	r24, 0x0392
+     6e6:	89 17       	cp	r24, r25
+     6e8:	09 f0       	breq	.+2      	; 0x6ec <ArbiterP__0__Resource__release+0x28>
+     6ea:	3d c0       	rjmp	.+122    	; 0x766 <ArbiterP__0__Resource__release+0xa2>
+     6ec:	80 91 ba 03 	lds	r24, 0x03BA
+     6f0:	88 23       	and	r24, r24
+     6f2:	09 f0       	breq	.+2      	; 0x6f6 <ArbiterP__0__Resource__release+0x32>
+     6f4:	4a c0       	rjmp	.+148    	; 0x78a <ArbiterP__0__Resource__release+0xc6>
+     6f6:	3b c0       	rjmp	.+118    	; 0x76e <ArbiterP__0__Resource__release+0xaa>
+     6f8:	ef 2d       	mov	r30, r15
+     6fa:	e6 95       	lsr	r30
+     6fc:	e6 95       	lsr	r30
+     6fe:	e6 95       	lsr	r30
+     700:	ff 27       	eor	r31, r31
+     702:	4f 2d       	mov	r20, r15
+     704:	55 27       	eor	r21, r21
+     706:	e6 54       	subi	r30, 0x46	; 70
+     708:	fc 4f       	sbci	r31, 0xFC	; 252
+     70a:	9a 01       	movw	r18, r20
+     70c:	27 70       	andi	r18, 0x07	; 7
+     70e:	30 70       	andi	r19, 0x00	; 0
+     710:	81 e0       	ldi	r24, 0x01	; 1
+     712:	90 e0       	ldi	r25, 0x00	; 0
+     714:	02 c0       	rjmp	.+4      	; 0x71a <ArbiterP__0__Resource__release+0x56>
+     716:	88 0f       	add	r24, r24
+     718:	99 1f       	adc	r25, r25
+     71a:	2a 95       	dec	r18
+     71c:	e2 f7       	brpl	.-8      	; 0x716 <ArbiterP__0__Resource__release+0x52>
+     71e:	80 95       	com	r24
+     720:	20 81       	ld	r18, Z
+     722:	28 23       	and	r18, r24
+     724:	20 83       	st	Z, r18
+
+  async command resource_client_id_t RoundRobinQueue.dequeue() {
+    int i;
+    atomic {
+      for (i = last+1; ; i++) {
+        if(i == size)
+          i = 0;
+        if (call RoundRobinQueue.isEnqueued(i)) {
+          clearEntry(i);
+          last = i;
+     726:	c0 93 95 03 	sts	0x0395, r28
+     72a:	10 c0       	rjmp	.+32     	; 0x74c <ArbiterP__0__Resource__release+0x88>
+     72c:	21 96       	adiw	r28, 0x01	; 1
+     72e:	c2 30       	cpi	r28, 0x02	; 2
+     730:	d1 05       	cpc	r29, r1
+     732:	11 f4       	brne	.+4      	; 0x738 <ArbiterP__0__Resource__release+0x74>
+     734:	c0 e0       	ldi	r28, 0x00	; 0
+     736:	d0 e0       	ldi	r29, 0x00	; 0
+     738:	fc 2e       	mov	r15, r28
+     73a:	8c 2f       	mov	r24, r28
+     73c:	af df       	rcall	.-162    	; 0x69c <RoundRobinResourceQueueC__0__RoundRobinQueue__isEnqueued>
+     73e:	88 23       	and	r24, r24
+     740:	d9 f6       	brne	.-74     	; 0x6f8 <ArbiterP__0__Resource__release+0x34>
+     742:	c0 17       	cp	r28, r16
+          return i;
+        }
+        if (i == last)
+     744:	d1 07       	cpc	r29, r17
+     746:	91 f7       	brne	.-28     	; 0x72c <ArbiterP__0__Resource__release+0x68>
+     748:	4f ef       	ldi	r20, 0xFF	; 255
+     74a:	50 e0       	ldi	r21, 0x00	; 0
+     74c:	40 93 d8 03 	sts	0x03D8, r20
+        if(call Queue.isEmpty() == FALSE) {
+          reqResId = call Queue.dequeue();
+     750:	8f ef       	ldi	r24, 0xFF	; 255
+          resId = NO_RES;
+     752:	80 93 92 03 	sts	0x0392, r24
+     756:	81 e0       	ldi	r24, 0x01	; 1
+          state = RES_GRANTING;
+     758:	80 93 96 03 	sts	0x0396, r24
+     75c:	6a dd       	rcall	.-1324   	; 0x232 <ArbiterP__0__grantedTask__postTask>
+          post grantedTask();
+     75e:	ef be       	out	0x3f, r14	; 63
+     760:	80 e0       	ldi	r24, 0x00	; 0
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     762:	90 e0       	ldi	r25, 0x00	; 0
+     764:	18 c0       	rjmp	.+48     	; 0x796 <ArbiterP__0__Resource__release+0xd2>
+     766:	ef be       	out	0x3f, r14	; 63
+     768:	81 e0       	ldi	r24, 0x01	; 1
+     76a:	90 e0       	ldi	r25, 0x00	; 0
+     76c:	14 c0       	rjmp	.+40     	; 0x796 <ArbiterP__0__Resource__release+0xd2>
+     76e:	82 e0       	ldi	r24, 0x02	; 2
+     770:	80 93 92 03 	sts	0x0392, r24
+          call ResourceConfigure.unconfigure[id]();
+        }
+        else {
+          resId = default_owner_id;
+     774:	10 92 96 03 	sts	0x0396, r1
+          state = RES_CONTROLLED;
+     778:	80 91 7a 00 	lds	r24, 0x007A
+    SET_BIT(ADCSRA, ADEN);
+    call McuPowerState.update();
+  }
+  async command void HplAtm128Adc.disableAdc() {
+    CLR_BIT(ADCSRA, ADEN);
+     77c:	8f 77       	andi	r24, 0x7F	; 127
+     77e:	80 93 7a 00 	sts	0x007A, r24
+     782:	8f ef       	ldi	r24, 0xFF	; 255
+     784:	80 93 91 03 	sts	0x0391, r24
+     788:	ea cf       	rjmp	.-44     	; 0x75e <ArbiterP__0__Resource__release+0x9a>
+     78a:	80 91 95 03 	lds	r24, 0x0395
+     78e:	08 2f       	mov	r16, r24
+     790:	11 27       	eor	r17, r17
+     792:	e8 01       	movw	r28, r16
+     794:	cb cf       	rjmp	.-106    	; 0x72c <ArbiterP__0__Resource__release+0x68>
+     796:	df 91       	pop	r29
+     798:	cf 91       	pop	r28
+     79a:	1f 91       	pop	r17
+     79c:	0f 91       	pop	r16
+     79e:	ff 90       	pop	r15
+     7a0:	ef 90       	pop	r14
+     7a2:	08 95       	ret
+
+000007a4 <BlinkC__SerialByte__send>:
+   *
+   * @param byte The byte to send.
+   * @return SUCCESS if byte was sent, FAIL otherwise.
+   */
+  async command error_t send( uint8_t byte );
+     7a4:	98 2f       	mov	r25, r24
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     7a6:	8f b7       	in	r24, 0x3f	; 63
+     7a8:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     7aa:	28 2f       	mov	r18, r24
+     7ac:	33 27       	eor	r19, r19
+     7ae:	80 91 b2 03 	lds	r24, 0x03B2
+     7b2:	88 23       	and	r24, r24
+     7b4:	21 f0       	breq	.+8      	; 0x7be <BlinkC__SerialByte__send+0x1a>
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     7b6:	2f bf       	out	0x3f, r18	; 63
+     7b8:	85 e0       	ldi	r24, 0x05	; 5
+     7ba:	90 e0       	ldi	r25, 0x00	; 0
+     7bc:	08 95       	ret
+     7be:	81 e0       	ldi	r24, 0x01	; 1
+     7c0:	80 93 b2 03 	sts	0x03B2, r24
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     7c4:	2f bf       	out	0x3f, r18	; 63
+     7c6:	80 91 c8 00 	lds	r24, 0x00C8
+     7ca:	8f 7b       	andi	r24, 0xBF	; 191
+     7cc:	80 93 c8 00 	sts	0x00C8, r24
+     7d0:	80 91 c9 00 	lds	r24, 0x00C9
+     7d4:	8f 7b       	andi	r24, 0xBF	; 191
+     7d6:	80 93 c9 00 	sts	0x00C9, r24
+     7da:	90 93 ce 00 	sts	0x00CE, r25
+     7de:	80 91 c8 00 	lds	r24, 0x00C8
+     7e2:	80 64       	ori	r24, 0x40	; 64
+     7e4:	80 93 c8 00 	sts	0x00C8, r24
+     7e8:	80 91 c8 00 	lds	r24, 0x00C8
+     7ec:	86 ff       	sbrs	r24, 6
+     7ee:	fc cf       	rjmp	.-8      	; 0x7e8 <BlinkC__SerialByte__send+0x44>
+     7f0:	80 91 c8 00 	lds	r24, 0x00C8
+     7f4:	8f 7b       	andi	r24, 0xBF	; 191
+     7f6:	80 93 c8 00 	sts	0x00C8, r24
+     7fa:	80 91 c8 00 	lds	r24, 0x00C8
+     7fe:	80 64       	ori	r24, 0x40	; 64
+     800:	80 93 c8 00 	sts	0x00C8, r24
+     804:	80 91 c9 00 	lds	r24, 0x00C9
+     808:	80 64       	ori	r24, 0x40	; 64
+     80a:	80 93 c9 00 	sts	0x00C9, r24
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     80e:	8f b7       	in	r24, 0x3f	; 63
+     810:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     812:	99 27       	eor	r25, r25
+     814:	10 92 b2 03 	sts	0x03B2, r1
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     818:	8f bf       	out	0x3f, r24	; 63
+     81a:	80 e0       	ldi	r24, 0x00	; 0
+     81c:	90 e0       	ldi	r25, 0x00	; 0
+     81e:	08 95       	ret
+
+00000820 <BlinkC__print_num>:
+    call Timer2.startPeriodic( 1000 );
+    
+  }
+
+    bool print_num(uint16_t val){
+     820:	ef 92       	push	r14
+     822:	ff 92       	push	r15
+     824:	0f 93       	push	r16
+     826:	1f 93       	push	r17
+    	static char count = 0;
+    	char a,b,c,d;
+    	
+    	a = hexTable[HIGH(val>>8)];
+     828:	a9 2f       	mov	r26, r25
+     82a:	bb 27       	eor	r27, r27
+     82c:	fd 01       	movw	r30, r26
+     82e:	04 e0       	ldi	r16, 0x04	; 4
+     830:	f6 95       	lsr	r31
+     832:	e7 95       	ror	r30
+     834:	0a 95       	dec	r16
+     836:	e1 f7       	brne	.-8      	; 0x830 <BlinkC__print_num+0x10>
+     838:	e0 50       	subi	r30, 0x00	; 0
+     83a:	fe 4f       	sbci	r31, 0xFE	; 254
+     83c:	e0 80       	ld	r14, Z
+    	b = hexTable[LOW(val>>8)];
+     83e:	af 70       	andi	r26, 0x0F	; 15
+     840:	b0 70       	andi	r27, 0x00	; 0
+     842:	a0 50       	subi	r26, 0x00	; 0
+     844:	be 4f       	sbci	r27, 0xFE	; 254
+     846:	fc 90       	ld	r15, X
+    	c = hexTable[HIGH(val)];
+     848:	fc 01       	movw	r30, r24
+     84a:	e0 7f       	andi	r30, 0xF0	; 240
+     84c:	f0 70       	andi	r31, 0x00	; 0
+     84e:	14 e0       	ldi	r17, 0x04	; 4
+     850:	f6 95       	lsr	r31
+     852:	e7 95       	ror	r30
+     854:	1a 95       	dec	r17
+     856:	e1 f7       	brne	.-8      	; 0x850 <BlinkC__print_num+0x30>
+     858:	e0 50       	subi	r30, 0x00	; 0
+     85a:	fe 4f       	sbci	r31, 0xFE	; 254
+     85c:	00 81       	ld	r16, Z
+    	d = hexTable[LOW(val)];
+     85e:	8f 70       	andi	r24, 0x0F	; 15
+     860:	90 70       	andi	r25, 0x00	; 0
+     862:	80 50       	subi	r24, 0x00	; 0
+     864:	9e 4f       	sbci	r25, 0xFE	; 254
+     866:	fc 01       	movw	r30, r24
+     868:	10 81       	ld	r17, Z
+    	
+    	call SerialByte.send('0');
+     86a:	80 e3       	ldi	r24, 0x30	; 48
+     86c:	9b df       	rcall	.-202    	; 0x7a4 <BlinkC__SerialByte__send>
+     86e:	88 e7       	ldi	r24, 0x78	; 120
+		call SerialByte.send('x');
+     870:	99 df       	rcall	.-206    	; 0x7a4 <BlinkC__SerialByte__send>
+     872:	8e 2d       	mov	r24, r14
+     874:	97 df       	rcall	.-210    	; 0x7a4 <BlinkC__SerialByte__send>
+		call SerialByte.send(a);
+     876:	8f 2d       	mov	r24, r15
+     878:	95 df       	rcall	.-214    	; 0x7a4 <BlinkC__SerialByte__send>
+     87a:	80 2f       	mov	r24, r16
+		call SerialByte.send(b);
+     87c:	93 df       	rcall	.-218    	; 0x7a4 <BlinkC__SerialByte__send>
+     87e:	81 2f       	mov	r24, r17
+     880:	91 df       	rcall	.-222    	; 0x7a4 <BlinkC__SerialByte__send>
+		call SerialByte.send(c);
+     882:	8c e7       	ldi	r24, 0x7C	; 124
+     884:	8f df       	rcall	.-226    	; 0x7a4 <BlinkC__SerialByte__send>
+     886:	80 91 97 03 	lds	r24, 0x0397
+		call SerialByte.send(d);
+     88a:	8f 5f       	subi	r24, 0xFF	; 255
+     88c:	80 93 97 03 	sts	0x0397, r24
+		call SerialByte.send('|');
+     890:	88 30       	cpi	r24, 0x08	; 8
+     892:	31 f4       	brne	.+12     	; 0x8a0 <BlinkC__print_num+0x80>
+		
+		count ++;
+     894:	8d e0       	ldi	r24, 0x0D	; 13
+     896:	86 df       	rcall	.-244    	; 0x7a4 <BlinkC__SerialByte__send>
+     898:	8a e0       	ldi	r24, 0x0A	; 10
+     89a:	84 df       	rcall	.-248    	; 0x7a4 <BlinkC__SerialByte__send>
+     89c:	10 92 97 03 	sts	0x0397, r1
+		if(8 == count){
+     8a0:	80 e0       	ldi	r24, 0x00	; 0
+			call SerialByte.send('\r');
+     8a2:	90 e0       	ldi	r25, 0x00	; 0
+     8a4:	1f 91       	pop	r17
+     8a6:	0f 91       	pop	r16
+			call SerialByte.send('\n');
+     8a8:	ff 90       	pop	r15
+     8aa:	ef 90       	pop	r14
+     8ac:	08 95       	ret
+
+000008ae <BlinkC__Leds__led0Toggle>:
+			count = 0;
+     8ae:	8f b7       	in	r24, 0x3f	; 63
+    sei();
+}
+/* Disables all interrupts. */
+inline void __nesc_disable_interrupt() @safe() {
+    cli();
+     8b0:	f8 94       	cli
+		}
+		
+    	return SUCCESS;
+    }
+     8b2:	99 27       	eor	r25, r25
+     8b4:	2e b1       	in	r18, 0x0e	; 14
+     8b6:	34 e0       	ldi	r19, 0x04	; 4
+     8b8:	23 27       	eor	r18, r19
+     8ba:	2e b9       	out	0x0e, r18	; 14
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     8bc:	8f bf       	out	0x3f, r24	; 63
+     8be:	08 95       	ret
+
+000008c0 <BlinkC__Leds__led2Toggle>:
+   /**
+   * Toggle LED 2; if it was off, turn it on, if was on, turn it off.
+   * The color of this LED depends on the platform.
+   */
+  async command void led2Toggle();
+     8c0:	8f b7       	in	r24, 0x3f	; 63
+    sei();
+}
+/* Disables all interrupts. */
+inline void __nesc_disable_interrupt() @safe() {
+    cli();
+     8c2:	f8 94       	cli
+}
+
+/* Defines data type for storing interrupt mask state during atomic. */
+typedef uint8_t __nesc_atomic_t;
+__nesc_atomic_t __nesc_atomic_start(void);
+void __nesc_atomic_end(__nesc_atomic_t original_SREG);
+
+#ifndef NESC_BUILD_BINARY
+/* @spontaneous() functions should not be included when NESC_BUILD_BINARY
+   is #defined, to avoid duplicate functions definitions wheb binary
+   components are used. Such functions do need a prototype in all cases,
+   though. */
+
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     8c4:	99 27       	eor	r25, r25
+     8c6:	2e b1       	in	r18, 0x0e	; 14
+     8c8:	30 e1       	ldi	r19, 0x10	; 16
+     8ca:	23 27       	eor	r18, r19
+     8cc:	2e b9       	out	0x0e, r18	; 14
+    return result;
+}
+
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     8ce:	8f bf       	out	0x3f, r24	; 63
+     8d0:	08 95       	ret
+
+000008d2 <AdcP__sample>:
+  uint8_t prescaler() {
+    return call Atm128AdcConfig.getPrescaler[client]();
+  }
+
+  void sample() {
+     8d2:	cf 92       	push	r12
+     8d4:	df 92       	push	r13
+     8d6:	ef 92       	push	r14
+     8d8:	ff 92       	push	r15
+     8da:	0f 93       	push	r16
+     8dc:	1f 93       	push	r17
+     8de:	80 91 e6 03 	lds	r24, 0x03E6
+   * Obtain reference voltage
+   * @return The reference voltage to use. Must be one of the 
+   *   ATM128_ADC_VREF_xxx values from Atm128Adc.h.
+   */
+  async command uint8_t getRefVoltage();
+     8e2:	88 23       	and	r24, r24
+     8e4:	39 f0       	breq	.+14     	; 0x8f4 <AdcP__sample+0x22>
+     8e6:	81 30       	cpi	r24, 0x01	; 1
+     8e8:	11 f4       	brne	.+4      	; 0x8ee <AdcP__sample+0x1c>
+     8ea:	80 e0       	ldi	r24, 0x00	; 0
+     8ec:	01 c0       	rjmp	.+2      	; 0x8f0 <AdcP__sample+0x1e>
+     8ee:	8e e1       	ldi	r24, 0x1E	; 30
+     8f0:	dd 24       	eor	r13, r13
+     8f2:	03 c0       	rjmp	.+6      	; 0x8fa <AdcP__sample+0x28>
+     8f4:	33 e0       	ldi	r19, 0x03	; 3
+     8f6:	d3 2e       	mov	r13, r19
+     8f8:	89 e2       	ldi	r24, 0x29	; 41
+    call Atm128AdcSingle.getData(channel(), refVoltage(), FALSE, prescaler());
+     8fa:	e8 2e       	mov	r14, r24
+     8fc:	ff 24       	eor	r15, r15
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     8fe:	cf b6       	in	r12, 0x3f	; 63
+     900:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     902:	10 91 a8 03 	lds	r17, 0x03A8
+     906:	81 2f       	mov	r24, r17
+     908:	8e 7f       	andi	r24, 0xFE	; 254
+     90a:	80 93 a8 03 	sts	0x03A8, r24
+
+  async event void HplAtm128Adc.dataReady(uint16_t data) {
+    bool precise, multiple;
+    uint8_t channel;
+
+    atomic 
+      {
+	channel = f.channel;
+	precise = f.precise;
+	multiple = f.multiple;
+      }
+
+    if (!multiple)
+      {
+	/* A single sample. Disable the ADC interrupt to avoid starting
+	   a new sample at the next "sleep" instruction. */
+	call HplAtm128Adc.disableInterruption();
+	signal Atm128AdcSingle.dataReady(data, precise);
+      }
+    else
+      {
+	/* Multiple sampling. The user can:
+	   - tell us to stop sampling
+	   - or, to continue sampling on a new channel, possibly with a
+	     new reference voltage; however this change applies not to
+	     the next sample (the hardware has already started working on
+	     that), but on the one after.
+	*/
+	bool cont;
+	uint8_t nextChannel, nextVoltage;
+	Atm128Admux_t admux;
+
+	atomic 
+	  {
+	    admux = call HplAtm128Adc.getAdmux();
+	    nextVoltage = admux.refs;
+	    nextChannel = admux.mux;
+	  }
+
+	cont = signal Atm128AdcMultiple.dataReady(data, precise, channel,
+						  &nextChannel, &nextVoltage);
+	atomic
+	  if (cont)
+	    {
+	      /* Switch channels and update our internal channel+precision
+		 tracking state (f and nextF). Note that this tracking will
+		 be incorrect if we take too long to get to this point. */
+	      admux.refs = nextVoltage;
+	      admux.mux = nextChannel;
+	      call HplAtm128Adc.setAdmux(admux);
+
+	      f = nextF;
+	      nextF.channel = nextChannel;
+	      nextF.precise = isPrecise(admux, nextChannel, nextVoltage);
+	    }
+	  else
+	    call HplAtm128Adc.cancel();
+      }
+  }
+
+  /* Start sampling based on request parameters */
+  void getData(uint8_t channel, uint8_t refVoltage, bool leftJustify, uint8_t prescaler) {
+    Atm128Admux_t admux;
+    Atm128Adcsra_t adcsra;
+
+    admux = call HplAtm128Adc.getAdmux();
+     90e:	4c dc       	rcall	.-1896   	; 0x1a8 <Atm128AdcP__HplAtm128Adc__getAdmux>
+     910:	4d 2d       	mov	r20, r13
+    f.precise = isPrecise(admux, channel, refVoltage);
+     912:	6e 2d       	mov	r22, r14
+     914:	26 dc       	rcall	.-1972   	; 0x162 <Atm128AdcP__isPrecise>
+     916:	81 70       	andi	r24, 0x01	; 1
+     918:	88 0f       	add	r24, r24
+     91a:	10 78       	andi	r17, 0x80	; 128
+     91c:	2e 2d       	mov	r18, r14
+     91e:	2f 71       	andi	r18, 0x1F	; 31
+    f.channel = channel;
+     920:	92 2f       	mov	r25, r18
+     922:	99 0f       	add	r25, r25
+     924:	99 0f       	add	r25, r25
+     926:	18 2b       	or	r17, r24
+     928:	19 2b       	or	r17, r25
+     92a:	10 93 a8 03 	sts	0x03A8, r17
+     92e:	e5 fe       	sbrs	r14, 5
+     930:	04 c0       	rjmp	.+8      	; 0x93a <AdcP__sample+0x68>
+
+    admux.refs = refVoltage;
+    admux.adlar = leftJustify;
+    //----------------------------------------	//added by zn : 20111114
+    if(channel & 0x20)
+     932:	80 91 7b 00 	lds	r24, 0x007B
+    {
+	SET_BIT(ADCSRB, MUX5);
+     936:	88 60       	ori	r24, 0x08	; 8
+     938:	03 c0       	rjmp	.+6      	; 0x940 <AdcP__sample+0x6e>
+     93a:	80 91 7b 00 	lds	r24, 0x007B
+    }
+    else
+    {
+	CLR_BIT(ADCSRB, MUX5);
+     93e:	87 7f       	andi	r24, 0xF7	; 247
+     940:	80 93 7b 00 	sts	0x007B, r24
+     944:	dd 0c       	add	r13, r13
+     946:	dd 0c       	add	r13, r13
+     948:	dd 0c       	add	r13, r13
+     94a:	dd 0c       	add	r13, r13
+     94c:	dd 0c       	add	r13, r13
+     94e:	dd 0c       	add	r13, r13
+     950:	2d 29       	or	r18, r13
+     952:	82 2f       	mov	r24, r18
+     954:	99 27       	eor	r25, r25
+     956:	80 93 7c 00 	sts	0x007C, r24
+     95a:	88 ed       	ldi	r24, 0xD8	; 216
+     95c:	90 e0       	ldi	r25, 0x00	; 0
+     95e:	80 93 7a 00 	sts	0x007A, r24
+     962:	8c 2d       	mov	r24, r12
+     964:	99 27       	eor	r25, r25
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     966:	8f bf       	out	0x3f, r24	; 63
+     968:	1f 91       	pop	r17
+  SREG = original_SREG;
+     96a:	0f 91       	pop	r16
+     96c:	ff 90       	pop	r15
+     96e:	ef 90       	pop	r14
+     970:	df 90       	pop	r13
+     972:	cf 90       	pop	r12
+     974:	08 95       	ret
+
+00000976 <ArbitratedReadC__0__Resource__granted>:
+  command error_t Read.read[uint8_t client]() {
+    return call Resource.request[client]();
+  }
+
+  event void Resource.granted[uint8_t client]() {
+     976:	91 e0       	ldi	r25, 0x01	; 1
+     978:	90 93 b5 03 	sts	0x03B5, r25
+  }
+
+  error_t startGet(uint8_t newState, uint8_t newClient) {
+    /* Note: we retry imprecise results in dataReady */
+    state = newState;
+    client = newClient;
+     97c:	80 93 e6 03 	sts	0x03E6, r24
+    sample();
+     980:	a8 cf       	rjmp	.-176    	; 0x8d2 <AdcP__sample>
+
+00000982 <ArbiterP__0__Resource__request>:
+     982:	0f 93       	push	r16
+     984:	1f 93       	push	r17
+     986:	cf 93       	push	r28
+     988:	df 93       	push	r29
+     98a:	18 2f       	mov	r17, r24
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     98c:	8f b7       	in	r24, 0x3f	; 63
+     98e:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     990:	28 2f       	mov	r18, r24
+     992:	33 27       	eor	r19, r19
+     994:	02 2f       	mov	r16, r18
+     996:	80 91 96 03 	lds	r24, 0x0396
+     99a:	88 23       	and	r24, r24
+     99c:	09 f0       	breq	.+2      	; 0x9a0 <ArbiterP__0__Resource__request+0x1e>
+     99e:	30 c0       	rjmp	.+96     	; 0xa00 <ArbiterP__0__Resource__request+0x7e>
+     9a0:	81 e0       	ldi	r24, 0x01	; 1
+     9a2:	80 93 96 03 	sts	0x0396, r24
+     9a6:	10 93 d8 03 	sts	0x03D8, r17
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     9aa:	2f bf       	out	0x3f, r18	; 63
+     9ac:	2f b7       	in	r18, 0x3f	; 63
+     9ae:	f8 94       	cli
+     9b0:	33 27       	eor	r19, r19
+     9b2:	80 91 7a 00 	lds	r24, 0x007A
+     9b6:	80 68       	ori	r24, 0x80	; 128
+     9b8:	80 93 7a 00 	sts	0x007A, r24
+     9bc:	8f ef       	ldi	r24, 0xFF	; 255
+     9be:	80 93 91 03 	sts	0x0391, r24
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     9c2:	2f bf       	out	0x3f, r18	; 63
+     9c4:	8f b7       	in	r24, 0x3f	; 63
+     9c6:	f8 94       	cli
+     9c8:	c8 2f       	mov	r28, r24
+     9ca:	dd 27       	eor	r29, r29
+     9cc:	9c 2f       	mov	r25, r28
+          call ResourceConfigure.unconfigure[id]();
+          signal ResourceDefaultOwner.granted();
+        }
+        return SUCCESS;
+      }
+    }
+    return FAIL;
+  }
+
+  async command error_t ResourceDefaultOwner.release() {
+    atomic {
+      if(resId == default_owner_id) {
+     9ce:	80 91 92 03 	lds	r24, 0x0392
+     9d2:	82 30       	cpi	r24, 0x02	; 2
+     9d4:	99 f4       	brne	.+38     	; 0x9fc <ArbiterP__0__Resource__request+0x7a>
+        if(state == RES_GRANTING) {
+     9d6:	80 91 96 03 	lds	r24, 0x0396
+     9da:	81 30       	cpi	r24, 0x01	; 1
+     9dc:	11 f4       	brne	.+4      	; 0x9e2 <ArbiterP__0__Resource__request+0x60>
+          post grantedTask();
+     9de:	29 dc       	rcall	.-1966   	; 0x232 <ArbiterP__0__grantedTask__postTask>
+     9e0:	09 c0       	rjmp	.+18     	; 0x9f4 <ArbiterP__0__Resource__request+0x72>
+     9e2:	82 30       	cpi	r24, 0x02	; 2
+          return SUCCESS;
+        }
+        else if(state == RES_IMM_GRANTING) {
+     9e4:	59 f4       	brne	.+22     	; 0x9fc <ArbiterP__0__Resource__request+0x7a>
+     9e6:	80 91 d8 03 	lds	r24, 0x03D8
+          resId = reqResId;
+     9ea:	80 93 92 03 	sts	0x0392, r24
+     9ee:	83 e0       	ldi	r24, 0x03	; 3
+          state = RES_BUSY;
+     9f0:	80 93 96 03 	sts	0x0396, r24
+     9f4:	cf bf       	out	0x3f, r28	; 63
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     9f6:	80 e0       	ldi	r24, 0x00	; 0
+     9f8:	90 e0       	ldi	r25, 0x00	; 0
+     9fa:	24 c0       	rjmp	.+72     	; 0xa44 <ArbiterP__0__Resource__request+0xc2>
+     9fc:	9f bf       	out	0x3f, r25	; 63
+     9fe:	fb cf       	rjmp	.-10     	; 0x9f6 <ArbiterP__0__Resource__request+0x74>
+     a00:	80 91 d8 03 	lds	r24, 0x03D8
+     a04:	81 17       	cp	r24, r17
+     a06:	11 f4       	brne	.+4      	; 0xa0c <ArbiterP__0__Resource__request+0x8a>
+     a08:	2f bf       	out	0x3f, r18	; 63
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     a0a:	f5 cf       	rjmp	.-22     	; 0x9f6 <ArbiterP__0__Resource__request+0x74>
+     a0c:	81 2f       	mov	r24, r17
+          break;
+      }
+      return NO_ENTRY;
+    }
+  }
+  
+  async command error_t RoundRobinQueue.enqueue(resource_client_id_t id) {
+    atomic {
+      if (!(call RoundRobinQueue.isEnqueued(id))) {
+     a0e:	46 de       	rcall	.-884    	; 0x69c <RoundRobinResourceQueueC__0__RoundRobinQueue__isEnqueued>
+     a10:	88 23       	and	r24, r24
+     a12:	19 f0       	breq	.+6      	; 0xa1a <ArbiterP__0__Resource__request+0x98>
+     a14:	85 e0       	ldi	r24, 0x05	; 5
+     a16:	90 e0       	ldi	r25, 0x00	; 0
+     a18:	14 c0       	rjmp	.+40     	; 0xa42 <ArbiterP__0__Resource__request+0xc0>
+     a1a:	e1 2f       	mov	r30, r17
+     a1c:	e6 95       	lsr	r30
+        resQ[id / 8] |=  1 << (id % 8);
+     a1e:	e6 95       	lsr	r30
+     a20:	e6 95       	lsr	r30
+     a22:	ff 27       	eor	r31, r31
+     a24:	e6 54       	subi	r30, 0x46	; 70
+     a26:	fc 4f       	sbci	r31, 0xFC	; 252
+     a28:	17 70       	andi	r17, 0x07	; 7
+     a2a:	81 e0       	ldi	r24, 0x01	; 1
+     a2c:	90 e0       	ldi	r25, 0x00	; 0
+     a2e:	02 c0       	rjmp	.+4      	; 0xa34 <ArbiterP__0__Resource__request+0xb2>
+     a30:	88 0f       	add	r24, r24
+     a32:	99 1f       	adc	r25, r25
+     a34:	1a 95       	dec	r17
+     a36:	e2 f7       	brpl	.-8      	; 0xa30 <ArbiterP__0__Resource__request+0xae>
+     a38:	20 81       	ld	r18, Z
+     a3a:	28 2b       	or	r18, r24
+     a3c:	20 83       	st	Z, r18
+     a3e:	80 e0       	ldi	r24, 0x00	; 0
+     a40:	90 e0       	ldi	r25, 0x00	; 0
+     a42:	0f bf       	out	0x3f, r16	; 63
+     a44:	df 91       	pop	r29
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     a46:	cf 91       	pop	r28
+     a48:	1f 91       	pop	r17
+     a4a:	0f 91       	pop	r16
+     a4c:	08 95       	ret
+
+00000a4e <VirtualizeTimerC__0__fireTimers>:
+
+  task void updateFromTimer();
+
+  void fireTimers(uint32_t now)
+  {
+     a4e:	af 92       	push	r10
+     a50:	bf 92       	push	r11
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+  SREG = original_SREG;
+     a52:	cf 92       	push	r12
+     a54:	df 92       	push	r13
+     a56:	ef 92       	push	r14
+     a58:	ff 92       	push	r15
+     a5a:	0f 93       	push	r16
+     a5c:	1f 93       	push	r17
+     a5e:	cf 93       	push	r28
+     a60:	df 93       	push	r29
+     a62:	5b 01       	movw	r10, r22
+     a64:	6c 01       	movw	r12, r24
+     a66:	c0 e0       	ldi	r28, 0x00	; 0
+     a68:	d0 e0       	ldi	r29, 0x00	; 0
+     a6a:	eb eb       	ldi	r30, 0xBB	; 187
+     a6c:	f3 e0       	ldi	r31, 0x03	; 3
+    uint16_t num;
+
+    for (num=0; num<NUM_TIMERS; num++)
+      {
+	Timer_t* timer = &m_timers[num];
+
+	if (timer->isrunning)
+     a6e:	60 85       	ldd	r22, Z+8	; 0x08
+     a70:	61 ff       	sbrs	r22, 1
+     a72:	36 c0       	rjmp	.+108    	; 0xae0 <VirtualizeTimerC__0__fireTimers+0x92>
+	  {
+	    uint32_t elapsed = now - timer->t0;
+     a74:	20 81       	ld	r18, Z
+     a76:	31 81       	ldd	r19, Z+1	; 0x01
+     a78:	42 81       	ldd	r20, Z+2	; 0x02
+     a7a:	53 81       	ldd	r21, Z+3	; 0x03
+
+	    if (elapsed >= timer->dt)
+     a7c:	e4 80       	ldd	r14, Z+4	; 0x04
+     a7e:	f5 80       	ldd	r15, Z+5	; 0x05
+     a80:	06 81       	ldd	r16, Z+6	; 0x06
+     a82:	17 81       	ldd	r17, Z+7	; 0x07
+     a84:	d6 01       	movw	r26, r12
+     a86:	c5 01       	movw	r24, r10
+     a88:	82 1b       	sub	r24, r18
+     a8a:	93 0b       	sbc	r25, r19
+     a8c:	a4 0b       	sbc	r26, r20
+     a8e:	b5 0b       	sbc	r27, r21
+     a90:	8e 15       	cp	r24, r14
+     a92:	9f 05       	cpc	r25, r15
+     a94:	a0 07       	cpc	r26, r16
+     a96:	b1 07       	cpc	r27, r17
+     a98:	18 f1       	brcs	.+70     	; 0xae0 <VirtualizeTimerC__0__fireTimers+0x92>
+	      {
+		if (timer->isoneshot)
+     a9a:	60 ff       	sbrs	r22, 0
+     a9c:	03 c0       	rjmp	.+6      	; 0xaa4 <VirtualizeTimerC__0__fireTimers+0x56>
+		  timer->isrunning = FALSE;
+     a9e:	6d 7f       	andi	r22, 0xFD	; 253
+     aa0:	60 87       	std	Z+8, r22	; 0x08
+     aa2:	08 c0       	rjmp	.+16     	; 0xab4 <VirtualizeTimerC__0__fireTimers+0x66>
+		else // Update timer for next event
+		  timer->t0 += timer->dt;
+     aa4:	2e 0d       	add	r18, r14
+     aa6:	3f 1d       	adc	r19, r15
+     aa8:	40 1f       	adc	r20, r16
+     aaa:	51 1f       	adc	r21, r17
+     aac:	20 83       	st	Z, r18
+     aae:	31 83       	std	Z+1, r19	; 0x01
+     ab0:	42 83       	std	Z+2, r20	; 0x02
+     ab2:	53 83       	std	Z+3, r21	; 0x03
+     ab4:	c1 30       	cpi	r28, 0x01	; 1
+     ab6:	39 f0       	breq	.+14     	; 0xac6 <VirtualizeTimerC__0__fireTimers+0x78>
+     ab8:	c1 30       	cpi	r28, 0x01	; 1
+     aba:	18 f0       	brcs	.+6      	; 0xac2 <VirtualizeTimerC__0__fireTimers+0x74>
+     abc:	c2 30       	cpi	r28, 0x02	; 2
+     abe:	b1 f4       	brne	.+44     	; 0xaec <VirtualizeTimerC__0__fireTimers+0x9e>
+     ac0:	0b c0       	rjmp	.+22     	; 0xad8 <VirtualizeTimerC__0__fireTimers+0x8a>
+
+
+  event void Timer0.fired()
+  {
+    dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
+		
+    call Leds.led0Toggle();
+     ac2:	f5 de       	rcall	.-534    	; 0x8ae <BlinkC__Leds__led0Toggle>
+     ac4:	13 c0       	rjmp	.+38     	; 0xaec <VirtualizeTimerC__0__fireTimers+0x9e>
+     ac6:	8f b7       	in	r24, 0x3f	; 63
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     ac8:	f8 94       	cli
+     aca:	99 27       	eor	r25, r25
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     acc:	2e b1       	in	r18, 0x0e	; 14
+     ace:	38 e0       	ldi	r19, 0x08	; 8
+     ad0:	23 27       	eor	r18, r19
+     ad2:	2e b9       	out	0x0e, r18	; 14
+     ad4:	8f bf       	out	0x3f, r24	; 63
+    return result;
+}
+
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     ad6:	0a c0       	rjmp	.+20     	; 0xaec <VirtualizeTimerC__0__fireTimers+0x9e>
+     ad8:	f3 de       	rcall	.-538    	; 0x8c0 <BlinkC__Leds__led2Toggle>
+    //call Vol0_Read.read();
+  }
+  
+  event void Timer1.fired()
+  {
+    dbg("BlinkC", "Timer 1 fired @ %s \n", sim_time_string());
+    call Leds.led1Toggle();
+  }
+  
+  event void Timer2.fired()
+  {
+    dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
+    call Leds.led2Toggle();
+     ada:	80 e0       	ldi	r24, 0x00	; 0
+     adc:	52 df       	rcall	.-348    	; 0x982 <ArbiterP__0__Resource__request>
+   *                 resource.<br>
+   *         EBUSY You have already requested this resource and a
+   *               granted event is pending
+   */
+  async command error_t request();
+     ade:	06 c0       	rjmp	.+12     	; 0xaec <VirtualizeTimerC__0__fireTimers+0x9e>
+     ae0:	21 96       	adiw	r28, 0x01	; 1
+     ae2:	39 96       	adiw	r30, 0x09	; 9
+     ae4:	c3 30       	cpi	r28, 0x03	; 3
+     ae6:	d1 05       	cpc	r29, r1
+     ae8:	09 f0       	breq	.+2      	; 0xaec <VirtualizeTimerC__0__fireTimers+0x9e>
+     aea:	c1 cf       	rjmp	.-126    	; 0xa6e <VirtualizeTimerC__0__fireTimers+0x20>
+     aec:	9e db       	rcall	.-2244   	; 0x22a <VirtualizeTimerC__0__updateFromTimer__postTask>
+     aee:	df 91       	pop	r29
+     af0:	cf 91       	pop	r28
+
+		signal Timer.fired[num]();
+    break;
+	      }
+	  }
+      }
+    post updateFromTimer();
+     af2:	1f 91       	pop	r17
+     af4:	0f 91       	pop	r16
+     af6:	ff 90       	pop	r15
+     af8:	ef 90       	pop	r14
+     afa:	df 90       	pop	r13
+     afc:	cf 90       	pop	r12
+     afe:	bf 90       	pop	r11
+     b00:	af 90       	pop	r10
+     b02:	08 95       	ret
+
+00000b04 <AlarmToTimerC__0__start>:
+  uint32_t m_dt;
+  bool m_oneshot;
+
+  void start(uint32_t t0, uint32_t dt, bool oneshot)
+  {
+     b04:	0f 93       	push	r16
+     b06:	1f 93       	push	r17
+    m_dt = dt;
+     b08:	20 93 db 03 	sts	0x03DB, r18
+     b0c:	30 93 dc 03 	sts	0x03DC, r19
+     b10:	40 93 dd 03 	sts	0x03DD, r20
+     b14:	50 93 de 03 	sts	0x03DE, r21
+    m_oneshot = oneshot;
+     b18:	00 93 a7 03 	sts	0x03A7, r16
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     b1c:	0f b7       	in	r16, 0x3f	; 63
+     b1e:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     b20:	11 27       	eor	r17, r17
+     b22:	60 93 ae 03 	sts	0x03AE, r22
+     b26:	70 93 af 03 	sts	0x03AF, r23
+     b2a:	80 93 b0 03 	sts	0x03B0, r24
+     b2e:	90 93 b1 03 	sts	0x03B1, r25
+     b32:	20 93 aa 03 	sts	0x03AA, r18
+     b36:	30 93 ab 03 	sts	0x03AB, r19
+     b3a:	40 93 ac 03 	sts	0x03AC, r20
+     b3e:	50 93 ad 03 	sts	0x03AD, r21
+     b42:	86 dc       	rcall	.-1780   	; 0x450 <TransformAlarmC__0__set_alarm>
+     b44:	0f bf       	out	0x3f, r16	; 63
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     b46:	1f 91       	pop	r17
+     b48:	0f 91       	pop	r16
+     b4a:	08 95       	ret
+
+00000b4c <SchedulerBasicP__TaskBasic__runTask>:
+
+  /**
+   * Event from the scheduler to run this task. Following the TinyOS
+   * concurrency model, the codes invoked from <tt>run()</tt> signals
+   * execute atomically with respect to one another, but can be
+   * preempted by async commands/events.
+   */
+  event void runTask();
+     b4c:	8f 92       	push	r8
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+  SREG = original_SREG;
+     b4e:	9f 92       	push	r9
+     b50:	af 92       	push	r10
+     b52:	bf 92       	push	r11
+     b54:	cf 92       	push	r12
+     b56:	df 92       	push	r13
+     b58:	ef 92       	push	r14
+     b5a:	ff 92       	push	r15
+     b5c:	0f 93       	push	r16
+     b5e:	1f 93       	push	r17
+     b60:	86 30       	cpi	r24, 0x06	; 6
+     b62:	09 f4       	brne	.+2      	; 0xb66 <SchedulerBasicP__TaskBasic__runTask+0x1a>
+     b64:	4a c0       	rjmp	.+148    	; 0xbfa <SchedulerBasicP__TaskBasic__runTask+0xae>
+     b66:	87 30       	cpi	r24, 0x07	; 7
+     b68:	30 f4       	brcc	.+12     	; 0xb76 <SchedulerBasicP__TaskBasic__runTask+0x2a>
+     b6a:	83 30       	cpi	r24, 0x03	; 3
+     b6c:	59 f0       	breq	.+22     	; 0xb84 <SchedulerBasicP__TaskBasic__runTask+0x38>
+     b6e:	85 30       	cpi	r24, 0x05	; 5
+     b70:	09 f0       	breq	.+2      	; 0xb74 <SchedulerBasicP__TaskBasic__runTask+0x28>
+     b72:	ca c0       	rjmp	.+404    	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     b74:	1a c0       	rjmp	.+52     	; 0xbaa <SchedulerBasicP__TaskBasic__runTask+0x5e>
+     b76:	87 30       	cpi	r24, 0x07	; 7
+     b78:	09 f4       	brne	.+2      	; 0xb7c <SchedulerBasicP__TaskBasic__runTask+0x30>
+     b7a:	8c c0       	rjmp	.+280    	; 0xc94 <SchedulerBasicP__TaskBasic__runTask+0x148>
+     b7c:	88 30       	cpi	r24, 0x08	; 8
+     b7e:	09 f0       	breq	.+2      	; 0xb82 <SchedulerBasicP__TaskBasic__runTask+0x36>
+     b80:	c3 c0       	rjmp	.+390    	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     b82:	9f c0       	rjmp	.+318    	; 0xcc2 <SchedulerBasicP__TaskBasic__runTask+0x176>
+				}
+				post sendDoneTask();
+			}
+		}
+		call Uart1Interrupts.clearTxInterrupt(); //for convenience
+	}
+
+	async command error_t Uart1Stream.send(uint8_t *buf, uint16_t len)
+	{
+		if(len==0)
+			return FAIL;
+		atomic
+		{
+			if(txBusy)
+				return EBUSY;
+			txBusy = TRUE;	
+		}
+		txBuf = buf;
+		txLen = len;
+		txPos = 0;
+//		while(!READ_BIT(UCSR1A, UDRE1)); //for convenience, expected overhead is low
+		UDR1 = txBuf[ txPos++ ];
+		txResult = SUCCESS;
+		return SUCCESS;
+	}
+	
+	async command error_t Uart1Stream.receive(uint8_t *buf, uint16_t len)
+	{
+		if(len == 0)
+			return FAIL;
+		atomic
+		{
+			if(rxBusy)
+				return EBUSY;
+			rxBusy = TRUE;
+		}
+		rxBuf = buf;
+		rxLen = len;
+		rxPos = 0;
+		call Uart1Stream.enableReceiveInterrupt(); //for convenience(e.g. some stupid may shut off the interrupts and call this function)
+		return SUCCESS;
+	}
+
+	async command error_t Uart1Stream.disableReceiveInterrupt()
+	{
+		call Uart1Interrupts.disableRxInterrupt();
+		return SUCCESS;
+	}
+
+	async command error_t Uart1Stream.enableReceiveInterrupt()
+	{
+		call Uart1Interrupts.enableRxInterrupt();
+		return SUCCESS;
+	}
+	
+	async command error_t Uart1StreamBlocking.enableReceiveInterrupt()
+	{
+		call Uart1Interrupts.enableRxInterrupt();
+		return SUCCESS;
+	}
+
+	async command error_t Uart1StreamBlocking.disableReceiveInterrupt()
+	{
+		call Uart1Interrupts.disableRxInterrupt();
+		return SUCCESS;
+	}
+		
+	default async event void Uart1StreamBlocking.sendDone(uint8_t* buf, uint16_t len, error_t err) {}
+  	default async event void Uart1StreamBlocking.receivedByte( uint8_t byte ) {}
+  	default async event void Uart1StreamBlocking.receiveDone( uint8_t* buf, uint16_t len, error_t error ){}
+  	
+	default async event void Uart1Stream.sendDone(uint8_t* buf, uint16_t len, error_t err) {}
+  	default async event void Uart1Stream.receivedByte( uint8_t byte ) {}
+  	default async event void Uart1Stream.receiveDone( uint8_t* buf, uint16_t len, error_t error ){}
+
+	task void sendBlockingDoneTask()
+	{ 
+		signal Uart1StreamBlocking.sendDone(txBuf, txLen, txResult);
+	}
+	
+	task void receiveBlockingDoneTask() 
+	{ 
+		signal Uart1StreamBlocking.receiveDone(rxBuf,  rxLen, rxResult); 
+	}
+	
+	task void sendDoneTask()
+	{
+		signal Uart1Stream.sendDone(txBuf, txLen, txResult);
+	}
+	
+	task void receiveDoneTask()
+	{
+		signal Uart1Stream.receiveDone(rxBuf,  rxLen, rxResult); 
+		rxBuf = NULL;
+     b84:	10 92 e5 03 	sts	0x03E5, r1
+     b88:	10 92 e4 03 	sts	0x03E4, r1
+		rxLen = 0;
+     b8c:	10 92 da 03 	sts	0x03DA, r1
+     b90:	10 92 d9 03 	sts	0x03D9, r1
+		rxPos = 0;
+     b94:	10 92 b4 03 	sts	0x03B4, r1
+     b98:	10 92 b3 03 	sts	0x03B3, r1
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     b9c:	8f b7       	in	r24, 0x3f	; 63
+     b9e:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     ba0:	99 27       	eor	r25, r25
+		atomic
+		{
+			rxBusy = FALSE;		
+     ba2:	10 92 9a 03 	sts	0x039A, r1
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     ba6:	8f bf       	out	0x3f, r24	; 63
+     ba8:	af c0       	rjmp	.+350    	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+    call Alarm.startAt(t0, dt);
+  }
+
+  command void Timer.startPeriodic(uint32_t dt)
+  { start(call Alarm.getNow(), dt, FALSE); }
+
+  command void Timer.startOneShot(uint32_t dt)
+  { start(call Alarm.getNow(), dt, TRUE); }
+
+  command void Timer.stop()
+  { call Alarm.stop(); }
+
+  task void fired()
+  { 
+    if(m_oneshot == FALSE)
+     baa:	80 91 a7 03 	lds	r24, 0x03A7
+     bae:	88 23       	and	r24, r24
+     bb0:	11 f5       	brne	.+68     	; 0xbf6 <SchedulerBasicP__TaskBasic__runTask+0xaa>
+      start(call Alarm.getAlarm(), m_dt, FALSE);
+     bb2:	20 91 db 03 	lds	r18, 0x03DB
+     bb6:	30 91 dc 03 	lds	r19, 0x03DC
+     bba:	40 91 dd 03 	lds	r20, 0x03DD
+     bbe:	50 91 de 03 	lds	r21, 0x03DE
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     bc2:	ef b7       	in	r30, 0x3f	; 63
+     bc4:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     bc6:	ff 27       	eor	r31, r31
+     bc8:	60 91 ae 03 	lds	r22, 0x03AE
+     bcc:	70 91 af 03 	lds	r23, 0x03AF
+     bd0:	80 91 b0 03 	lds	r24, 0x03B0
+     bd4:	90 91 b1 03 	lds	r25, 0x03B1
+     bd8:	e0 90 aa 03 	lds	r14, 0x03AA
+     bdc:	f0 90 ab 03 	lds	r15, 0x03AB
+     be0:	00 91 ac 03 	lds	r16, 0x03AC
+     be4:	10 91 ad 03 	lds	r17, 0x03AD
+     be8:	6e 0d       	add	r22, r14
+     bea:	7f 1d       	adc	r23, r15
+     bec:	80 1f       	adc	r24, r16
+     bee:	91 1f       	adc	r25, r17
+    return result;
+}
+
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     bf0:	ef bf       	out	0x3f, r30	; 63
+     bf2:	00 e0       	ldi	r16, 0x00	; 0
+     bf4:	87 df       	rcall	.-242    	; 0xb04 <AlarmToTimerC__0__start>
+     bf6:	3c dd       	rcall	.-1416   	; 0x670 <VirtualizeTimerC__0__TimerFrom__getNow>
+  }
+  
+  task void updateFromTimer()
+  {
+    /* This code supports a maximum dt of MAXINT. If min_remaining and
+       remaining were switched to uint32_t, and the logic changed a
+       little, dt's up to 2^32-1 should work (but at a slightly higher
+       runtime cost). */
+    uint32_t now = call TimerFrom.getNow();
+    int32_t min_remaining = (1UL << 31) - 1; /* max int32_t */
+    bool min_remaining_isset = FALSE;
+    uint16_t num;
+
+    call TimerFrom.stop();
+
+    for (num=0; num<NUM_TIMERS; num++)
+      {
+	Timer_t* timer = &m_timers[num];
+
+	if (timer->isrunning)
+	  {
+	    uint32_t elapsed = now - timer->t0;
+	    int32_t remaining = timer->dt - elapsed;
+
+	    if (remaining < min_remaining)
+	      {
+		min_remaining = remaining;
+		min_remaining_isset = TRUE;
+	      }
+	  }
+      }
+
+    if (min_remaining_isset)
+      {
+	if (min_remaining <= 0)
+	  fireTimers(now);
+	else
+	  call TimerFrom.startOneShotAt(now, min_remaining);
+      }
+  }
+  
+  event void TimerFrom.fired()
+  {
+    fireTimers(call TimerFrom.getNow());
+     bf8:	44 c0       	rjmp	.+136    	; 0xc82 <SchedulerBasicP__TaskBasic__runTask+0x136>
+     bfa:	3a dd       	rcall	.-1420   	; 0x670 <VirtualizeTimerC__0__TimerFrom__getNow>
+     bfc:	6b 01       	movw	r12, r22
+     bfe:	7c 01       	movw	r14, r24
+     c00:	80 91 df 00 	lds	r24, 0x00DF
+     c04:	8e 7f       	andi	r24, 0xFE	; 254
+     c06:	80 93 df 00 	sts	0x00DF, r24
+     c0a:	8f ef       	ldi	r24, 0xFF	; 255
+     c0c:	80 93 91 03 	sts	0x0391, r24
+     c10:	4f ef       	ldi	r20, 0xFF	; 255
+     c12:	84 2e       	mov	r8, r20
+     c14:	4f ef       	ldi	r20, 0xFF	; 255
+     c16:	94 2e       	mov	r9, r20
+     c18:	4f ef       	ldi	r20, 0xFF	; 255
+     c1a:	a4 2e       	mov	r10, r20
+     c1c:	4f e7       	ldi	r20, 0x7F	; 127
+     c1e:	b4 2e       	mov	r11, r20
+     c20:	60 e0       	ldi	r22, 0x00	; 0
+     c22:	eb eb       	ldi	r30, 0xBB	; 187
+     c24:	f3 e0       	ldi	r31, 0x03	; 3
+     c26:	80 85       	ldd	r24, Z+8	; 0x08
+     c28:	81 ff       	sbrs	r24, 1
+     c2a:	1c c0       	rjmp	.+56     	; 0xc64 <SchedulerBasicP__TaskBasic__runTask+0x118>
+     c2c:	80 81       	ld	r24, Z
+     c2e:	91 81       	ldd	r25, Z+1	; 0x01
+     c30:	a2 81       	ldd	r26, Z+2	; 0x02
+     c32:	b3 81       	ldd	r27, Z+3	; 0x03
+     c34:	a7 01       	movw	r20, r14
+     c36:	96 01       	movw	r18, r12
+     c38:	28 1b       	sub	r18, r24
+     c3a:	39 0b       	sbc	r19, r25
+     c3c:	4a 0b       	sbc	r20, r26
+     c3e:	5b 0b       	sbc	r21, r27
+     c40:	da 01       	movw	r26, r20
+     c42:	c9 01       	movw	r24, r18
+     c44:	24 81       	ldd	r18, Z+4	; 0x04
+     c46:	35 81       	ldd	r19, Z+5	; 0x05
+     c48:	46 81       	ldd	r20, Z+6	; 0x06
+     c4a:	57 81       	ldd	r21, Z+7	; 0x07
+     c4c:	28 1b       	sub	r18, r24
+     c4e:	39 0b       	sbc	r19, r25
+     c50:	4a 0b       	sbc	r20, r26
+     c52:	5b 0b       	sbc	r21, r27
+     c54:	28 15       	cp	r18, r8
+     c56:	39 05       	cpc	r19, r9
+     c58:	4a 05       	cpc	r20, r10
+     c5a:	5b 05       	cpc	r21, r11
+     c5c:	1c f4       	brge	.+6      	; 0xc64 <SchedulerBasicP__TaskBasic__runTask+0x118>
+     c5e:	49 01       	movw	r8, r18
+     c60:	5a 01       	movw	r10, r20
+     c62:	61 e0       	ldi	r22, 0x01	; 1
+     c64:	39 96       	adiw	r30, 0x09	; 9
+     c66:	33 e0       	ldi	r19, 0x03	; 3
+     c68:	e6 3d       	cpi	r30, 0xD6	; 214
+     c6a:	f3 07       	cpc	r31, r19
+     c6c:	e1 f6       	brne	.-72     	; 0xc26 <SchedulerBasicP__TaskBasic__runTask+0xda>
+     c6e:	66 23       	and	r22, r22
+     c70:	09 f4       	brne	.+2      	; 0xc74 <SchedulerBasicP__TaskBasic__runTask+0x128>
+     c72:	4a c0       	rjmp	.+148    	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     c74:	18 14       	cp	r1, r8
+     c76:	19 04       	cpc	r1, r9
+     c78:	1a 04       	cpc	r1, r10
+     c7a:	1b 04       	cpc	r1, r11
+     c7c:	24 f0       	brlt	.+8      	; 0xc86 <SchedulerBasicP__TaskBasic__runTask+0x13a>
+     c7e:	c7 01       	movw	r24, r14
+     c80:	b6 01       	movw	r22, r12
+     c82:	e5 de       	rcall	.-566    	; 0xa4e <VirtualizeTimerC__0__fireTimers>
+     c84:	41 c0       	rjmp	.+130    	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     c86:	01 e0       	ldi	r16, 0x01	; 1
+     c88:	a5 01       	movw	r20, r10
+     c8a:	94 01       	movw	r18, r8
+     c8c:	c7 01       	movw	r24, r14
+    signal Timer.fired();
+  }
+
+  async event void Alarm.fired()
+  { post fired(); }
+
+  command bool Timer.isRunning()
+  { return call Alarm.isRunning(); }
+
+  command bool Timer.isOneShot()
+  { return m_oneshot; }
+
+  command void Timer.startPeriodicAt(uint32_t t0, uint32_t dt)
+  { start(t0, dt, FALSE); }
+
+  command void Timer.startOneShotAt(uint32_t t0, uint32_t dt)
+  { start(t0, dt, TRUE); }
+     c8e:	b6 01       	movw	r22, r12
+     c90:	39 df       	rcall	.-398    	; 0xb04 <AlarmToTimerC__0__start>
+     c92:	3a c0       	rjmp	.+116    	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     c94:	8f b7       	in	r24, 0x3f	; 63
+     c96:	f8 94       	cli
+     c98:	99 27       	eor	r25, r25
+     c9a:	20 91 d8 03 	lds	r18, 0x03D8
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     c9e:	20 93 92 03 	sts	0x0392, r18
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     ca2:	23 e0       	ldi	r18, 0x03	; 3
+          return SUCCESS;
+        }
+      }
+    }
+    return FAIL;
+  }
+    
+  /**
+    Check if the Resource is currently in use
+  */    
+  async command bool ArbiterInfo.inUse() {
+    atomic {
+      if (state == RES_CONTROLLED)
+        return FALSE;
+    }
+    return TRUE;
+  }
+
+  /**
+    Returns the current user of the Resource.
+    If there is no current user, the return value
+    will be 0xFF
+  */      
+  async command uint8_t ArbiterInfo.userId() {
+    atomic {
+      if(state != RES_BUSY)
+        return NO_RES;
+      return resId;
+    }
+  }
+
+  /**
+   * Returns my user id.
+   */      
+  async command bool Resource.isOwner[uint8_t id]() {
+    atomic {
+      if(resId == id && state == RES_BUSY) return TRUE;
+      else return FALSE;
+    }
+  }
+
+  async command bool ResourceDefaultOwner.isOwner() {
+    atomic return (state == RES_CONTROLLED
+            || (resId == default_owner_id
+                && (state == RES_GRANTING || state == RES_IMM_GRANTING)));
+  }
+  
+  task void grantedTask() {
+    atomic {
+      resId = reqResId;
+     ca4:	20 93 96 03 	sts	0x0396, r18
+     ca8:	8f bf       	out	0x3f, r24	; 63
+     caa:	80 91 92 03 	lds	r24, 0x0392
+      state = RES_BUSY;
+     cae:	88 23       	and	r24, r24
+     cb0:	19 f0       	breq	.+6      	; 0xcb8 <SchedulerBasicP__TaskBasic__runTask+0x16c>
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     cb2:	81 30       	cpi	r24, 0x01	; 1
+
+  /**
+  * Request immediate access to a shared resource. You must call release()
+  * when you are done with it.
+  *
+  * @return SUCCESS When a request has been accepted. <br>
+  *            FAIL The request cannot be fulfilled
+  */
+  async command error_t immediateRequest();
+
+  /**
+   * You are now in control of the resource.
+   */
+  event void granted();
+     cb4:	49 f5       	brne	.+82     	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     cb6:	02 c0       	rjmp	.+4      	; 0xcbc <SchedulerBasicP__TaskBasic__runTask+0x170>
+     cb8:	80 e0       	ldi	r24, 0x00	; 0
+     cba:	01 c0       	rjmp	.+2      	; 0xcbe <SchedulerBasicP__TaskBasic__runTask+0x172>
+     cbc:	81 e0       	ldi	r24, 0x01	; 1
+     cbe:	5b de       	rcall	.-842    	; 0x976 <ArbitratedReadC__0__Resource__granted>
+     cc0:	23 c0       	rjmp	.+70     	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     cc2:	10 92 b5 03 	sts	0x03B5, r1
+     cc6:	e0 90 d6 03 	lds	r14, 0x03D6
+     cca:	f0 90 d7 03 	lds	r15, 0x03D7
+
+    return SUCCESS;
+  }
+
+  command error_t Read.read[uint8_t c]() {
+    return startGet(ACQUIRE_DATA, c);
+  }
+
+  async command error_t ReadNow.read[uint8_t c]() {
+    return startGet(ACQUIRE_DATA_NOW, c);
+  }
+
+  task void acquiredData() {
+    state = IDLE;
+     cce:	80 91 e6 03 	lds	r24, 0x03E6
+    signal Read.readDone[client](SUCCESS, val);
+     cd2:	88 23       	and	r24, r24
+     cd4:	19 f0       	breq	.+6      	; 0xcdc <SchedulerBasicP__TaskBasic__runTask+0x190>
+     cd6:	81 30       	cpi	r24, 0x01	; 1
+     cd8:	39 f4       	brne	.+14     	; 0xce8 <SchedulerBasicP__TaskBasic__runTask+0x19c>
+     cda:	03 c0       	rjmp	.+6      	; 0xce2 <SchedulerBasicP__TaskBasic__runTask+0x196>
+     cdc:	80 e0       	ldi	r24, 0x00	; 0
+   
+  /**
+  * Release a shared resource you previously acquired.  
+  *
+  * @return SUCCESS The resource has been released <br>
+  *         FAIL You tried to release but you are not the
+  *              owner of the resource 
+  *
+  * @note This command should never be called between putting in a request 	  
+  *       and waiting for a granted event.  Doing so will result in a
+  *       potential race condition.  There are ways to guarantee that no
+  *       race will occur, but they are clumsy and overly complicated.
+  *       Since it doesn't logically make since to be calling
+  *       <code>release</code> before receiving a <code>granted</code> event, 
+  *       we have opted to keep thing simple and warn you about the potential 
+  *       race.
+  */
+  async command error_t release();
+     cde:	f2 dc       	rcall	.-1564   	; 0x6c4 <ArbiterP__0__Resource__release>
+     ce0:	08 c0       	rjmp	.+16     	; 0xcf2 <SchedulerBasicP__TaskBasic__runTask+0x1a6>
+     ce2:	81 e0       	ldi	r24, 0x01	; 1
+     ce4:	ef dc       	rcall	.-1570   	; 0x6c4 <ArbiterP__0__Resource__release>
+     ce6:	0b c0       	rjmp	.+22     	; 0xcfe <SchedulerBasicP__TaskBasic__runTask+0x1b2>
+     ce8:	88 23       	and	r24, r24
+     cea:	19 f0       	breq	.+6      	; 0xcf2 <SchedulerBasicP__TaskBasic__runTask+0x1a6>
+     cec:	81 30       	cpi	r24, 0x01	; 1
+     cee:	61 f4       	brne	.+24     	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     cf0:	06 c0       	rjmp	.+12     	; 0xcfe <SchedulerBasicP__TaskBasic__runTask+0x1b2>
+     cf2:	84 e5       	ldi	r24, 0x54	; 84
+     cf4:	57 dd       	rcall	.-1362   	; 0x7a4 <BlinkC__SerialByte__send>
+     cf6:	c7 01       	movw	r24, r14
+   *
+   * @param result SUCCESS if the read() was successful
+   * @param val the value that has been read
+   */
+  event void readDone( error_t result, val_t val );
+     cf8:	93 dd       	rcall	.-1242   	; 0x820 <BlinkC__print_num>
+     cfa:	e2 dd       	rcall	.-1084   	; 0x8c0 <BlinkC__Leds__led2Toggle>
+     cfc:	05 c0       	rjmp	.+10     	; 0xd08 <SchedulerBasicP__TaskBasic__runTask+0x1bc>
+     cfe:	86 e5       	ldi	r24, 0x56	; 86
+     d00:	51 dd       	rcall	.-1374   	; 0x7a4 <BlinkC__SerialByte__send>
+    call Temp0_Read.read();
+    
+  }
+
+
+	event void Temp0_Read.readDone(error_t result, uint16_t val){
+		// TODO Auto-generated method stub
+		call SerialByte.send('T');
+     d02:	c7 01       	movw	r24, r14
+     d04:	8d dd       	rcall	.-1254   	; 0x820 <BlinkC__print_num>
+     d06:	d3 dd       	rcall	.-1114   	; 0x8ae <BlinkC__Leds__led0Toggle>
+		print_num(val);
+     d08:	1f 91       	pop	r17
+     d0a:	0f 91       	pop	r16
+     d0c:	ff 90       	pop	r15
+		
+		call Leds.led2Toggle();
+     d0e:	ef 90       	pop	r14
+     d10:	df 90       	pop	r13
+     d12:	cf 90       	pop	r12
+		
+	}
+
+	event void Vol0_Read.readDone(error_t result, uint16_t val){
+		// TODO Auto-generated method stub
+		call SerialByte.send('V');
+     d14:	bf 90       	pop	r11
+     d16:	af 90       	pop	r10
+     d18:	9f 90       	pop	r9
+		print_num(val);
+     d1a:	8f 90       	pop	r8
+     d1c:	08 95       	ret
+
+00000d1e <RealMainP__Scheduler__runNextTask>:
+    *
+    * @return        whether a task was run -- TRUE indicates a task
+    *                ran, FALSE indicates there was no task to run.
+    */
+  command bool runNextTask();
+     d1e:	47 da       	rcall	.-2930   	; 0x1ae <SchedulerBasicP__popTask>
+		call Leds.led0Toggle();
+     d20:	8f 3f       	cpi	r24, 0xFF	; 255
+     d22:	19 f4       	brne	.+6      	; 0xd2a <RealMainP__Scheduler__runNextTask+0xc>
+     d24:	80 e0       	ldi	r24, 0x00	; 0
+     d26:	90 e0       	ldi	r25, 0x00	; 0
+     d28:	08 95       	ret
+     d2a:	10 df       	rcall	.-480    	; 0xb4c <SchedulerBasicP__TaskBasic__runTask>
+     d2c:	81 e0       	ldi	r24, 0x01	; 1
+     d2e:	90 e0       	ldi	r25, 0x00	; 0
+     d30:	08 95       	ret
+
+00000d32 <VirtualizeTimerC__0__Timer__startPeriodic>:
+  }
+
+  void startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot)
+  {
+    Timer_t* timer = &m_timers[num];
+    timer->t0 = t0;
+    timer->dt = dt;
+    timer->isoneshot = isoneshot;
+    timer->isrunning = TRUE;
+    post updateFromTimer();
+  }
+
+  command void Timer.startPeriodic[uint8_t num](uint32_t dt)
+  {
+     d32:	df 92       	push	r13
+     d34:	ef 92       	push	r14
+     d36:	ff 92       	push	r15
+     d38:	0f 93       	push	r16
+     d3a:	1f 93       	push	r17
+     d3c:	d8 2e       	mov	r13, r24
+     d3e:	7a 01       	movw	r14, r20
+     d40:	8b 01       	movw	r16, r22
+    startTimer(num, call TimerFrom.getNow(), dt, FALSE);
+     d42:	96 dc       	rcall	.-1748   	; 0x670 <VirtualizeTimerC__0__TimerFrom__getNow>
+     d44:	29 e0       	ldi	r18, 0x09	; 9
+     d46:	d2 9e       	mul	r13, r18
+     d48:	f0 01       	movw	r30, r0
+     d4a:	11 24       	eor	r1, r1
+     d4c:	e5 54       	subi	r30, 0x45	; 69
+     d4e:	fc 4f       	sbci	r31, 0xFC	; 252
+     d50:	60 83       	st	Z, r22
+     d52:	71 83       	std	Z+1, r23	; 0x01
+     d54:	82 83       	std	Z+2, r24	; 0x02
+     d56:	93 83       	std	Z+3, r25	; 0x03
+     d58:	e4 82       	std	Z+4, r14	; 0x04
+     d5a:	f5 82       	std	Z+5, r15	; 0x05
+     d5c:	06 83       	std	Z+6, r16	; 0x06
+     d5e:	17 83       	std	Z+7, r17	; 0x07
+     d60:	80 85       	ldd	r24, Z+8	; 0x08
+     d62:	8e 7f       	andi	r24, 0xFE	; 254
+     d64:	82 60       	ori	r24, 0x02	; 2
+     d66:	80 87       	std	Z+8, r24	; 0x08
+     d68:	60 da       	rcall	.-2880   	; 0x22a <VirtualizeTimerC__0__updateFromTimer__postTask>
+     d6a:	1f 91       	pop	r17
+     d6c:	0f 91       	pop	r16
+     d6e:	ff 90       	pop	r15
+     d70:	ef 90       	pop	r14
+     d72:	df 90       	pop	r13
+     d74:	08 95       	ret
+
+00000d76 <__vector_29>:
+    call McuPowerState.update();
+  }
+  async command void HplAtm128Adc.enableInterruption() { SET_BIT(ADCSRA, ADIE); }
+  async command void HplAtm128Adc.disableInterruption() { CLR_BIT(ADCSRA, ADIE); }
+  async command void HplAtm128Adc.setContinuous() {
+    ((Atm128Adcsrb_t*)&ADCSRB)->adts = 0;
+    SET_BIT(ADCSRA, ADATE);
+  }
+  async command void HplAtm128Adc.setSingle() { CLR_BIT(ADCSRA, ADATE); }
+  async command void HplAtm128Adc.resetInterrupt() { SET_BIT(ADCSRA, ADIF); }
+  async command void HplAtm128Adc.startConversion() { SET_BIT(ADCSRA, ADSC); }
+
+
+  /* A/D status checks */
+  async command bool HplAtm128Adc.isEnabled()     {
+    return (call HplAtm128Adc.getAdcsra()).aden;
+  }
+
+  async command bool HplAtm128Adc.isStarted()     {
+    return (call HplAtm128Adc.getAdcsra()).adsc;
+  }
+
+  async command bool HplAtm128Adc.isComplete()    {
+    return (call HplAtm128Adc.getAdcsra()).adif;
+  }
+
+  /* A/D interrupt handlers. Signals dataReady event with interrupts enabled */
+  AVR_ATOMIC_HANDLER(ADC_vect) {
+     d76:	1f 92       	push	r1
+     d78:	0f 92       	push	r0
+     d7a:	0f b6       	in	r0, 0x3f	; 63
+     d7c:	0f 92       	push	r0
+     d7e:	11 24       	eor	r1, r1
+     d80:	2f 93       	push	r18
+     d82:	3f 93       	push	r19
+     d84:	4f 93       	push	r20
+     d86:	5f 93       	push	r21
+     d88:	6f 93       	push	r22
+     d8a:	7f 93       	push	r23
+     d8c:	8f 93       	push	r24
+     d8e:	9f 93       	push	r25
+     d90:	af 93       	push	r26
+     d92:	bf 93       	push	r27
+     d94:	ef 93       	push	r30
+     d96:	ff 93       	push	r31
+     d98:	40 91 78 00 	lds	r20, 0x0078
+     d9c:	50 91 79 00 	lds	r21, 0x0079
+#define READ_FLAG(port, flag) ((port) & (flag))
+
+/* Enables interrupts. */
+inline void __nesc_enable_interrupt() @safe() {
+    sei();
+     da0:	78 94       	sei
+}
+/* Disables all interrupts. */
+inline void __nesc_disable_interrupt() @safe() {
+    cli();
+}
+
+/* Defines data type for storing interrupt mask state during atomic. */
+typedef uint8_t __nesc_atomic_t;
+__nesc_atomic_t __nesc_atomic_start(void);
+void __nesc_atomic_end(__nesc_atomic_t original_SREG);
+
+#ifndef NESC_BUILD_BINARY
+/* @spontaneous() functions should not be included when NESC_BUILD_BINARY
+   is #defined, to avoid duplicate functions definitions wheb binary
+   components are used. Such functions do need a prototype in all cases,
+   though. */
+
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     da2:	8f b7       	in	r24, 0x3f	; 63
+     da4:	f8 94       	cli
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     da6:	99 27       	eor	r25, r25
+     da8:	20 91 a8 03 	lds	r18, 0x03A8
+     dac:	32 2f       	mov	r19, r18
+     dae:	36 95       	lsr	r19
+     db0:	31 70       	andi	r19, 0x01	; 1
+     db2:	21 70       	andi	r18, 0x01	; 1
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     db4:	8f bf       	out	0x3f, r24	; 63
+     db6:	22 23       	and	r18, r18
+     db8:	e9 f4       	brne	.+58     	; 0xdf4 <__vector_29+0x7e>
+     dba:	80 91 7a 00 	lds	r24, 0x007A
+     dbe:	87 7f       	andi	r24, 0xF7	; 247
+     dc0:	80 93 7a 00 	sts	0x007A, r24
+  }
+
+  async event void Atm128AdcSingle.dataReady(uint16_t data, bool precise) {
+    switch (state)
+     dc4:	80 91 b5 03 	lds	r24, 0x03B5
+     dc8:	81 30       	cpi	r24, 0x01	; 1
+     dca:	21 f0       	breq	.+8      	; 0xdd4 <__vector_29+0x5e>
+     dcc:	82 30       	cpi	r24, 0x02	; 2
+     dce:	09 f0       	breq	.+2      	; 0xdd2 <__vector_29+0x5c>
+     dd0:	3b c0       	rjmp	.+118    	; 0xe48 <__vector_29+0xd2>
+     dd2:	09 c0       	rjmp	.+18     	; 0xde6 <__vector_29+0x70>
+      {
+      case ACQUIRE_DATA:
+	if (!precise)
+     dd4:	33 23       	and	r19, r19
+     dd6:	49 f0       	breq	.+18     	; 0xdea <__vector_29+0x74>
+	  sample();
+	else
+	  {
+	    val = data;
+     dd8:	50 93 d7 03 	sts	0x03D7, r21
+     ddc:	40 93 d6 03 	sts	0x03D6, r20
+     de0:	88 e0       	ldi	r24, 0x08	; 8
+     de2:	fc d9       	rcall	.-3080   	; 0x1dc <SchedulerBasicP__TaskBasic__postTask>
+     de4:	31 c0       	rjmp	.+98     	; 0xe48 <__vector_29+0xd2>
+     de6:	33 23       	and	r19, r19
+	    post acquiredData();
+	  }
+	break;
+
+      case ACQUIRE_DATA_NOW:
+	if (!precise)
+     de8:	11 f4       	brne	.+4      	; 0xdee <__vector_29+0x78>
+     dea:	73 dd       	rcall	.-1306   	; 0x8d2 <AdcP__sample>
+	  sample();
+     dec:	2d c0       	rjmp	.+90     	; 0xe48 <__vector_29+0xd2>
+     dee:	10 92 b5 03 	sts	0x03B5, r1
+	else
+	  {
+	    state = IDLE;
+     df2:	2a c0       	rjmp	.+84     	; 0xe48 <__vector_29+0xd2>
+     df4:	8f b7       	in	r24, 0x3f	; 63
+     df6:	f8 94       	cli
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+     df8:	99 27       	eor	r25, r25
+     dfa:	8f bf       	out	0x3f, r24	; 63
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     dfc:	2f b7       	in	r18, 0x3f	; 63
+    return result;
+}
+
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+     dfe:	f8 94       	cli
+     e00:	33 27       	eor	r19, r19
+     e02:	80 91 7a 00 	lds	r24, 0x007A
+     e06:	58 2f       	mov	r21, r24
+     e08:	57 70       	andi	r21, 0x07	; 7
+    uint16_t data = call HplAtm128Adc.getValue();
+
+    __nesc_enable_interrupt();
+    signal HplAtm128Adc.dataReady(data);
+  }
+
+  default async event void HplAtm128Adc.dataReady(uint16_t done) { }
+
+	async command mcu_power_t McuPowerOverride.lowestState() {
+		if(bit_is_set(ADCSRA,ADEN)) {
+			return ATM128_POWER_ADC_NR;
+		}
+		else
+			return ATM128_POWER_DOWN;
+	} 
+
+  async command bool HplAtm128Adc.cancel() {
+    /* This is tricky */
+    atomic
+      {
+	Atm128Adcsra_t oldSr = call HplAtm128Adc.getAdcsra(), newSr;
+
+	/* To cancel a conversion, first turn off ADEN, then turn off
+	   ADSC. We also cancel any pending interrupt.
+	   Finally we reenable the ADC.
+	*/
+	newSr = oldSr;
+     e0a:	48 2f       	mov	r20, r24
+     e0c:	40 72       	andi	r20, 0x20	; 32
+     e0e:	98 7d       	andi	r25, 0xD8	; 216
+     e10:	94 2b       	or	r25, r20
+     e12:	95 2b       	or	r25, r21
+     e14:	80 74       	andi	r24, 0x40	; 64
+     e16:	97 7b       	andi	r25, 0xB7	; 183
+     e18:	98 2b       	or	r25, r24
+     e1a:	90 61       	ori	r25, 0x10	; 16
+     e1c:	9f 77       	andi	r25, 0x7F	; 127
+     e1e:	89 2f       	mov	r24, r25
+     e20:	99 27       	eor	r25, r25
+     e22:	80 93 7a 00 	sts	0x007A, r24
+     e26:	88 7d       	andi	r24, 0xD8	; 216
+     e28:	84 2b       	or	r24, r20
+     e2a:	85 2b       	or	r24, r21
+     e2c:	87 73       	andi	r24, 0x37	; 55
+     e2e:	80 61       	ori	r24, 0x10	; 16
+     e30:	99 27       	eor	r25, r25
+     e32:	80 93 7a 00 	sts	0x007A, r24
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+  SREG = original_SREG;
+     e36:	88 7d       	andi	r24, 0xD8	; 216
+     e38:	84 2b       	or	r24, r20
+     e3a:	85 2b       	or	r24, r21
+     e3c:	87 7b       	andi	r24, 0xB7	; 183
+     e3e:	80 69       	ori	r24, 0x90	; 144
+     e40:	99 27       	eor	r25, r25
+     e42:	80 93 7a 00 	sts	0x007A, r24
+     e46:	2f bf       	out	0x3f, r18	; 63
+     e48:	ff 91       	pop	r31
+     e4a:	ef 91       	pop	r30
+     e4c:	bf 91       	pop	r27
+     e4e:	af 91       	pop	r26
+     e50:	9f 91       	pop	r25
+     e52:	8f 91       	pop	r24
+     e54:	7f 91       	pop	r23
+     e56:	6f 91       	pop	r22
+     e58:	5f 91       	pop	r21
+     e5a:	4f 91       	pop	r20
+     e5c:	3f 91       	pop	r19
+     e5e:	2f 91       	pop	r18
+     e60:	0f 90       	pop	r0
+     e62:	0f be       	out	0x3f, r0	; 63
+     e64:	0f 90       	pop	r0
+     e66:	1f 90       	pop	r1
+     e68:	18 95       	reti
+
+00000e6a <main>:
+  uses interface Init as PlatformInit;
+  uses interface Init as SoftwareInit;
+}
+implementation {
+  int main() @C() @spontaneous() {
+     e6a:	1f 93       	push	r17
+     e6c:	cf 93       	push	r28
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+  SREG = original_SREG;
+     e6e:	df 93       	push	r29
+     e70:	1f b7       	in	r17, 0x3f	; 63
+     e72:	f8 94       	cli
+     e74:	14 be       	out	0x34, r1	; 52
+     e76:	88 e1       	ldi	r24, 0x18	; 24
+     e78:	0f b6       	in	r0, 0x3f	; 63
+     e7a:	f8 94       	cli
+     e7c:	80 93 60 00 	sts	0x0060, r24
+     e80:	10 92 60 00 	sts	0x0060, r1
+     e84:	0f be       	out	0x3f, r0	; 63
+     e86:	49 e0       	ldi	r20, 0x09	; 9
+     e88:	50 e0       	ldi	r21, 0x00	; 0
+     e8a:	6f ef       	ldi	r22, 0xFF	; 255
+     e8c:	70 e0       	ldi	r23, 0x00	; 0
+     e8e:	8c e9       	ldi	r24, 0x9C	; 156
+     e90:	93 e0       	ldi	r25, 0x03	; 3
+     e92:	3f d1       	rcall	.+638    	; 0x1112 <memset>
+     e94:	8f ef       	ldi	r24, 0xFF	; 255
+     e96:	80 93 e1 03 	sts	0x03E1, r24
+     e9a:	80 93 e7 03 	sts	0x03E7, r24
+     e9e:	85 b7       	in	r24, 0x35	; 53
+  {
+    error_t ok;
+
+	// disable on-chip debugging
+    MCUCR |= 1<<JTD;
+     ea0:	80 68       	ori	r24, 0x80	; 128
+     ea2:	85 bf       	out	0x35, r24	; 53
+     ea4:	85 b7       	in	r24, 0x35	; 53
+    MCUCR |= 1<<JTD; 
+     ea6:	80 68       	ori	r24, 0x80	; 128
+     ea8:	85 bf       	out	0x35, r24	; 53
+     eaa:	80 e8       	ldi	r24, 0x80	; 128
+		// set the clock prescaler
+		atomic
+		{
+			// enable changing the prescaler
+			CLKPR = 0x80;
+     eac:	80 93 61 00 	sts	0x0061, r24
+     eb0:	8f e0       	ldi	r24, 0x0F	; 15
+
+#if PLATFORM_MHZ == 16
+			CLKPR = 0x0F;	
+     eb2:	80 93 61 00 	sts	0x0061, r24
+     eb6:	91 e0       	ldi	r25, 0x01	; 1
+      uint16_t prev_cycles_min=0xffff;
+      uint16_t prev_cycles_max=0;
+
+      /* Setup timer2 to at 32768 Hz, and timer1 cpu cycles */
+      TCCR1B = 1 << CS10;
+     eb8:	90 93 81 00 	sts	0x0081, r25
+     ebc:	80 e2       	ldi	r24, 0x20	; 32
+      ASSR = 1 << AS2;
+     ebe:	80 93 b6 00 	sts	0x00B6, r24
+     ec2:	90 93 b1 00 	sts	0x00B1, r25
+      TCCR2B = 1 << CS20;
+     ec6:	ae ef       	ldi	r26, 0xFE	; 254
+
+      // one wrap is 256/32768 = 1/128 sec
+      while( wraps_ok < 50 && --wraps != 0 )
+     ec8:	e0 e0       	ldi	r30, 0x00	; 0
+     eca:	f0 e0       	ldi	r31, 0x00	; 0
+     ecc:	6f ef       	ldi	r22, 0xFF	; 255
+     ece:	7f ef       	ldi	r23, 0xFF	; 255
+     ed0:	b0 e0       	ldi	r27, 0x00	; 0
+     ed2:	80 91 b2 00 	lds	r24, 0x00B2
+      {
+        while( TCNT2 != 0 )
+     ed6:	88 23       	and	r24, r24
+     ed8:	e1 f7       	brne	.-8      	; 0xed2 <main+0x68>
+     eda:	40 91 84 00 	lds	r20, 0x0084
+          ;
+
+        now = TCNT1;
+     ede:	50 91 85 00 	lds	r21, 0x0085
+     ee2:	80 91 b2 00 	lds	r24, 0x00B2
+
+        while( TCNT2 != 64 )	// wait 64/32768 = 1/512 sec
+     ee6:	80 34       	cpi	r24, 0x40	; 64
+     ee8:	e1 f7       	brne	.-8      	; 0xee2 <main+0x78>
+     eea:	20 91 84 00 	lds	r18, 0x0084
+          ;
+
+        cycles = TCNT1 - now;
+     eee:	30 91 85 00 	lds	r19, 0x0085
+     ef2:	24 1b       	sub	r18, r20
+     ef4:	35 0b       	sbc	r19, r21
+     ef6:	62 17       	cp	r22, r18
+     ef8:	73 07       	cpc	r23, r19
+     efa:	08 f4       	brcc	.+2      	; 0xefe <main+0x94>
+     efc:	b9 01       	movw	r22, r18
+     efe:	2e 17       	cp	r18, r30
+     f00:	3f 07       	cpc	r19, r31
+     f02:	08 f4       	brcc	.+2      	; 0xf06 <main+0x9c>
+     f04:	f9 01       	movw	r30, r18
+     f06:	cf 01       	movw	r24, r30
+		
+        if(prev_cycles_min<cycles)
+          prev_cycles_min=cycles;
+        if(prev_cycles_max>cycles)
+          prev_cycles_max=cycles;
+		
+        if(prev_cycles_max-prev_cycles_min<=1){
+     f08:	86 1b       	sub	r24, r22
+     f0a:	97 0b       	sbc	r25, r23
+     f0c:	02 97       	sbiw	r24, 0x02	; 2
+     f0e:	30 f0       	brcs	.+12     	; 0xf1c <main+0xb2>
+     f10:	b0 e0       	ldi	r27, 0x00	; 0
+     f12:	6f ef       	ldi	r22, 0xFF	; 255
+     f14:	7f ef       	ldi	r23, 0xFF	; 255
+     f16:	e0 e0       	ldi	r30, 0x00	; 0
+     f18:	f0 e0       	ldi	r31, 0x00	; 0
+     f1a:	03 c0       	rjmp	.+6      	; 0xf22 <main+0xb8>
+     f1c:	bf 5f       	subi	r27, 0xFF	; 255
+          wraps_ok++;
+     f1e:	b2 33       	cpi	r27, 0x32	; 50
+     f20:	10 f4       	brcc	.+4      	; 0xf26 <main+0xbc>
+     f22:	a1 50       	subi	r26, 0x01	; 1
+     f24:	b1 f6       	brne	.-84     	; 0xed2 <main+0x68>
+     f26:	30 93 e3 03 	sts	0x03E3, r19
+     f2a:	20 93 e2 03 	sts	0x03E2, r18
+     f2e:	10 92 b1 00 	sts	0x00B1, r1
+        } else{
+          wraps_ok=0;
+          prev_cycles_min=0xffff;
+          prev_cycles_max=0;
+        }
+      }
+
+      /* Reset to boot state */
+      ASSR = TCCR1B = TCCR2B = 0;
+     f32:	80 91 b1 00 	lds	r24, 0x00B1
+     f36:	80 93 81 00 	sts	0x0081, r24
+     f3a:	80 91 81 00 	lds	r24, 0x0081
+     f3e:	80 93 b6 00 	sts	0x00B6, r24
+     f42:	80 91 b6 00 	lds	r24, 0x00B6
+      while (ASSR & (1 << TCR2AUB | 1 << TCR2BUB))
+     f46:	99 27       	eor	r25, r25
+     f48:	83 70       	andi	r24, 0x03	; 3
+     f4a:	90 70       	andi	r25, 0x00	; 0
+     f4c:	89 2b       	or	r24, r25
+     f4e:	c9 f7       	brne	.-14     	; 0xf42 <main+0xd8>
+     f50:	80 91 df 00 	lds	r24, 0x00DF
+     f54:	8e 7f       	andi	r24, 0xFE	; 254
+     f56:	80 93 df 00 	sts	0x00DF, r24
+     f5a:	80 91 dc 00 	lds	r24, 0x00DC
+     f5e:	8e 7f       	andi	r24, 0xFE	; 254
+     f60:	80 93 dc 00 	sts	0x00DC, r24
+     f64:	80 e2       	ldi	r24, 0x20	; 32
+     f66:	80 93 b6 00 	sts	0x00B6, r24
+     f6a:	80 91 dc 00 	lds	r24, 0x00DC
+     f6e:	8f 7c       	andi	r24, 0xCF	; 207
+     f70:	80 63       	ori	r24, 0x30	; 48
+     f72:	80 93 dc 00 	sts	0x00DC, r24
+     f76:	8f ef       	ldi	r24, 0xFF	; 255
+     f78:	80 93 91 03 	sts	0x0391, r24
+     f7c:	80 91 df 00 	lds	r24, 0x00DF
+     f80:	88 60       	ori	r24, 0x08	; 8
+     f82:	80 93 df 00 	sts	0x00DF, r24
+     f86:	84 e4       	ldi	r24, 0x44	; 68
+     f88:	80 93 b9 03 	sts	0x03B9, r24
+     f8c:	80 91 c8 00 	lds	r24, 0x00C8
+     f90:	8f 77       	andi	r24, 0x7F	; 127
+     f92:	80 93 c8 00 	sts	0x00C8, r24
+     f96:	80 91 c8 00 	lds	r24, 0x00C8
+     f9a:	8f 7b       	andi	r24, 0xBF	; 191
+     f9c:	80 93 c8 00 	sts	0x00C8, r24
+     fa0:	80 91 c8 00 	lds	r24, 0x00C8
+     fa4:	82 60       	ori	r24, 0x02	; 2
+     fa6:	80 93 c8 00 	sts	0x00C8, r24
+     faa:	80 91 c9 00 	lds	r24, 0x00C9
+     fae:	8f 7d       	andi	r24, 0xDF	; 223
+     fb0:	80 93 c9 00 	sts	0x00C9, r24
+     fb4:	80 91 c9 00 	lds	r24, 0x00C9
+     fb8:	8b 7f       	andi	r24, 0xFB	; 251
+     fba:	80 93 c9 00 	sts	0x00C9, r24
+     fbe:	80 91 c9 00 	lds	r24, 0x00C9
+     fc2:	80 68       	ori	r24, 0x80	; 128
+     fc4:	80 93 c9 00 	sts	0x00C9, r24
+     fc8:	80 91 c9 00 	lds	r24, 0x00C9
+     fcc:	80 64       	ori	r24, 0x40	; 64
+     fce:	80 93 c9 00 	sts	0x00C9, r24
+     fd2:	80 91 c9 00 	lds	r24, 0x00C9
+     fd6:	80 61       	ori	r24, 0x10	; 16
+     fd8:	80 93 c9 00 	sts	0x00C9, r24
+     fdc:	80 91 c9 00 	lds	r24, 0x00C9
+     fe0:	88 60       	ori	r24, 0x08	; 8
+     fe2:	80 93 c9 00 	sts	0x00C9, r24
+     fe6:	80 91 ca 00 	lds	r24, 0x00CA
+     fea:	8f 77       	andi	r24, 0x7F	; 127
+     fec:	80 93 ca 00 	sts	0x00CA, r24
+     ff0:	80 91 ca 00 	lds	r24, 0x00CA
+     ff4:	8f 7b       	andi	r24, 0xBF	; 191
+     ff6:	80 93 ca 00 	sts	0x00CA, r24
+     ffa:	80 91 ca 00 	lds	r24, 0x00CA
+     ffe:	8f 7d       	andi	r24, 0xDF	; 223
+    1000:	80 93 ca 00 	sts	0x00CA, r24
+    1004:	80 91 ca 00 	lds	r24, 0x00CA
+    1008:	8f 7e       	andi	r24, 0xEF	; 239
+    100a:	80 93 ca 00 	sts	0x00CA, r24
+    100e:	80 91 ca 00 	lds	r24, 0x00CA
+    1012:	8e 7f       	andi	r24, 0xFE	; 254
+    1014:	80 93 ca 00 	sts	0x00CA, r24
+    1018:	80 91 ca 00 	lds	r24, 0x00CA
+    101c:	84 60       	ori	r24, 0x04	; 4
+    101e:	80 93 ca 00 	sts	0x00CA, r24
+    1022:	80 91 ca 00 	lds	r24, 0x00CA
+    1026:	82 60       	ori	r24, 0x02	; 2
+    1028:	80 93 ca 00 	sts	0x00CA, r24
+    102c:	10 92 cd 00 	sts	0x00CD, r1
+    1030:	82 e2       	ldi	r24, 0x22	; 34
+    1032:	80 93 cc 00 	sts	0x00CC, r24
+    1036:	10 92 9a 03 	sts	0x039A, r1
+    103a:	10 92 b2 03 	sts	0x03B2, r1
+    103e:	10 92 e5 03 	sts	0x03E5, r1
+    1042:	10 92 e4 03 	sts	0x03E4, r1
+    1046:	10 92 99 03 	sts	0x0399, r1
+    104a:	10 92 98 03 	sts	0x0398, r1
+    104e:	10 92 b4 03 	sts	0x03B4, r1
+    1052:	10 92 b3 03 	sts	0x03B3, r1
+    1056:	10 92 e0 03 	sts	0x03E0, r1
+    105a:	10 92 df 03 	sts	0x03DF, r1
+    105e:	10 92 da 03 	sts	0x03DA, r1
+    1062:	10 92 d9 03 	sts	0x03D9, r1
+    1066:	10 92 a6 03 	sts	0x03A6, r1
+    106a:	10 92 a5 03 	sts	0x03A5, r1
+    106e:	10 92 7a 00 	sts	0x007A, r1
+    1072:	6a 9a       	sbi	0x0d, 2	; 13
+  async command void IO.toggle()     { atomic FLIP_BIT (port, bit); }
+    
+  inline async command void IO.makeInput()  { CLR_BIT  (ddr, bit);  }
+  inline async command bool IO.isInput() { return !READ_BIT(ddr, bit); }
+  inline async command void IO.makeOutput() { SET_BIT  (ddr, bit);  }
+    1074:	6b 9a       	sbi	0x0d, 3	; 13
+    1076:	6c 9a       	sbi	0x0d, 4	; 13
+    1078:	72 9a       	sbi	0x0e, 2	; 14
+    107a:	73 9a       	sbi	0x0e, 3	; 14
+    107c:	74 9a       	sbi	0x0e, 4	; 14
+    107e:	81 e0       	ldi	r24, 0x01	; 1
+    1080:	85 bf       	out	0x35, r24	; 53
+    1082:	80 91 39 01 	lds	r24, 0x0139
+}
+implementation {
+  command error_t RFA1RadioOff.init() {
+    if(!uniqueCount("RFA1RadioOn")) {
+      TRXPR |= (1<<SLPTR); 
+    1086:	82 60       	ori	r24, 0x02	; 2
+    1088:	80 93 39 01 	sts	0x0139, r24
+    108c:	48 de       	rcall	.-880    	; 0xd1e <RealMainP__Scheduler__runNextTask>
+    atomic
+      {
+	/* First, initialize the Scheduler so components can post
+	   tasks. Initialize all of the very hardware specific stuff, such
+	   as CPU settings, counters, etc. After the hardware is ready,
+	   initialize the requisite software components and start
+	   execution.*/
+	platform_bootstrap();
+	
+	call Scheduler.init(); 
+    
+	/* Initialize the platform. Then spin on the Scheduler, passing
+	 * FALSE so it will not put the system to sleep if there are no
+	 * more tasks; if no tasks remain, continue on to software
+	 * initialization */
+	call PlatformInit.init();    
+	while (call Scheduler.runNextTask());
+    108e:	88 23       	and	r24, r24
+    1090:	e9 f7       	brne	.-6      	; 0x108c <main+0x222>
+    1092:	10 92 ba 03 	sts	0x03BA, r1
+    1096:	43 de       	rcall	.-890    	; 0xd1e <RealMainP__Scheduler__runNextTask>
+    1098:	88 23       	and	r24, r24
+
+	/* Initialize software components.Then spin on the Scheduler,
+	 * passing FALSE so it will not put the system to sleep if there
+	 * are no more tasks; if no tasks remain, the system has booted
+	 * successfully.*/
+	call SoftwareInit.init(); 
+	while (call Scheduler.runNextTask());
+    109a:	e9 f7       	brne	.-6      	; 0x1096 <main+0x22c>
+    109c:	81 2f       	mov	r24, r17
+    109e:	99 27       	eor	r25, r25
+    10a0:	8f bf       	out	0x3f, r24	; 63
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+    10a2:	78 94       	sei
+    10a4:	49 e1       	ldi	r20, 0x19	; 25
+  SREG = original_SREG;
+    10a6:	52 e0       	ldi	r21, 0x02	; 2
+    10a8:	60 e0       	ldi	r22, 0x00	; 0
+    10aa:	70 e0       	ldi	r23, 0x00	; 0
+    10ac:	80 e0       	ldi	r24, 0x00	; 0
+    10ae:	41 de       	rcall	.-894    	; 0xd32 <VirtualizeTimerC__0__Timer__startPeriodic>
+    10b0:	44 ef       	ldi	r20, 0xF4	; 244
+    10b2:	51 e0       	ldi	r21, 0x01	; 1
+    10b4:	60 e0       	ldi	r22, 0x00	; 0
+    10b6:	70 e0       	ldi	r23, 0x00	; 0
+/* Saves current interrupt mask state and disables interrupts. */
+inline __nesc_atomic_t
+__nesc_atomic_start(void) @spontaneous() @safe()
+{
+    __nesc_atomic_t result = SREG;
+    10b8:	81 e0       	ldi	r24, 0x01	; 1
+    10ba:	3b de       	rcall	.-906    	; 0xd32 <VirtualizeTimerC__0__Timer__startPeriodic>
+    10bc:	48 ee       	ldi	r20, 0xE8	; 232
+    10be:	53 e0       	ldi	r21, 0x03	; 3
+    10c0:	60 e0       	ldi	r22, 0x00	; 0
+    10c2:	70 e0       	ldi	r23, 0x00	; 0
+    10c4:	82 e0       	ldi	r24, 0x02	; 2
+    10c6:	35 de       	rcall	.-918    	; 0xd32 <VirtualizeTimerC__0__Timer__startPeriodic>
+    10c8:	8f b7       	in	r24, 0x3f	; 63
+    10ca:	f8 94       	cli
+    10cc:	c8 2f       	mov	r28, r24
+    10ce:	dd 27       	eor	r29, r29
+    10d0:	1a c0       	rjmp	.+52     	; 0x1106 <main+0x29c>
+    10d2:	80 91 91 03 	lds	r24, 0x0391
+    10d6:	87 ff       	sbrs	r24, 7
+    __nesc_disable_interrupt();
+    asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+    10d8:	0d c0       	rjmp	.+26     	; 0x10f4 <main+0x28a>
+    10da:	80 91 7a 00 	lds	r24, 0x007A
+    10de:	80 91 dc 00 	lds	r24, 0x00DC
+    10e2:	10 92 91 03 	sts	0x0391, r1
+    10e6:	83 b7       	in	r24, 0x33	; 51
+    10e8:	e0 e2       	ldi	r30, 0x20	; 32
+
+	async command bool CompareC.test() { return SCIRQS & (1 << IRQSCP3); }
+
+	async command void CompareC.reset() { SCIRQS = 1 << IRQSCP3; }
+
+// ----- COMPARE C: symbol counter interrupt mask register (SCIRQM), compare interrupt enable (IRQMCP)
+
+	async command void CompareC.start()
+	{
+		SET_BIT(SCIRQM, IRQMCP3);
+
+		call McuPowerState.update();
+	}
+
+	async command void CompareC.stop()
+	{
+		CLR_BIT(SCIRQM, IRQMCP3);
+
+		call McuPowerState.update();
+	}
+
+	async command bool CompareC.isOn() { return SCIRQM & (1 << IRQMCP3); }
+
+// ----- COMPARE C: symbol counter control register (SCCR), compare mode (SCCMP)
+
+	async command void CompareC.setMode(uint8_t mode)
+	{
+		atomic
+		{
+			SCCR0 = (SCCR0 & ~(1 << SCCMP3)) 
+				| (mode & 0x1) << SCCMP3;
+		}
+	}
+
+	async command uint8_t CompareC.getMode()
+	{
+		return (SCCR0 >> SCCMP3) & 0x1;
+	}
+
+// ----- COMPARE C: ignore force for the symbol counter
+
+	async command void CompareC.force() { }
+
+// ----- SFD CAPTURE: symbol counter time stamp register (SCTSR)
+
+	async command uint32_t SfdCapture.get()
+	{
+		reg32_t time;
+
+		atomic
+		{
+			time.ll = SCTSRLL;
+			time.lh = SCTSRLH;
+			time.hl = SCTSRHL;
+			time.hh	= SCTSRHH;
+		}
+
+		return time.full;
+	}
+
+	async command void SfdCapture.set(uint32_t value) 
+	{ 
+		// SCTSR is read only
+	}
+
+// ----- SFD CAPTURE: has no interrupt (use RX_START instead)
+
+	async command bool SfdCapture.test() { return FALSE; }
+	async command void SfdCapture.reset() { }
+	async command void SfdCapture.start() { }
+	async command void SfdCapture.stop() { }
+	async command bool SfdCapture.isOn() { return FALSE; }
+
+// ----- SFD CAPTURE: symbol counter control register (SCCR), timestamping enable (SCTES)
+
+	async command void SfdCapture.setMode(uint8_t mode)
+	{
+		atomic
+		{
+			SCCR0 = (SCCR0 & ~(1 << SCTSE))
+				| (mode & 0x1) << SCTSE;
+		}
+	}
+
+	async command uint8_t SfdCapture.getMode()
+	{
+		return (SCCR0 >> SCTSE) & 0x1;
+	}
+
+
+// ----- BEACON CAPTURE: symbol counter time stamp register (SCTSR)
+
+	async command uint32_t BeaconCapture.get()
+	{
+		reg32_t time;
+
+		atomic
+		{
+			time.ll = SCBTSRLL;
+			time.lh = SCBTSRLH;
+			time.hl = SCBTSRHL;
+			time.hh	= SCBTSRHH;
+		}
+
+		return time.full;
+	}
+
+	async command void BeaconCapture.set(uint32_t value) 
+	{ 
+		reg32_t time;
+		
+		time.full = value;
+
+		atomic
+		{
+			SCBTSRHH = time.hh;
+			SCBTSRHL = time.hl;
+			SCBTSRLH = time.lh;
+			SCBTSRLL = time.ll;
+		}
+	}
+
+// ----- BEACON CAPTURE: has no interrupt (use RX_START instead)
+
+	async command bool BeaconCapture.test() { return FALSE; }
+	async command void BeaconCapture.reset() { }
+	async command void BeaconCapture.start() { }
+	async command void BeaconCapture.stop() { }
+	async command bool BeaconCapture.isOn() { return FALSE; }
+
+// ----- BEACON CAPTURE: symbol counter control register (SCCR), timestamping enable (SCTES)
+
+	async command void BeaconCapture.setMode(uint8_t mode)
+	{
+		atomic
+		{
+			SCCR0 = (SCCR0 & ~(1 << SCTSE))
+				| (mode & 0x1) << SCTSE;
+		}
+	}
+
+	async command uint8_t BeaconCapture.getMode()
+	{
+		return (SCCR0 >> SCTSE) & 0x1;
+	}
+
+// ----- MCUPOWER
+
+	async command mcu_power_t McuPowerOverride.lowestState()
+	{
+		// TODO: check out why ATM128_POWER_DOWN does not work
+
+		if( SCCR0 & (1 << SCEN) )
+    10ea:	f1 e0       	ldi	r31, 0x01	; 1
+    10ec:	e4 91       	lpm	r30, Z
+    10ee:	80 7f       	andi	r24, 0xF0	; 240
+    10f0:	8e 2b       	or	r24, r30
+    10f2:	83 bf       	out	0x33, r24	; 51
+    10f4:	83 b7       	in	r24, 0x33	; 51
+    10f6:	81 60       	ori	r24, 0x01	; 1
+    10f8:	83 bf       	out	0x33, r24	; 51
+    10fa:	78 94       	sei
+    10fc:	88 95       	sleep
+    10fe:	f8 94       	cli
+    1100:	83 b7       	in	r24, 0x33	; 51
+    1102:	8e 7f       	andi	r24, 0xFE	; 254
+    1104:	83 bf       	out	0x33, r24	; 51
+    1106:	53 d8       	rcall	.-3930   	; 0x1ae <SchedulerBasicP__popTask>
+    1108:	8f 3f       	cpi	r24, 0xFF	; 255
+    110a:	19 f3       	breq	.-58     	; 0x10d2 <main+0x268>
+    110c:	cf bf       	out	0x3f, r28	; 63
+    110e:	1e dd       	rcall	.-1476   	; 0xb4c <SchedulerBasicP__TaskBasic__runTask>
+    1110:	db cf       	rjmp	.-74     	; 0x10c8 <main+0x25e>
+
+00001112 <memset>:
+    1112:	dc 01       	movw	r26, r24
+    1114:	01 c0       	rjmp	.+2      	; 0x1118 <memset+0x6>
+    1116:	6d 93       	st	X+, r22
+    1118:	41 50       	subi	r20, 0x01	; 1
+/* Restores interrupt mask to original state. */
+inline void
+__nesc_atomic_end(__nesc_atomic_t original_SREG) @spontaneous() @safe()
+{
+  asm volatile("" : : : "memory"); /* ensure atomic section effect visibility */
+    111a:	50 40       	sbci	r21, 0x00	; 0
+    111c:	e0 f7       	brcc	.-8      	; 0x1116 <memset+0x4>
+    111e:	08 95       	ret
+
+00001120 <_exit>:
+    1120:	ff cf       	rjmp	.-2      	; 0x1120 <_exit>

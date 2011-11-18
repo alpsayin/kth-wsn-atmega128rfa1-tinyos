@@ -1,0 +1,716 @@
+Archive member included because of file (symbol)
+
+/usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+                              /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o (exit)
+/usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+                              app.o (__do_clear_bss)
+/usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(memset.o)
+                              app.o (memset)
+
+Allocating common symbols
+Common symbol       size              file
+
+Atm128Rfa1SerialP__txBuf
+                    0x2               app.o
+Atm128Rfa1SerialP__rxBusy
+                    0x1               app.o
+Atm128Rfa1SerialP__rxResult
+                    0x1               app.o
+SchedulerBasicP__m_next
+                    0x9               app.o
+Atm128Rfa1SerialP__txLen
+                    0x2               app.o
+AlarmToTimerC__0__m_oneshot
+                    0x1               app.o
+Atm128AdcP(float)   0x1               app.o
+Atm128AdcP__nextF   0x1               app.o
+TransformAlarmC__0__m_dt
+                    0x4               app.o
+TransformAlarmC__0__m_t0
+                    0x4               app.o
+Atm128Rfa1SerialP__txBusy
+                    0x1               app.o
+Atm128Rfa1SerialP__rxPos
+                    0x2               app.o
+AdcP__state         0x1               app.o
+Atm128Rfa1SerialP__txResult
+                    0x1               app.o
+Atm128Rfa1SerialP__rxUnexpectedByte
+                    0x1               app.o
+TransformCounterC__0__m_upper
+                    0x1               app.o
+Atm128Rfa1SerialP__m_byte_time
+                    0x1               app.o
+RoundRobinResourceQueueC__0__resQ
+                    0x1               app.o
+VirtualizeTimerC__0__m_timers
+                    0x1b              app.o
+AdcP__val           0x2               app.o
+ArbiterP__0__reqResId
+                    0x1               app.o
+Atm128Rfa1SerialP__rxLen
+                    0x2               app.o
+AlarmToTimerC__0__m_dt
+                    0x4               app.o
+Atm128Rfa1SerialP__txPos
+                    0x2               app.o
+SchedulerBasicP__m_head
+                    0x1               app.o
+MeasureClockC__cycles
+                    0x2               app.o
+Atm128Rfa1SerialP__rxBuf
+                    0x2               app.o
+AdcP__client        0x1               app.o
+SchedulerBasicP__m_tail
+                    0x1               app.o
+
+Discarded input sections
+
+ .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+ .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+ .stabstr       0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+ .text          0x00000000        0x0 app.o
+ .text.__nesc_atomic_start
+                0x00000000        0x0 app.o
+ .text.__nesc_atomic_end
+                0x00000000        0x0 app.o
+ .text          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+ .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+ .text          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(memset.o)
+ .data          0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(memset.o)
+ .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(memset.o)
+ .stabstr       0x00000000        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(memset.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800200
+LOAD /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+LOAD app.o
+LOAD /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libm.a
+LOAD /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a
+LOAD /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a
+LOAD /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x1122
+ *(.vectors)
+ .vectors       0x00000000      0x120 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000120        0x6 app.o
+                0x00000120                McuSleepC__atm128PowerBits
+                0x00000126                . = ALIGN (0x2)
+                0x00000126                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000126        0x0 linker stubs
+ *(.trampolines*)
+                0x00000126                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000126                __ctors_start = .
+ *(.ctors)
+                0x00000126                __ctors_end = .
+                0x00000126                __dtors_start = .
+ *(.dtors)
+                0x00000126                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000126        0x0 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+                0x00000126                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000126        0xc /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000132       0x1a /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+                0x00000132                __do_copy_data
+ .init4         0x0000014c       0x10 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+                0x0000014c                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x0000015c        0x4 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+ *(.init9)
+ *(.text)
+ .text          0x00000160        0x2 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+                0x00000160                __vector_22
+                0x00000160                __vector_63
+                0x00000160                __vector_28
+                0x00000160                __vector_1
+                0x00000160                __vector_32
+                0x00000160                __vector_71
+                0x00000160                __vector_34
+                0x00000160                __vector_62
+                0x00000160                __vector_24
+                0x00000160                __vector_12
+                0x00000160                __vector_55
+                0x00000160                __vector_69
+                0x00000160                __vector_46
+                0x00000160                __bad_interrupt
+                0x00000160                __vector_6
+                0x00000160                __vector_31
+                0x00000160                __vector_35
+                0x00000160                __vector_39
+                0x00000160                __vector_3
+                0x00000160                __vector_23
+                0x00000160                __vector_30
+                0x00000160                __vector_45
+                0x00000160                __vector_25
+                0x00000160                __vector_61
+                0x00000160                __vector_11
+                0x00000160                __vector_54
+                0x00000160                __vector_13
+                0x00000160                __vector_17
+                0x00000160                __vector_19
+                0x00000160                __vector_56
+                0x00000160                __vector_7
+                0x00000160                __vector_49
+                0x00000160                __vector_41
+                0x00000160                __vector_64
+                0x00000160                __vector_43
+                0x00000160                __vector_27
+                0x00000160                __vector_5
+                0x00000160                __vector_33
+                0x00000160                __vector_47
+                0x00000160                __vector_52
+                0x00000160                __vector_37
+                0x00000160                __vector_4
+                0x00000160                __vector_44
+                0x00000160                __vector_51
+                0x00000160                __vector_9
+                0x00000160                __vector_2
+                0x00000160                __vector_21
+                0x00000160                __vector_15
+                0x00000160                __vector_58
+                0x00000160                __vector_70
+                0x00000160                __vector_60
+                0x00000160                __vector_40
+                0x00000160                __vector_8
+                0x00000160                __vector_26
+                0x00000160                __vector_48
+                0x00000160                __vector_14
+                0x00000160                __vector_57
+                0x00000160                __vector_53
+                0x00000160                __vector_10
+                0x00000160                __vector_50
+                0x00000160                __vector_16
+                0x00000160                __vector_59
+                0x00000160                __vector_18
+                0x00000160                __vector_20
+                0x00000160                __vector_42
+                0x00000162                . = ALIGN (0x2)
+ *(.text.*)
+ .text.Atm128AdcP__isPrecise
+                0x00000162       0x46 app.o
+ .text.Atm128AdcP__HplAtm128Adc__getAdmux
+                0x000001a8        0x6 app.o
+ .text.SchedulerBasicP__popTask
+                0x000001ae       0x2e app.o
+ .text.SchedulerBasicP__TaskBasic__postTask
+                0x000001dc       0x4e app.o
+ .text.VirtualizeTimerC__0__updateFromTimer__postTask
+                0x0000022a        0x8 app.o
+ .text.ArbiterP__0__grantedTask__postTask
+                0x00000232        0x8 app.o
+ .text.__vector_36
+                0x0000023a       0xb2 app.o
+                0x0000023a                __vector_36
+ .text.__vector_38
+                0x000002ec       0xb6 app.o
+                0x000002ec                __vector_38
+ .text.__vector_68
+                0x000003a2       0x22 app.o
+                0x000003a2                __vector_68
+ .text.TransformAlarmC__0__Counter__get
+                0x000003c4       0x8c app.o
+ .text.TransformAlarmC__0__set_alarm
+                0x00000450      0x1ac app.o
+ .text.__vector_65
+                0x000005fc       0x74 app.o
+                0x000005fc                __vector_65
+ .text.VirtualizeTimerC__0__TimerFrom__getNow
+                0x00000670        0x4 app.o
+ .text.__vector_66
+                0x00000674       0x14 app.o
+                0x00000674                __vector_66
+ .text.__vector_67
+                0x00000688       0x14 app.o
+                0x00000688                __vector_67
+ .text.RoundRobinResourceQueueC__0__RoundRobinQueue__isEnqueued
+                0x0000069c       0x28 app.o
+ .text.ArbiterP__0__Resource__release
+                0x000006c4       0xe0 app.o
+ .text.BlinkC__SerialByte__send
+                0x000007a4       0x7c app.o
+ .text.BlinkC__print_num
+                0x00000820       0x8e app.o
+ .text.BlinkC__Leds__led0Toggle
+                0x000008ae       0x12 app.o
+ .text.BlinkC__Leds__led2Toggle
+                0x000008c0       0x12 app.o
+ .text.AdcP__sample
+                0x000008d2       0xa4 app.o
+ .text.ArbitratedReadC__0__Resource__granted
+                0x00000976        0xc app.o
+ .text.ArbiterP__0__Resource__request
+                0x00000982       0xcc app.o
+ .text.VirtualizeTimerC__0__fireTimers
+                0x00000a4e       0xb6 app.o
+ .text.AlarmToTimerC__0__start
+                0x00000b04       0x48 app.o
+ .text.SchedulerBasicP__TaskBasic__runTask
+                0x00000b4c      0x1d2 app.o
+ .text.RealMainP__Scheduler__runNextTask
+                0x00000d1e       0x14 app.o
+ .text.VirtualizeTimerC__0__Timer__startPeriodic
+                0x00000d32       0x44 app.o
+ .text.__vector_29
+                0x00000d76       0xf4 app.o
+                0x00000d76                __vector_29
+ .text.main     0x00000e6a      0x2a8 app.o
+                0x00000e6a                main
+ .text.avr-libc
+                0x00001112        0xe /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(memset.o)
+                0x00001112                memset
+                0x00001120                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00001120        0x0 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+                0x00001120                exit
+                0x00001120                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00001120        0x2 /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+ *(.fini0)
+                0x00001122                _etext = .
+
+.data           0x00800200      0x194 load address 0x00001122
+                0x00800200                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800200      0x193 app.o
+                0x00800391                McuSleepC__powerState
+                0x00800211                signature
+                0x00800200                hexTable
+                0x00800392                ArbiterP__0(long double,...)(short, int13_t)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800394                . = ALIGN (0x2)
+ *fill*         0x00800393        0x1 00
+                0x00800394                _edata = .
+                0x00800394                PROVIDE (__data_end, .)
+
+.bss            0x00800394       0x54
+                0x00800394                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800394        0x4 app.o
+                0x00800396                ArbiterP__0__state
+                0x00800394                Atm128Rfa1Uart1InterruptsP__privReceivedByte
+                0x00800395                RoundRobinResourceQueueC__0__last
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800398       0x50 app.o
+                0x00800398                Atm128Rfa1SerialP__txBuf
+                0x0080039a                Atm128Rfa1SerialP__rxBusy
+                0x0080039b                Atm128Rfa1SerialP__rxResult
+                0x0080039c                SchedulerBasicP__m_next
+                0x008003a5                Atm128Rfa1SerialP__txLen
+                0x008003a7                AlarmToTimerC__0__m_oneshot
+                0x008003a8                Atm128AdcP(float)
+                0x008003a9                Atm128AdcP__nextF
+                0x008003aa                TransformAlarmC__0__m_dt
+                0x008003ae                TransformAlarmC__0__m_t0
+                0x008003b2                Atm128Rfa1SerialP__txBusy
+                0x008003b3                Atm128Rfa1SerialP__rxPos
+                0x008003b5                AdcP__state
+                0x008003b6                Atm128Rfa1SerialP__txResult
+                0x008003b7                Atm128Rfa1SerialP__rxUnexpectedByte
+                0x008003b8                TransformCounterC__0__m_upper
+                0x008003b9                Atm128Rfa1SerialP__m_byte_time
+                0x008003ba                RoundRobinResourceQueueC__0__resQ
+                0x008003bb                VirtualizeTimerC__0__m_timers
+                0x008003d6                AdcP__val
+                0x008003d8                ArbiterP__0__reqResId
+                0x008003d9                Atm128Rfa1SerialP__rxLen
+                0x008003db                AlarmToTimerC__0__m_dt
+                0x008003df                Atm128Rfa1SerialP__txPos
+                0x008003e1                SchedulerBasicP__m_head
+                0x008003e2                MeasureClockC__cycles
+                0x008003e4                Atm128Rfa1SerialP__rxBuf
+                0x008003e6                AdcP__client
+                0x008003e7                SchedulerBasicP__m_tail
+                0x008003e8                PROVIDE (__bss_end, .)
+                0x00001122                __data_load_start = LOADADDR (.data)
+                0x000012b6                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x008003e8        0x0
+                0x008003e8                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x008003e8                PROVIDE (__noinit_end, .)
+                0x008003e8                _end = .
+                0x008003e8                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.stab           0x00000000      0x7bc
+ *(.stab)
+ .stab          0x00000000      0x750 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+ .stab          0x00000750       0x6c /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(memset.o)
+                                 0x78 (size before relaxing)
+
+.stabstr        0x00000000       0x82
+ *(.stabstr)
+ .stabstr       0x00000000       0x82 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x128
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000      0x128 app.o
+
+.debug_pubnames
+                0x00000000      0x4c5
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x4c5 app.o
+
+.debug_info     0x00000000     0x48f1
+ *(.debug_info)
+ .debug_info    0x00000000     0x48f1 app.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x3ba
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x3ba app.o
+
+.debug_line     0x00000000     0x1ba6
+ *(.debug_line)
+ .debug_line    0x00000000     0x1ba6 app.o
+
+.debug_frame    0x00000000      0x220
+ *(.debug_frame)
+ .debug_frame   0x00000000      0x220 app.o
+
+.debug_str      0x00000000     0x324b
+ *(.debug_str)
+ .debug_str     0x00000000     0x324b app.o
+                               0x3453 (size before relaxing)
+
+.debug_loc      0x00000000      0x868
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x868 app.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(app.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000      0x1d0
+ .debug_ranges  0x00000000      0x1d0 app.o
+
+Cross Reference Table
+
+Symbol                                            File
+AdcP__client                                      app.o
+AdcP__state                                       app.o
+AdcP__val                                         app.o
+AlarmToTimerC__0__m_dt                            app.o
+AlarmToTimerC__0__m_oneshot                       app.o
+ArbiterP__0(long double,...)(short, int13_t)      app.o
+ArbiterP__0__reqResId                             app.o
+ArbiterP__0__state                                app.o
+Atm128AdcP(float)                                 app.o
+Atm128AdcP__nextF                                 app.o
+Atm128Rfa1SerialP__m_byte_time                    app.o
+Atm128Rfa1SerialP__rxBuf                          app.o
+Atm128Rfa1SerialP__rxBusy                         app.o
+Atm128Rfa1SerialP__rxLen                          app.o
+Atm128Rfa1SerialP__rxPos                          app.o
+Atm128Rfa1SerialP__rxResult                       app.o
+Atm128Rfa1SerialP__rxUnexpectedByte               app.o
+Atm128Rfa1SerialP__txBuf                          app.o
+Atm128Rfa1SerialP__txBusy                         app.o
+Atm128Rfa1SerialP__txLen                          app.o
+Atm128Rfa1SerialP__txPos                          app.o
+Atm128Rfa1SerialP__txResult                       app.o
+Atm128Rfa1Uart1InterruptsP__privReceivedByte      app.o
+McuSleepC__atm128PowerBits                        app.o
+McuSleepC__powerState                             app.o
+MeasureClockC__cycles                             app.o
+RoundRobinResourceQueueC__0__last                 app.o
+RoundRobinResourceQueueC__0__resQ                 app.o
+SchedulerBasicP__m_head                           app.o
+SchedulerBasicP__m_next                           app.o
+SchedulerBasicP__m_tail                           app.o
+TransformAlarmC__0__m_dt                          app.o
+TransformAlarmC__0__m_t0                          app.o
+TransformCounterC__0__m_upper                     app.o
+VirtualizeTimerC__0__m_timers                     app.o
+__bad_interrupt                                   /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__bss_end                                         /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+__bss_start                                       /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+__data_end                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__data_load_start                                 /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__data_start                                      /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__do_clear_bss                                    /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_clear_bss.o)
+                                                  app.o
+__do_copy_data                                    /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+                                                  app.o
+__heap_end                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__init                                            /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__nesc_atomic_end                                 app.o
+__nesc_atomic_start                               app.o
+__stack                                           /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_1                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_10                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_11                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_12                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_13                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_14                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_15                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_16                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_17                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_18                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_19                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_2                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_20                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_21                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_22                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_23                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_24                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_25                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_26                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_27                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_28                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_29                                       app.o
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_3                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_30                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_31                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_32                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_33                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_34                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_35                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_36                                       app.o
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_37                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_38                                       app.o
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_39                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_4                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_40                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_41                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_42                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_43                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_44                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_45                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_46                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_47                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_48                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_49                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_5                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_50                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_51                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_52                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_53                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_54                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_55                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_56                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_57                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_58                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_59                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_6                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_60                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_61                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_62                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_63                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_64                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_65                                       app.o
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_66                                       app.o
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_67                                       app.o
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_68                                       app.o
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_69                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_7                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_70                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_71                                       /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_8                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_9                                        /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vector_default                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+__vectors                                         /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+_exit                                             /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+exit                                              /usr/lib/gcc/avr/4.1.2/avr5/libgcc.a(_exit.o)
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+hexTable                                          app.o
+main                                              app.o
+                                                  /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128rfa1.o
+memset                                            /usr/lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/libc.a(memset.o)
+                                                  app.o
+signature                                         app.o
