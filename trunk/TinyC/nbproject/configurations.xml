@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="69">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <df name="SerialPortNoTiny" root=".">
+      <df name=".dep">
+      </df>
+      <in>app.c</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+      <itemPath>Makefile-SerialPortNoTiny.mk</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile-SerialPortNoTiny.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>avr-gcc|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>$(MAKE) -f Makefile</buildCommand>
+          <cleanCommand>$(MAKE) -f Makefile clean</cleanCommand>
+          <executablePath>app.hex</executablePath>
+          <cTool>
+            <incDir>
+              <pElem>/usr/avr/include/avr</pElem>
+              <pElem>/usr/avr/include/util</pElem>
+              <pElem>/usr/avr/include/</pElem>
+            </incDir>
+          </cTool>
+          <ccTool>
+            <incDir>
+              <pElem>/usr/avr/include/avr</pElem>
+              <pElem>/usr/avr/include/util</pElem>
+              <pElem>/usr/avr/include/</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="app.c" ex="false" tool="0">
+        <cTool>
+          <incDir>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/adc</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/lib/power</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/interfaces</pElem>
+            <pElem>/usr/lib/ncc</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/lib/timer</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/sensors</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/system</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/types</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1</pElem>
+            <pElem>../AdcTest/src</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/radio</pElem>
+            <pElem>/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>F_CPU=UL</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
