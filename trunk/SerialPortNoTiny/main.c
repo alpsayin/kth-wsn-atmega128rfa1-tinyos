@@ -189,6 +189,7 @@ int main(void)
       PRINT_REG(MCUCR);
       PRINT_REG(ADMUX);
       PRINT_REG(ADCSRB);
+      PRINT_REG(SMCR);
       if(serial_flag)
 	{
 	  UDR1 = (uint8_t)(myByte);
