@@ -16,15 +16,54 @@
 #define CLR_FLAG(port, flag)  ((port) &= ~(flag))
 #define READ_FLAG(port, flag) ((port) & (flag))
 
-uint8_t myByte = 'U';
- 
-int main(void) 
+#define PRINT_REG(x) msgLen = sprintf(msgBuffer, "[%p] = 0x%X\n", &x ,x); printStr(msgBuffer, msgLen);
+
+#define STRLEN(s) ((sizeof(s)/sizeof(s[0]))-1)
+#define HIGH(x) ((x&0xF0)>>4)
+#define LOW(x) (x&0x0F)
+
+uint8_t hexTable[16] = "0123456789ABCDEF";
+
+volatile uint8_t myByte = 'U';
+volatile uint16_t adcVal = 0;
+volatile uint8_t adc_flag = 0;
+volatile uint8_t serial_flag = 0;
+
+void printStr(uint8_t*, uint8_t);
+void print_uint16(uint16_t);
+void setupClock();
+void setupSerial();
+void setupIO();
+void setupAdc();
+
+void printStr(uint8_t* str, uint8_t len)
 {
+  uint8_t i;
+  for(i=0; i<len; i++)
+    {
+      UDR1 = (uint8_t)(str[i]);
+      while(!READ_BIT(UCSR1A, UDRE1));
+    }
+}
+
+void print_uint16(uint16_t val)
+{
+  uint8_t str[16];
+  uint8_t len = 5;
+  /*
+  str[0] = hexTable[HIGH(val>>8)];
+  str[1] = hexTable[LOW(val>>8)];
+  str[2] = hexTable[HIGH(val)];
+  str[3] = hexTable[LOW(val)];
+  str[4] = '\n';
+  */
+  len = sprintf(str, "0x%X\n", val);
+  printStr(str, len);
+}
+void setupSerial()
+{
+
   uint16_t brr = 16;
-  
-  CLKPR = 0x80;
-  CLKPR = 0x00;
-  while(READ_BIT(CLKPR, CLKPCE));
   
   CLR_BIT(UCSR1A, RXC1);
   CLR_BIT(UCSR1A, TXC1);//clear rx & tx complete flags
@@ -52,16 +91,120 @@ int main(void)
   UBRR1H = (uint8_t)(brr>>8);
   UBRR1L = (uint8_t)(brr&0xFF);
 
+}
+
+void setupClock()
+{
+  CLKPR = 0x00;
+  CLKPR = 0x80;
+  CLKPR = 0x00;
+  while(READ_BIT(CLKPR, CLKPCE));
+}
+
+void setupIO()
+{
+  DDRE |= 1<<2; /* set PB0 to output */
   DDRD &= ~(1<<2);
   DDRD |= 1<<3;
-  DDRE |= 1<<2; /* set PB0 to output */
-  
-  sei();
+  DDRF &= ~1;
+  SET_BIT(MCUCR, JTD);
+  SET_BIT(MCUCR, JTD);
+}
 
+
+void setupAdc()
+{
+  SET_BIT(ADCSRA, ADEN);
+
+  SET_BIT(ADMUX, REFS1);
+  SET_BIT(ADMUX, REFS0);
+  SET_BIT(ADMUX, ADLAR);
+  
+  CLR_BIT(ADCSRB, MUX5);
+  CLR_BIT(ADMUX, MUX4);
+  CLR_BIT(ADMUX, MUX3);
+  CLR_BIT(ADMUX, MUX2);
+  SET_BIT(ADMUX, MUX1);
+  CLR_BIT(ADMUX, MUX0);
+
+  CLR_BIT(ADCSRB, ACME);
+  CLR_BIT(ADCSRB, ADTS2);
+  CLR_BIT(ADCSRB, ADTS1);
+  CLR_BIT(ADCSRB, ADTS0);
+
+  SET_BIT(ADCSRB, ACCH);
+  while(READ_BIT(ADCSRB, ACCH));
+
+  CLR_BIT(ADCSRA, ADATE);
+  CLR_BIT(ADCSRA, ADIF);
+  SET_BIT(ADCSRA, ADIE);
+  CLR_BIT(ADCSRA, ADPS2);
+  SET_BIT(ADCSRA, ADPS1);
+  CLR_BIT(ADCSRA, ADPS0);
+  
+  /*
+  SET_BIT(ADCSRC, ADTHT1);
+  SET_BIT(ADCSRC, ADTHT0);
+  SET_BIT(ADCSRC, ADSUT4);
+  SET_BIT(ADCSRC, ADSUT3);
+  SET_BIT(ADCSRC, ADSUT2);
+  SET_BIT(ADCSRC, ADSUT1);
+  SET_BIT(ADCSRC, ADSUT0);
+  */
+  
+  do
+    {
+      printStr("waiting for AVDDOK\n", STRLEN("waiting for AVDDOK\n"));
+    }
+  while(!READ_BIT(ADCSRB, AVDDOK));
+  
+  do
+    {
+      printStr("waiting for REFOK\n", STRLEN("waiting for REFOK\n")); 
+    }
+  while(!READ_BIT(ADCSRB, REFOK));
+
+  //  UDR1 = (uint8_t)(ADMUX);
+  //while(!READ_BIT(UCSR1A, UDRE1));
+  //UDR1 = (uint8_t)(ADCSRA);
+  //while(!READ_BIT(UCSR1A, UDRE1));
+  //UDR1 = (uint8_t)(ADCSRB);
+  //while(!READ_BIT(UCSR1A, UDRE1));
+	  
+}
+ 
+int main(void) 
+{
+  uint8_t msgBuffer[128];
+  uint8_t msgLen = 0;
+  float voltage = 0;;
+  setupClock();
+  setupSerial();
+  setupIO();
+  setupAdc();
+  sei();
+  SET_BIT(ADCSRA, ADSC);
   while(1) 
     {
-      FLIP_BIT(PORTE, PORTE2);
-      _delay_ms(500);
+      PRINT_REG(MCUCR);
+      PRINT_REG(ADMUX);
+      PRINT_REG(ADCSRB);
+      if(serial_flag)
+	{
+	  UDR1 = (uint8_t)(myByte);
+	  while(!READ_BIT(UCSR1A, UDRE1));
+	  
+	  FLIP_BIT(PORTE, PORTE2);
+	  serial_flag = 0;
+	}
+      if(adc_flag)
+	{
+	  printStr("ADC = ",STRLEN("ADC = "));
+	  print_uint16(adcVal);
+	  adc_flag = 0;
+	  _delay_ms(1000);
+	  SET_BIT(ADCSRA, ADSC);
+	}
       //UDR1 = myByte;
       //while(!READ_BIT(UCSR1A, UDRE1)){}
       //CLR_BIT(UCSR1A, TXC1);
@@ -74,10 +217,18 @@ int main(void)
   return 0;
 }
 
+ISR(ADC_vect)
+{
+  adc_flag = 1;
+  //  adcVal = ADCL;
+  //  adcVal |= ((uint16_t)ADCH)<<8;
+  adcVal = ADCH;
+}
+
 ISR(USART1_RX_vect)
 {
   myByte = UDR1;
-  UDR1 = myByte;
+  serial_flag = 1;
 }
 
 ISR(BADISR_vect)
