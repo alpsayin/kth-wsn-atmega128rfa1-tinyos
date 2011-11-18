@@ -47,6 +47,7 @@
 
 #include "Timer.h"
 #include "MyDummyConstants.h"
+#include <stdio.h>
 
 module BlinkC @safe()
 {
@@ -55,9 +56,11 @@ module BlinkC @safe()
   uses interface Timer<TMilli> as Timer2;
   uses interface Read<uint16_t> as Temp0_Read;
   uses interface Read<uint16_t> as Vol0_Read;
+//  uses interface Read<uint16_t> as Ext0_Read;
   uses interface Leds;
   uses interface Boot;
   
+  provides interface Atm128AdcConfig;
   //uses interface UDPClient;
   
   uses interface UartByte as SerialByte;
@@ -67,11 +70,15 @@ module BlinkC @safe()
 implementation
 {
 	uint8_t adcConf[8];
+	uint8_t msgBuf[128];
+	uint8_t msgLen;
   event void Boot.booted()
   {
-    call Timer0.startPeriodic( 250 );
-    call Timer1.startPeriodic( 500 );
-    call Timer2.startPeriodic( 1000 );
+  	DDRF &= ~1;
+  	DIDR0 |= 1;
+    call Timer0.startPeriodic( 500 );
+    call Timer1.startPeriodic( 1000 );
+    call Timer2.startPeriodic( 100 );
     
   }
 
@@ -108,7 +115,7 @@ implementation
     dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
 		
     call Leds.led0Toggle();
-    //call Vol0_Read.read();
+//    call Vol0_Read.read();
   }
   
   event void Timer1.fired()
@@ -124,29 +131,33 @@ implementation
     dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
     call Leds.led2Toggle();
     call Temp0_Read.read();
-    adcConf[0] = 0xFF;
-    adcConf[1] = ADCSRA;
-    adcConf[2] = ADCSRB;
-    adcConf[3] = ADCSRC;
-    adcConf[7] = 0xFF;
-    
-	call SerialByte.send('\n');
-    for(i=0; i<8; i++)
-    {
-    	call SerialByte.send(hexTable[HIGH(adcConf[i])]);
-    	call SerialByte.send(hexTable[LOW(adcConf[i])]);
-    	call SerialByte.send(' ');
-    }
-	call SerialByte.send('\n');
+//    adcConf[0] = ADCSRA;
+//    adcConf[1] = ADCSRB;
+//    adcConf[2] = ADCSRC;
+//    adcConf[3] = ADMUX;
+//    adcConf[4] = DIDR0;
+//    adcConf[5] = 0;
+//    adcConf[6] = 0;
+//    adcConf[7] = 0;
+//    
+//	call SerialByte.send('\n');
+//    for(i=0; i<8; i++)
+//    {
+//    	call SerialByte.send(hexTable[HIGH(adcConf[i])]);
+//    	call SerialByte.send(hexTable[LOW(adcConf[i])]);
+//    	call SerialByte.send(' ');
+//    }
+//	call SerialByte.send('\n');
     
   }
 
 
 	event void Temp0_Read.readDone(error_t result, uint16_t val){
 		// TODO Auto-generated method stub
-		call SerialByte.send('T');
-		print_num(val);
-		
+//		call SerialByte.send('T');
+//		print_num(val);
+		msgLen = sprintf(msgBuf, "%d\n", val);
+		call SerialStream.send(msgBuf, msgLen);
 		call Leds.led2Toggle();
 		
 	}
@@ -154,7 +165,7 @@ implementation
 	event void Vol0_Read.readDone(error_t result, uint16_t val){
 		// TODO Auto-generated method stub
 		call SerialByte.send('V');
-		//print_num(val);
+//		print_num(val);
 		call Leds.led0Toggle();
 		
 	}
@@ -171,4 +182,25 @@ implementation
 		// TODO Auto-generated method stub
 	}
 
+
+
+  async command uint8_t Atm128AdcConfig.getChannel()
+  {
+    // select the 1.23V (V_BG). Reference: Table 22-11, page 429 from the Atmega128rfa1
+    return ATM128_ADC_SNGL_ADC0;
+  }
+
+  async command uint8_t Atm128AdcConfig.getRefVoltage()
+  {
+    return ATM128_ADC_VREF_1_6;
+  }
+
+  async command uint8_t Atm128AdcConfig.getPrescaler()
+  {
+    return ATM128_ADC_PRESCALE_128;		//changed by zn from ATM128_ADC_PRESCALE : 20111114
+  }
+
+//	event void Ext0_Read.readDone(error_t result, uint16_t val){
+//		// TODO Auto-generated method stub
+//	}
 }
