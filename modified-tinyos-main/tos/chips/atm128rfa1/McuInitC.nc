@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2010, University of Szeged
  * All rights reserved.
@@ -38,7 +39,8 @@ configuration McuInitC @safe()
 
 	uses
 	{
-		interface Init as TimerInit;
+	  interface Init as TimerInit;
+	  interface Init as AdcInit;
 	}
 }
 
@@ -48,6 +50,7 @@ implementation
 
 	Init = McuInitP.Init;
 	TimerInit = McuInitP.TimerInit;
+	AdcInit = McuInitP.AdcInit;
 	McuInitP.SerialInit -> Atm128Rfa1SerialC;
 	McuInitP.MeasureClock -> MeasureClockC;
 }
