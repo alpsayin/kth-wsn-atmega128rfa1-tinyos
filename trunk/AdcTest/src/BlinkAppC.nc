@@ -58,7 +58,8 @@ implementation
   components new TimerMilliC() as Timer1;
   components new TimerMilliC() as Timer2;
   components new AtmegaTemperatureC() as Temp0;
-  components new AtmegaVoltageC() as Vol0;
+//  components new AtmegaVoltageC() as Vol0;
+  components new AdcReadClientC() as Vol0;
   
   components PlatformSerialC;
 
@@ -68,7 +69,9 @@ implementation
   BlinkC.Timer1 -> Timer1;
   BlinkC.Timer2 -> Timer2;
   BlinkC.Leds -> LedsC;
-  
+//  
+  BlinkC.Atm128AdcConfig <- Vol0.Atm128AdcConfig;
+//  BlinkC.Ext0_Read -> Ext0.Read;
   BlinkC.Temp0_Read -> Temp0.Read;
   BlinkC.Vol0_Read -> Vol0.Read;
   

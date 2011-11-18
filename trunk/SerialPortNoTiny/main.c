@@ -2,6 +2,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <stdio.h>
 
 #define SET_BIT(port, bit)    ((port) |= _BV(bit))
 #define CLR_BIT(port, bit)    ((port) &= ~_BV(bit))
@@ -31,10 +32,11 @@ volatile uint8_t serial_flag = 0;
 
 void printStr(uint8_t*, uint8_t);
 void print_uint16(uint16_t);
-void setupClock();
-void setupSerial();
-void setupIO();
-void setupAdc();
+void setupClock(void);
+void setupSerial(void);
+void setupIO(void);
+void setupAdc(void);
+void setupAdcSimple(void);
 
 void printStr(uint8_t* str, uint8_t len)
 {
@@ -57,7 +59,7 @@ void print_uint16(uint16_t val)
   str[3] = hexTable[LOW(val)];
   str[4] = '\n';
   */
-  len = sprintf(str, "0x%X\n", val);
+  len = sprintf(str, "0x%X%X\n", val>>8, val&0xFF);
   printStr(str, len);
 }
 void setupSerial()
@@ -111,20 +113,38 @@ void setupIO()
   SET_BIT(MCUCR, JTD);
 }
 
-
 void setupAdc()
+{
+  ADCSRB = (0<<MUX5);
+  ADMUX = (1<<REFS1) | (1<<REFS0) | (0<<MUX4) | (0<<MUX3) | (0<<MUX2) | (0<<MUX1) | (0<<MUX0);
+  ADCSRA = (1<<ADEN) | (1<<ADIE) | (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
+
+  do
+    {
+      printStr("waiting for AVDDOK\n", STRLEN("waiting for AVDDOK\n"));
+    }
+  while(!READ_BIT(ADCSRB, AVDDOK));
+  
+  do
+    {
+      printStr("waiting for REFOK\n", STRLEN("waiting for REFOK\n")); 
+    }
+  while(!READ_BIT(ADCSRB, REFOK));
+  
+}
+void setupAdcComplex()
 {
   SET_BIT(ADCSRA, ADEN);
 
   SET_BIT(ADMUX, REFS1);
   SET_BIT(ADMUX, REFS0);
-  SET_BIT(ADMUX, ADLAR);
-  
+  CLR_BIT(ADMUX, ADLAR);
+   
   CLR_BIT(ADCSRB, MUX5);
   CLR_BIT(ADMUX, MUX4);
   CLR_BIT(ADMUX, MUX3);
   CLR_BIT(ADMUX, MUX2);
-  SET_BIT(ADMUX, MUX1);
+  CLR_BIT(ADMUX, MUX1);
   CLR_BIT(ADMUX, MUX0);
 
   CLR_BIT(ADCSRB, ACME);
@@ -132,15 +152,16 @@ void setupAdc()
   CLR_BIT(ADCSRB, ADTS1);
   CLR_BIT(ADCSRB, ADTS0);
 
-  SET_BIT(ADCSRB, ACCH);
-  while(READ_BIT(ADCSRB, ACCH));
-
   CLR_BIT(ADCSRA, ADATE);
   CLR_BIT(ADCSRA, ADIF);
   SET_BIT(ADCSRA, ADIE);
-  CLR_BIT(ADCSRA, ADPS2);
+  SET_BIT(ADCSRA, ADPS2);
   SET_BIT(ADCSRA, ADPS1);
-  CLR_BIT(ADCSRA, ADPS0);
+  SET_BIT(ADCSRA, ADPS0);
+
+  SET_BIT(ADCSRB, ACCH);
+  while(READ_BIT(ADCSRB, ACCH));
+
   
   /*
   SET_BIT(ADCSRC, ADTHT1);
@@ -177,7 +198,7 @@ int main(void)
 {
   uint8_t msgBuffer[128];
   uint8_t msgLen = 0;
-  float voltage = 0;;
+  uint32_t voltage = 0;
   setupClock();
   setupSerial();
   setupIO();
@@ -190,6 +211,7 @@ int main(void)
       PRINT_REG(ADMUX);
       PRINT_REG(ADCSRB);
       PRINT_REG(SMCR);
+      PRINT_REG(PRR0);
       if(serial_flag)
 	{
 	  UDR1 = (uint8_t)(myByte);
@@ -202,6 +224,11 @@ int main(void)
 	{
 	  printStr("ADC = ",STRLEN("ADC = "));
 	  print_uint16(adcVal);
+	  msgLen = sprintf(msgBuffer, "ADC = %d\n", adcVal);
+	  printStr(msgBuffer, msgLen);
+	  voltage = ((uint32_t)adcVal*1600)/1024;
+	  msgLen = sprintf(msgBuffer, "ADC = %d mV\n", voltage);
+	  printStr(msgBuffer, msgLen);
 	  adc_flag = 0;
 	  _delay_ms(1000);
 	  SET_BIT(ADCSRA, ADSC);
@@ -218,15 +245,16 @@ int main(void)
   return 0;
 }
 
-ISR(ADC_vect)
+ISR(ADC_vect, ISR_BLOCK)
 {
   adc_flag = 1;
-  //  adcVal = ADCL;
-  //  adcVal |= ((uint16_t)ADCH)<<8;
-  adcVal = ADCH;
+  //adcVal = ADCL;
+  //adcVal |= ((uint16_t)ADCH)<<8;
+  adcVal = ADC;
+  //adcVal = ADCH;
 }
 
-ISR(USART1_RX_vect)
+ISR(USART1_RX_vect, ISR_BLOCK)
 {
   myByte = UDR1;
   serial_flag = 1;

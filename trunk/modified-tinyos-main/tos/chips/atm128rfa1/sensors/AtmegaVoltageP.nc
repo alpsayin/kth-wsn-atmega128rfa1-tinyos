@@ -53,11 +53,11 @@ implementation
 
   async command uint8_t Atm128AdcConfig.getRefVoltage()
   {
-    return ATM128_ADC_VREF_OFF;
+    return ATM128_ADC_VREF_1_6;
   }
 
   async command uint8_t Atm128AdcConfig.getPrescaler()
   {
-    return ATM128_ADC_PRESCALE_2;		//changed by zn from ATM128_ADC_PRESCALE : 20111114
+    return ATM128_ADC_PRESCALE_128;		//changed by zn from ATM128_ADC_PRESCALE : 20111114
   }
 }

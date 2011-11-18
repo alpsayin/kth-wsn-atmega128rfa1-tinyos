@@ -49,6 +49,6 @@ implementation
   }
 
   async command uint8_t Atm128AdcConfig.getPrescaler() {
-    return ATM128_ADC_PRESCALE_2;		//changed by zn from ATM128_ADC_PRESCALE : 20111114
+    return ATM128_ADC_PRESCALE_128;		//changed by zn from ATM128_ADC_PRESCALE : 20111114
   }
 }
