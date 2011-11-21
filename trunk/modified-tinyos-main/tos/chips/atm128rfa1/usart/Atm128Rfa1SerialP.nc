@@ -3,6 +3,10 @@
 #include "atm128hardware.h"
 #include "hardware.h"
 
+//#ifdef DISABLE_SPRINTF_WARNING
+//#warning sprintf is problematic with non-blocking uartstream
+//#endif
+
 module Atm128Rfa1SerialP
 {
 	provides interface Init as Uart1Init;
@@ -18,7 +22,7 @@ module Atm128Rfa1SerialP
 }
 implementation
 {
-	bool rxBusy, txBusy;
+	volatile bool rxBusy, txBusy;
 	norace uint8_t *txBuf, *rxBuf;
 	norace uint16_t txLen, rxLen;
 	norace uint16_t txPos, rxPos;
@@ -250,6 +254,7 @@ implementation
 
 	async command error_t Uart1Stream.send(uint8_t *buf, uint16_t len)
 	{
+		return call Uart1StreamBlocking.send(buf, len);
 		if(len==0)
 			return FAIL;
 		atomic

@@ -18,7 +18,7 @@ implementation
 
   async command uint8_t Atm128AdcConfig.getRefVoltage()
   {
-    return ATM128_ADC_VREF_AVCC;
+    return ATM128_ADC_VREF_1_6; //AVCC;
   }
 
   async command uint8_t Atm128AdcConfig.getPrescaler()
