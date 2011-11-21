@@ -48,6 +48,8 @@
  * @author tinyos-help@millennium.berkeley.edu
  **/
 
+#include "PlatformSensorChannel.h"
+
 configuration BlinkAppC
 {
 }
@@ -57,10 +59,8 @@ implementation
   components new TimerMilliC() as Timer0;
   components new TimerMilliC() as Timer1;
   components new TimerMilliC() as Timer2;
-  components new AtmegaTemperatureC() as Temp0;
-//  components new AtmegaVoltageC() as Vol0;
-  components new AdcReadClientC() as Vol0;
-  
+  components new PlatformSensorC(Sensor_Channel_T) as TempSensor;
+  components new PlatformSensorC(Sensor_Channel_0) as Vol0;
   components PlatformSerialC;
 
   BlinkC -> MainC.Boot;
@@ -69,11 +69,9 @@ implementation
   BlinkC.Timer1 -> Timer1;
   BlinkC.Timer2 -> Timer2;
   BlinkC.Leds -> LedsC;
-//  
-  BlinkC.Atm128AdcConfig <- Vol0.Atm128AdcConfig;
-//  BlinkC.Ext0_Read -> Ext0.Read;
-  BlinkC.Temp0_Read -> Temp0.Read;
-  BlinkC.Vol0_Read -> Vol0.Read;
+  
+  BlinkC.TempSensor -> TempSensor.Read;
+  BlinkC.Vol0 -> Vol0.Read;
   
   BlinkC.SerialByte -> PlatformSerialC.UartByte;
   BlinkC.SerialStream -> PlatformSerialC.UartStream;

@@ -54,14 +54,10 @@ module BlinkC @safe()
   uses interface Timer<TMilli> as Timer0;
   uses interface Timer<TMilli> as Timer1;
   uses interface Timer<TMilli> as Timer2;
-  uses interface Read<uint16_t> as Temp0_Read;
-  uses interface Read<uint16_t> as Vol0_Read;
-//  uses interface Read<uint16_t> as Ext0_Read;
+  uses interface Read<uint16_t> as TempSensor;
+  uses interface Read<uint16_t> as Vol0;
   uses interface Leds;
   uses interface Boot;
-  
-  provides interface Atm128AdcConfig;
-  //uses interface UDPClient;
   
   uses interface UartByte as SerialByte;
   uses interface UartStream as SerialStream;
@@ -70,15 +66,13 @@ module BlinkC @safe()
 implementation
 {
 	uint8_t adcConf[8];
-	uint8_t msgBuf[128];
-	uint8_t msgLen;
   event void Boot.booted()
   {
   	DDRF &= ~1;
   	DIDR0 |= 1;
     call Timer0.startPeriodic( 500 );
     call Timer1.startPeriodic( 1000 );
-    call Timer2.startPeriodic( 100 );
+    call Timer2.startPeriodic( 10000 );
     
   }
 
@@ -120,17 +114,24 @@ implementation
   
   event void Timer1.fired()
   {
+	uint8_t msgBuf[64];
+	uint8_t msgLen;
+  	error_t retVal0;
+  	error_t retVal1;
     dbg("BlinkC", "Timer 1 fired @ %s \n", sim_time_string());
     call Leds.led1Toggle();
-    
+    retVal0 = call Vol0.read();
+    retVal1 = call TempSensor.read();
+    msgLen = sprintf(msgBuf, "error code for vol0.read = %d\r\nerror code for temp0.read = %d\r\n",retVal0, retVal1);
+    call SerialStream.send(msgBuf, msgLen);
   }
   
   event void Timer2.fired()
   {
   	uint8_t i;
+  	error_t retVal1;
     dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
     call Leds.led2Toggle();
-    call Temp0_Read.read();
 //    adcConf[0] = ADCSRA;
 //    adcConf[1] = ADCSRB;
 //    adcConf[2] = ADCSRC;
@@ -152,24 +153,28 @@ implementation
   }
 
 
-	event void Temp0_Read.readDone(error_t result, uint16_t val){
+	event void TempSensor.readDone(error_t result, uint16_t val){
+	uint8_t msgBuf[32];
+	uint8_t msgLen;
 		// TODO Auto-generated method stub
 //		call SerialByte.send('T');
 //		print_num(val);
-		msgLen = sprintf(msgBuf, "%d\n", val);
+		msgLen = sprintf(msgBuf, "Temp = %d\r\n", val);
+		call SerialStream.send(msgBuf, msgLen);
+		call Leds.led1Toggle();
+		
+	}
+	event void Vol0.readDone(error_t result, uint16_t val){
+	uint8_t msgBuf[32];
+	uint8_t msgLen;
+		// TODO Auto-generated method stub
+//		call SerialByte.send('T');
+//		print_num(val);
+		msgLen = sprintf(msgBuf, "Vol0 = %d\r\n", val);
 		call SerialStream.send(msgBuf, msgLen);
 		call Leds.led2Toggle();
 		
 	}
-
-	event void Vol0_Read.readDone(error_t result, uint16_t val){
-		// TODO Auto-generated method stub
-		call SerialByte.send('V');
-//		print_num(val);
-		call Leds.led0Toggle();
-		
-	}
-
 	async event void SerialStream.receiveDone(uint8_t *buf, uint16_t len, error_t error){
 		// TODO Auto-generated method stub
 	}
@@ -181,24 +186,6 @@ implementation
 	async event void SerialStream.sendDone(uint8_t *buf, uint16_t len, error_t error){
 		// TODO Auto-generated method stub
 	}
-
-
-
-  async command uint8_t Atm128AdcConfig.getChannel()
-  {
-    // select the 1.23V (V_BG). Reference: Table 22-11, page 429 from the Atmega128rfa1
-    return ATM128_ADC_SNGL_ADC0;
-  }
-
-  async command uint8_t Atm128AdcConfig.getRefVoltage()
-  {
-    return ATM128_ADC_VREF_1_6;
-  }
-
-  async command uint8_t Atm128AdcConfig.getPrescaler()
-  {
-    return ATM128_ADC_PRESCALE_128;		//changed by zn from ATM128_ADC_PRESCALE : 20111114
-  }
 
 //	event void Ext0_Read.readDone(error_t result, uint16_t val){
 //		// TODO Auto-generated method stub
