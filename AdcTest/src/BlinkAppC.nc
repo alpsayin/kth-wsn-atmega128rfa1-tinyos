@@ -61,6 +61,7 @@ implementation
   components new TimerMilliC() as Timer2;
   components new PlatformSensorC(Sensor_Channel_T) as TempSensor;
   components new PlatformSensorC(Sensor_Channel_0) as Vol0;
+  components new PlatformSensorC(Sensor_Channel_T) as Vol1;
   components PlatformSerialC;
 
   BlinkC -> MainC.Boot;
@@ -72,6 +73,7 @@ implementation
   
   BlinkC.TempSensor -> TempSensor.Read;
   BlinkC.Vol0 -> Vol0.Read;
+  BlinkC.Vol1 -> Vol1.Read;
   
   BlinkC.SerialByte -> PlatformSerialC.UartByte;
   BlinkC.SerialStream -> PlatformSerialC.UartStream;
