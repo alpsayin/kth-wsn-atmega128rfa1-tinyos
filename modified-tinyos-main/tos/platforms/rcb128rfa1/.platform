@@ -8,8 +8,8 @@
   %T/chips/atm128rfa1/timer
   %T/chips/atm128rfa1/sensors
   %T/chips/atm128rfa1/usart
-  %T/chips/atm1281
   %T/chips/atm128rfa1/adc
+  %T/chips/atm1281
   %T/chips/atm1281/timer
   %T/chips/atm1281/pins
   %T/chips/atm128
