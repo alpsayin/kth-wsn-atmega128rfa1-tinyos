@@ -1,15 +1,15 @@
-configuration PlatformSensorC {
+generic configuration PlatformSensorC(uint8_t channel) {
   
   provides interface Read<uint16_t>;
-  provides interface Set<uint8_t> as SetChannel;
+//  provides interface Set<uint8_t> as SetChannel;
 }
 implementation {
 
   components new AdcReadClientC() as Adc;
-  components PlatformSensorP;
+  components new PlatformSensorP(channel);
   
   Read = Adc.Read;
-  SetChannel = PlatformSensorP.SetChannel;
+//  SetChannel = PlatformSensorP.SetChannel;
 
   Adc.Atm128AdcConfig -> PlatformSensorP.Atm128AdcConfig;
 

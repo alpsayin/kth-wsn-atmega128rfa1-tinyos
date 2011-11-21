@@ -1,16 +1,16 @@
 #include "Atm128Adc.h"
 #include "PlatformSensorChannel.h"
 
-module PlatformSensorP
+generic module PlatformSensorP(uint8_t channel)
 {
   provides interface Atm128AdcConfig;
 
-  provides interface Set<uint8_t> as SetChannel;
+//  provides interface Set<uint8_t> as SetChannel;
 
 }
 implementation
 {
-  uint8_t channel = ATM128_ADC_INT_TEMP;
+  //uint8_t channel = ATM128_ADC_INT_TEMP;
   async command uint8_t Atm128AdcConfig.getChannel()
   {
     return channel;
@@ -26,7 +26,7 @@ implementation
     return ATM128_ADC_PRESCALE_128;
   }
 
-  command void SetChannel.set(uint8_t val)
+ /* command void SetChannel.set(uint8_t val)
   {
 	atomic {
 		switch(val)
@@ -46,6 +46,6 @@ implementation
 				channel = ATM128_ADC_INT_TEMP;
 		}
 	}
-  }
+  }*/
 
 }
