@@ -56,6 +56,7 @@ module BlinkC @safe()
   uses interface Timer<TMilli> as Timer2;
   uses interface Read<uint16_t> as TempSensor;
   uses interface Read<uint16_t> as Vol0;
+  uses interface Read<uint16_t> as Vol1;
   uses interface Leds;
   uses interface Boot;
   
@@ -65,15 +66,16 @@ module BlinkC @safe()
 }
 implementation
 {
-	uint8_t adcConf[8];
+	
+  uint8_t commandBuf[255];
+  uint8_t commandLength;
   event void Boot.booted()
   {
   	DDRF &= ~1;
   	DIDR0 |= 1;
     call Timer0.startPeriodic( 500 );
-    call Timer1.startPeriodic( 1000 );
-    call Timer2.startPeriodic( 10000 );
-    
+    call Timer1.startPeriodic( 10000 );
+    call Timer2.startPeriodic( 5000 );
   }
 
     bool print_num(uint16_t val){
@@ -102,53 +104,60 @@ implementation
 		
     	return SUCCESS;
     }
+    
+  task void tempSensorReadTask()
+  {
+	uint8_t msgBuf[32];
+	uint8_t msgLen;
+  	error_t retVal1;
+    retVal1 = call TempSensor.read();
+    msgLen = sprintf(msgBuf, "error code for temp0.read = %d\r\n", retVal1);
+    call SerialStream.send(msgBuf, msgLen);
+  }
+  
+  task void vol0ReadTask()
+  {
+	uint8_t msgBuf[32];
+	uint8_t msgLen;
+  	error_t retVal1;
+    retVal1 = call Vol0.read();
+    msgLen = sprintf(msgBuf, "error code for vol0.read = %d\n", retVal1);
+    call SerialStream.send(msgBuf, msgLen);
+  }
+  
+  task void vol1ReadTask()
+  {
+	uint8_t msgBuf[32];
+	uint8_t msgLen;
+  	error_t retVal1;
+    retVal1 = call Vol1.read();
+    msgLen = sprintf(msgBuf, "error code for vol1.read = %d\n", retVal1);
+    call SerialStream.send(msgBuf, msgLen);
+  }
 
-
+  task void processCommandTask()
+  {
+  	if(strcmp("t", commandBuf)==0)
+  		post tempSensorReadTask();
+	if(strcmp("v0", commandBuf)==0)
+		post vol0ReadTask();
+	else if(strcmp("v1", commandBuf)==0)
+		post vol1ReadTask();
+	commandLength = 0;
+  }
   event void Timer0.fired()
   {
-    dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
-		
     call Leds.led0Toggle();
-//    call Vol0_Read.read();
   }
   
   event void Timer1.fired()
   {
-	uint8_t msgBuf[64];
-	uint8_t msgLen;
-  	error_t retVal0;
-  	error_t retVal1;
-    dbg("BlinkC", "Timer 1 fired @ %s \n", sim_time_string());
     call Leds.led1Toggle();
-    retVal0 = call Vol0.read();
-    retVal1 = call TempSensor.read();
-    msgLen = sprintf(msgBuf, "error code for vol0.read = %d\r\nerror code for temp0.read = %d\r\n",retVal0, retVal1);
-    call SerialStream.send(msgBuf, msgLen);
   }
   
   event void Timer2.fired()
   {
-  	uint8_t i;
-  	error_t retVal1;
-    dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
     call Leds.led2Toggle();
-//    adcConf[0] = ADCSRA;
-//    adcConf[1] = ADCSRB;
-//    adcConf[2] = ADCSRC;
-//    adcConf[3] = ADMUX;
-//    adcConf[4] = DIDR0;
-//    adcConf[5] = 0;
-//    adcConf[6] = 0;
-//    adcConf[7] = 0;
-//    
-//	call SerialByte.send('\n');
-//    for(i=0; i<8; i++)
-//    {
-//    	call SerialByte.send(hexTable[HIGH(adcConf[i])]);
-//    	call SerialByte.send(hexTable[LOW(adcConf[i])]);
-//    	call SerialByte.send(' ');
-//    }
-//	call SerialByte.send('\n');
     
   }
 
@@ -156,10 +165,11 @@ implementation
 	event void TempSensor.readDone(error_t result, uint16_t val){
 	uint8_t msgBuf[32];
 	uint8_t msgLen;
+	uint16_t celsius = (uint16_t)((val*113.0f)-27220.0f);
 		// TODO Auto-generated method stub
 //		call SerialByte.send('T');
 //		print_num(val);
-		msgLen = sprintf(msgBuf, "Temp = %d\r\n", val);
+		msgLen = sprintf(msgBuf, "Temp = %d.%d\r\n", celsius/100, celsius%100);
 		call SerialStream.send(msgBuf, msgLen);
 		call Leds.led1Toggle();
 		
@@ -175,12 +185,41 @@ implementation
 		call Leds.led2Toggle();
 		
 	}
-	async event void SerialStream.receiveDone(uint8_t *buf, uint16_t len, error_t error){
+	event void Vol1.readDone(error_t result, uint16_t val){
+	uint8_t msgBuf[32];
+	uint8_t msgLen;
 		// TODO Auto-generated method stub
+//		call SerialByte.send('T');
+//		print_num(val);
+		msgLen = sprintf(msgBuf, "Vol1 = %d\r\n", val);
+		call SerialStream.send(msgBuf, msgLen);
+		call Leds.led2Toggle();
+		
+	}
+	async event void SerialStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
+	{
+		
 	}
 
-	async event void SerialStream.receivedByte(uint8_t byte){
-		// TODO Auto-generated method stub
+	async event void SerialStream.receivedByte(uint8_t byte)
+	{
+		call SerialByte.send(byte);
+		if(byte == '\n')
+		{
+			if(commandBuf[commandLength-1]=='\r')
+				commandBuf[commandLength-1] = 0;
+			else
+			{
+				commandBuf[commandLength] = 0;
+				commandLength++;
+			}
+			post processCommandTask();
+		}
+		else
+		{
+			commandBuf[commandLength] = byte;
+			commandLength++;
+		}
 	}
 
 	async event void SerialStream.sendDone(uint8_t *buf, uint16_t len, error_t error){
