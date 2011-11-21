@@ -2975,15 +2975,7 @@ static inline void BlinkC__vol1ReadTask__runTask(void );
 
 
 static inline void BlinkC__processCommandTask__runTask(void );
-
-
-
-
-
-
-
-
-
+#line 151
 static inline void BlinkC__Timer0__fired(void );
 
 
@@ -3002,7 +2994,7 @@ static inline void BlinkC__Timer2__fired(void );
 
 
 static inline void BlinkC__TempSensor__readDone(error_t result, uint16_t val);
-#line 177
+#line 180
 static inline void BlinkC__Vol0__readDone(error_t result, uint16_t val);
 
 
@@ -3031,7 +3023,7 @@ static inline void BlinkC__SerialStream__receiveDone(uint8_t *buf, uint16_t len,
 
 
 static inline void BlinkC__SerialStream__receivedByte(uint8_t byte);
-#line 225
+#line 231
 static inline void BlinkC__SerialStream__sendDone(uint8_t *buf, uint16_t len, error_t error);
 # 70 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__setMode(uint8_t mode);
@@ -4864,9 +4856,9 @@ inline static error_t BlinkC__SerialStream__send(uint8_t * buf, uint16_t len){
 #line 48
 }
 #line 48
-# 165 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
+# 168 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
 static inline void BlinkC__TempSensor__readDone(error_t result, uint16_t val)
-#line 165
+#line 168
 {
   uint8_t msgBuf[32];
   uint8_t msgLen;
@@ -4900,9 +4892,9 @@ inline static void BlinkC__Leds__led2Toggle(void ){
 #line 100
 }
 #line 100
-# 177 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
+# 180 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
 static inline void BlinkC__Vol0__readDone(error_t result, uint16_t val)
-#line 177
+#line 180
 {
   uint8_t msgBuf[32];
   uint8_t msgLen;
@@ -4915,7 +4907,7 @@ static inline void BlinkC__Vol0__readDone(error_t result, uint16_t val)
 }
 
 static inline void BlinkC__Vol1__readDone(error_t result, uint16_t val)
-#line 188
+#line 191
 {
   uint8_t msgBuf[32];
   uint8_t msgLen;
@@ -6021,7 +6013,7 @@ inline static void BlinkC__Leds__led0Toggle(void ){
 #line 67
 }
 #line 67
-# 148 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
+# 151 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
 static inline void BlinkC__Timer0__fired(void )
 {
   BlinkC__Leds__led0Toggle();
@@ -6180,21 +6172,26 @@ inline static error_t BlinkC__tempSensorReadTask__postTask(void ){
 # 138 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
 static inline void BlinkC__processCommandTask__runTask(void )
 {
-  if (strcmp("t", BlinkC__commandBuf) == 0) {
-    BlinkC__tempSensorReadTask__postTask();
-    }
-#line 142
-  if (strcmp("v0", BlinkC__commandBuf) == 0) {
-    BlinkC__vol0ReadTask__postTask();
-    }
-  else {
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      if (strcmp("t", BlinkC__commandBuf) == 0) {
+        BlinkC__tempSensorReadTask__postTask();
+        }
 #line 144
-    if (strcmp("v1", BlinkC__commandBuf) == 0) {
-      BlinkC__vol1ReadTask__postTask();
-      }
-    }
+      if (strcmp("v0", BlinkC__commandBuf) == 0) {
+        BlinkC__vol0ReadTask__postTask();
+        }
+      else {
 #line 146
-  BlinkC__commandLength = 0;
+        if (strcmp("v1", BlinkC__commandBuf) == 0) {
+          BlinkC__vol1ReadTask__postTask();
+          }
+        }
+#line 148
+      BlinkC__commandLength = 0;
+    }
+#line 149
+    __nesc_atomic_end(__nesc_atomic); }
 }
 
 # 44 "/opt/tinyos-main/src/tinyos-main/tos/system/ArbitratedReadC.nc"
@@ -6613,26 +6610,31 @@ inline static error_t BlinkC__SerialByte__send(uint8_t byte){
 #line 46
 }
 #line 46
-# 204 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
+# 207 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
 static inline void BlinkC__SerialStream__receivedByte(uint8_t byte)
 {
   BlinkC__SerialByte__send(byte);
-  if (byte == '\n') 
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
     {
-      if (BlinkC__commandBuf[BlinkC__commandLength - 1] == '\r') {
-        BlinkC__commandBuf[BlinkC__commandLength - 1] = 0;
+      if (byte == '\n') 
+        {
+          if (BlinkC__commandBuf[BlinkC__commandLength - 1] == '\r') {
+            BlinkC__commandBuf[BlinkC__commandLength - 1] = 0;
+            }
+          else {
+              BlinkC__commandBuf[BlinkC__commandLength] = 0;
+              BlinkC__commandLength++;
+            }
+          BlinkC__processCommandTask__postTask();
         }
-      else {
-          BlinkC__commandBuf[BlinkC__commandLength] = 0;
+      else 
+        {
+          BlinkC__commandBuf[BlinkC__commandLength] = byte;
           BlinkC__commandLength++;
         }
-      BlinkC__processCommandTask__postTask();
     }
-  else 
-    {
-      BlinkC__commandBuf[BlinkC__commandLength] = byte;
-      BlinkC__commandLength++;
-    }
+#line 228
+    __nesc_atomic_end(__nesc_atomic); }
 }
 
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
@@ -6648,7 +6650,7 @@ static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void )
   Atm128Rfa1SerialP__Uart1Stream__receivedByte(Atm128Rfa1SerialP__rxUnexpectedByte);
 }
 
-# 199 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
+# 202 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
 static inline void BlinkC__SerialStream__receiveDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -6675,9 +6677,9 @@ static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 225 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
+# 231 "/home/alpsayin/tinyos_workspace/AdcTest/src/BlinkC.nc"
 static inline void BlinkC__SerialStream__sendDone(uint8_t *buf, uint16_t len, error_t error)
-#line 225
+#line 231
 {
 }
 

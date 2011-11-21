@@ -22,7 +22,6 @@ module BlinkC @safe()
   uses{ 
 	  interface UartByte;
 //	  interface UartStream;
-	  interface StdControl as UartControl;
   }
 }
 implementation
@@ -40,7 +39,6 @@ implementation
   }
   event void Boot.booted()
   {
-  	call UartControl.start();
 	
     call Timer0.startPeriodic( 250 );
     call Timer1.startPeriodic( 100 );

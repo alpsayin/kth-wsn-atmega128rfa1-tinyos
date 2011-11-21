@@ -10,10 +10,5 @@ enum
 	ENDL = '\n'
 };
 
-enum
-{
-	TX_BUFFER_SIZE = 64,
-	RX_BUFFER_SIZE = 64
-};
 
 unsigned char hexTable[] = "01234567890ABCDEF";

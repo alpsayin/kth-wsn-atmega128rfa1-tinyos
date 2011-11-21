@@ -67,7 +67,6 @@ implementation
   BlinkC.Leds -> LedsC; 
   BlinkC.PushButton0 -> PushButtonC;
   BlinkC.UartByte -> Uart1.UartByte;
-  BlinkC.UartControl -> Uart1.StdControl;
 //  BlinkC.UartStream -> Uart1.UartStream;
   
 }

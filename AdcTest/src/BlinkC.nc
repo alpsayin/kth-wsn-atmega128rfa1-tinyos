@@ -137,13 +137,16 @@ implementation
 
   task void processCommandTask()
   {
-  	if(strcmp("t", commandBuf)==0)
-  		post tempSensorReadTask();
-	if(strcmp("v0", commandBuf)==0)
-		post vol0ReadTask();
-	else if(strcmp("v1", commandBuf)==0)
-		post vol1ReadTask();
-	commandLength = 0;
+  	atomic
+  	{
+	  	if(strcmp("t", commandBuf)==0)
+	  		post tempSensorReadTask();
+		if(strcmp("v0", commandBuf)==0)
+			post vol0ReadTask();
+		else if(strcmp("v1", commandBuf)==0)
+			post vol1ReadTask();
+		commandLength = 0;
+	}
   }
   event void Timer0.fired()
   {
@@ -204,21 +207,24 @@ implementation
 	async event void SerialStream.receivedByte(uint8_t byte)
 	{
 		call SerialByte.send(byte);
-		if(byte == '\n')
+		atomic
 		{
-			if(commandBuf[commandLength-1]=='\r')
-				commandBuf[commandLength-1] = 0;
+			if(byte == '\n')
+			{
+				if(commandBuf[commandLength-1]=='\r')
+					commandBuf[commandLength-1] = 0;
+				else
+				{
+					commandBuf[commandLength] = 0;
+					commandLength++;
+				}
+				post processCommandTask();
+			}
 			else
 			{
-				commandBuf[commandLength] = 0;
+				commandBuf[commandLength] = byte;
 				commandLength++;
 			}
-			post processCommandTask();
-		}
-		else
-		{
-			commandBuf[commandLength] = byte;
-			commandLength++;
 		}
 	}
 
