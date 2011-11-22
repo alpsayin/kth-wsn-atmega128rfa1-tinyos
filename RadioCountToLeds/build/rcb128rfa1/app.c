@@ -193,17 +193,7 @@ static __inline uint8_t __nesc_ntoh_leuint8(const void * source)  ;
 static __inline uint8_t __nesc_hton_leuint8(void * target, uint8_t value)  ;
 #line 310
 static __inline uint16_t __nesc_ntoh_uint16(const void * source)  ;
-
-
-
-
-static __inline uint16_t __nesc_hton_uint16(void * target, uint16_t value)  ;
-
-
-
-
-
-
+#line 322
 static __inline uint16_t __nesc_ntoh_leuint16(const void * source)  ;
 
 
@@ -1808,6 +1798,28 @@ enum __nesc_unnamed4276 {
   ATMRFA1_CAPSC_OFF = 0, 
   ATMRFA1_CAPSC_ON = 1
 };
+# 43 "/usr/lib/gcc/avr/4.1.2/include/stdarg.h" 3
+typedef __builtin_va_list __gnuc_va_list;
+#line 105
+typedef __gnuc_va_list va_list;
+# 242 "/usr/lib/gcc/avr/4.1.2/../../../../avr/include/stdio.h" 3
+struct __file {
+  char *buf;
+  unsigned char unget;
+  uint8_t flags;
+#line 261
+  int size;
+  int len;
+  int (*put)(char arg_0x405ea448, struct __file *arg_0x405ea630);
+  int (*get)(struct __file *arg_0x405eaa20);
+  void *udata;
+};
+#line 405
+struct __file;
+#line 417
+struct __file;
+#line 669
+extern int sprintf(char *__s, const char *__fmt, ...);
 # 10 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/MyDummyConstants.h"
 enum __nesc_unnamed4277 {
 
@@ -2342,9 +2354,25 @@ static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte);
 static void Atm128Rfa1SerialP__sendBlockingDoneTask__runTask(void );
 #line 75
 static void Atm128Rfa1SerialP__sendDoneTask__runTask(void );
-#line 75
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+static error_t Atm128Rfa1SerialP__Uart1Stream__send(
+#line 44
+uint8_t * buf, 
+
+
+
+uint16_t len);
+# 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void );
-# 99 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+static error_t Atm128Rfa1SerialP__Uart1StreamBlocking__send(
+#line 44
+uint8_t * buf, 
+
+
+
+uint16_t len);
+#line 99
 static void Atm128Rfa1SerialP__Uart1StreamBlocking__default__receiveDone(
 #line 95
 uint8_t * buf, 
@@ -2597,7 +2625,7 @@ error_t error);
 # 110 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x4067f9f8, 
+am_id_t arg_0x406a0730, 
 # 103 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -2610,7 +2638,7 @@ error_t error);
 # 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Send.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__send(
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x4067f010, 
+uint8_t arg_0x406a4ca0, 
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -2624,7 +2652,7 @@ uint8_t len);
 #line 100
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x4067f010, 
+uint8_t arg_0x406a4ca0, 
 # 96 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -2734,11 +2762,11 @@ static bool RFA1RadioP__RFA1DriverConfig__requiresRssiCca(message_t *msg);
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407627b0);
+uint8_t arg_0x407947b0);
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__wait(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407627b0, 
+uint8_t arg_0x407947b0, 
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 tradio_size timeout);
 
@@ -2747,15 +2775,15 @@ tradio_size timeout);
 
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__cancel(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407627b0);
+uint8_t arg_0x407947b0);
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static bool /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__isFree(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407627b0);
+uint8_t arg_0x407947b0);
 # 65 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static tradio_size /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__getNow(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407627b0);
+uint8_t arg_0x407947b0);
 # 78 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Alarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__fired(void );
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/Tasklet.nc"
@@ -2804,7 +2832,7 @@ static void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageL
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SendNotifier.nc"
 static void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SendNotifier__default__aboutToSend(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b6b50, 
+am_id_t arg_0x407efb50, 
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SendNotifier.nc"
 am_addr_t dest, 
 #line 57
@@ -2813,20 +2841,6 @@ message_t * msg);
 static uint8_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Packet__payloadLength(
 #line 74
 message_t * msg);
-#line 126
-static 
-#line 123
-void * 
-
-
-/*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Packet__getPayload(
-#line 121
-message_t * msg, 
-
-
-
-
-uint8_t len);
 #line 106
 static uint8_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Packet__maxPayloadLength(void );
 #line 94
@@ -2840,7 +2854,7 @@ uint8_t len);
 # 80 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__AMSend__send(
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b7460, 
+am_id_t arg_0x407f0460, 
 # 80 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -2863,7 +2877,7 @@ message_t *
 
 /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Snoop__default__receive(
 # 47 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b64d8, 
+am_id_t arg_0x407ef4d8, 
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -2898,7 +2912,7 @@ message_t *
 
 /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Receive__default__receive(
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b7e20, 
+am_id_t arg_0x407f0e20, 
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -2917,7 +2931,7 @@ message_t *
 
 /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__ReceiveDefault__default__receive(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b52b0, 
+am_id_t arg_0x407ee2b0, 
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -2997,7 +3011,7 @@ message_t *
 
 /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SnoopDefault__default__receive(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b5990, 
+am_id_t arg_0x407ee990, 
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -3048,35 +3062,35 @@ static resource_client_id_t /*RFA1RadioC.SendResourceC.Queue*/FcfsResourceQueueC
 # 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4083e870);
+uint8_t arg_0x40862870);
 # 61 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__immediateRequested(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4083e870);
+uint8_t arg_0x40862870);
 # 65 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__unconfigure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4083d510);
+uint8_t arg_0x40861510);
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4083d510);
+uint8_t arg_0x40861510);
 # 120 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static error_t /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__release(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40833e38);
+uint8_t arg_0x40857e38);
 # 97 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static error_t /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__immediateRequest(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40833e38);
+uint8_t arg_0x40857e38);
 # 88 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static error_t /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__request(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40833e38);
+uint8_t arg_0x40857e38);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40833e38);
+uint8_t arg_0x40857e38);
 # 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__grantedTask__runTask(void );
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/BareSend.nc"
@@ -3201,7 +3215,7 @@ static error_t /*RFA1RadioC.UniqueLayerC.UniqueLayerP*/UniqueLayerP__0__Init__in
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 static bool NeighborhoodP__NeighborhoodFlag__get(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodP.nc"
-uint8_t arg_0x40914948, 
+uint8_t arg_0x4093f948, 
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 uint8_t idx);
 
@@ -3210,7 +3224,7 @@ uint8_t idx);
 
 static void NeighborhoodP__NeighborhoodFlag__set(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodP.nc"
-uint8_t arg_0x40914948, 
+uint8_t arg_0x4093f948, 
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 uint8_t idx);
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/Neighborhood.nc"
@@ -3329,13 +3343,13 @@ static uint8_t /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__RadioPa
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__clear(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a46088, 
+uint8_t arg_0x40a5c088, 
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 #line 40
 static bool /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__get(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a46088, 
+uint8_t arg_0x40a5c088, 
 # 40 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 
@@ -3344,7 +3358,7 @@ message_t *msg);
 
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__setValue(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a46088, 
+uint8_t arg_0x40a5c088, 
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg, bool value);
 
@@ -3353,7 +3367,7 @@ message_t *msg, bool value);
 
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__set(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a46088, 
+uint8_t arg_0x40a5c088, 
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioCCA.nc"
@@ -3450,11 +3464,11 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40b668f0);
+uint8_t arg_0x40baa8f0);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40b668f0, 
+uint8_t arg_0x40baa8f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
@@ -3491,6 +3505,8 @@ enum MeasureClockC____nesc_unnamed4290 {
   MeasureClockC__MAGIC = 31250 / (16 / 16)
 };
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
+static error_t Atm128Rfa1SerialP__sendBlockingDoneTask__postTask(void );
+#line 67
 static error_t Atm128Rfa1SerialP__sendDoneTask__postTask(void );
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 static void Atm128Rfa1SerialP__Uart1Stream__receivedByte(uint8_t byte);
@@ -3553,58 +3569,58 @@ static void Atm128Rfa1SerialP__Uart1Interrupts__setSendData(void );
 static void Atm128Rfa1SerialP__Uart1Interrupts__clearRxInterrupt(void );
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t Atm128Rfa1SerialP__receiveDoneTask__postTask(void );
-# 29 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 33 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 enum Atm128Rfa1SerialP____nesc_unnamed4291 {
-#line 29
+#line 33
   Atm128Rfa1SerialP__sendBlockingDoneTask = 0U
 };
-#line 29
+#line 33
 typedef int Atm128Rfa1SerialP____nesc_sillytask_sendBlockingDoneTask[Atm128Rfa1SerialP__sendBlockingDoneTask];
 enum Atm128Rfa1SerialP____nesc_unnamed4292 {
-#line 30
+#line 34
   Atm128Rfa1SerialP__receiveBlockingDoneTask = 1U
 };
-#line 30
+#line 34
 typedef int Atm128Rfa1SerialP____nesc_sillytask_receiveBlockingDoneTask[Atm128Rfa1SerialP__receiveBlockingDoneTask];
 
 enum Atm128Rfa1SerialP____nesc_unnamed4293 {
-#line 32
+#line 36
   Atm128Rfa1SerialP__sendDoneTask = 2U
 };
-#line 32
+#line 36
 typedef int Atm128Rfa1SerialP____nesc_sillytask_sendDoneTask[Atm128Rfa1SerialP__sendDoneTask];
 enum Atm128Rfa1SerialP____nesc_unnamed4294 {
-#line 33
+#line 37
   Atm128Rfa1SerialP__receiveDoneTask = 3U
 };
-#line 33
+#line 37
 typedef int Atm128Rfa1SerialP____nesc_sillytask_receiveDoneTask[Atm128Rfa1SerialP__receiveDoneTask];
 
 enum Atm128Rfa1SerialP____nesc_unnamed4295 {
-#line 35
+#line 39
   Atm128Rfa1SerialP__unexpectedByteReceivedTask = 4U
 };
-#line 35
+#line 39
 typedef int Atm128Rfa1SerialP____nesc_sillytask_unexpectedByteReceivedTask[Atm128Rfa1SerialP__unexpectedByteReceivedTask];
-#line 21
-bool Atm128Rfa1SerialP__rxBusy;
-#line 21
-bool Atm128Rfa1SerialP__txBusy;
+#line 25
+volatile bool Atm128Rfa1SerialP__rxBusy;
+#line 25
+volatile bool Atm128Rfa1SerialP__txBusy;
 uint8_t *Atm128Rfa1SerialP__txBuf;
-#line 22
+#line 26
 uint8_t *Atm128Rfa1SerialP__rxBuf;
 uint16_t Atm128Rfa1SerialP__txLen;
-#line 23
+#line 27
 uint16_t Atm128Rfa1SerialP__rxLen;
 uint16_t Atm128Rfa1SerialP__txPos;
-#line 24
+#line 28
 uint16_t Atm128Rfa1SerialP__rxPos;
 error_t Atm128Rfa1SerialP__txResult;
-#line 25
+#line 29
 error_t Atm128Rfa1SerialP__rxResult;
 
 uint8_t Atm128Rfa1SerialP__m_byte_time;
-#line 27
+#line 31
 uint8_t Atm128Rfa1SerialP__rxUnexpectedByte;
 
 
@@ -3616,13 +3632,17 @@ uint8_t Atm128Rfa1SerialP__rxUnexpectedByte;
 
 
 static inline error_t Atm128Rfa1SerialP__Uart1Init__init(void );
-#line 144
-static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte);
-#line 204
+#line 85
+static inline error_t Atm128Rfa1SerialP__Uart1StreamBlocking__send(uint8_t *buf, uint16_t len);
+#line 148
+static inline error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte);
+#line 208
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__rxInterruptHandler(uint8_t byte);
-#line 226
+#line 230
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void );
-#line 311
+#line 255
+static inline error_t Atm128Rfa1SerialP__Uart1Stream__send(uint8_t *buf, uint16_t len);
+#line 316
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__sendDone(uint8_t *buf, uint16_t len, error_t err);
 
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__receiveDone(uint8_t *buf, uint16_t len, error_t error);
@@ -3647,7 +3667,7 @@ static inline void Atm128Rfa1SerialP__sendDoneTask__runTask(void );
 
 
 static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void );
-#line 346
+#line 351
 static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void );
 
 
@@ -4063,20 +4083,6 @@ message_t * msg,
 
 
 uint8_t len);
-# 126 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Packet.nc"
-static 
-#line 123
-void * 
-
-
-RadioCountToLedsC__Packet__getPayload(
-#line 121
-message_t * msg, 
-
-
-
-
-uint8_t len);
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
 static error_t RadioCountToLedsC__UartByte__send(uint8_t byte);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
@@ -4107,7 +4113,15 @@ static void RadioCountToLedsC__Leds__set(uint8_t val);
 static void RadioCountToLedsC__Leds__led0On(void );
 #line 89
 static void RadioCountToLedsC__Leds__led2On(void );
-# 75 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+static error_t RadioCountToLedsC__UartStream__send(
+#line 44
+uint8_t * buf, 
+
+
+
+uint16_t len);
+# 77 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 message_t RadioCountToLedsC__packet;
 
 bool RadioCountToLedsC__locked;
@@ -4132,10 +4146,10 @@ static inline void RadioCountToLedsC__AMControl__stopDone(error_t err);
 
 
 static inline void RadioCountToLedsC__MilliTimer__fired(void );
-#line 120
+#line 118
 static inline message_t *RadioCountToLedsC__Receive__receive(message_t *bufPtr, 
 void *payload, uint8_t len);
-#line 148
+#line 150
 static inline void RadioCountToLedsC__AMSend__sendDone(message_t *bufPtr, error_t error);
 
 
@@ -4208,7 +4222,7 @@ static inline void /*RadioCountToLedsAppC.AMSenderC.SenderC.AMQueueEntryP*/AMQue
 # 80 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x4067f9f8, 
+am_id_t arg_0x406a0730, 
 # 80 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -4225,7 +4239,7 @@ uint8_t len);
 # 100 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Send.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x4067f010, 
+uint8_t arg_0x406a4ca0, 
 # 96 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -4495,7 +4509,7 @@ static inline uint16_t RFA1RadioP__RandomCollisionConfig__getTransmitBarrier(mes
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407627b0);
+uint8_t arg_0x407947b0);
 # 109 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Alarm.nc"
 static /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__size_type /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__getNow(void );
 #line 66
@@ -4643,7 +4657,7 @@ static error_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessa
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SendNotifier.nc"
 static void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SendNotifier__aboutToSend(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b6b50, 
+am_id_t arg_0x407efb50, 
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SendNotifier.nc"
 am_addr_t dest, 
 #line 57
@@ -4651,7 +4665,7 @@ message_t * msg);
 # 110 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
 static void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__AMSend__sendDone(
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b7460, 
+am_id_t arg_0x407f0460, 
 # 103 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -4670,7 +4684,7 @@ message_t *
 
 /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Snoop__receive(
 # 47 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b64d8, 
+am_id_t arg_0x407ef4d8, 
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4729,7 +4743,7 @@ message_t *
 
 /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Receive__receive(
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b7e20, 
+am_id_t arg_0x407f0e20, 
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4748,7 +4762,7 @@ message_t *
 
 /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__ReceiveDefault__receive(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b52b0, 
+am_id_t arg_0x407ee2b0, 
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4767,7 +4781,7 @@ message_t *
 
 /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SnoopDefault__receive(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-am_id_t arg_0x407b5990, 
+am_id_t arg_0x407ee990, 
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4778,7 +4792,7 @@ void * payload,
 
 uint8_t len);
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-static activemessage_header_t */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__getHeader(message_t *msg);
+static inline activemessage_header_t */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__getHeader(message_t *msg);
 
 
 
@@ -4914,11 +4928,6 @@ static inline void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveM
 
 
 static inline uint8_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Packet__maxPayloadLength(void );
-
-
-
-
-static void */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Packet__getPayload(message_t *msg, uint8_t len);
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/system/ActiveMessageAddressC.nc"
 am_addr_t ActiveMessageAddressC__addr = TOS_AM_ADDRESS;
 
@@ -4989,19 +4998,19 @@ static inline error_t /*RFA1RadioC.SendResourceC.Queue*/FcfsResourceQueueC__0__F
 # 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4083e870);
+uint8_t arg_0x40862870);
 # 61 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__immediateRequested(
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4083e870);
+uint8_t arg_0x40862870);
 # 65 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__unconfigure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4083d510);
+uint8_t arg_0x40861510);
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4083d510);
+uint8_t arg_0x40861510);
 # 79 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceQueue.nc"
 static error_t /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Queue__enqueue(resource_client_id_t id);
 #line 53
@@ -5011,7 +5020,7 @@ static resource_client_id_t /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40833e38);
+uint8_t arg_0x40857e38);
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__grantedTask__postTask(void );
 # 69 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
@@ -6350,7 +6359,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40b668f0);
+uint8_t arg_0x40baa8f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4323 {
 #line 71
@@ -6480,7 +6489,7 @@ inline static error_t Atm128Rfa1SerialP__receiveDoneTask__postTask(void ){
 #line 67
 }
 #line 67
-# 204 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 208 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__rxInterruptHandler(uint8_t byte)
 {
   if (Atm128Rfa1SerialP__rxBuf) 
@@ -6566,7 +6575,7 @@ inline static error_t Atm128Rfa1SerialP__sendDoneTask__postTask(void ){
 #line 67
 }
 #line 67
-# 226 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 230 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void )
 {
   if (Atm128Rfa1SerialP__txBuf != (void *)0) 
@@ -6578,7 +6587,7 @@ static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void )
           Atm128Rfa1SerialP__txPos++;
         }
       else {
-#line 236
+#line 240
         if (Atm128Rfa1SerialP__txPos == Atm128Rfa1SerialP__txLen) 
           {
             Atm128Rfa1SerialP__txLen = 0;
@@ -6592,7 +6601,7 @@ static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void )
           }
         }
     }
-#line 248
+#line 252
   Atm128Rfa1SerialP__Uart1Interrupts__clearTxInterrupt();
 }
 
@@ -6603,9 +6612,9 @@ inline static void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__txInterruptHandl
 #line 20
 }
 #line 20
-# 356 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 361 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__Counter__overflow(void )
-#line 356
+#line 361
 {
 }
 
@@ -7062,9 +7071,9 @@ static inline void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAl
 }
 
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
-inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(uint8_t arg_0x407627b0){
+inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(uint8_t arg_0x407947b0){
 #line 60
-  switch (arg_0x407627b0) {
+  switch (arg_0x407947b0) {
 #line 60
     case 0U:
 #line 60
@@ -7080,7 +7089,7 @@ inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAl
 #line 60
     default:
 #line 60
-      /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(arg_0x407627b0);
+      /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(arg_0x407947b0);
 #line 60
       break;
 #line 60
@@ -9511,12 +9520,12 @@ inline static error_t PlatformP__LedsInit__init(void ){
 #line 62
 }
 #line 62
-# 37 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 41 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline error_t Atm128Rfa1SerialP__Uart1Init__init(void )
 {
   uint16_t brr = 34;
 
-#line 40
+#line 44
   Atm128Rfa1SerialP__m_byte_time = 68;
   * (volatile uint8_t *)0xC8 &= ~(1 << 7);
   * (volatile uint8_t *)0xC8 &= ~(1 << 6);
@@ -9788,7 +9797,6 @@ static inline error_t McuInitP__Init__init(void )
   ok = ecombine(ok, McuInitP__MeasureClock__init());
   ok = ecombine(ok, McuInitP__TimerInit__init());
   ok = ecombine(ok, McuInitP__SerialInit__init());
-
   return ok;
 }
 
@@ -10040,33 +10048,6 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFr
     }
 }
 
-# 315 "/usr/lib/ncc/nesc_nx.h"
-static __inline  uint16_t __nesc_hton_uint16(void * target, uint16_t value)
-#line 315
-{
-  uint8_t *base = target;
-
-#line 317
-  base[1] = value;
-  base[0] = value >> 8;
-  return value;
-}
-
-# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
-inline static error_t RadioCountToLedsC__UartByte__send(uint8_t byte){
-#line 46
-  unsigned char __nesc_result;
-#line 46
-
-#line 46
-  __nesc_result = Atm128Rfa1SerialP__Uart1Byte__send(byte);
-#line 46
-
-#line 46
-  return __nesc_result;
-#line 46
-}
-#line 46
 # 94 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
 static inline void LedsP__Leds__led2Off(void )
 #line 94
@@ -10192,13 +10173,13 @@ inline static void RadioCountToLedsC__Leds__set(uint8_t val){
 }
 #line 134
 # 80 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
-inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x4067f9f8, am_addr_t addr, message_t * msg, uint8_t len){
+inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x406a0730, am_addr_t addr, message_t * msg, uint8_t len){
 #line 80
   unsigned char __nesc_result;
 #line 80
 
 #line 80
-  __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__AMSend__send(arg_0x4067f9f8, addr, msg, len);
+  __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__AMSend__send(arg_0x406a0730, addr, msg, len);
 #line 80
 
 #line 80
@@ -10273,7 +10254,49 @@ static __inline  uint8_t __nesc_ntoh_uint8(const void * source)
   return base[0];
 }
 
-# 199 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
+# 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioPacket.nc"
+inline static uint8_t /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__SubPacket__headerLength(message_t *msg){
+#line 43
+  unsigned char __nesc_result;
+#line 43
+
+#line 43
+  __nesc_result = /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__RadioPacket__headerLength(msg);
+#line 43
+
+#line 43
+  return __nesc_result;
+#line 43
+}
+#line 43
+# 154 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/TinyosNetworkLayerC.nc"
+static inline uint8_t /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__TinyosPacket__headerLength(message_t *msg)
+{
+  return /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__SubPacket__headerLength(msg) + /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__PAYLOAD_OFFSET;
+}
+
+# 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioPacket.nc"
+inline static uint8_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SubPacket__headerLength(message_t *msg){
+#line 43
+  unsigned char __nesc_result;
+#line 43
+
+#line 43
+  __nesc_result = /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__TinyosPacket__headerLength(msg);
+#line 43
+
+#line 43
+  return __nesc_result;
+#line 43
+}
+#line 43
+# 67 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
+static inline activemessage_header_t */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__getHeader(message_t *msg)
+{
+  return (void *)msg + /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SubPacket__headerLength(msg);
+}
+
+#line 199
 static __inline am_id_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__AMPacket__type(message_t *msg)
 {
   return __nesc_ntoh_uint8(/*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__getHeader(msg)->type.nxdata);
@@ -10476,44 +10499,23 @@ inline static error_t RadioCountToLedsC__AMSend__send(am_addr_t addr, message_t 
 #line 80
 }
 #line 80
-# 126 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Packet.nc"
-inline static void * RadioCountToLedsC__Packet__getPayload(message_t * msg, uint8_t len){
-#line 126
-  void *__nesc_result;
-#line 126
-
-#line 126
-  __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Packet__getPayload(msg, len);
-#line 126
-
-#line 126
-  return __nesc_result;
-#line 126
-}
-#line 126
-# 98 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 100 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__MilliTimer__fired(void )
-#line 98
+#line 100
 {
   RadioCountToLedsC__counter++;
   ;
-  if (RadioCountToLedsC__locked) {
+  if (RadioCountToLedsC__locked) 
+    {
       return;
     }
-  else {
-      radio_count_msg_t *rcm = (radio_count_msg_t *)RadioCountToLedsC__Packet__getPayload(&RadioCountToLedsC__packet, sizeof(radio_count_msg_t ));
-
-#line 106
-      if (rcm == (void *)0) {
-          return;
-        }
-
-      __nesc_hton_uint16(rcm->counter.nxdata, RadioCountToLedsC__counter);
-      if (RadioCountToLedsC__AMSend__send(AM_BROADCAST_ADDR, &RadioCountToLedsC__packet, sizeof(radio_count_msg_t )) == SUCCESS) {
+  else 
+    {
+      if (RadioCountToLedsC__AMSend__send(AM_BROADCAST_ADDR, &RadioCountToLedsC__packet, sizeof(radio_count_msg_t )) == SUCCESS) 
+        {
           ;
           RadioCountToLedsC__locked = TRUE;
           RadioCountToLedsC__Leds__set(RadioCountToLedsC__counter);
-          RadioCountToLedsC__UartByte__send(RadioCountToLedsC__counter);
         }
     }
 }
@@ -10524,9 +10526,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x40b668f0){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x40baa8f0){
 #line 83
-  switch (arg_0x40b668f0) {
+  switch (arg_0x40baa8f0) {
 #line 83
     case 0U:
 #line 83
@@ -10536,7 +10538,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x40b668f0);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x40baa8f0);
 #line 83
       break;
 #line 83
@@ -10544,6 +10546,21 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
 }
 #line 83
+# 59 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioPacket.nc"
+inline static uint8_t /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__SubPacket__maxPayloadLength(void ){
+#line 59
+  unsigned char __nesc_result;
+#line 59
+
+#line 59
+  __nesc_result = RFA1DriverLayerP__RadioPacket__maxPayloadLength();
+#line 59
+
+#line 59
+  return __nesc_result;
+#line 59
+}
+#line 59
 # 105 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
 static inline uint8_t /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__RadioPacket__maxPayloadLength(void )
 {
@@ -10785,9 +10802,9 @@ static inline void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveM
 }
 
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SendNotifier.nc"
-inline static void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SendNotifier__aboutToSend(am_id_t arg_0x407b6b50, am_addr_t dest, message_t * msg){
+inline static void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SendNotifier__aboutToSend(am_id_t arg_0x407efb50, am_addr_t dest, message_t * msg){
 #line 59
-    /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SendNotifier__default__aboutToSend(arg_0x407b6b50, dest, msg);
+    /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SendNotifier__default__aboutToSend(arg_0x407efb50, dest, msg);
 #line 59
 }
 #line 59
@@ -10882,9 +10899,9 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(uint8_t arg_0x4083e870){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(uint8_t arg_0x40862870){
 #line 53
-    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(arg_0x4083e870);
+    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(arg_0x40862870);
 #line 53
 }
 #line 53
@@ -10983,9 +11000,9 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x4083d510){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x40861510){
 #line 59
-    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x4083d510);
+    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x40861510);
 #line 59
 }
 #line 59
@@ -10996,9 +11013,9 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 61 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceRequested.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__immediateRequested(uint8_t arg_0x4083e870){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__immediateRequested(uint8_t arg_0x40862870){
 #line 61
-    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__immediateRequested(arg_0x4083e870);
+    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__immediateRequested(arg_0x40862870);
 #line 61
 }
 #line 61
@@ -11309,73 +11326,12 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 65 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__unconfigure(uint8_t arg_0x4083d510){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__unconfigure(uint8_t arg_0x40861510){
 #line 65
-    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__unconfigure(arg_0x4083d510);
+    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__unconfigure(arg_0x40861510);
 #line 65
 }
 #line 65
-# 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
-static inline void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt(void )
-{
-  * (volatile uint8_t *)0xC9 &= ~(1 << 6);
-}
-
-# 8 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/SerialInterrupts.nc"
-inline static void Atm128Rfa1SerialP__Uart1Interrupts__disableTxInterrupt(void ){
-#line 8
-  Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt();
-#line 8
-}
-#line 8
-# 44 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
-static inline void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__setSendData(void )
-{
-  * (volatile uint8_t *)0xC8 |= 1 << 6;
-}
-
-# 17 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/SerialInterrupts.nc"
-inline static void Atm128Rfa1SerialP__Uart1Interrupts__setSendData(void ){
-#line 17
-  Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__setSendData();
-#line 17
-}
-#line 17
-# 49 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
-static inline bool Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__isTxInterruptPending(void )
-{
-  return (* (volatile uint8_t *)0xC8 & (1 << 6)) != 0;
-}
-
-# 15 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/SerialInterrupts.nc"
-inline static bool Atm128Rfa1SerialP__Uart1Interrupts__isTxInterruptPending(void ){
-#line 15
-  unsigned char __nesc_result;
-#line 15
-
-#line 15
-  __nesc_result = Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__isTxInterruptPending();
-#line 15
-
-#line 15
-  return __nesc_result;
-#line 15
-}
-#line 15
-# 13 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
-static inline void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__enableTxInterrupt(void )
-{
-  * (volatile uint8_t *)0xC8 |= 1 << 6;
-  * (volatile uint8_t *)0xC9 |= 1 << 6;
-}
-
-# 5 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/SerialInterrupts.nc"
-inline static void Atm128Rfa1SerialP__Uart1Interrupts__enableTxInterrupt(void ){
-#line 5
-  Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__enableTxInterrupt();
-#line 5
-}
-#line 5
 # 139 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fired(void )
 {
@@ -11482,9 +11438,9 @@ inline static void /*RFA1RadioC.MessageBufferLayerC.MessageBufferLayerP*/Message
 #line 48
 }
 #line 48
-# 94 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 96 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__AMControl__stopDone(error_t err)
-#line 94
+#line 96
 {
 }
 
@@ -11550,9 +11506,9 @@ inline static void RadioCountToLedsC__MilliTimer__startPeriodic(uint32_t dt){
 #line 64
 }
 #line 64
-# 85 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 87 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__AMControl__startDone(error_t err)
-#line 85
+#line 87
 {
   if (err == SUCCESS) {
       RadioCountToLedsC__MilliTimer__startPeriodic(1000);
@@ -11666,9 +11622,9 @@ inline static void /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__Iee
 #line 54
 }
 #line 54
-# 148 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 150 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__AMSend__sendDone(message_t *bufPtr, error_t error)
-#line 148
+#line 150
 {
   if (&RadioCountToLedsC__packet == bufPtr) {
       RadioCountToLedsC__locked = FALSE;
@@ -11696,9 +11652,9 @@ static inline void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__send
 }
 
 # 100 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Send.nc"
-inline static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x4067f010, message_t * msg, error_t error){
+inline static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x406a4ca0, message_t * msg, error_t error){
 #line 100
-  switch (arg_0x4067f010) {
+  switch (arg_0x406a4ca0) {
 #line 100
     case 0U:
 #line 100
@@ -11708,7 +11664,7 @@ inline static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint
 #line 100
     default:
 #line 100
-      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x4067f010, msg, error);
+      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x406a4ca0, msg, error);
 #line 100
       break;
 #line 100
@@ -11746,9 +11702,9 @@ static inline void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(am
 }
 
 # 110 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/AMSend.nc"
-inline static void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__AMSend__sendDone(am_id_t arg_0x407b7460, message_t * msg, error_t error){
+inline static void /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__AMSend__sendDone(am_id_t arg_0x407f0460, message_t * msg, error_t error){
 #line 110
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x407b7460, msg, error);
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x407f0460, msg, error);
 #line 110
 }
 #line 110
@@ -11779,21 +11735,6 @@ inline static void /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__Tin
 #line 54
 }
 #line 54
-# 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioPacket.nc"
-inline static uint8_t /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__SubPacket__headerLength(message_t *msg){
-#line 43
-  unsigned char __nesc_result;
-#line 43
-
-#line 43
-  __nesc_result = /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__RadioPacket__headerLength(msg);
-#line 43
-
-#line 43
-  return __nesc_result;
-#line 43
-}
-#line 43
 # 127 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/TinyosNetworkLayerC.nc"
 static inline network_header_t */*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__getHeader(message_t *msg)
 {
@@ -12244,13 +12185,13 @@ static inline message_t */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/A
 }
 
 # 78 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SnoopDefault__receive(am_id_t arg_0x407b5990, message_t * msg, void * payload, uint8_t len){
+inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SnoopDefault__receive(am_id_t arg_0x407ee990, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SnoopDefault__default__receive(arg_0x407b5990, msg, payload, len);
+    __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SnoopDefault__default__receive(arg_0x407ee990, msg, payload, len);
 #line 78
 
 #line 78
@@ -12267,13 +12208,13 @@ static inline message_t */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/A
 }
 
 # 78 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Snoop__receive(am_id_t arg_0x407b64d8, message_t * msg, void * payload, uint8_t len){
+inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Snoop__receive(am_id_t arg_0x407ef4d8, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Snoop__default__receive(arg_0x407b64d8, msg, payload, len);
+    __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Snoop__default__receive(arg_0x407ef4d8, msg, payload, len);
 #line 78
 
 #line 78
@@ -12288,13 +12229,13 @@ static inline message_t */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/A
 }
 
 # 78 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__ReceiveDefault__receive(am_id_t arg_0x407b52b0, message_t * msg, void * payload, uint8_t len){
+inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__ReceiveDefault__receive(am_id_t arg_0x407ee2b0, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__ReceiveDefault__default__receive(arg_0x407b52b0, msg, payload, len);
+    __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__ReceiveDefault__default__receive(arg_0x407ee2b0, msg, payload, len);
 #line 78
 
 #line 78
@@ -12354,11 +12295,180 @@ inline static void RadioCountToLedsC__Leds__led0On(void ){
 #line 56
 }
 #line 56
-# 120 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
+inline static error_t Atm128Rfa1SerialP__sendBlockingDoneTask__postTask(void ){
+#line 67
+  unsigned char __nesc_result;
+#line 67
+
+#line 67
+  __nesc_result = SchedulerBasicP__TaskBasic__postTask(Atm128Rfa1SerialP__sendBlockingDoneTask);
+#line 67
+
+#line 67
+  return __nesc_result;
+#line 67
+}
+#line 67
+# 13 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
+static inline void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__enableTxInterrupt(void )
+{
+  * (volatile uint8_t *)0xC8 |= 1 << 6;
+  * (volatile uint8_t *)0xC9 |= 1 << 6;
+}
+
+# 5 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/SerialInterrupts.nc"
+inline static void Atm128Rfa1SerialP__Uart1Interrupts__enableTxInterrupt(void ){
+#line 5
+  Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__enableTxInterrupt();
+#line 5
+}
+#line 5
+# 49 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
+static inline bool Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__isTxInterruptPending(void )
+{
+  return (* (volatile uint8_t *)0xC8 & (1 << 6)) != 0;
+}
+
+# 15 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/SerialInterrupts.nc"
+inline static bool Atm128Rfa1SerialP__Uart1Interrupts__isTxInterruptPending(void ){
+#line 15
+  unsigned char __nesc_result;
+#line 15
+
+#line 15
+  __nesc_result = Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__isTxInterruptPending();
+#line 15
+
+#line 15
+  return __nesc_result;
+#line 15
+}
+#line 15
+# 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
+static inline void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt(void )
+{
+  * (volatile uint8_t *)0xC9 &= ~(1 << 6);
+}
+
+# 8 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/SerialInterrupts.nc"
+inline static void Atm128Rfa1SerialP__Uart1Interrupts__disableTxInterrupt(void ){
+#line 8
+  Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt();
+#line 8
+}
+#line 8
+# 85 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+static inline error_t Atm128Rfa1SerialP__Uart1StreamBlocking__send(uint8_t *buf, uint16_t len)
+{
+  uint16_t i;
+
+#line 88
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      if (Atm128Rfa1SerialP__txBusy) 
+        {
+          unsigned char __nesc_temp = 
+#line 91
+          EBUSY;
+
+          {
+#line 91
+            __nesc_atomic_end(__nesc_atomic); 
+#line 91
+            return __nesc_temp;
+          }
+        }
+#line 92
+      Atm128Rfa1SerialP__txBusy = TRUE;
+    }
+#line 93
+    __nesc_atomic_end(__nesc_atomic); }
+  Atm128Rfa1SerialP__txBuf = buf;
+  Atm128Rfa1SerialP__txLen = len;
+  for (i = 0; i < len; i++) 
+    {
+
+      Atm128Rfa1SerialP__Uart1Interrupts__disableTxInterrupt();
+      while (!((* (volatile uint8_t *)0xC8 & (1 << 5)) != 0)) ;
+      * (volatile uint8_t *)0xCE = buf[i];
+
+      while (!Atm128Rfa1SerialP__Uart1Interrupts__isTxInterruptPending()) ;
+
+      Atm128Rfa1SerialP__Uart1Interrupts__enableTxInterrupt();
+    }
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      Atm128Rfa1SerialP__txBusy = FALSE;
+    }
+#line 110
+    __nesc_atomic_end(__nesc_atomic); }
+  Atm128Rfa1SerialP__txResult = SUCCESS;
+  Atm128Rfa1SerialP__sendBlockingDoneTask__postTask();
+  return SUCCESS;
+}
+
+#line 255
+static inline error_t Atm128Rfa1SerialP__Uart1Stream__send(uint8_t *buf, uint16_t len)
+{
+  return Atm128Rfa1SerialP__Uart1StreamBlocking__send(buf, len);
+  if (len == 0) {
+    return FAIL;
+    }
+#line 260
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      if (Atm128Rfa1SerialP__txBusy) 
+        {
+          unsigned char __nesc_temp = 
+#line 263
+          EBUSY;
+
+          {
+#line 263
+            __nesc_atomic_end(__nesc_atomic); 
+#line 263
+            return __nesc_temp;
+          }
+        }
+#line 264
+      Atm128Rfa1SerialP__txBusy = TRUE;
+    }
+#line 265
+    __nesc_atomic_end(__nesc_atomic); }
+  Atm128Rfa1SerialP__txBuf = buf;
+  Atm128Rfa1SerialP__txLen = len;
+  Atm128Rfa1SerialP__txPos = 0;
+
+  * (volatile uint8_t *)0xCE = Atm128Rfa1SerialP__txBuf[Atm128Rfa1SerialP__txPos++];
+  Atm128Rfa1SerialP__txResult = SUCCESS;
+  return SUCCESS;
+}
+
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+inline static error_t RadioCountToLedsC__UartStream__send(uint8_t * buf, uint16_t len){
+#line 48
+  unsigned char __nesc_result;
+#line 48
+
+#line 48
+  __nesc_result = Atm128Rfa1SerialP__Uart1Stream__send(buf, len);
+#line 48
+
+#line 48
+  return __nesc_result;
+#line 48
+}
+#line 48
+# 118 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline message_t *RadioCountToLedsC__Receive__receive(message_t *bufPtr, 
 void *payload, uint8_t len)
-#line 121
+#line 119
 {
+  uint8_t msgBuf[32];
+  uint8_t msgLen;
+
+#line 122
   ;
   if (len != sizeof(radio_count_msg_t )) {
 #line 123
@@ -12370,6 +12480,8 @@ void *payload, uint8_t len)
       radio_count_msg_t *rcm = (radio_count_msg_t *)payload;
 
 #line 126
+      msgLen = sprintf(msgBuf, "received counter = %d\n", __nesc_ntoh_uint16(rcm->counter.nxdata));
+      RadioCountToLedsC__UartStream__send(msgBuf, msgLen);
       if (__nesc_ntoh_uint16(rcm->counter.nxdata) & 0x1) {
           RadioCountToLedsC__Leds__led0On();
         }
@@ -12401,13 +12513,13 @@ static inline message_t */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/A
 }
 
 # 78 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Receive__receive(am_id_t arg_0x407b7e20, message_t * msg, void * payload, uint8_t len){
+inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Receive__receive(am_id_t arg_0x407f0e20, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x407b7e20) {
+  switch (arg_0x407f0e20) {
 #line 78
     case 6:
 #line 78
@@ -12417,7 +12529,7 @@ inline static message_t * /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/
 #line 78
     default:
 #line 78
-      __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Receive__default__receive(arg_0x407b7e20, msg, payload, len);
+      __nesc_result = /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Receive__default__receive(arg_0x407f0e20, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -12463,28 +12575,7 @@ static __inline bool /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/Activ
   return addr == /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__AMPacket__address() || addr == AM_BROADCAST_ADDR;
 }
 
-# 154 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/TinyosNetworkLayerC.nc"
-static inline uint8_t /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__TinyosPacket__headerLength(message_t *msg)
-{
-  return /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__SubPacket__headerLength(msg) + /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__PAYLOAD_OFFSET;
-}
-
-# 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioPacket.nc"
-inline static uint8_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SubPacket__headerLength(message_t *msg){
-#line 43
-  unsigned char __nesc_result;
-#line 43
-
-#line 43
-  __nesc_result = /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__TinyosPacket__headerLength(msg);
-#line 43
-
-#line 43
-  return __nesc_result;
-#line 43
-}
-#line 43
-# 225 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
+#line 225
 static inline uint8_t /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__RadioPacket__headerLength(message_t *msg)
 {
   return /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SubPacket__headerLength(msg) + sizeof(activemessage_header_t );
@@ -12612,9 +12703,9 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x40833e38){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x40857e38){
 #line 102
-  switch (arg_0x40833e38) {
+  switch (arg_0x40857e38) {
 #line 102
     case 0U:
 #line 102
@@ -12624,7 +12715,7 @@ inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 #line 102
     default:
 #line 102
-      /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x40833e38);
+      /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x40857e38);
 #line 102
       break;
 #line 102
@@ -12685,9 +12776,76 @@ static inline void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__errorTask__runTask(
   /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__sendDone(/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current, /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current].msg, FAIL);
 }
 
-# 159 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 44 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
+static inline void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__setSendData(void )
+{
+  * (volatile uint8_t *)0xC8 |= 1 << 6;
+}
+
+# 17 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/SerialInterrupts.nc"
+inline static void Atm128Rfa1SerialP__Uart1Interrupts__setSendData(void ){
+#line 17
+  Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__setSendData();
+#line 17
+}
+#line 17
+# 148 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+static inline error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte)
+{
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      if (Atm128Rfa1SerialP__txBusy) 
+        {
+          unsigned char __nesc_temp = 
+#line 153
+          EBUSY;
+
+          {
+#line 153
+            __nesc_atomic_end(__nesc_atomic); 
+#line 153
+            return __nesc_temp;
+          }
+        }
+#line 154
+      Atm128Rfa1SerialP__txBusy = TRUE;
+    }
+#line 155
+    __nesc_atomic_end(__nesc_atomic); }
+  Atm128Rfa1SerialP__Uart1Interrupts__clearTxInterrupt();
+  Atm128Rfa1SerialP__Uart1Interrupts__disableTxInterrupt();
+  * (volatile uint8_t *)0xCE = byte;
+  Atm128Rfa1SerialP__Uart1Interrupts__setSendData();
+  while (!Atm128Rfa1SerialP__Uart1Interrupts__isTxInterruptPending()) ;
+  Atm128Rfa1SerialP__Uart1Interrupts__clearTxInterrupt();
+  Atm128Rfa1SerialP__Uart1Interrupts__enableTxInterrupt();
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      Atm128Rfa1SerialP__txBusy = FALSE;
+    }
+#line 166
+    __nesc_atomic_end(__nesc_atomic); }
+  return SUCCESS;
+}
+
+# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
+inline static error_t RadioCountToLedsC__UartByte__send(uint8_t byte){
+#line 46
+  unsigned char __nesc_result;
+#line 46
+
+#line 46
+  __nesc_result = Atm128Rfa1SerialP__Uart1Byte__send(byte);
+#line 46
+
+#line 46
+  return __nesc_result;
+#line 46
+}
+#line 46
+# 161 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__UartStream__receivedByte(uint8_t byte)
-#line 159
+#line 161
 {
   RadioCountToLedsC__UartByte__send(byte);
 }
@@ -12699,15 +12857,15 @@ inline static void Atm128Rfa1SerialP__Uart1Stream__receivedByte(uint8_t byte){
 #line 79
 }
 #line 79
-# 346 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 351 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1Stream__receivedByte(Atm128Rfa1SerialP__rxUnexpectedByte);
 }
 
-# 155 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 157 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__UartStream__receiveDone(uint8_t *buf, uint16_t len, error_t error)
-#line 155
+#line 157
 {
 }
 
@@ -12718,7 +12876,7 @@ inline static void Atm128Rfa1SerialP__Uart1Stream__receiveDone(uint8_t * buf, ui
 #line 99
 }
 #line 99
-# 334 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 339 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1Stream__receiveDone(Atm128Rfa1SerialP__rxBuf, Atm128Rfa1SerialP__rxLen, Atm128Rfa1SerialP__rxResult);
@@ -12729,13 +12887,13 @@ static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
     {
       Atm128Rfa1SerialP__rxBusy = FALSE;
     }
-#line 343
+#line 348
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 163 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 165 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error)
-#line 163
+#line 165
 {
 }
 
@@ -12746,15 +12904,15 @@ inline static void Atm128Rfa1SerialP__Uart1Stream__sendDone(uint8_t * buf, uint1
 #line 57
 }
 #line 57
-# 329 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 334 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__sendDoneTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1Stream__sendDone(Atm128Rfa1SerialP__txBuf, Atm128Rfa1SerialP__txLen, Atm128Rfa1SerialP__txResult);
 }
 
-#line 313
+#line 318
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__receiveDone(uint8_t *buf, uint16_t len, error_t error)
-#line 313
+#line 318
 {
 }
 
@@ -12765,15 +12923,15 @@ inline static void Atm128Rfa1SerialP__Uart1StreamBlocking__receiveDone(uint8_t *
 #line 99
 }
 #line 99
-# 324 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 329 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__receiveBlockingDoneTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1StreamBlocking__receiveDone(Atm128Rfa1SerialP__rxBuf, Atm128Rfa1SerialP__rxLen, Atm128Rfa1SerialP__rxResult);
 }
 
-#line 311
+#line 316
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__sendDone(uint8_t *buf, uint16_t len, error_t err)
-#line 311
+#line 316
 {
 }
 
@@ -12784,7 +12942,7 @@ inline static void Atm128Rfa1SerialP__Uart1StreamBlocking__sendDone(uint8_t * bu
 #line 57
 }
 #line 57
-# 319 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 324 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__sendBlockingDoneTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1StreamBlocking__sendDone(Atm128Rfa1SerialP__txBuf, Atm128Rfa1SerialP__txLen, Atm128Rfa1SerialP__txResult);
@@ -12898,7 +13056,7 @@ static __inline  void __nesc_enable_interrupt()
 {
    __asm volatile ("sei");}
 
-# 80 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 82 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__Boot__booted(void )
 {
   RadioCountToLedsC__AMControl__start();
@@ -12918,7 +13076,7 @@ static inline  mcu_power_t mcombine(mcu_power_t m1, mcu_power_t m2)
   return m1 < m2 ? m1 : m2;
 }
 
-# 351 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 356 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline mcu_power_t Atm128Rfa1SerialP__Uart1PowerOverride__lowestState(void )
 {
   return ATM128_POWER_IDLE;
@@ -13743,43 +13901,17 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__fireTimers(uint
   /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask();
 }
 
-# 277 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-static void */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__Packet__getPayload(message_t *msg, uint8_t len)
-{
-  if (len > /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__RadioPacket__maxPayloadLength()) {
-    return (void *)0;
-    }
-  return (void *)msg + /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__RadioPacket__headerLength(msg);
-}
-
-# 59 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioPacket.nc"
-static uint8_t /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__SubPacket__maxPayloadLength(void ){
-#line 59
-  unsigned char __nesc_result;
-#line 59
-
-#line 59
-  __nesc_result = RFA1DriverLayerP__RadioPacket__maxPayloadLength();
-#line 59
-
-#line 59
-  return __nesc_result;
-#line 59
-}
-#line 59
 # 286 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/Ieee154PacketLayerP.nc"
 static uint8_t /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__RadioPacket__headerLength(message_t *msg)
 {
   return /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__SubPacket__headerLength(msg) + sizeof(ieee154_header_t );
 }
 
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayerP.nc"
-static activemessage_header_t */*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__getHeader(message_t *msg)
-{
-  return (void *)msg + /*RFA1RadioC.ActiveMessageLayerC.ActiveMessageLayerP*/ActiveMessageLayerP__0__SubPacket__headerLength(msg);
-}
 
-# 296 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/Ieee154PacketLayerP.nc"
+
+
+
+
 static void /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__RadioPacket__setPayloadLength(message_t *msg, uint8_t length)
 {
   /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__SubPacket__setPayloadLength(msg, length + sizeof(ieee154_header_t ));
@@ -13867,45 +13999,6 @@ static error_t /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__
       return SUCCESS;
     }
   return FAIL;
-}
-
-# 144 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
-static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte)
-{
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-    {
-      if (Atm128Rfa1SerialP__txBusy) 
-        {
-          unsigned char __nesc_temp = 
-#line 149
-          EBUSY;
-
-          {
-#line 149
-            __nesc_atomic_end(__nesc_atomic); 
-#line 149
-            return __nesc_temp;
-          }
-        }
-#line 150
-      Atm128Rfa1SerialP__txBusy = TRUE;
-    }
-#line 151
-    __nesc_atomic_end(__nesc_atomic); }
-  Atm128Rfa1SerialP__Uart1Interrupts__clearTxInterrupt();
-  Atm128Rfa1SerialP__Uart1Interrupts__disableTxInterrupt();
-  * (volatile uint8_t *)0xCE = byte;
-  Atm128Rfa1SerialP__Uart1Interrupts__setSendData();
-  while (!Atm128Rfa1SerialP__Uart1Interrupts__isTxInterruptPending()) ;
-  Atm128Rfa1SerialP__Uart1Interrupts__clearTxInterrupt();
-  Atm128Rfa1SerialP__Uart1Interrupts__enableTxInterrupt();
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-    {
-      Atm128Rfa1SerialP__txBusy = FALSE;
-    }
-#line 162
-    __nesc_atomic_end(__nesc_atomic); }
-  return SUCCESS;
 }
 
 # 147 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformAlarmC.nc"

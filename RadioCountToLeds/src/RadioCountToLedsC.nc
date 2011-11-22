@@ -54,6 +54,7 @@
  * @date   June 6 2005
  */
  
+ #include <stdio.h>
  #include "MyDummyConstants.h"
 
 module RadioCountToLedsC @safe() {
@@ -69,6 +70,7 @@ module RadioCountToLedsC @safe() {
     interface UartByte;
     interface UartStream;
   }
+  
 }
 implementation {
 
@@ -98,31 +100,31 @@ implementation {
   event void MilliTimer.fired() {
     counter++;
     dbg("RadioCountToLedsC", "RadioCountToLedsC: timer fired, counter is %hu.\n", counter);
-    if (locked) {
+    if (locked) 
+    {
       return;
     }
-    else {
-      radio_count_msg_t* rcm = (radio_count_msg_t*)call Packet.getPayload(&packet, sizeof(radio_count_msg_t));
-      if (rcm == NULL) {
-	return;
-      }
-
-      rcm->counter = counter;
-      if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
-	dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);	
-	locked = TRUE;
-	call Leds.set(counter);
-	call UartByte.send(counter);
+    else 
+    {
+      if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) 
+      {
+		dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);	
+		locked = TRUE;
+		call Leds.set(counter);
       }
     }
   }
 
   event message_t* Receive.receive(message_t* bufPtr, 
 				   void* payload, uint8_t len) {
+	uint8_t msgBuf[32];
+	uint8_t msgLen;
     dbg("RadioCountToLedsC", "Received packet of length %hhu.\n", len);
     if (len != sizeof(radio_count_msg_t)) {return bufPtr;}
     else {
       radio_count_msg_t* rcm = (radio_count_msg_t*)payload;
+      msgLen = sprintf(msgBuf, "received counter = %d\n", rcm->counter);
+      call UartStream.send(msgBuf, msgLen);
       if (rcm->counter & 0x1) {
 	call Leds.led0On();
       }
@@ -163,6 +165,7 @@ implementation {
 	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error){
 		// TODO Auto-generated method stub
 	}
+
 }
 
 

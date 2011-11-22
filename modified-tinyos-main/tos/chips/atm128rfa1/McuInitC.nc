@@ -40,7 +40,6 @@ configuration McuInitC @safe()
 	uses
 	{
 	  interface Init as TimerInit;
-	  interface Init as AdcInit;
 	}
 }
 
@@ -50,7 +49,6 @@ implementation
 
 	Init = McuInitP.Init;
 	TimerInit = McuInitP.TimerInit;
-	AdcInit = McuInitP.AdcInit;
 	McuInitP.SerialInit -> Atm128Rfa1SerialC;
 	McuInitP.MeasureClock -> MeasureClockC;
 }
