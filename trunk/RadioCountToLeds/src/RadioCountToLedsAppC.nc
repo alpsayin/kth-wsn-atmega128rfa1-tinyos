@@ -1,4 +1,4 @@
-// $Id: RadioCountToLedsAppC.nc,v 1.5 2010-06-29 22:07:17 scipio Exp $
+	// $Id: RadioCountToLedsAppC.nc,v 1.5 2010-06-29 22:07:17 scipio Exp $
 
 /*									tab:4
  * Copyright (c) 2000-2005 The Regents of the University  of California.  
@@ -72,6 +72,8 @@ implementation {
   App.Packet -> AMSenderC;
   PlatformSerialC.UartByte <- App.UartByte;
   PlatformSerialC.UartStream <- App.UartStream;
+  
+  
 }
 
 
