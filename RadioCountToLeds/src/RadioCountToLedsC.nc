@@ -129,7 +129,7 @@ implementation {
 	      }
 	
 	      rcm->counter = intCounter;
-	      if (call Ieee154Send.send(IEEE154_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
+	      if (call Ieee154Send.send( IEEE154_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
 			dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);	
 			call UartByte.send(intCounter);
 			locked = TRUE;
@@ -198,7 +198,11 @@ implementation {
 
 
 	event void Ieee154Control.startDone(error_t error){
+	uint8_t msgBuf[32];
+	uint8_t msgLen;
 	    if (error == SUCCESS) {
+	    	msgLen = sprintf(msgBuf, "this guy's 15.4 address is %d\n", call Ieee154Packet.address());
+	      call UartStream.send(msgBuf, msgLen);
 	      call MilliTimer.startPeriodic(1000);
 	    }
 	    else {

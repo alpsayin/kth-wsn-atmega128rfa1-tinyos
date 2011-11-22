@@ -44,6 +44,8 @@
 #define IEEE154FRAMES_ENABLED
 #define PACKET_LINK
 
+#define DEFINED_TOS_AM_ADDRESS 1
+
 typedef nx_struct radio_count_msg {
   nx_uint16_t counter;
 } radio_count_msg_t;
