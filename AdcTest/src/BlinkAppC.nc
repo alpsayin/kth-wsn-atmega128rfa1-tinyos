@@ -63,6 +63,7 @@ implementation
   components new PlatformSensorC(Sensor_Channel_0) as Vol0;
   components new PlatformSensorC(Sensor_Channel_T) as Vol1;
   components PlatformSerialC;
+  components Ieee154MessageC;
 
   BlinkC -> MainC.Boot;
 

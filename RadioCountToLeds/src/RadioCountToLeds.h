@@ -41,6 +41,9 @@
 #ifndef RADIO_COUNT_TO_LEDS_H
 #define RADIO_COUNT_TO_LEDS_H
 
+#define IEEE154FRAMES_ENABLED
+#define PACKET_LINK
+
 typedef nx_struct radio_count_msg {
   nx_uint16_t counter;
 } radio_count_msg_t;

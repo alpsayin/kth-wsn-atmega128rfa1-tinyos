@@ -61,16 +61,29 @@ module RadioCountToLedsC @safe() {
   uses {
     interface Leds;
     interface Boot;
-    interface Receive;
-    interface AMSend;
+//    interface Receive;
+//    interface AMSend;
     interface Timer<TMilli> as MilliTimer;
-    interface SplitControl as AMControl;
-    interface Packet;
+//    interface SplitControl as AMControl;
+//    interface Packet;
+
+
     
     interface UartByte;
     interface UartStream;
   }
   
+	uses
+	{
+		interface SplitControl as Ieee154Control;
+
+		interface Ieee154Send;
+		interface Receive as Ieee154Receive;
+
+		interface Packet;
+		interface Ieee154Packet;
+
+	}
 }
 implementation {
 
@@ -81,49 +94,62 @@ implementation {
   
   event void Boot.booted() 
   {
-    call AMControl.start();
+//    call AMControl.start();
+	 call Ieee154Control.start();
   }
 
-  event void AMControl.startDone(error_t err) {
-    if (err == SUCCESS) {
-      call MilliTimer.startPeriodic(1000);
-    }
-    else {
-      call AMControl.start();
-    }
-  }
+//  event void AMControl.startDone(error_t err) {
+//    if (err == SUCCESS) {
+//      call MilliTimer.startPeriodic(1000);
+//    }
+//    else {
+//      call AMControl.start();
+//    }
+//  }
 
-  event void AMControl.stopDone(error_t err) {
-    // do nothing
-  }
+//  event void AMControl.stopDone(error_t err) {
+//    // do nothing
+//  }
+
+	task void sendMessageTask()
+	{
+		uint16_t intCounter;
+		atomic{
+			intCounter = counter;
+		}
+	    dbg("RadioCountToLedsC", "RadioCountToLedsC: timer fired, counter is %hu.\n", counter);
+	    if (locked) {
+	      return;
+	    }
+	    else {
+	    
+	      radio_count_msg_t* rcm = (radio_count_msg_t*)call Packet.getPayload(&packet, sizeof(radio_count_msg_t));
+	      if (rcm == NULL) {
+			return;
+	      }
+	
+	      rcm->counter = intCounter;
+	      if (call Ieee154Send.send(IEEE154_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
+			dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);	
+			call UartByte.send(intCounter);
+			locked = TRUE;
+	      }
+	    }
+	}
   
   event void MilliTimer.fired() {
-    counter++;
-    dbg("RadioCountToLedsC", "RadioCountToLedsC: timer fired, counter is %hu.\n", counter);
-    if (locked) 
-    {
-      return;
-    }
-    else 
-    {
-      if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) 
-      {
-		dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);	
-		locked = TRUE;
-		call Leds.set(counter);
-      }
-    }
+//    counter++;
+//    post sendMessageTask();
   }
 
-  event message_t* Receive.receive(message_t* bufPtr, 
-				   void* payload, uint8_t len) {
+  event message_t* Ieee154Receive.receive(message_t* bufPtr, void* payload, uint8_t len) {
 	uint8_t msgBuf[32];
 	uint8_t msgLen;
     dbg("RadioCountToLedsC", "Received packet of length %hhu.\n", len);
     if (len != sizeof(radio_count_msg_t)) {return bufPtr;}
     else {
       radio_count_msg_t* rcm = (radio_count_msg_t*)payload;
-      msgLen = sprintf(msgBuf, "received counter = %d\n", rcm->counter);
+      msgLen = sprintf(msgBuf, "received number = %d\n", rcm->counter);
       call UartStream.send(msgBuf, msgLen);
       if (rcm->counter & 0x1) {
 	call Leds.led0On();
@@ -147,7 +173,7 @@ implementation {
     }
   }
 
-  event void AMSend.sendDone(message_t* bufPtr, error_t error) {
+  event void Ieee154Send.sendDone(message_t* bufPtr, error_t error) {
     if (&packet == bufPtr) {
       locked = FALSE;
     }
@@ -159,10 +185,28 @@ implementation {
 	}
 
 	async event void UartStream.receivedByte(uint8_t byte){
-		call UartByte.send(byte);
+		atomic{
+		counter = byte;
+		}
+		
+    	post sendMessageTask();	
 	}
 
 	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error){
+		// TODO Auto-generated method stub
+	}
+
+
+	event void Ieee154Control.startDone(error_t error){
+	    if (error == SUCCESS) {
+	      call MilliTimer.startPeriodic(1000);
+	    }
+	    else {
+	      call Ieee154Control.start();
+	    }
+	}
+
+	event void Ieee154Control.stopDone(error_t error){
 		// TODO Auto-generated method stub
 	}
 
