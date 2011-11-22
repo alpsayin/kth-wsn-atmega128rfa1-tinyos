@@ -51,7 +51,7 @@ configuration Ieee154MessageC
 		interface PacketLink;
 		interface RadioChannel;
 
-		interface PacketTimeStamp<TMicro, uint32_t> as PacketTimeStampMicro;
+		interface PacketTimeStamp<TRadio, uint32_t> as PacketTimeStampMicro;
 		interface PacketTimeStamp<TMilli, uint32_t> as PacketTimeStampMilli;
 	}
 }

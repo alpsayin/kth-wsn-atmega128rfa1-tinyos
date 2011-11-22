@@ -67,7 +67,7 @@ implementation
   ResourceConfigure = AdcArbiter;
   Atm128AdcSingle = Atm128AdcP;
   Atm128AdcMultiple = Atm128AdcP;
-  McuInitC.Init -> Atm128AdcP.Init;
+//  McuInitC.Init <- Atm128AdcP.Init;
   Atm128AdcP.HplAtm128Adc -> HplAtm128AdcC;
 //  Atm128AdcP.Atm128Calibrate -> PlatformC;		//comment by zn : 20111114
 

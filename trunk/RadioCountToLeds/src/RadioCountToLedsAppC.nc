@@ -56,22 +56,29 @@
 configuration RadioCountToLedsAppC {}
 implementation {
   components MainC, RadioCountToLedsC as App, LedsC;
-  components new AMSenderC(AM_RADIO_COUNT_MSG);
-  components new AMReceiverC(AM_RADIO_COUNT_MSG);
+//  components new AMSenderC(AM_RADIO_COUNT_MSG);
+//  components new AMReceiverC(AM_RADIO_COUNT_MSG);
   components new TimerMilliC();
-  components ActiveMessageC;
+//  components ActiveMessageC;
   components PlatformSerialC;
+  components Ieee154MessageC;
   
   App.Boot -> MainC.Boot;
   
-  App.Receive -> AMReceiverC;
-  App.AMSend -> AMSenderC;
-  App.AMControl -> ActiveMessageC;
+//  App.Receive -> AMReceiverC;
+//  App.AMSend -> AMSenderC;
+//  App.AMControl -> ActiveMessageC;
   App.Leds -> LedsC;
   App.MilliTimer -> TimerMilliC;
-  App.Packet -> AMSenderC;
+//  App.Packet -> AMSenderC;
   PlatformSerialC.UartByte <- App.UartByte;
   PlatformSerialC.UartStream <- App.UartStream;
+  
+  App.Ieee154Control -> Ieee154MessageC;
+  App.Ieee154Packet -> Ieee154MessageC;
+  App.Ieee154Receive -> Ieee154MessageC;
+  App.Ieee154Send -> Ieee154MessageC;
+  App.Packet -> Ieee154MessageC.Packet;
   
   
 }
