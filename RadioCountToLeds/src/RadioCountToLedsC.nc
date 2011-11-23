@@ -90,6 +90,7 @@ implementation {
 
   bool locked;
   uint16_t counter = 0;
+  uint16_t destination = IEEE154_BROADCAST_ADDR;
   
   event void Boot.booted() 
   {
@@ -128,7 +129,7 @@ implementation {
 	      }
 	
 	      rcm->counter = intCounter;
-	      if (call Ieee154Send.send( IEEE154_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
+	      if (call Ieee154Send.send( destination, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
 			dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);	
 			call UartByte.send(intCounter);
 			locked = TRUE;
@@ -149,26 +150,29 @@ implementation {
     else {
       radio_count_msg_t* rcm = (radio_count_msg_t*)payload;
       msgLen = sprintf(msgBuf, "received number = %d\n", rcm->counter);
-      call UartStream.send(msgBuf, msgLen);
-      if (rcm->counter & 0x1) {
-	call Leds.led0On();
-      }
-      else {
-	call Leds.led0Off();
-      }
-      if (rcm->counter & 0x2) {
-	call Leds.led1On();
-      }
-      else {
-	call Leds.led1Off();
-      }
-      if (rcm->counter & 0x4) {
-	call Leds.led2On();
-      }
-      else {
-	call Leds.led2Off();
-      }
-      return bufPtr;
+//      call UartStream.send(msgBuf, msgLen);
+      if(call Ieee154Packet.isForMe(bufPtr)==TRUE)
+      {
+	      if (rcm->counter & 0x1) {
+		call Leds.led0On();
+	      }
+	      else {
+		call Leds.led0Off();
+	      }
+	      if (rcm->counter & 0x2) {
+		call Leds.led1On();
+	      }
+	      else {
+		call Leds.led1Off();
+	      }
+	      if (rcm->counter & 0x4) {
+		call Leds.led2On();
+	      }
+	      else {
+		call Leds.led2Off();
+	      }
+	      return bufPtr;
+	  }
     }
   }
 
@@ -185,23 +189,30 @@ implementation {
 
 	async event void UartStream.receivedByte(uint8_t byte){
 		atomic{
-		counter = byte;
+			counter = byte&0x0F;
+			destination = (byte&0xF0)>>4;
 		}
-		
-    	post sendMessageTask();	
+		post sendMessageTask();	
 	}
 
 	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error){
 		// TODO Auto-generated method stub
 	}
 
+	void printRadioRegisters()
+	{
+		uint8_t msgBuf[64];
+		uint8_t msgLen;
+		call UartStream.send((void*)0x0160, 12);	
+	}
 
 	event void Ieee154Control.startDone(error_t error){
 	uint8_t msgBuf[32];
 	uint8_t msgLen;
 	    if (error == SUCCESS) {
-	    	msgLen = sprintf(msgBuf, "this guy's 15.4 address is %d\n", call Ieee154Packet.address());
+	    	msgLen = sprintf(msgBuf, "this board's ieee802.15.4 address is %d\n", call Ieee154Packet.address());
 	      call UartStream.send(msgBuf, msgLen);
+	      printRadioRegisters();
 	      call MilliTimer.startPeriodic(1000);
 	    }
 	    else {

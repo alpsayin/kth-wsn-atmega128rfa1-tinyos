@@ -45,7 +45,16 @@
 #define PACKET_LINK
 #define TRAFFIC_MONITOR
 
-#define DEFINED_TOS_AM_ADDRESS 1
+#define DEFINED_TOS_AM_ADDRESS 2
+
+#ifdef DEFINED_TOS_AM_ADDRESS
+#if DEFINED_TOS_AM_ADDRESS==1
+#error set an actual _DEFINED_TOS_AM_ADDRESS
+#endif
+#else
+#error set an actual _DEFINED_TOS_AM_ADDRESS
+#endif
+
 
 typedef nx_struct radio_count_msg {
   nx_uint16_t counter;

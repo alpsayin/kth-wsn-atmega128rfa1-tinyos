@@ -1639,8 +1639,8 @@ enum __nesc_unnamed4263 {
   LEDS_LED6 = 1 << 6, 
   LEDS_LED7 = 1 << 7
 };
-# 52 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLeds.h"
-#line 50
+# 61 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLeds.h"
+#line 59
 typedef nx_struct radio_count_msg {
   nx_uint16_t counter;
 } __attribute__((packed)) radio_count_msg_t;
@@ -1992,7 +1992,7 @@ enum __nesc_unnamed4279 {
 
 enum __nesc_unnamed4280 {
   TOS_AM_GROUP = 0x22, 
-  TOS_AM_ADDRESS = 1
+  TOS_AM_ADDRESS = 2
 };
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/ActiveMessageLayer.h"
 #line 40
@@ -2632,11 +2632,11 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x407068f0);
+uint8_t arg_0x407038f0);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x407068f0, 
+uint8_t arg_0x407038f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 
@@ -2649,7 +2649,7 @@ uint32_t dt);
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x407068f0, 
+uint8_t arg_0x407038f0, 
 # 73 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 40 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/TrafficMonitorConfig.nc"
@@ -2742,11 +2742,11 @@ static bool RFA1RadioP__RFA1DriverConfig__requiresRssiCca(message_t *msg);
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407eb7b0);
+uint8_t arg_0x407e97b0);
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__wait(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407eb7b0, 
+uint8_t arg_0x407e97b0, 
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 tradio_size timeout);
 
@@ -2755,15 +2755,15 @@ tradio_size timeout);
 
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__cancel(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407eb7b0);
+uint8_t arg_0x407e97b0);
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static bool /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__isFree(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407eb7b0);
+uint8_t arg_0x407e97b0);
 # 65 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static tradio_size /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__getNow(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407eb7b0);
+uint8_t arg_0x407e97b0);
 # 78 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Alarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__fired(void );
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/Tasklet.nc"
@@ -2810,11 +2810,11 @@ static error_t /*RFA1RadioC.SendResourceC.Queue*/FcfsResourceQueueC__0__Init__in
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40830430);
+uint8_t arg_0x4082e430);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4080ecc0);
+uint8_t arg_0x40825cc0);
 # 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__grantedTask__runTask(void );
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/BareSend.nc"
@@ -2879,6 +2879,16 @@ static uint8_t /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__Ieee154
 static error_t /*RFA1RadioC.TinyosNetworkLayerC*/TinyosNetworkLayerC__0__Ieee154Send__send(message_t *msg);
 # 37 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Ieee154Packet.nc"
 static ieee154_saddr_t /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154Packet__address(void );
+
+
+
+
+
+
+
+
+
+static bool /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154Packet__isForMe(message_t *msg);
 # 49 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioPacket.nc"
 static uint8_t /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__RadioPacket__payloadLength(message_t *msg);
 
@@ -2966,7 +2976,7 @@ static error_t /*RFA1RadioC.UniqueLayerC.UniqueLayerP*/UniqueLayerP__0__Init__in
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 static bool NeighborhoodP__NeighborhoodFlag__get(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodP.nc"
-uint8_t arg_0x409044d0, 
+uint8_t arg_0x409024d0, 
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 uint8_t idx);
 
@@ -2975,7 +2985,7 @@ uint8_t idx);
 
 static void NeighborhoodP__NeighborhoodFlag__set(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodP.nc"
-uint8_t arg_0x409044d0, 
+uint8_t arg_0x409024d0, 
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 uint8_t idx);
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/Neighborhood.nc"
@@ -3146,13 +3156,13 @@ static uint8_t /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__RadioPa
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__clear(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a48a88, 
+uint8_t arg_0x40a45a88, 
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 #line 40
 static bool /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__get(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a48a88, 
+uint8_t arg_0x40a45a88, 
 # 40 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 
@@ -3161,7 +3171,7 @@ message_t *msg);
 
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__setValue(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a48a88, 
+uint8_t arg_0x40a45a88, 
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg, bool value);
 
@@ -3170,7 +3180,7 @@ message_t *msg, bool value);
 
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__set(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a48a88, 
+uint8_t arg_0x40a45a88, 
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 # 63 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioSend.nc"
@@ -3852,6 +3862,16 @@ message_t * msg,
 uint8_t len);
 # 37 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Ieee154Packet.nc"
 static ieee154_saddr_t RadioCountToLedsC__Ieee154Packet__address(void );
+
+
+
+
+
+
+
+
+
+static bool RadioCountToLedsC__Ieee154Packet__isForMe(message_t *msg);
 # 104 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SplitControl.nc"
 static error_t RadioCountToLedsC__Ieee154Control__start(void );
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
@@ -3892,30 +3912,31 @@ static void RadioCountToLedsC__Leds__led2On(void );
 static error_t RadioCountToLedsC__Ieee154Send__send(ieee154_saddr_t addr, message_t *msg, uint8_t len);
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t RadioCountToLedsC__sendMessageTask__postTask(void );
-# 113 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 114 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 enum RadioCountToLedsC____nesc_unnamed4297 {
-#line 113
+#line 114
   RadioCountToLedsC__sendMessageTask = 5U
 };
-#line 113
+#line 114
 typedef int RadioCountToLedsC____nesc_sillytask_sendMessageTask[RadioCountToLedsC__sendMessageTask];
 #line 89
 message_t RadioCountToLedsC__packet;
 
 bool RadioCountToLedsC__locked;
 uint16_t RadioCountToLedsC__counter = 0;
+uint16_t RadioCountToLedsC__destination = IEEE154_BROADCAST_ADDR;
 
 static inline void RadioCountToLedsC__Boot__booted(void );
-#line 113
+#line 114
 static inline void RadioCountToLedsC__sendMessageTask__runTask(void );
-#line 139
+#line 140
 static inline void RadioCountToLedsC__MilliTimer__fired(void );
 
 
 
 
 static inline message_t *RadioCountToLedsC__Ieee154Receive__receive(message_t *bufPtr, void *payload, uint8_t len);
-#line 175
+#line 179
 static inline void RadioCountToLedsC__Ieee154Send__sendDone(message_t *bufPtr, error_t error);
 
 
@@ -3939,9 +3960,15 @@ static inline void RadioCountToLedsC__UartStream__sendDone(uint8_t *buf, uint16_
 
 
 
+static inline void RadioCountToLedsC__printRadioRegisters(void );
+
+
+
+
+
 
 static inline void RadioCountToLedsC__Ieee154Control__startDone(error_t error);
-#line 212
+#line 223
 static inline void RadioCountToLedsC__Ieee154Control__stopDone(error_t error);
 # 70 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__setMode(uint8_t mode);
@@ -4098,7 +4125,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x407068f0);
+uint8_t arg_0x407038f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4300 {
 #line 71
@@ -4311,7 +4338,7 @@ static inline uint16_t RFA1RadioP__RandomCollisionConfig__getTransmitBarrier(mes
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407eb7b0);
+uint8_t arg_0x407e97b0);
 # 109 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Alarm.nc"
 static /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__size_type /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__getNow(void );
 #line 66
@@ -4467,11 +4494,11 @@ static inline error_t /*RFA1RadioC.SendResourceC.Queue*/FcfsResourceQueueC__0__I
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40830430);
+uint8_t arg_0x4082e430);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4080ecc0);
+uint8_t arg_0x40825cc0);
 #line 69
 enum /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0____nesc_unnamed4305 {
 #line 69
@@ -4818,9 +4845,11 @@ static inline ieee154_panid_t /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLaye
 
 
 
-static inline bool /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__isForMe(message_t *msg);
+static bool /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__isForMe(message_t *msg);
 #line 239
 static inline ieee154_saddr_t /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154Packet__address(void );
+#line 264
+static inline bool /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154Packet__isForMe(message_t *msg);
 #line 286
 static uint8_t /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__RadioPacket__headerLength(message_t *msg);
 
@@ -6817,9 +6846,9 @@ static inline void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAl
 }
 
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
-inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(uint8_t arg_0x407eb7b0){
+inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(uint8_t arg_0x407e97b0){
 #line 60
-  switch (arg_0x407eb7b0) {
+  switch (arg_0x407e97b0) {
 #line 60
     case 0U:
 #line 60
@@ -6835,7 +6864,7 @@ inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAl
 #line 60
     default:
 #line 60
-      /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(arg_0x407eb7b0);
+      /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(arg_0x407e97b0);
 #line 60
       break;
 #line 60
@@ -9732,9 +9761,9 @@ inline static void /*RFA1RadioC.MessageBufferLayerC.MessageBufferLayerP*/Message
 #line 48
 }
 #line 48
-# 212 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 223 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__Ieee154Control__stopDone(error_t error)
-#line 212
+#line 223
 {
 }
 
@@ -9846,6 +9875,16 @@ inline static error_t RadioCountToLedsC__UartStream__send(uint8_t * buf, uint16_
 #line 48
 }
 #line 48
+# 202 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+static inline void RadioCountToLedsC__printRadioRegisters(void )
+{
+  uint8_t msgBuf[64];
+  uint8_t msgLen;
+
+#line 206
+  RadioCountToLedsC__UartStream__send((void *)0x0160, 12);
+}
+
 # 72 "/opt/tinyos-main/src/tinyos-main/tos/system/ActiveMessageAddressC.nc"
 static inline am_addr_t ActiveMessageAddressC__ActiveMessageAddress__amAddress(void )
 #line 72
@@ -9895,17 +9934,18 @@ inline static ieee154_saddr_t RadioCountToLedsC__Ieee154Packet__address(void ){
 #line 37
 }
 #line 37
-# 199 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 209 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__Ieee154Control__startDone(error_t error)
-#line 199
+#line 209
 {
   uint8_t msgBuf[32];
   uint8_t msgLen;
 
-#line 202
+#line 212
   if (error == SUCCESS) {
-      msgLen = sprintf(msgBuf, "this guy's 15.4 address is %d\n", RadioCountToLedsC__Ieee154Packet__address());
+      msgLen = sprintf(msgBuf, "this board's ieee802.15.4 address is %d\n", RadioCountToLedsC__Ieee154Packet__address());
       RadioCountToLedsC__UartStream__send(msgBuf, msgLen);
+      RadioCountToLedsC__printRadioRegisters();
       RadioCountToLedsC__MilliTimer__startPeriodic(1000);
     }
   else {
@@ -10601,46 +10641,70 @@ inline static void RadioCountToLedsC__Leds__led0On(void ){
 #line 56
 }
 #line 56
-# 144 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 264 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/Ieee154PacketLayerP.nc"
+static inline bool /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154Packet__isForMe(message_t *msg)
+{
+  return /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__isForMe(msg);
+}
+
+# 47 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Ieee154Packet.nc"
+inline static bool RadioCountToLedsC__Ieee154Packet__isForMe(message_t *msg){
+#line 47
+  unsigned char __nesc_result;
+#line 47
+
+#line 47
+  __nesc_result = /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154Packet__isForMe(msg);
+#line 47
+
+#line 47
+  return __nesc_result;
+#line 47
+}
+#line 47
+# 145 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline message_t *RadioCountToLedsC__Ieee154Receive__receive(message_t *bufPtr, void *payload, uint8_t len)
-#line 144
+#line 145
 {
   uint8_t msgBuf[32];
   uint8_t msgLen;
 
-#line 147
+#line 148
   ;
   if (len != sizeof(radio_count_msg_t )) {
-#line 148
+#line 149
       return bufPtr;
     }
   else 
-#line 149
+#line 150
     {
       radio_count_msg_t *rcm = (radio_count_msg_t *)payload;
 
-#line 151
+#line 152
       msgLen = sprintf(msgBuf, "received number = %d\n", __nesc_ntoh_uint16(rcm->counter.nxdata));
-      RadioCountToLedsC__UartStream__send(msgBuf, msgLen);
-      if (__nesc_ntoh_uint16(rcm->counter.nxdata) & 0x1) {
-          RadioCountToLedsC__Leds__led0On();
+
+      if (RadioCountToLedsC__Ieee154Packet__isForMe(bufPtr) == TRUE) 
+        {
+          if (__nesc_ntoh_uint16(rcm->counter.nxdata) & 0x1) {
+              RadioCountToLedsC__Leds__led0On();
+            }
+          else {
+              RadioCountToLedsC__Leds__led0Off();
+            }
+          if (__nesc_ntoh_uint16(rcm->counter.nxdata) & 0x2) {
+              RadioCountToLedsC__Leds__led1On();
+            }
+          else {
+              RadioCountToLedsC__Leds__led1Off();
+            }
+          if (__nesc_ntoh_uint16(rcm->counter.nxdata) & 0x4) {
+              RadioCountToLedsC__Leds__led2On();
+            }
+          else {
+              RadioCountToLedsC__Leds__led2Off();
+            }
+          return bufPtr;
         }
-      else {
-          RadioCountToLedsC__Leds__led0Off();
-        }
-      if (__nesc_ntoh_uint16(rcm->counter.nxdata) & 0x2) {
-          RadioCountToLedsC__Leds__led1On();
-        }
-      else {
-          RadioCountToLedsC__Leds__led1Off();
-        }
-      if (__nesc_ntoh_uint16(rcm->counter.nxdata) & 0x4) {
-          RadioCountToLedsC__Leds__led2On();
-        }
-      else {
-          RadioCountToLedsC__Leds__led2Off();
-        }
-      return bufPtr;
     }
 }
 
@@ -10659,15 +10723,6 @@ inline static message_t * /*RFA1RadioC.Ieee154MessageLayerC*/Ieee154MessageLayer
 #line 78
 }
 #line 78
-# 227 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/Ieee154PacketLayerP.nc"
-static inline bool /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__isForMe(message_t *msg)
-{
-  ieee154_saddr_t addr = /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__getDestAddr(msg);
-
-#line 230
-  return addr == /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__localAddr() || addr == IEEE154_BROADCAST_ADDR;
-}
-
 # 184 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/Ieee154PacketLayer.nc"
 inline static bool /*RFA1RadioC.Ieee154MessageLayerC*/Ieee154MessageLayerC__0__Ieee154PacketLayer__isForMe(message_t *msg){
 #line 184
@@ -10772,9 +10827,9 @@ static inline void /*RFA1RadioC.MessageBufferLayerC.MessageBufferLayerP*/Message
     }
 }
 
-# 175 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 179 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__Ieee154Send__sendDone(message_t *bufPtr, error_t error)
-#line 175
+#line 179
 {
   if (&RadioCountToLedsC__packet == bufPtr) {
       RadioCountToLedsC__locked = FALSE;
@@ -11038,9 +11093,9 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x4080ecc0){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x40825cc0){
 #line 102
-    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x4080ecc0);
+    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x40825cc0);
 #line 102
 }
 #line 102
@@ -11051,9 +11106,9 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x40830430){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x4082e430){
 #line 59
-    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x40830430);
+    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x4082e430);
 #line 59
 }
 #line 59
@@ -11185,9 +11240,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFr
     }
 }
 
-# 139 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 140 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__MilliTimer__fired(void )
-#line 139
+#line 140
 {
 }
 
@@ -11205,9 +11260,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x407068f0){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x407038f0){
 #line 83
-  switch (arg_0x407068f0) {
+  switch (arg_0x407038f0) {
 #line 83
     case 0U:
 #line 83
@@ -11223,7 +11278,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x407068f0);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x407038f0);
 #line 83
       break;
 #line 83
@@ -11870,18 +11925,18 @@ inline static void * RadioCountToLedsC__Packet__getPayload(message_t * msg, uint
 #line 126
 }
 #line 126
-# 113 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 114 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__sendMessageTask__runTask(void )
 {
   uint16_t intCounter;
 
-#line 116
+#line 117
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 116
+#line 117
     {
       intCounter = RadioCountToLedsC__counter;
     }
-#line 118
+#line 119
     __nesc_atomic_end(__nesc_atomic); }
   ;
   if (RadioCountToLedsC__locked) {
@@ -11891,13 +11946,13 @@ static inline void RadioCountToLedsC__sendMessageTask__runTask(void )
 
       radio_count_msg_t *rcm = (radio_count_msg_t *)RadioCountToLedsC__Packet__getPayload(&RadioCountToLedsC__packet, sizeof(radio_count_msg_t ));
 
-#line 126
+#line 127
       if (rcm == (void *)0) {
           return;
         }
 
       __nesc_hton_uint16(rcm->counter.nxdata, intCounter);
-      if (RadioCountToLedsC__Ieee154Send__send(IEEE154_BROADCAST_ADDR, &RadioCountToLedsC__packet, sizeof(radio_count_msg_t )) == SUCCESS) {
+      if (RadioCountToLedsC__Ieee154Send__send(RadioCountToLedsC__destination, &RadioCountToLedsC__packet, sizeof(radio_count_msg_t )) == SUCCESS) {
           ;
           RadioCountToLedsC__UartByte__send(intCounter);
           RadioCountToLedsC__locked = TRUE;
@@ -11920,18 +11975,18 @@ inline static error_t RadioCountToLedsC__sendMessageTask__postTask(void ){
 #line 67
 }
 #line 67
-# 186 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 190 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__UartStream__receivedByte(uint8_t byte)
-#line 186
+#line 190
 {
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 187
+#line 191
     {
-      RadioCountToLedsC__counter = byte;
+      RadioCountToLedsC__counter = byte & 0x0F;
+      RadioCountToLedsC__destination = (byte & 0xF0) >> 4;
     }
-#line 189
+#line 194
     __nesc_atomic_end(__nesc_atomic); }
-
   RadioCountToLedsC__sendMessageTask__postTask();
 }
 
@@ -11948,9 +12003,9 @@ static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void )
   Atm128Rfa1SerialP__Uart1Stream__receivedByte(Atm128Rfa1SerialP__rxUnexpectedByte);
 }
 
-# 182 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 186 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__UartStream__receiveDone(uint8_t *buf, uint16_t len, error_t error)
-#line 182
+#line 186
 {
 }
 
@@ -11976,9 +12031,9 @@ static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 194 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 198 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error)
-#line 194
+#line 198
 {
 }
 
@@ -12141,7 +12196,7 @@ static __inline  void __nesc_enable_interrupt()
 {
    __asm volatile ("sei");}
 
-# 94 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 95 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__Boot__booted(void )
 {
 
@@ -13016,7 +13071,16 @@ static void TaskletC__Tasklet__resume(void )
   TaskletC__doit();
 }
 
-# 286 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/Ieee154PacketLayerP.nc"
+# 227 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/Ieee154PacketLayerP.nc"
+static bool /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__isForMe(message_t *msg)
+{
+  ieee154_saddr_t addr = /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__getDestAddr(msg);
+
+#line 230
+  return addr == /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__Ieee154PacketLayer__localAddr() || addr == IEEE154_BROADCAST_ADDR;
+}
+
+#line 286
 static uint8_t /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__RadioPacket__headerLength(message_t *msg)
 {
   return /*RFA1RadioC.Ieee154PacketLayerC.Ieee154PacketLayerP*/Ieee154PacketLayerP__0__SubPacket__headerLength(msg) + sizeof(ieee154_header_t );
