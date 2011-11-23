@@ -68,7 +68,6 @@ module RadioCountToLedsC @safe() {
 //    interface Packet;
 
 
-    
     interface UartByte;
     interface UartStream;
   }

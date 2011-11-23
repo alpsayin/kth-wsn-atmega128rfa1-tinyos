@@ -52,6 +52,7 @@
  * @author Philip Levis
  * @date   June 6 2005
  */
+//#include <6lowpan/IP.h>
 
 configuration RadioCountToLedsAppC {}
 implementation {
@@ -62,6 +63,7 @@ implementation {
 //  components ActiveMessageC;
   components PlatformSerialC;
   components Ieee154MessageC;
+//  components new UdpSocketC();
   
   App.Boot -> MainC.Boot;
   
