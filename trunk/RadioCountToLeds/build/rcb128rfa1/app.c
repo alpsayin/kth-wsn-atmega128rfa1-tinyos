@@ -2632,11 +2632,11 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x407038f0);
+uint8_t arg_0x407158f0);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x407038f0, 
+uint8_t arg_0x407158f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 
@@ -2649,7 +2649,7 @@ uint32_t dt);
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x407038f0, 
+uint8_t arg_0x407158f0, 
 # 73 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 40 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/TrafficMonitorConfig.nc"
@@ -2742,11 +2742,11 @@ static bool RFA1RadioP__RFA1DriverConfig__requiresRssiCca(message_t *msg);
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407e97b0);
+uint8_t arg_0x407e57b0);
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__wait(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407e97b0, 
+uint8_t arg_0x407e57b0, 
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 tradio_size timeout);
 
@@ -2755,15 +2755,15 @@ tradio_size timeout);
 
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__cancel(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407e97b0);
+uint8_t arg_0x407e57b0);
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static bool /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__isFree(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407e97b0);
+uint8_t arg_0x407e57b0);
 # 65 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static tradio_size /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__getNow(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407e97b0);
+uint8_t arg_0x407e57b0);
 # 78 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Alarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__fired(void );
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/Tasklet.nc"
@@ -2810,11 +2810,11 @@ static error_t /*RFA1RadioC.SendResourceC.Queue*/FcfsResourceQueueC__0__Init__in
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4082e430);
+uint8_t arg_0x4082a430);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40825cc0);
+uint8_t arg_0x40821cc0);
 # 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__grantedTask__runTask(void );
 # 54 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/BareSend.nc"
@@ -2976,7 +2976,7 @@ static error_t /*RFA1RadioC.UniqueLayerC.UniqueLayerP*/UniqueLayerP__0__Init__in
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 static bool NeighborhoodP__NeighborhoodFlag__get(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodP.nc"
-uint8_t arg_0x409024d0, 
+uint8_t arg_0x408fe4d0, 
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 uint8_t idx);
 
@@ -2985,7 +2985,7 @@ uint8_t idx);
 
 static void NeighborhoodP__NeighborhoodFlag__set(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodP.nc"
-uint8_t arg_0x409024d0, 
+uint8_t arg_0x408fe4d0, 
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/NeighborhoodFlag.nc"
 uint8_t idx);
 # 71 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/Neighborhood.nc"
@@ -3156,13 +3156,13 @@ static uint8_t /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__RadioPa
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__clear(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a45a88, 
+uint8_t arg_0x40a65a88, 
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 #line 40
 static bool /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__get(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a45a88, 
+uint8_t arg_0x40a65a88, 
 # 40 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 
@@ -3171,7 +3171,7 @@ message_t *msg);
 
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__setValue(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a45a88, 
+uint8_t arg_0x40a65a88, 
 # 45 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg, bool value);
 
@@ -3180,7 +3180,7 @@ message_t *msg, bool value);
 
 static void /*RFA1RadioC.MetadataFlagsLayerC*/MetadataFlagsLayerC__0__PacketFlag__set(
 # 42 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/layers/MetadataFlagsLayerC.nc"
-uint8_t arg_0x40a45a88, 
+uint8_t arg_0x40a65a88, 
 # 50 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/PacketFlag.nc"
 message_t *msg);
 # 63 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioSend.nc"
@@ -3960,15 +3960,10 @@ static inline void RadioCountToLedsC__UartStream__sendDone(uint8_t *buf, uint16_
 
 
 
-static inline void RadioCountToLedsC__printRadioRegisters(void );
-
-
-
-
-
-
+static inline void RadioCountToLedsC__printAddressRegisters(void );
+#line 215
 static inline void RadioCountToLedsC__Ieee154Control__startDone(error_t error);
-#line 223
+#line 229
 static inline void RadioCountToLedsC__Ieee154Control__stopDone(error_t error);
 # 70 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__setMode(uint8_t mode);
@@ -4125,7 +4120,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x407038f0);
+uint8_t arg_0x407158f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4300 {
 #line 71
@@ -4338,7 +4333,7 @@ static inline uint16_t RFA1RadioP__RandomCollisionConfig__getTransmitBarrier(mes
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
 static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(
 # 43 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarmP.nc"
-uint8_t arg_0x407e97b0);
+uint8_t arg_0x407e57b0);
 # 109 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Alarm.nc"
 static /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__size_type /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__Alarm__getNow(void );
 #line 66
@@ -4494,11 +4489,11 @@ static inline error_t /*RFA1RadioC.SendResourceC.Queue*/FcfsResourceQueueC__0__I
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(
 # 56 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x4082e430);
+uint8_t arg_0x4082a430);
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
 static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(
 # 51 "/opt/tinyos-main/src/tinyos-main/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40825cc0);
+uint8_t arg_0x40821cc0);
 #line 69
 enum /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0____nesc_unnamed4305 {
 #line 69
@@ -6846,9 +6841,9 @@ static inline void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAl
 }
 
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/lib/rfxlink/util/RadioAlarm.nc"
-inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(uint8_t arg_0x407e97b0){
+inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__fired(uint8_t arg_0x407e57b0){
 #line 60
-  switch (arg_0x407e97b0) {
+  switch (arg_0x407e57b0) {
 #line 60
     case 0U:
 #line 60
@@ -6864,7 +6859,7 @@ inline static void /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAl
 #line 60
     default:
 #line 60
-      /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(arg_0x407e97b0);
+      /*RFA1RadioC.RadioAlarmC.RadioAlarmP*/RadioAlarmP__0__RadioAlarm__default__fired(arg_0x407e57b0);
 #line 60
       break;
 #line 60
@@ -9761,9 +9756,9 @@ inline static void /*RFA1RadioC.MessageBufferLayerC.MessageBufferLayerP*/Message
 #line 48
 }
 #line 48
-# 223 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 229 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__Ieee154Control__stopDone(error_t error)
-#line 223
+#line 229
 {
 }
 
@@ -9876,13 +9871,19 @@ inline static error_t RadioCountToLedsC__UartStream__send(uint8_t * buf, uint16_
 }
 #line 48
 # 202 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
-static inline void RadioCountToLedsC__printRadioRegisters(void )
+static inline void RadioCountToLedsC__printAddressRegisters(void )
 {
   uint8_t msgBuf[64];
-  uint8_t msgLen;
+  uint16_t msgLen;
 
 #line 206
-  RadioCountToLedsC__UartStream__send((void *)0x0160, 12);
+  * (volatile uint8_t *)0x164 = 2;
+  msgLen = sprintf(msgBuf, "SHORT_ADDR = 0x%x%x\n", * (volatile uint8_t *)0x161, * (volatile uint8_t *)0x160);
+  RadioCountToLedsC__UartStream__send(msgBuf, msgLen);
+  msgLen = sprintf(msgBuf, "PAN_ID = 0x%x%x\n", * (volatile uint8_t *)0x163, * (volatile uint8_t *)0x162);
+  RadioCountToLedsC__UartStream__send(msgBuf, msgLen);
+  msgLen = sprintf(msgBuf, "IEEE_ADDR = 0x%x%x%x%x%x%x%x%x\n", * (volatile uint8_t *)0x16B, * (volatile uint8_t *)0x16A, * (volatile uint8_t *)0x169, * (volatile uint8_t *)0x168, * (volatile uint8_t *)0x167, * (volatile uint8_t *)0x166, * (volatile uint8_t *)0x165, * (volatile uint8_t *)0x164);
+  RadioCountToLedsC__UartStream__send(msgBuf, msgLen);
 }
 
 # 72 "/opt/tinyos-main/src/tinyos-main/tos/system/ActiveMessageAddressC.nc"
@@ -9934,18 +9935,18 @@ inline static ieee154_saddr_t RadioCountToLedsC__Ieee154Packet__address(void ){
 #line 37
 }
 #line 37
-# 209 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
+# 215 "/home/alpsayin/tinyos_workspace/RadioCountToLeds/src/RadioCountToLedsC.nc"
 static inline void RadioCountToLedsC__Ieee154Control__startDone(error_t error)
-#line 209
+#line 215
 {
   uint8_t msgBuf[32];
   uint8_t msgLen;
 
-#line 212
+#line 218
   if (error == SUCCESS) {
       msgLen = sprintf(msgBuf, "this board's ieee802.15.4 address is %d\n", RadioCountToLedsC__Ieee154Packet__address());
       RadioCountToLedsC__UartStream__send(msgBuf, msgLen);
-      RadioCountToLedsC__printRadioRegisters();
+      RadioCountToLedsC__printAddressRegisters();
       RadioCountToLedsC__MilliTimer__startPeriodic(1000);
     }
   else {
@@ -11093,9 +11094,9 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 102 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Resource.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x40825cc0){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x40821cc0){
 #line 102
-    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x40825cc0);
+    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x40821cc0);
 #line 102
 }
 #line 102
@@ -11106,9 +11107,9 @@ static inline void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__Resour
 }
 
 # 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/ResourceConfigure.nc"
-inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x4082e430){
+inline static void /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x4082a430){
 #line 59
-    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x4082e430);
+    /*RFA1RadioC.SendResourceC.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x4082a430);
 #line 59
 }
 #line 59
@@ -11260,9 +11261,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x407038f0){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x407158f0){
 #line 83
-  switch (arg_0x407038f0) {
+  switch (arg_0x407158f0) {
 #line 83
     case 0U:
 #line 83
@@ -11278,7 +11279,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x407038f0);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x407158f0);
 #line 83
       break;
 #line 83

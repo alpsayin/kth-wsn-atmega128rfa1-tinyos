@@ -130,7 +130,7 @@ implementation {
 	
 	      rcm->counter = intCounter;
 	      if (call Ieee154Send.send( destination, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
-			dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);	
+			dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", intCounter);	
 			call UartByte.send(intCounter);
 			locked = TRUE;
 	      }
@@ -199,11 +199,17 @@ implementation {
 		// TODO Auto-generated method stub
 	}
 
-	void printRadioRegisters()
+	void printAddressRegisters()
 	{
 		uint8_t msgBuf[64];
-		uint8_t msgLen;
-		call UartStream.send((void*)0x0160, 12);	
+		uint16_t msgLen;
+		IEEE_ADDR_0 = DEFINED_TOS_AM_ADDRESS;
+		msgLen = sprintf(msgBuf,"SHORT_ADDR = 0x%x%x\n", SHORT_ADDR_1, SHORT_ADDR_0);
+		call UartStream.send(msgBuf, msgLen);
+		msgLen = sprintf(msgBuf,"PAN_ID = 0x%x%x\n", PAN_ID_1 ,PAN_ID_0);
+		call UartStream.send(msgBuf, msgLen);
+		msgLen = sprintf(msgBuf,"IEEE_ADDR = 0x%x%x%x%x%x%x%x%x\n", IEEE_ADDR_7 ,IEEE_ADDR_6, IEEE_ADDR_5 ,IEEE_ADDR_4, IEEE_ADDR_3 ,IEEE_ADDR_2, IEEE_ADDR_1 ,IEEE_ADDR_0);
+		call UartStream.send(msgBuf, msgLen);
 	}
 
 	event void Ieee154Control.startDone(error_t error){
@@ -212,7 +218,7 @@ implementation {
 	    if (error == SUCCESS) {
 	    	msgLen = sprintf(msgBuf, "this board's ieee802.15.4 address is %d\n", call Ieee154Packet.address());
 	      call UartStream.send(msgBuf, msgLen);
-	      printRadioRegisters();
+	      printAddressRegisters();
 	      call MilliTimer.startPeriodic(1000);
 	    }
 	    else {
