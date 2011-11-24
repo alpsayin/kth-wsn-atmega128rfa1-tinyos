@@ -11,5 +11,5 @@
 #define Sensor_Channel_7 ATM128_ADC_SNGL_ADC7
 
 #define Sensor_Channel_T ATM128_ADC_INT_TEMP		//internal temperature sensor output
-
+#define Sensor_Channel_DIF_0 ATM128_ADC_DIFF_ADC01_1x   
 
