@@ -10,6 +10,7 @@
 module Atm128Rfa1SerialP
 {
 	provides interface Init as Uart1Init;
+	provides interface StdControl as Uart1Control;
 	provides interface UartByte as Uart1Byte;
 	provides interface UartStream as Uart1Stream;
 	provides interface UartStream as Uart1StreamBlocking;
@@ -22,6 +23,7 @@ module Atm128Rfa1SerialP
 }
 implementation
 {
+        norace volatile bool started;
 	volatile bool rxBusy, txBusy;
 	norace uint8_t *txBuf, *rxBuf;
 	norace uint16_t txLen, rxLen;
@@ -37,6 +39,20 @@ implementation
 	task void receiveDoneTask();
 	
 	task void unexpectedByteReceivedTask();
+	
+	command error_t Uart1Control.start()
+	{
+	  started = TRUE;
+	  return call Uart1Init.init();
+	}
+	
+	command error_t Uart1Control.stop()
+	{ 
+	  if(rxBusy || txBusy)
+	    return FAIL;
+	  started = FALSE;
+	  return SUCCESS;
+	}
 	
 	command error_t Uart1Init.init()
 	{
