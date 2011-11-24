@@ -23,7 +23,7 @@ module Atm128Rfa1SerialP
 }
 implementation
 {
-        norace volatile bool started;
+        volatile bool started;
 	volatile bool rxBusy, txBusy;
 	norace uint8_t *txBuf, *rxBuf;
 	norace uint16_t txLen, rxLen;
@@ -42,15 +42,19 @@ implementation
 	
 	command error_t Uart1Control.start()
 	{
-	  started = TRUE;
+	  atomic {
+	      started = TRUE;
+	    }
 	  return call Uart1Init.init();
 	}
 	
 	command error_t Uart1Control.stop()
 	{ 
-	  if(rxBusy || txBusy)
-	    return FAIL;
-	  started = FALSE;
+	  atomic {
+	    if(rxBusy || txBusy)
+	      return FAIL;
+	    started = FALSE;
+	  }
 	  return SUCCESS;
 	}
 	
