@@ -23,7 +23,9 @@
   %T/lib/power
   %T/lib/diagmsg
   %T/lib/net
-
+  %T/lib/net/drip
+  %T/lib/net/le
+  %T/lib/net/ctp
 
   ) );
 
