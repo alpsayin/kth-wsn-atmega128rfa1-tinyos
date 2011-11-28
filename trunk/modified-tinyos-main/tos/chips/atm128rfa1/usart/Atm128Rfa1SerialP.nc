@@ -3,9 +3,11 @@
 #include "atm128hardware.h"
 #include "hardware.h"
 
-//#ifdef DISABLE_SPRINTF_WARNING
-//#warning sprintf is problematic with non-blocking uartstream
-//#endif
+#ifndef UARTSTREAM_BLOCK
+#ifdef DISABLE_SPRINTF_WARNING
+#warning sprintf is problematic with non-blocking uartstream, you can disable this warning by defining DISABLE_SPRINTF_WARNING
+#endif
+#endif
 
 module Atm128Rfa1SerialP
 {
@@ -29,7 +31,6 @@ implementation
 	norace uint16_t txLen, rxLen;
 	norace uint16_t txPos, rxPos;
 	norace error_t txResult, rxResult;
-	norace uint8_t recvBuffer[RX_BUFFER_SIZE];
 	norace uint8_t m_byte_time, rxUnexpectedByte;
 	
 	task void sendBlockingDoneTask();
