@@ -10,7 +10,7 @@
 #undefine TOS_NODE_ID
 #endif
 
-#define TOS_NODE_ID 2
+#define TOS_NODE_ID 4
 
 #ifdef DEFINED_TOS_AM_ADDRESS
 #undefine DEFINED_TOS_AM_ADDRESS
