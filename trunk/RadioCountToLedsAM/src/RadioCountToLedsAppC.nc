@@ -21,9 +21,12 @@ implementation {
   components new AMReceiverC(AM_RADIO_COUNT_MSG);
   components new TimerMilliC();
   components ActiveMessageC;
+  components PlatformSerialC;
   
   App.Boot -> MainC.Boot;
-  
+  App.UartStream -> PlatformSerialC;
+  App.UartByte -> PlatformSerialC;
+  App.AMPacket -> ActiveMessageC.AMPacket;
   App.Receive -> AMReceiverC;
   App.AMSend -> AMSenderC;
   App.AMControl -> ActiveMessageC;
