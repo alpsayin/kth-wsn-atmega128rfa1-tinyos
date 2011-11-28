@@ -37,12 +37,7 @@
 configuration PlatformSerialC 
 {  
   provides interface StdControl as UartControl;
-#ifdef UARTSTREAM_NOBLOCK
-       #warning nonblocking uartstream is still experimental and has its errors
   provides interface UartStream;
-#else
-  provides interface UartStream as UartStreamBlocking;
-#endif
   provides interface UartByte;
 }
 implementation 
@@ -50,7 +45,8 @@ implementation
   components Atm128Rfa1SerialC as Uart1;
   UartControl = Uart1.Uart1Control;
 #ifdef UARTSTREAM_NOBLOCK
-  UartStream = Uart1.Uart1Stream;
+#warning nonblocking uartstream is still experimental and has its errors
+    UartStream = Uart1.Uart1Stream;
 #else
   UartStreamBlocking = Uart1.Uart1StreamBlocking;
 #endif
