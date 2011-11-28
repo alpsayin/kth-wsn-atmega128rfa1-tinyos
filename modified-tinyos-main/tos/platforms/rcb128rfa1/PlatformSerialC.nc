@@ -48,7 +48,7 @@ implementation
 #warning nonblocking uartstream is still experimental and has its errors
     UartStream = Uart1.Uart1Stream;
 #else
-  UartStreamBlocking = Uart1.Uart1StreamBlocking;
+  UartStream = Uart1.Uart1StreamBlocking;
 #endif
   UartByte = Uart1.Uart1Byte;
   }
