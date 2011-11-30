@@ -13,26 +13,53 @@
  * @author Philip Levis
  * @date   June 6 2005
  */
+ 
+#include "PlatformSensorChannel.h"
 
 configuration RadioCountToLedsAppC {}
 implementation {
   components MainC, RadioCountToLedsC as App, LedsC;
-  components new AMSenderC(AM_RADIO_COUNT_MSG);
-  components new AMReceiverC(AM_RADIO_COUNT_MSG);
-  components new TimerMilliC();
-  components ActiveMessageC;
-  components PlatformSerialC;
-  
   App.Boot -> MainC.Boot;
+  App.Leds -> LedsC;
+  
+  components new AMSenderC(AM_RADIO_COUNT_MSG);
+  App.AMSend -> AMSenderC;
+  App.Packet -> AMSenderC;
+  
+  components new AMReceiverC(AM_RADIO_COUNT_MSG);
+  App.Receive -> AMReceiverC;
+  
+  components new TimerMilliC();
+  App.MilliTimer -> TimerMilliC;
+  
+  components new TimerMilliC() as TemperatureTimer;
+  App.TemperatureTimer -> TemperatureTimer;
+  
+  components ActiveMessageC;
+  App.AMControl -> ActiveMessageC;
+  App.AMPacket -> ActiveMessageC.AMPacket;
+  
+  components PlatformSerialC;
   App.UartStream -> PlatformSerialC;
   App.UartByte -> PlatformSerialC;
-  App.AMPacket -> ActiveMessageC.AMPacket;
-  App.Receive -> AMReceiverC;
-  App.AMSend -> AMSenderC;
-  App.AMControl -> ActiveMessageC;
-  App.Leds -> LedsC;
-  App.MilliTimer -> TimerMilliC;
-  App.Packet -> AMSenderC;
+  
+  components DisseminationC;
+  App.DisseminationControl -> DisseminationC;
+  
+  components new DisseminatorC(kth_wsn_command_t, 0xaa) as DissCommand;
+  App.CommandValue -> DissCommand;
+  App.CommandUpdate -> DissCommand;
+  
+  components CollectionC as Collector;
+  App.RoutingControl -> Collector;
+  App.RootControl -> Collector;
+  App.CollectionReceive -> Collector.Receive[0xbb];
+  
+  components new CollectionSenderC(0xbb);
+  App.CollectionSend -> CollectionSenderC;
+  
+  components new PlatformSensorC(Sensor_Channel_T) as TempSensor;
+  App.TempRead -> TempSensor;
 }
 
 
