@@ -28,7 +28,7 @@ implementation {
   
   components new AMReceiverC(AM_RADIO_COUNT_MSG);
   App.Receive -> AMReceiverC;
-  
+
   components new TimerMilliC();
   App.MilliTimer -> TimerMilliC;
   
