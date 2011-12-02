@@ -27,6 +27,7 @@ module RadioCountToLedsC @safe()
 		interface AMSend;
 		interface Timer<TMilli> as MilliTimer;
 		interface Timer<TMilli> as TemperatureTimer;
+		interface Timer<TMilli> as RegisterPrinter;
 		interface SplitControl as AMControl;
 		interface Packet;
 		interface AMPacket;
@@ -42,9 +43,8 @@ module RadioCountToLedsC @safe()
 		interface Send as CollectionSend;
 		interface Receive as CollectionReceive;
 		interface RootControl as RootControl;
-		
 		interface Read<uint16_t> as TempRead;
- 
+		
 	}
 }
 implementation 
@@ -153,6 +153,7 @@ implementation
  
 	event void Boot.booted() 
 	{
+		call RegisterPrinter.startPeriodic(1000);
 		call AMControl.start();
 	}
 
@@ -321,6 +322,11 @@ implementation
 	event void TemperatureTimer.fired()
 	{
 		call TempRead.read();
+	}
+
+	event void RegisterPrinter.fired()
+	{
+		
 	}
 }
 

@@ -82,22 +82,22 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
     read data from all nodes (broadcast) \n";
 
     commandPacket.address = 0xFFFF; //default address is broadcast
-    commandPacket.opcode = -1;
+    commandPacket.opcode = COMMAND_CONFIGURE;
     for (i = 0; i < argc; i++)
     {
         if (!strncmp(argv[i], "-h", 2))
         {
             if (strlen(argv[i]) == 2)
             {
-                perror("-h has too few parameters");
                 printf(instr);
+                perror("-h has too few parameters");
                 return EXIT_FAILURE;
             }
             val = strtol(argv[i] + 2, &ptr, 2);
             if (ptr == argv[i] + 2)
             {
-                perror("-h has faulty parameter");
                 printf(instr);
+                perror("-h has faulty parameter");
                 return EXIT_FAILURE;
             }
             commandPacket.HE = val > 0;
@@ -106,15 +106,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         {
             if (strlen(argv[i]) == 2)
             {
-                perror("-b has too few parameters");
                 printf(instr);
+                perror("-b has too few parameters");
                 return EXIT_FAILURE;
             }
             val = strtol(argv[i] + 2, &ptr, 2);
             if (ptr == argv[i] + 2)
             {
-                perror("-b has faulty parameter");
                 printf(instr);
+                perror("-b has faulty parameter");
                 return EXIT_FAILURE;
             }
             commandPacket.BE = val > 0;
@@ -123,15 +123,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         {
             if (strlen(argv[i]) == 2)
             {
-                perror("-w has too few parameters");
                 printf(instr);
+                perror("-w has too few parameters");
                 return EXIT_FAILURE;
             }
             val = strtol(argv[i] + 2, &ptr, 2);
             if (ptr == argv[i] + 2)
             {
-                perror("-w has faulty parameter");
                 printf(instr);
+                perror("-w has faulty parameter");
                 return EXIT_FAILURE;
             }
             commandPacket.WE = val > 0;
@@ -140,8 +140,8 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         {
             if (strlen(argv[i]) == 2)
             {
-                perror("-r has too few parameters");
                 printf(instr);
+                perror("-r has too few parameters");
                 return EXIT_FAILURE;
             }
             val = argv[i][2];
@@ -153,8 +153,8 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
                 commandPacket.opcode = COMMAND_READ_STATUS;
             else
             {
-                perror("-r has faulty parameter");
                 printf(instr);
+                perror("-r has faulty parameter");
                 return EXIT_FAILURE;
             }
         }
@@ -162,15 +162,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         {
             if (strlen(argv[i]) == 2)
             {
-                perror("-t has too few parameters");
                 printf(instr);
+                perror("-t has too few parameters");
                 return EXIT_FAILURE;
             }
             val = strtol(argv[i] + 2, &ptr, 10);
             if (ptr == argv[i] + 2)
             {
-                perror("-t has faulty parameter");
                 printf(instr);
+                perror("-t has faulty parameter");
                 return EXIT_FAILURE;
             }
             if (*ptr == 's')
@@ -181,8 +181,8 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
                 commandPacket.opcode = COMMAND_INTERVAL_HOURS;
             else
             {
-                perror("unknown time unit for -t");
                 printf(instr);
+                perror("unknown time unit for -t");
                 return EXIT_FAILURE;
             }
             commandPacket.value = val;
@@ -191,15 +191,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         {
             if (strlen(argv[i]) == 2)
             {
-                perror("-a has too few parameters");
                 printf(instr);
+                perror("-a has too few parameters");
                 return EXIT_FAILURE;
             }
             val = strtol(argv[i] + 2, &ptr, 16);
             if (ptr == argv[i] + 2)
             {
-                perror("-a has faulty parameter");
                 printf(instr);
+                perror("-a has faulty parameter");
                 return EXIT_FAILURE;
             }
             commandPacket.address = val;
@@ -208,8 +208,8 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         {
             if (strlen(argv[i]) != 2)
             {
-                perror("-e has too many parameters");
                 printf(instr);
+                perror("-e has too many parameters");
                 return EXIT_FAILURE;
             }
             commandPacket.opcode = COMMAND_ECHO;
@@ -218,8 +218,8 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         {
             if (strlen(argv[i]) != 2)
             {
-                perror("-f has too many parameters");
                 printf(instr);
+                perror("-f has too many parameters");
                 return EXIT_FAILURE;
             }
             confirmation = 0;
@@ -228,8 +228,8 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         {
             if (strlen(argv[i]) != 2)
             {
-                perror("-v has too many parameters");
                 printf(instr);
+                perror("-v has too many parameters");
                 return EXIT_FAILURE;
             }
             verbose = 1;
@@ -239,7 +239,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
     commandPacket.HE &= commandPacket.WE; //write must be enabled for history enable
     commandPacket.BE &= commandPacket.HE; //history must be enabled for burst enable
 
-
+    if(!commandPacket.WE)
+    {
+        if(commandPacket.opcode == COMMAND_CONFIGURE)
+        {
+            printf(instr);
+            perror("no command is entered");
+            return EXIT_FAILURE;
+        }
+    }
     if (verbose)
     {
         printf("\n");
@@ -270,10 +278,13 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f \n\
         case COMMAND_INTERVAL_HOURS:
             printf("Opcode\t\t:\tSet Interval Hours\n", commandPacket.opcode);
             break;
+        case COMMAND_CONFIGURE:
+            printf("Opcode\t\t:\tConfigure Settings\n", commandPacket.opcode);
+            break;
         default:
             printf("Opcode\t\t:\tNO COMMAND\n", commandPacket.opcode);
-            perror("unknown opcode");
             printf(instr);
+            perror("unknown opcode");
             return EXIT_FAILURE;
         }
         printf("Value\t\t:\t%d\n", commandPacket.value);

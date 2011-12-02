@@ -14,6 +14,7 @@
 extern "C" {
 #endif
 
+
     typedef struct status_packet
     {
         uint8_t historyEnable : 1;
@@ -22,7 +23,9 @@ extern "C" {
         uint8_t intervalType : 2;
         uint8_t burstInterval : 8;
         uint16_t node_id;
+#ifdef CHECKSUM_ENABLED
         uint16_t checksum;
+#endif
     } status_packet_t;
 
     typedef struct data_packet_low //size 4 bytes
@@ -31,6 +34,7 @@ extern "C" {
         uint8_t data2;
         uint8_t data3;
         uint8_t data4;
+        uint8_t data5;
     } data_packet_low_t;
 
     typedef struct data_packet_high //size 1 byte
@@ -39,6 +43,7 @@ extern "C" {
         uint8_t data2 : 2;
         uint8_t data3 : 2;
         uint8_t data4 : 2;
+        uint8_t data5 : 2;
     } data_packet_high_t;
 
     typedef struct compressed_data_packet //size 9 bytes
@@ -46,17 +51,22 @@ extern "C" {
         uint16_t source; //2 byte
         data_packet_high_t highBytes; //4 bytes
         data_packet_low_t lowBytes; //1 byte
+#ifdef CHECKSUM_ENABLED
         uint16_t checksum; //2 byte
-    } data_packet_compressed_t;
-
+#endif
+    } compressed_data_packet_t;
+    
     typedef struct data_packet //size 12 bytes
     {
         uint16_t source; //2 byte
-        uint16_t data1; //2 byte
-        uint16_t data2; //2 byte
-        uint16_t data3; //2 byte
-        uint16_t data4; //2 byte
+        uint16_t data1 : 10; //2 byte
+        uint16_t data2 : 10; //2 byte
+        uint16_t data3 : 10; //2 byte
+        uint16_t data4 : 10; //2 byte
+        uint16_t data5 : 10; //2 byte
+#ifdef CHECKSUM_ENABLED
         uint16_t checksum; //2 byte
+#endif
     } data_packet_t;
 
     typedef struct command_packet_serial {
@@ -69,7 +79,8 @@ extern "C" {
     } command_packet_serial_t;
 
     enum {
-        COMMAND_ECHO = 0,
+        COMMAND_CONFIGURE = 0,
+        COMMAND_ECHO,
         COMMAND_READ_DATA,
         COMMAND_READ_HISTORY,
         COMMAND_READ_STATUS,
@@ -78,10 +89,10 @@ extern "C" {
         COMMAND_INTERVAL_HOURS
     };
 
-    void compressPacket(data_packet_t* dp, data_packet_compressed_t* dpc);
-    void decompressPacket(data_packet_t* dp, data_packet_compressed_t* dpc);
+    void compressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
+    void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
     int packetToStr(data_packet_t* dp, uint8_t* buf);
-    int compressedPacketToStr(data_packet_compressed_t* dp, uint8_t* buf);
+    int compressedPacketToStr(compressed_data_packet_t* dp, uint8_t* buf);
     int commandPacketToStr(command_packet_serial_t* cps, uint8_t* buf);
 
 
