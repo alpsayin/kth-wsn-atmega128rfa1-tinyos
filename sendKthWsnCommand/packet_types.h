@@ -28,9 +28,6 @@ extern "C" {
         uint8_t intervalType : 2;
         uint8_t burstInterval : 8;
         uint16_t node_id;
-#ifdef CHECKSUM_ENABLED
-        uint16_t checksum;
-#endif
     } status_packet_t;
 
     typedef struct data_packet_low //size 4 bytes
@@ -56,9 +53,6 @@ extern "C" {
         uint16_t source; //2 byte
         data_packet_high_t highBytes; //4 bytes
         data_packet_low_t lowBytes; //1 byte
-#ifdef CHECKSUM_ENABLED
-        uint16_t checksum; //2 byte
-#endif
     } compressed_data_packet_t;
     
     typedef struct data_packet //size 12 bytes
@@ -69,9 +63,6 @@ extern "C" {
         uint16_t data3 : 10; //2 byte
         uint16_t data4 : 10; //2 byte
         uint16_t data5 : 10; //2 byte
-#ifdef CHECKSUM_ENABLED
-        uint16_t checksum; //2 byte
-#endif
     } data_packet_t;
 
     typedef struct command_packet_serial {
@@ -83,7 +74,8 @@ extern "C" {
         uint16_t address;
     } command_packet_serial_t;
 
-    enum {
+    enum
+    {
         COMMAND_CONFIGURE = 0,
         COMMAND_ECHO,
         COMMAND_READ_DATA,
