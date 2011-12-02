@@ -32,6 +32,9 @@ implementation {
   components new TimerMilliC();
   App.MilliTimer -> TimerMilliC;
   
+  components new TimerMilliC() as RegisterPrinterTimer;
+  App.RegisterPrinter -> RegisterPrinterTimer;
+  
   components new TimerMilliC() as TemperatureTimer;
   App.TemperatureTimer -> TemperatureTimer;
   
@@ -42,6 +45,8 @@ implementation {
   components PlatformSerialC;
   App.UartStream -> PlatformSerialC;
   App.UartByte -> PlatformSerialC;
+  
+  components new QueueC(kth_wsn_command_t, 10);
   
   components DisseminationC;
   App.DisseminationControl -> DisseminationC;
