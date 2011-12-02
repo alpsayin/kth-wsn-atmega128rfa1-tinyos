@@ -506,7 +506,7 @@ implementation
     else
       signalReceive = FALSE;
 
-    if(PHY_RSSI & RX_CRC_VALID)
+    if(!(PHY_RSSI & (1<<RX_CRC_VALID)))
         signalReceive = FALSE;
 
     // release frame buffer
