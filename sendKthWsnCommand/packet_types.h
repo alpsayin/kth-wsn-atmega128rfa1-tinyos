@@ -14,6 +14,11 @@
 extern "C" {
 #endif
 
+#define TEMPERATURE data1
+#define PRESSURE data2
+#define HUMIDITY data3
+#define LUMINOSITY data4
+#define BATTERY data5
 
     typedef struct status_packet
     {
