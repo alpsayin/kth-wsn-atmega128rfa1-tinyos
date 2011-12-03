@@ -33,7 +33,6 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/com.o \
 	${OBJECTDIR}/packet_types.o \
 	${OBJECTDIR}/main.o
 
@@ -61,11 +60,6 @@ LDLIBSOPTIONS=
 dist/Release/GNU-Linux-x86/sendkthwsncommand: ${OBJECTFILES}
 	${MKDIR} -p dist/Release/GNU-Linux-x86
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sendkthwsncommand ${OBJECTFILES} ${LDLIBSOPTIONS} 
-
-${OBJECTDIR}/com.o: com.c 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/com.o com.c
 
 ${OBJECTDIR}/packet_types.o: packet_types.c 
 	${MKDIR} -p ${OBJECTDIR}

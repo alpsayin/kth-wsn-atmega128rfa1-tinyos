@@ -17,7 +17,6 @@
                    displayName="Source Files"
                    projectFiles="true"
                    kind="SOURCE_LOGICAL_FOLDER">
-      <itemPath>com.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>packet_types.c</itemPath>
     </logicalFolder>
@@ -40,9 +39,11 @@
         <developmentServer>localhost</developmentServer>
         <compilerSet>GNU|GNU</compilerSet>
         <platform>2</platform>
+        <dependencyChecking>false</dependencyChecking>
       </toolsSet>
       <compileType>
         <cTool>
+          <commandlineTool>g++</commandlineTool>
           <commandLine>-march=i586 -Os -static</commandLine>
         </cTool>
       </compileType>
