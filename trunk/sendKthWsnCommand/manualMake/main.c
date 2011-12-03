@@ -403,6 +403,7 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
         return EXIT_FAILURE;
     }
 
+
     sprintf(buf, "trying to open %s for read/write\n", devicename);
     fputs(buf, output);
     if (openComPort(O_RDWR))
