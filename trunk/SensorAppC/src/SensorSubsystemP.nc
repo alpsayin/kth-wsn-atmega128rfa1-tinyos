@@ -6,8 +6,8 @@ module SensorSubsystemP{
 	
 	provides {
 		
-		interface Read<data_packet_t> as GetData;
-		interface ReadNow<data_packet_t> as GetDataNow;
+		interface Read<data_packet_t>;
+		interface ReadNow<data_packet_t>;
 		
 	}
 	
@@ -26,7 +26,7 @@ implementation{
 	data_packet_t sensorData;
 	bool mode;
 
-	command error_t GetData.read(){
+	command error_t Read.read(){
 		
 		mode = TRUE;
 		
@@ -41,7 +41,7 @@ implementation{
 	}
 	
 	
-	async command error_t GetDataNow.read(){
+	async command error_t ReadNow.read(){
 		
 		mode = FALSE;
 		
@@ -93,9 +93,9 @@ implementation{
 			sensorData.BATTERY = val;
 		
 		if(mode)
-			signal GetData.readDone(SUCCESS, sensorData);
+			signal Read.readDone(SUCCESS, sensorData);
 		else
-			signal GetDataNow.readDone(SUCCESS, sensorData);
+			signal ReadNow.readDone(SUCCESS, sensorData);
 	}
 
 	

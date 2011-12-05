@@ -8,18 +8,17 @@ configuration SensorControlC{
 	provides {
 		
 		interface Init;
-		interface Set<status_packet_t>;
-		interface Get<status_packet_t>;
-		interface Read<data_packet_t>;
+//		interface Set<status_packet_t>;
+		interface Get<status_packet_t> as GetStatus;
+		interface Get<data_packet_t> as GetData;
 	
 	}
 	
 	uses {
 		
-		interface Read<data_packet_t> as GetData;
+		interface Read<data_packet_t> as ReadAdc;
 		interface Queue<data_packet_t> as StoreData;
-
-		interface Notify<uint8_t>;		//uint8_t is just for test, check this later
+		interface Notify<status_packet_t>;
 		
 	}
 	
@@ -29,11 +28,11 @@ implementation{
 	components SensorControlP;
 	components new TimerMilliC() as Timer0;
 	
-	Init	= SensorControlP;
-	Set		= SensorControlP;
-	Get		= SensorControlP;
-	Read	= SensorControlP;
-	GetData	= SensorControlP;
+	Init		= SensorControlP;
+//	Set			= SensorControlP;
+	ReadAdc		= SensorControlP;
+	GetStatus	= SensorControlP;
+	GetData		= SensorControlP;
 	
 	StoreData	= SensorControlP;
 	Notify		= SensorControlP;
