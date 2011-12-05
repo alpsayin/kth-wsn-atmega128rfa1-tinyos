@@ -10,6 +10,8 @@
 
 #include <inttypes.h>
 
+#define DEFAULT_TIMER_BOUNDARY 48
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
@@ -29,6 +31,14 @@ extern "C" {
         uint8_t burstInterval : 8;
         uint16_t node_id;
     } status_packet_t;
+    
+    enum
+    {
+        INTERVAL_TYPE_SECONDS = 0,
+        INTERVAL_TYPE_MINUTES,
+        INTERVAL_TYPE_HOURS,
+        INTERVAL_TYPE_DAYS
+    };
 
     typedef struct data_packet_low //size 4 bytes
     {
@@ -65,14 +75,14 @@ extern "C" {
         uint16_t data5 : 10; //2 byte
     } data_packet_t;
 
-    typedef struct command_packet_serial {
+    typedef struct command_packet {
         uint8_t WE : 1;
         uint8_t HE : 1;
         uint8_t BE : 1;
         uint8_t opcode : 5;
         uint8_t value;
         uint16_t address;
-    } command_packet_serial_t;
+    } command_packet_t;
 
     enum
     {
@@ -81,10 +91,21 @@ extern "C" {
         COMMAND_READ_DATA,
         COMMAND_READ_HISTORY,
         COMMAND_READ_STATUS,
-        COMMAND_INTERVAL_SECONDS,
+        COMMAND_INTERVAL_SECONDS, 
         COMMAND_INTERVAL_MINUTES,
-        COMMAND_INTERVAL_HOURS
+        COMMAND_INTERVAL_HOURS,
+        COMMAND_INTERVAL_DAYS
     };
+
+    enum
+    {
+        PACKET_ERROR = -1,
+        PACKET_COMMAND = 0,
+        PACKET_DATA,
+        PACKET_DATA_COMPRESSED,
+        PACKET_STATUS
+    };
+    
 
 
 #ifdef	__cplusplus

@@ -65,6 +65,7 @@ implementation {
   
   components new PlatformSensorC(Sensor_Channel_T) as TempSensor;
   App.TempRead -> TempSensor;
+  
 }
 
 
