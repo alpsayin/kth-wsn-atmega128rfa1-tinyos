@@ -34,7 +34,8 @@ extern "C" {
     {
         INTERVAL_TYPE_SECONDS = 0,
         INTERVAL_TYPE_MINUTES,
-        INTERVAL_TYPE_HOURS
+        INTERVAL_TYPE_HOURS,
+        INTERVAL_TYPE_DAYS
     };
 
     typedef struct data_packet_low //size 4 bytes
@@ -90,7 +91,8 @@ extern "C" {
         COMMAND_READ_STATUS,
         COMMAND_INTERVAL_SECONDS,
         COMMAND_INTERVAL_MINUTES,
-        COMMAND_INTERVAL_HOURS
+        COMMAND_INTERVAL_HOURS,
+        COMMAND_INTERVAL_DAYS
     };
 
     enum
