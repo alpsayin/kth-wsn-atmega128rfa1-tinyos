@@ -11,5 +11,4 @@ implementation
 	SerialEchoC.UartStream -> PlatformSerialC;
 	SerialEchoC.UartByte -> PlatformSerialC;
 	SerialEchoC.Leds -> LedsC;
-
 }

@@ -51,32 +51,9 @@ void compressPacket(data_packet_t* dp, compressed_data_packet_t* dpc)
     dpc->lowBytes.data5 = (uint8_t)(dp->data5&0xFF);
     dpc->highBytes.data5 = (uint8_t)((dp->data5>>8)&0x03);
 }
-int packetToStr(void* dp, char* buf, uint8_t pt)
-{
-    uint8_t i, len;
-    char* ptr;
-    buf[i++]='[';
-    buf[i++]=hexTable[pt];
-    buf[i++]=':';
-    switch(pt)
-    {
-        case PACKET_COMMAND: len = sizeof(command_packet_t); break;
-        case PACKET_DATA: len = sizeof(data_packet_t); break;
-        case PACKET_DATA_COMPRESSED: len = sizeof(compressed_data_packet_t); break;
-        case PACKET_STATUS: len = sizeof(status_packet_t); break;
-        default: len = 0;
-    }
-    for(ptr=(char*)dp; ptr<(char*)dp+len; ptr++)
-    {
-        buf[i++] = hexTable[HIGH((*ptr))];
-        buf[i++] = hexTable[LOW((*ptr))];
-    }
-    buf[i++] = ']';
-    buf[i++] = 0;
-    return i-1;
-}
 int strToPacket(void* dp, char* buf)
 {
+    //TODO CHANGE THIS
     uint8_t i=0, len, type;
     char* ptr = (char*)dp;
     if(buf[i++] != '[')
@@ -101,8 +78,9 @@ int strToPacket(void* dp, char* buf)
         return PACKET_ERROR;
     return type;
 }
-commandToBuffer(command_packet_t* cp, char* buf)
+int commandToBuffer(command_packet_t* cp, char* buf)
 {
+    //TODO CHANGE THIS
     uint8_t i, len;
     char* ptr;
     buf[i++]='[';
@@ -113,6 +91,111 @@ commandToBuffer(command_packet_t* cp, char* buf)
         buf[i++] = hexTable[LOW((*ptr))];
     }
     buf[i++] = ']';
-    buf[i++] = 0;
-    return i-1;
+    buf[i] = 0;
+    return i;
+}
+int getTypeOfPacket(char* buf)
+{
+    int len, type;
+    if(buf[0]!='[')
+        return PACKET_ERROR;
+    if(buf[2]!=':')
+        return PACKET_ERROR;
+    switch( (type=LOW(buf[1])) )
+    {
+        case PACKET_COMMAND: len = sizeof(command_packet_t); break;
+        case PACKET_DATA: len = sizeof(data_packet_t); break;
+        case PACKET_DATA_COMPRESSED: len = sizeof(compressed_data_packet_t); break;
+        case PACKET_STATUS: len = sizeof(status_packet_t); break;
+        default: return PACKET_ERROR;
+    }
+    if(buf[3+2*len] != ']')
+        return PACKET_ERROR;
+    return type;
+}
+int dataPacketToStr(data_packet_t* dp, char* buf)
+{
+    uint8_t i, len;
+    //header
+    buf[i++]='[';
+    buf[i++]=hexTable[PACKET_DATA];
+    buf[i++]=':';
+    len = sizeof(data_packet_t);
+    //data
+    buf[i++] = hexTable[HIGH((dp->data1)>>8)];
+    buf[i++] = hexTable[LOW((dp->data1)>>8)];
+    buf[i++] = hexTable[HIGH((dp->data1))];
+    buf[i++] = hexTable[LOW((dp->data1))];
+    buf[i++] = hexTable[HIGH((dp->data2)>>8)];
+    buf[i++] = hexTable[LOW((dp->data2)>>8)];
+    buf[i++] = hexTable[HIGH((dp->data2))];
+    buf[i++] = hexTable[LOW((dp->data2))];
+    buf[i++] = hexTable[HIGH((dp->data3)>>8)];
+    buf[i++] = hexTable[LOW((dp->data3)>>8)];
+    buf[i++] = hexTable[HIGH((dp->data3))];
+    buf[i++] = hexTable[LOW((dp->data3))];
+    buf[i++] = hexTable[HIGH((dp->data4)>>8)];
+    buf[i++] = hexTable[LOW((dp->data4)>>8)];
+    buf[i++] = hexTable[HIGH((dp->data4))];
+    buf[i++] = hexTable[LOW((dp->data4))];
+    buf[i++] = hexTable[HIGH((dp->data5)>>8)];
+    buf[i++] = hexTable[LOW((dp->data5)>>8)];
+    buf[i++] = hexTable[HIGH((dp->data5))];
+    buf[i++] = hexTable[LOW((dp->data5))];
+    buf[i++] = hexTable[HIGH((dp->source)>>8)];
+    buf[i++] = hexTable[LOW((dp->source)>>8)];
+    buf[i++] = hexTable[HIGH((dp->source))];
+    buf[i++] = hexTable[LOW((dp->source))];
+    //footer
+    buf[i++] = ']';
+    buf[i] = 0;
+    return i;
+}
+int commandPacketToStr(command_packet_t* cp, char* buf)
+{
+    uint8_t i, len;
+    //header
+    buf[i++]='[';
+    buf[i++]=hexTable[PACKET_COMMAND];
+    buf[i++]=':';
+    len = sizeof(data_packet_t);
+    //data
+    buf[i++] = hexTable[cp->WE];
+    buf[i++] = hexTable[cp->HE];
+    buf[i++] = hexTable[cp->BE];
+    buf[i++] = hexTable[HIGH((cp->opcode))];
+    buf[i++] = hexTable[LOW((cp->opcode))];
+    buf[i++] = hexTable[HIGH((cp->value))];
+    buf[i++] = hexTable[LOW((cp->value))];
+    buf[i++] = hexTable[HIGH((cp->address)>>8)];
+    buf[i++] = hexTable[LOW((cp->address)>>8)];
+    buf[i++] = hexTable[HIGH((cp->address))];
+    buf[i++] = hexTable[LOW((cp->address))];
+    //footer
+    buf[i++] = ']';
+    buf[i] = 0;
+    return i;
+}
+int statusPacketToStr(status_packet_t* sp, char* buf)
+{
+    uint8_t i, len;
+    //header
+    buf[i++]='[';
+    buf[i++]=hexTable[PACKET_DATA];
+    buf[i++]=':';
+    len = sizeof(data_packet_t);
+    //data
+    buf[i++] = hexTable[HIGH((sp->node_id)>>8)];
+    buf[i++] = hexTable[LOW((sp->node_id)>>8)];
+    buf[i++] = hexTable[HIGH((sp->node_id))];
+    buf[i++] = hexTable[LOW((sp->node_id))];
+    buf[i++] = hexTable[HIGH((sp->burstInterval))];
+    buf[i++] = hexTable[LOW((sp->burstInterval))];
+    buf[i++] = hexTable[sp->intervalType];
+    buf[i++] = hexTable[sp->historyEnable];
+    buf[i++] = hexTable[sp->burstEnable];
+    //footer
+    buf[i++] = ']';
+    buf[i] = 0;
+    return i;
 }

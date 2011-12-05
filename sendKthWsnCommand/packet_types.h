@@ -109,9 +109,12 @@ extern "C" {
 
     void compressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
     void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
-    int packetToStr(void* dp, char* buf, uint8_t pt);
     int strToPacket(void* dp, char* buf);
     int commandToBuffer(command_packet_t* cp, char* buf);
+    int commandPacketToStr(command_packet_t* dp, char* buf);
+    int dataPacketToStr(data_packet_t* dp, char* buf);
+    int statusPacketToStr(status_packet_t* dp, char* buf);
+    int getTypeOfPacket(char* buf);
 
 
 #ifdef	__cplusplus

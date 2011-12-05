@@ -20,11 +20,11 @@
 #define DEFAULT_COMMAND COMMAND_CONFIGURE
 
 #define BAUDRATE B57600
-#define MODEMDEVICE "/dev/ttyUSB0" //"/home/alpsayin/tinyos_workspace/fakeSerialPort.txt"
+#define MODEMDEVICE "/home/alpsayin/tinyos_workspace/fakeSerialPort.txt"
 #define _POSIX_SOURCE 1         //POSIX compliant source
 #define FALSE 0
 #define TRUE 1
-#define BUFFER_SIZE 64
+#define BUFFER_SIZE 512
 
 #include "packet_types.h"
 #include "main.h"
@@ -429,13 +429,14 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
         val = write(fd, buf, val);
         sprintf(buf, "%d bytes written\n", val);
         fputs(buf, output);
-        val = packetToStr(&commandPacket, buf, PACKET_COMMAND);
+        val = commandPacketToStr(&commandPacket, buf);
         fputs(buf, output);
         fputs("\n", output);
-        val = strToPacket(&commandPacket, buf);
 #ifdef DEBUG
+        val = strToPacket(&commandPacket, buf);
+        fputs(buf, output);
         fputs("Debug: Trying to open the written packet\n", output);
-        packetToStr(&commandPacket, buf, val);
+        commandPacketToStr(&commandPacket, buf);
         fputs(buf, output);
         sprintf(buf, "\nPacket Type: %d\n", val);
         fputs(buf, output);
@@ -470,7 +471,7 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
             {
                 fputc((int) buf[i], stdout);
             }
-#else
+#endif
             val = read(fd, buf, BUFFER_SIZE);
             //pre-processing -> take only characters between square brackets
             for(i=0; i<val; i++)
@@ -499,7 +500,6 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                     //fputc((int)buf[i], stdout);
                 }
             }
-#endif
             fflush(stdout);
             wait_flag = 1;
         }
@@ -535,9 +535,18 @@ int processReceiveBuffer()
 {
     int type;
     char packetBuf[32];
-    printf("%s\nexpected size=%d\n", receiveBuffer, sizeof(data_packet_t));
+    command_packet_t commandPacket;
+    printf("%s\nexpected size=%d\n", receiveBuffer, sizeof(command_packet_t));
     type = strToPacket(packetBuf, receiveBuffer);
     printf("type=%d\n", type);
+    strncpy((char*)&commandPacket, packetBuf, sizeof(command_packet_t));
+    printf("data=%d\n", commandPacket.WE);
+    printf("data=%d\n", commandPacket.HE);
+    printf("data=%d\n", commandPacket.BE);
+    printf("data=%d\n", commandPacket.opcode);
+    printf("data=%d\n", commandPacket.value);
+    printf("source=%d\n", commandPacket.address);
+    
     return 0;
 }
 int openComPort(long rw)
@@ -549,7 +558,7 @@ int openComPort(long rw)
     fd = open(devicename, rw | O_NOCTTY | O_NONBLOCK);
     if (fd < 0)
     {
-        sprintf(errBuf, "cannot open %s", devicename);
+        sprintf(errBuf, "cannot open %s\n", devicename);
         fputs(errBuf, output);
         return 1;
     }
