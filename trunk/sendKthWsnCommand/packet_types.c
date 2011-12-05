@@ -93,7 +93,7 @@ int strToPacket(void* dp, char* buf)
         return PACKET_ERROR;
     if(buf[i+2*len] != ']')
         return PACKET_ERROR;
-    for(ptr=(char*)dp; ptr<(char*)dp+len; ptr++)
+    for(ptr=(char*)dp; ptr<(char*)dp+len; ptr++) 
     {
         *ptr = (asciihexToNum(buf[i++])<<4) | asciihexToNum(buf[i++]);
     }
