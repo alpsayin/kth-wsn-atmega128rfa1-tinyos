@@ -65,14 +65,14 @@ extern "C" {
         uint16_t data5 : 10; //2 byte
     } data_packet_t;
 
-    typedef struct command_packet_serial {
+    typedef struct command_packet {
         uint8_t WE : 1;
         uint8_t HE : 1;
         uint8_t BE : 1;
         uint8_t opcode : 5;
         uint8_t value;
         uint16_t address;
-    } command_packet_serial_t;
+    } command_packet_t;
 
     enum
     {
@@ -90,7 +90,7 @@ extern "C" {
     void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
     int packetToStr(data_packet_t* dp, char* buf);
     int compressedPacketToStr(compressed_data_packet_t* dp, char* buf);
-    int commandPacketToStr(command_packet_serial_t* cps, char* buf);
+    int commandPacketToStr(command_packet_t* cps, char* buf);
 
 
 #ifdef	__cplusplus

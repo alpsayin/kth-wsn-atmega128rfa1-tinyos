@@ -38,7 +38,7 @@ int compressedPacketToStr(compressed_data_packet_t* dpc, char* buf)
 {
     return sprintf(buf, "[0x%x : 0x%x%x 0x%x%x 0x%x%x 0x%x%x]", dpc->source, dpc->highBytes.data1, dpc->lowBytes.data1 ,dpc->highBytes.data2, dpc->lowBytes.data2 ,dpc->highBytes.data3, dpc->lowBytes.data3 ,dpc->highBytes.data4, dpc->lowBytes.data4 );
 }
-int commandPacketToStr(command_packet_serial_t* cps, char* buf)
+int commandPacketToStr(command_packet_t* cps, char* buf)
 {
     return sprintf(buf, "[0x%x %x %x %x 0x%x 0x%x]", cps->opcode, cps->WE, cps->HE, cps->BE, cps->value, cps->address);
 }

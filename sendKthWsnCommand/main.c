@@ -43,8 +43,8 @@ FILE *input;
 FILE *output;
 int status;
 
-command_packet_serial_t commandPacket;
-command_packet_serial_t receivedCommandPacket;
+command_packet_t commandPacket;
+command_packet_t receivedCommandPacket;
 
 
 struct termios oldkey, newkey; //place tor old and new port settings for keyboard teletype
@@ -417,7 +417,7 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
         fputs("sending command to the root mote...\n", output);
         //TODO feed the command packet byte by byte using a
 
-        val = write(fd, &commandPacket, sizeof (command_packet_serial_t));
+        val = write(fd, &commandPacket, sizeof (command_packet_t));
         sprintf(buf, "%d bytes written\n", val);
         fputs(buf, output);
         commandPacketToStr(&commandPacket, buf);
