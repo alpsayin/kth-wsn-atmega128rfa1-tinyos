@@ -68,7 +68,7 @@ int main(int argc, char** argv)
 If no command is specified by entering either -t or -r then -e is implied,\
  but if -t is entered with -e then an echo command with a value will be sent, no interval will be set.\
  If -e is entered, it overrides -t and -r, else if -t is entered it overrides -r. Also note that interval time can\
-be set to a maximum of 49 days due to memory limitations and a minimum of  \n\
+be set to a maximum of 49 days.  \n\
     Options:\n\
     -hE set history enable (0/1) \n\
     -bE burst enable (0/1) (if this is not 1 -h is not effective) \n\
@@ -220,13 +220,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                 fputs("-t has faulty parameter\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
-            }
+            } 
             if (*ptr == 's')
                 commandPacket.opcode = COMMAND_INTERVAL_SECONDS;
             else if (*ptr == 'm')
                 commandPacket.opcode = COMMAND_INTERVAL_MINUTES;
             else if (*ptr == 'h')
                 commandPacket.opcode = COMMAND_INTERVAL_HOURS;
+            else if (*ptr == 'd')
+                commandPacket.opcode = COMMAND_INTERVAL_DAYS;
             else
             {
                 fputs(instr, output);
