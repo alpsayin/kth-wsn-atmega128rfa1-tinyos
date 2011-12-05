@@ -20,7 +20,7 @@
 #define DEFAULT_COMMAND COMMAND_CONFIGURE
 
 #define BAUDRATE B57600
-#define MODEMDEVICE "/dev/ttyUSB0"
+#define MODEMDEVICE "/home/alpsayin/tinyos_workspace/fakeSerialPort.txt"
 #define _POSIX_SOURCE 1         //POSIX compliant source
 #define FALSE 0
 #define TRUE 1
@@ -31,7 +31,7 @@
 volatile int listen = 0;
 volatile int wait_flag = 0;
 
-char devicename[80] = "/dev/ttyUSB0";
+char devicename[80] = MODEMDEVICE;
 long BAUD = B57600; // derived baud rate from command line
 long DATABITS = CS8; //8 data bits
 long STOPBITS = 0; //1 stop bit
@@ -54,7 +54,7 @@ struct sigaction saio; //definition of signal action
 int main(int argc, char** argv)
 {
     char buf[256];
-    char* ptr;
+    char *ptr, *endPtr;
     int i = 0, val = 0, no_command = 0;
     char Key;
     uint8_t confirmation = 1, verbose = 0;
@@ -304,7 +304,6 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
     commandPacket.HE &= commandPacket.WE; //write must be enabled for history enable
     commandPacket.BE &= commandPacket.HE; //history must be enabled for burst enable
 
-    printf("%d %d\n", commandPacket.WE, listen);
     if (!commandPacket.WE)
     {
         if (commandPacket.opcode == COMMAND_CONFIGURE)
@@ -382,12 +381,6 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
             }
             fflush(output);
         }
-        else
-        {
-            commandPacketToStr(&commandPacket, buf);
-            fputs(buf, output);
-            fputs("\n", output);
-        }
     }
 
     if (confirmation)
@@ -415,14 +408,23 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
     {
 
         fputs("sending command to the root mote...\n", output);
-        //TODO feed the command packet byte by byte using a
+        fflush(output);
 
-        val = write(fd, &commandPacket, sizeof (command_packet_t));
+        val = packetToStr(&commandPacket, buf, PACKET_COMMAND);
+        val = write(fd, buf, val);
         sprintf(buf, "%d bytes written\n", val);
         fputs(buf, output);
-        commandPacketToStr(&commandPacket, buf);
+        val = packetToStr(&commandPacket, buf, PACKET_COMMAND);
         fputs(buf, output);
         fputs("\n", output);
+        val = strToPacket(&commandPacket, buf);
+#ifdef DEBUG
+        fputs("Debug: Trying to open the written packet\n", output);
+        packetToStr(&commandPacket, buf, val);
+        fputs(buf, output);
+        sprintf(buf, "\nPacket Type: %d\n", val);
+        fputs(buf, output);
+#endif
     }
 
     if (listen)
@@ -441,21 +443,35 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                 break;
             default:
                 fputc((int) Key, output);
+                fputs("\nPress ESC to exit\n", output);
                 break;
             } //end of switch key
         } //end if a key was hit
         if (!wait_flag)
         {
-            val = read(fd, buf, 256);
-            if (val > 0)
+            do
             {
-                for (i = 0; i < val; i++)
+                val = read(fd, buf, 256);
+                endPtr = buf;
+                while (val > 0)
                 {
-                    fputc((int) buf[i], stdout);
+                    ptr = index(endPtr, '[');
+                    endPtr = index(endPtr, ']');
+                    if (ptr != NULL && endPtr != NULL)
+                    {
+                        for (i = (int) (ptr - buf); i <= (int) (endPtr - buf); i++)
+                        {
+                            fputc((int) buf[i], stdout);
+                        }
+                        fputc('\n', stdout);
+                    }
+                    endPtr++;
+                    val -= (int)(endPtr-ptr+1);
                 }
-                wait_flag = 1;
+                fflush(stdout);
             }
-            fflush(stdout);
+            while (val == 256);
+            wait_flag = 1;
         }
     }
 

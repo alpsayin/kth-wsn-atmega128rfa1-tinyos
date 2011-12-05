@@ -38,11 +38,11 @@ OBJECTFILES= \
 
 
 # C Compiler Flags
-CFLAGS=
+CFLAGS=-march=i586 -Os -static
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-march=i586 -Os -static
+CXXFLAGS=-march=i586 -Os -static
 
 # Fortran Compiler Flags
 FFLAGS=

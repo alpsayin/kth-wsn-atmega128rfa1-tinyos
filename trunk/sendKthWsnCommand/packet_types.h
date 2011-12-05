@@ -29,6 +29,13 @@ extern "C" {
         uint8_t burstInterval : 8;
         uint16_t node_id;
     } status_packet_t;
+    
+    enum
+    {
+        INTERVAL_TYPE_SECONDS = 0,
+        INTERVAL_TYPE_MINUTES,
+        INTERVAL_TYPE_HOURS
+    };
 
     typedef struct data_packet_low //size 4 bytes
     {
@@ -86,11 +93,20 @@ extern "C" {
         COMMAND_INTERVAL_HOURS
     };
 
+    enum
+    {
+        PACKET_ERROR = -1,
+        PACKET_COMMAND = 0,
+        PACKET_DATA,
+        PACKET_DATA_COMPRESSED,
+        PACKET_STATUS
+    };
+    
+
     void compressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
     void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
-    int packetToStr(data_packet_t* dp, char* buf);
-    int compressedPacketToStr(compressed_data_packet_t* dp, char* buf);
-    int commandPacketToStr(command_packet_t* cps, char* buf);
+    int packetToStr(void* dp, char* buf, uint8_t pt);
+    int strToPacket(void* dp, char* buf);
 
 
 #ifdef	__cplusplus
