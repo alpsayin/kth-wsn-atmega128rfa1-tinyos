@@ -20,15 +20,28 @@ extern "C" {
 #define LUMINOSITY data4
 #define BATTERY data5
 
+#define NODE_ID 100					//added by zn
+
+#define DEFAULT_TIMER_PERIOD	5	//unit: second
+#define DEFAULT_TIMER_BOUNDARY	48	//unit: day
+
     typedef struct status_packet
     {
         uint8_t historyEnable : 1;
         uint8_t burstEnable	  : 1;
         uint8_t reserved      : 4;
-        uint8_t intervalType  : 2;
+        uint8_t intervalType  : 2;		//0: milli-second	1:second	2:minute	3:hour
         uint8_t burstInterval : 8;
-        uint16_t node_id;
+        uint16_t node_id;				//number begins from 1, set to '0' means the default number
     } status_packet_t;
+    
+    enum
+    {
+        INTERVAL_TYPE_SECONDS = 0,
+        INTERVAL_TYPE_MINUTES,
+        INTERVAL_TYPE_HOURS,
+        INTERVAL_TYPE_DAYS
+    };
 
     typedef struct data_packet_low //size 4 bytes
     {
@@ -48,11 +61,11 @@ extern "C" {
         uint8_t data5 : 2;
     } data_packet_high_t;
 
-    typedef struct compressed_data_packet 	//size 9 bytes
+    typedef struct compressed_data_packet //size 9 bytes
     {
-        uint16_t source; 					//2 byte
-        data_packet_high_t highBytes; 		//4 bytes
-        data_packet_low_t lowBytes; 		//1 byte
+        uint16_t source; //2 byte
+        data_packet_high_t highBytes; //4 bytes
+        data_packet_low_t lowBytes; //1 byte
     } compressed_data_packet_t;
     
     typedef struct data_packet //size 12 bytes
@@ -65,14 +78,14 @@ extern "C" {
         uint16_t data5 : 10; //2 byte
     } data_packet_t;
 
-    typedef struct command_packet_serial {
+    typedef struct command_packet {
         uint8_t WE : 1;
         uint8_t HE : 1;
         uint8_t BE : 1;
         uint8_t opcode : 5;
         uint8_t value;
         uint16_t address;
-    } command_packet_serial_t;
+    } command_packet_t;
 
     enum
     {
@@ -83,14 +96,24 @@ extern "C" {
         COMMAND_READ_STATUS,
         COMMAND_INTERVAL_SECONDS,
         COMMAND_INTERVAL_MINUTES,
-        COMMAND_INTERVAL_HOURS
+        COMMAND_INTERVAL_HOURS,
+        COMMAND_INTERVAL_DAYS
     };
+
+    enum
+    {
+        PACKET_ERROR = -1,
+        PACKET_COMMAND = 0,
+        PACKET_DATA,
+        PACKET_DATA_COMPRESSED,
+        PACKET_STATUS
+    };
+    
 
     void compressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
     void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
-    int packetToStr(data_packet_t* dp, uint8_t* buf);
-    int compressedPacketToStr(compressed_data_packet_t* dp, uint8_t* buf);
-    int commandPacketToStr(command_packet_serial_t* cps, uint8_t* buf);
+    int packetToStr(void* dp, char* buf, uint8_t pt);
+    int strToPacket(void* dp, char* buf);
 
 
 #ifdef	__cplusplus
@@ -98,4 +121,3 @@ extern "C" {
 #endif
 
 #endif	/* PACKET_TYPES_H */
-
