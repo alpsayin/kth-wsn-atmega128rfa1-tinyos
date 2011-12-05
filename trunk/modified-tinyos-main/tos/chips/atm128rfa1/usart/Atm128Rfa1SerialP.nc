@@ -2,6 +2,7 @@
 
 #include "atm128hardware.h"
 #include "hardware.h"
+#include <string.h>
 
 #ifndef UARTSTREAM_BLOCK
 #ifdef DISABLE_SPRINTF_WARNING
@@ -28,6 +29,9 @@ implementation
         volatile bool started;
 	volatile bool rxBusy, txBusy;
 	norace uint8_t *txBuf, *rxBuf;
+#define UART1_BUFFER_SIZE 64
+	norace uint8_t txTmpBuf[UART1_BUFFER_SIZE];
+	norace uint8_t rxTmpBuf[UART1_BUFFER_SIZE];
 	norace uint16_t txLen, rxLen;
 	norace uint16_t txPos, rxPos;
 	norace error_t txResult, rxResult;
@@ -111,7 +115,7 @@ implementation
 			if(txBusy)
 				return EBUSY;
 			txBusy = TRUE;	
-		}
+		} 
 		txBuf = buf;
 		txLen = len;
 		for(i=0; i<len; i++)
@@ -254,8 +258,8 @@ implementation
 		{
 			if( txPos < txLen ) //there are still some bytes to be sent
 			{
-				while(!READ_BIT(UCSR1A, UDRE1)); //for convenience, expected overhead is low
-				UDR1 = txBuf[ txPos ];
+				while(!READ_BIT(UCSR1A, UDRE1)); //for convenience, expected overhead is low, check transmit register empty
+				UDR1 = txBuf[ txPos ]; //send the next byte
 				txPos++;
 			}	
 			else if( txPos == txLen )
@@ -275,8 +279,8 @@ implementation
 
 	async command error_t Uart1Stream.send(uint8_t *buf, uint16_t len)
 	{
-		return call Uart1StreamBlocking.send(buf, len);
-		if(len==0)
+	  //return call Uart1StreamBlocking.send(buf, len);
+		if(len==0 || len>UART1_BUFFER_SIZE)
 			return FAIL;
 		atomic
 		{
@@ -284,7 +288,10 @@ implementation
 				return EBUSY;
 			txBusy = TRUE;	
 		}
-		txBuf = buf;
+		atomic {
+		  strncpy((char*)txTmpBuf, (char*)buf, len);
+		}
+		txBuf = txTmpBuf;
 		txLen = len;
 		txPos = 0;
 //		while(!READ_BIT(UCSR1A, UDRE1)); //for convenience, expected overhead is low
