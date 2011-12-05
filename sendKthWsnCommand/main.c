@@ -464,7 +464,7 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
         } //end if a key was hit
         if (!wait_flag)
         {
-#ifndef DEBUG
+#ifdef DEBUG
             val = read(fd, buf, BUFFER_SIZE);
             for (i = 0; i < val; i++)
             {
@@ -472,6 +472,7 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
             }
 #else
             val = read(fd, buf, BUFFER_SIZE);
+            //pre-processing -> take only characters between square brackets
             for(i=0; i<val; i++)
             {
                 if(buf[i]=='[')
@@ -479,34 +480,28 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                     pos = 0;
                     receiveBuffer[pos++] = buf[i];
                     started=1;
-                    fputc((int)buf[i], stdout);
+                    //fputc((int)buf[i], stdout);
                 }
                 else if(buf[i]==']')
                 {
                     receiveBuffer[pos++] = buf[i];
-                    new_message=1;
                     started=0;
-                    if(pos >= BUFFER_SIZE*3/4)
-                        pos = 0;
-                    fputc((int)buf[i], stdout);
-                    fputc('\n', stdout);
+                    if(processReceiveBuffer())
+                    {
+                        fputs("receive buffer processing caused an error", output);
+                    }
+                    //fputc((int)buf[i], stdout);
+                    //fputc('\n', stdout);
                 }
                 else if(started)
                 {
                     receiveBuffer[pos++] = buf[i];
-                    fputc((int)buf[i], stdout);
+                    //fputc((int)buf[i], stdout);
                 }
             }
 #endif
             fflush(stdout);
             wait_flag = 1;
-        }
-        if(new_message)
-        {
-            if(processReceiveBuffer())
-            {
-                fputs("receive buffer processing caused an error", output);
-            }
         }
     }
 
@@ -538,6 +533,11 @@ void signal_handler_IO(int status)
 
 int processReceiveBuffer()
 {
+    int type;
+    char packetBuf[32];
+    printf("%s\nexpected size=%d\n", receiveBuffer, sizeof(data_packet_t));
+    type = strToPacket(packetBuf, receiveBuffer);
+    printf("type=%d\n", type);
     return 0;
 }
 int openComPort(long rw)

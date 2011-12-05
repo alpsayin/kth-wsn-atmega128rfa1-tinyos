@@ -68,11 +68,11 @@ extern "C" {
     typedef struct data_packet //size 12 bytes
     {
         uint16_t source; //2 byte
-        uint16_t data1 : 10; //2 byte
-        uint16_t data2 : 10; //2 byte
-        uint16_t data3 : 10; //2 byte
-        uint16_t data4 : 10; //2 byte
-        uint16_t data5 : 10; //2 byte
+        uint16_t data1 ; //2 byte
+        uint16_t data2 ; //2 byte
+        uint16_t data3 ; //2 byte
+        uint16_t data4 ; //2 byte
+        uint16_t data5 ; //2 byte
     } data_packet_t;
 
     typedef struct command_packet {
