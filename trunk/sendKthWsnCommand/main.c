@@ -67,12 +67,13 @@ int main(int argc, char** argv)
 \nSends a command through serial port to the root mote to be dispatched by radio\n\
 If no command is specified by entering either -t or -r then -e is implied,\
  but if -t is entered with -e then an echo command with a value will be sent, no interval will be set.\
- If -e is entered, it overrides -t and -r, else if -t is entered it overrides -r. \n\
+ If -e is entered, it overrides -t and -r, else if -t is entered it overrides -r. Also note that interval time can\
+be set to a maximum of 49 days due to memory limitations and a minimum of  \n\
     Options:\n\
     -hE set history enable (0/1) \n\
     -bE burst enable (0/1) (if this is not 1 -h is not effective) \n\
     -wE write enable (0/1) (if this is not 1 -h -b are not effective) \n\
-    -tTimeU set measurement interval in seconds, minutes or hours (U=s/m/h) \n\
+    -tTimeU set measurement interval in seconds, minutes, hours or days (U=s/m/h/d) \n\
     -rType request data of Type (data/history/status)   \n\
     -aAddress the address that issue the command (address in radix 16)\n\
     -f no confirmation \n\
