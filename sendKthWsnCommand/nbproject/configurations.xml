@@ -43,9 +43,15 @@
       </toolsSet>
       <compileType>
         <cTool>
-          <commandlineTool>g++</commandlineTool>
+          <commandlineTool>gcc</commandlineTool>
           <commandLine>-march=i586 -Os -static</commandLine>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+          </preprocessorList>
         </cTool>
+        <ccTool>
+          <commandLine>-march=i586 -Os -static</commandLine>
+        </ccTool>
       </compileType>
     </conf>
     <conf name="Release" type="1">
@@ -57,9 +63,12 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <commandlineTool>gcc</commandlineTool>
+          <commandLine>-march=i586 -Os -static</commandLine>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <commandLine>-march=i586 -Os -static</commandLine>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>

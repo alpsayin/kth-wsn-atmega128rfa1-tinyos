@@ -14,7 +14,7 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=g++
+CC=gcc
 CCC=g++
 CXX=g++
 FC=
@@ -41,8 +41,8 @@ OBJECTFILES= \
 CFLAGS=-march=i586 -Os -static
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-march=i586 -Os -static
+CXXFLAGS=-march=i586 -Os -static
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -63,11 +63,11 @@ dist/Debug/GNU-Linux-x86/sendkthwsncommand: ${OBJECTFILES}
 
 ${OBJECTDIR}/packet_types.o: packet_types.c 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.c) -g -o ${OBJECTDIR}/packet_types.o packet_types.c
+	$(COMPILE.c) -g -DDEBUG -o ${OBJECTDIR}/packet_types.o packet_types.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.c) -g -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -DDEBUG -o ${OBJECTDIR}/main.o main.c
 
 # Subprojects
 .build-subprojects:

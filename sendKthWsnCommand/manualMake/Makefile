@@ -1,9 +1,9 @@
 
-CC=g++
+CC=gcc
 CFLAGS=-march=i586 -Os -g
 LDFLAGS=-static
  
-INPUT=main.c packet_types.c
+INPUT=../main.c ../packet_types.c
 OUTPUT=sendkthwsncommand
 
 

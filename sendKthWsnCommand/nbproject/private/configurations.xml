@@ -23,7 +23,7 @@
         <configurationname>GizmoSimple</configurationname>
       </gizmo_options>
       <runprofile version="6">
-        <args>-h1 -b1 -w1 -f -v -aabcd -t255m -l</args>
+        <args>-h1 -b1 -w1 -v -f -a01 -t255m -l</args>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>0</console-type>
