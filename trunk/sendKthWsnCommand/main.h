@@ -17,6 +17,7 @@ extern "C" {
 void signal_handler_IO(int status); //definition of signal handler
 void sigint_handler(int sig); //definition of signal handler
 void restoreDefaults();
+int processReceiveBuffer();
 int openComPort(long rw);
 
 #ifdef	__cplusplus

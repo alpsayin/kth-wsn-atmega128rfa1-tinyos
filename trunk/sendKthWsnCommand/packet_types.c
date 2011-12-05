@@ -101,3 +101,18 @@ int strToPacket(void* dp, char* buf)
         return PACKET_ERROR;
     return type;
 }
+commandToBuffer(command_packet_t* cp, char* buf)
+{
+    uint8_t i, len;
+    char* ptr;
+    buf[i++]='[';
+    len = sizeof(command_packet_t);
+    for(ptr=(char*)cp; ptr<(char*)cp+len; ptr++)
+    {
+        buf[i++] = hexTable[HIGH((*ptr))];
+        buf[i++] = hexTable[LOW((*ptr))];
+    }
+    buf[i++] = ']';
+    buf[i++] = 0;
+    return i-1;
+}

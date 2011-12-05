@@ -10,6 +10,8 @@
 
 #include <inttypes.h>
 
+#define DEFAULT_TIMER_BOUNDARY 48
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
@@ -109,6 +111,7 @@ extern "C" {
     void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
     int packetToStr(void* dp, char* buf, uint8_t pt);
     int strToPacket(void* dp, char* buf);
+    int commandToBuffer(command_packet_t* cp, char* buf);
 
 
 #ifdef	__cplusplus
