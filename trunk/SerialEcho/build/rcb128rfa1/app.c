@@ -1828,11 +1828,11 @@ typedef struct compressed_data_packet {
 typedef struct data_packet {
 
   uint16_t source;
-  uint16_t data1 : 10;
-  uint16_t data2 : 10;
-  uint16_t data3 : 10;
-  uint16_t data4 : 10;
-  uint16_t data5 : 10;
+  uint16_t data1;
+  uint16_t data2;
+  uint16_t data3;
+  uint16_t data4;
+  uint16_t data5;
 } data_packet_t;
 
 
@@ -1885,8 +1885,8 @@ struct __file {
 #line 261
   int size;
   int len;
-  int (*put)(char arg_0x405ff738, struct __file *arg_0x405ff920);
-  int (*get)(struct __file *arg_0x405ffd10);
+  int (*put)(char arg_0x405ff448, struct __file *arg_0x405ff630);
+  int (*get)(struct __file *arg_0x405ffa20);
   void *udata;
 };
 #line 405
@@ -2220,11 +2220,11 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406e5030);
+uint8_t arg_0x406e9ec8);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406e5030, 
+uint8_t arg_0x406e9ec8, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
@@ -2837,14 +2837,7 @@ static inline void SerialEchoC__UartStream__sendDone(uint8_t *buf, uint16_t len,
 
 
 static inline void SerialEchoC__Timer0__fired(void );
-
-
-
-
-
-
-
-
+#line 212
 static inline void SerialEchoC__Timer1__fired(void );
 # 70 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__setMode(uint8_t mode);
@@ -3001,7 +2994,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406e5030);
+uint8_t arg_0x406e9ec8);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4289 {
 #line 71
@@ -4314,8 +4307,12 @@ static inline void SerialEchoC__Timer0__fired(void )
   uint8_t msgBuf[32];
   uint8_t msgLen;
 
-#line 201
+
+
+
+
   msgLen = SerialEchoC__packetToStr(&SerialEchoC__dataPacket, msgBuf, PACKET_DATA);
+
   SerialEchoC__UartStream__send(msgBuf, msgLen);
 }
 
@@ -4352,19 +4349,19 @@ inline static void SerialEchoC__Leds__led0Toggle(void ){
 #line 67
 }
 #line 67
-# 206 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 212 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__Timer1__fired(void )
 {
   uint8_t msgBuf[32];
   uint8_t msgLen;
 
-#line 210
+#line 216
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 210
+#line 216
     {
       msgLen = SerialEchoC__packetToStr(&SerialEchoC__commandPacket, msgBuf, PACKET_COMMAND);
     }
-#line 212
+#line 218
     __nesc_atomic_end(__nesc_atomic); }
   if (SerialEchoC__UartStream__send(msgBuf, msgLen) == FAIL) {
     SerialEchoC__Leds__led0Toggle();
@@ -4377,9 +4374,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406e5030){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406e9ec8){
 #line 83
-  switch (arg_0x406e5030) {
+  switch (arg_0x406e9ec8) {
 #line 83
     case 0U:
 #line 83
@@ -4395,7 +4392,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406e5030);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406e9ec8);
 #line 83
       break;
 #line 83
@@ -4894,12 +4891,12 @@ static inline void SerialEchoC__Boot__booted(void )
   SerialEchoC__commandPacket.opcode = COMMAND_CONFIGURE;
   SerialEchoC__commandPacket.value = 0;
 
-  SerialEchoC__dataPacket.data1 = 0x3f;
-  SerialEchoC__dataPacket.data2 = 0;
-  SerialEchoC__dataPacket.data3 = 0;
-  SerialEchoC__dataPacket.data4 = 0;
-  SerialEchoC__dataPacket.data5 = 0;
-  SerialEchoC__dataPacket.source = 0;
+  SerialEchoC__dataPacket.data1 = 0xff;
+  SerialEchoC__dataPacket.data2 = 0xff;
+  SerialEchoC__dataPacket.data3 = 0xff;
+  SerialEchoC__dataPacket.data4 = 0xff;
+  SerialEchoC__dataPacket.data5 = 0xff;
+  SerialEchoC__dataPacket.source = 0xffff;
 
   SerialEchoC__Timer0__startPeriodic(1000);
 }

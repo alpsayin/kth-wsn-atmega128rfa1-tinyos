@@ -135,12 +135,12 @@ implementation
 		commandPacket.opcode = COMMAND_CONFIGURE;
 		commandPacket.value = 0;
 		
-		dataPacket.data1 = 0x3f;
-		dataPacket.data2 = 0;
-		dataPacket.data3 = 0;
-		dataPacket.data4 = 0;
-		dataPacket.data5 = 0;
-		dataPacket.source = 0;
+		dataPacket.data1 = 0xff;
+		dataPacket.data2 = 0xff;
+		dataPacket.data3 = 0xff;
+		dataPacket.data4 = 0xff;
+		dataPacket.data5 = 0xff;
+		dataPacket.source = 0xffff;
 		
 		call Timer0.startPeriodic(1000);
 //		call Timer1.startPeriodic(1000);
@@ -198,7 +198,13 @@ implementation
 	{
 		uint8_t msgBuf[32];
 		uint8_t msgLen;
+//		dataPacket.data1++;
+//		dataPacket.data2++;
+//		dataPacket.data3++;
+//		dataPacket.data4++;
+//		dataPacket.data5++;
 		msgLen = packetToStr(&dataPacket, msgBuf, PACKET_DATA);
+//		msgLen = sprintf(msgBuf, "%d\n", sizeof(dataPacket));
 		call UartStream.send(msgBuf, msgLen);
 	}
 
