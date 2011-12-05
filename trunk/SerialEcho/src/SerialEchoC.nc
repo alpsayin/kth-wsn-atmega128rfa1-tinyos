@@ -1,7 +1,15 @@
 
 #include "packet_types.h"
 #include <stdio.h>
-#include <util/delay.h>
+#include "TimerConfig.h"
+	
+#ifndef LOW
+#define LOW(n) (n & 0x0F)
+#endif
+
+#ifndef HIGH
+#define HIGH(n) ((n>>4) & 0x0F)
+#endif
 
 module SerialEchoC @safe() 
 {
@@ -17,64 +25,25 @@ module SerialEchoC @safe()
 }
 implementation
 {
-	uint8_t i;
-	command_packet_serial_t myCommandPacket;
+	const uint8_t hexTable[16] = "0123456789abcdef";
+
+    char cmdLen=0;
+    bool started=FALSE;
+    bool newCommand=FALSE;
+    bool high=TRUE;
+    command_packet_t commandPacket;
+    data_packet_t dataPacket;
+    char* cmdBuf = (char*)&commandPacket;
 	
-	event void Boot.booted()
+	char asciihexToNum(char c)
 	{
-		myCommandPacket.address = 0;
-		myCommandPacket.HE = 0;
-		myCommandPacket.BE = 0;
-		myCommandPacket.WE = 0;
-		myCommandPacket.opcode = COMMAND_CONFIGURE;
-		myCommandPacket.value = 0;
-		
-		call Timer1.startPeriodic(500);
-	}
-
-	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	uint8_t tempBuf[sizeof(command_packet_serial_t)];
-	uint8_t tempPtr=0;
-	async event void UartStream.receivedByte(uint8_t byte)
-	{
-		static uint8_t intPtr;
-		atomic {
-			intPtr = tempPtr;
-		}
-//		if(cmdLen == 0)
-//		{
-//			cmdLen = byte;		
-//			cmdPtr = (uint8_t*)&myCommandPacket;
-//		}
-//		else
-		{
-			tempBuf[intPtr] = byte;
-			intPtr++;
-			call Leds.led1On();
-			if(intPtr == sizeof(command_packet_serial_t))
-			{
-				atomic {
-					strncpy((uint8_t*)(&myCommandPacket), tempBuf, sizeof(command_packet_serial_t));
-				}
-				intPtr = 0;
-				call Leds.led1Off();
-			}
-		}
-		call Timer0.stop();
-		call Timer0.startOneShot(5000);
-		atomic {
-			tempPtr = intPtr;
-		}
-	}
-
-	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error)
-	{
-		call Leds.led1Toggle();
-		// TODO Auto-generated method stub
+	    if(c>='a' && c<='z')
+	        return c-'a'+10;
+	    if(c>='A' && c<='Z')
+	        return c-'A'+10;
+	    if(c>='0' && c<='9')
+	        return c-'0';
+	    return 0;
 	}
 	
 	void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc)
@@ -105,35 +74,143 @@ implementation
 	    dpc->lowBytes.data5 = (uint8_t)(dp->data5&0xFF);
 	    dpc->highBytes.data5 = (uint8_t)((dp->data5>>8)&0x03);
 	}
-	int packetToStr(data_packet_t* dp, uint8_t* buf)
+	int packetToStr(void* dp, char* buf, uint8_t pt)
 	{
-	   return sprintf(buf, "[0x%x : 0x%x 0x%x 0x%x 0x%x 0x%x]",dp->source, dp->data1, dp->data2, dp->data3, dp->data4, dp->data5);
+	    uint8_t i=0, len;
+	    char* ptr;
+	    buf[i++]='[';
+	    buf[i++]=hexTable[pt];
+	    buf[i++]=':';
+	    switch(pt)
+	    {
+	        case PACKET_COMMAND: len = sizeof(command_packet_t); break;
+	        case PACKET_DATA: len = sizeof(data_packet_t); break;
+	        case PACKET_DATA_COMPRESSED: len = sizeof(compressed_data_packet_t); break;
+	        case PACKET_STATUS: len = sizeof(status_packet_t); break;
+	        default: len = 0;
+	    }
+	    for(ptr=(char*)dp; ptr<(char*)dp+len; ptr++)
+	    {
+	        buf[i++] = hexTable[HIGH((*ptr))];
+	        buf[i++] = hexTable[LOW((*ptr))];
+	    }
+	    buf[i++] = ']';
+	    buf[i++] = 0;
+	    return i-1;
 	}
-	int compressedPacketToStr(compressed_data_packet_t* dpc, uint8_t* buf)
+	int strToPacket(void* dp, char* buf)
 	{
-	    return sprintf(buf, "[0x%x : 0x%x%x 0x%x%x 0x%x%x 0x%x%x]", dpc->source, dpc->highBytes.data1, dpc->lowBytes.data1 ,dpc->highBytes.data2, dpc->lowBytes.data2 ,dpc->highBytes.data3, dpc->lowBytes.data3 ,dpc->highBytes.data4, dpc->lowBytes.data4 );
+	    uint8_t i=0, len, type;
+	    char* ptr = (char*)dp;
+	    if(buf[i++] != '[')
+	        return PACKET_ERROR;
+	    switch( (type=LOW(buf[i++])) )
+	    {
+	        case PACKET_COMMAND: len = sizeof(command_packet_t); break;
+	        case PACKET_DATA: len = sizeof(data_packet_t); break;
+	        case PACKET_DATA_COMPRESSED: len = sizeof(compressed_data_packet_t); break;
+	        case PACKET_STATUS: len = sizeof(status_packet_t); break;
+	        default: return PACKET_ERROR;
+	    }
+	    if(buf[i++] != ':')
+	        return PACKET_ERROR;
+	    if(buf[i+2*len] != ']')
+	        return PACKET_ERROR;
+	    for(ptr=(char*)dp; ptr<(char*)dp+len; ptr++) 
+	    {
+	        *ptr = (asciihexToNum(buf[i++])<<4) | asciihexToNum(buf[i++]);
+	    }
+	    if(buf[i] != ']')
+	        return PACKET_ERROR;
+	    return type;
 	}
-	int commandPacketToStr(command_packet_serial_t* cps, uint8_t* buf)
+	
+	
+	event void Boot.booted()
 	{
-	    return sprintf(buf, "[0x%x %x %x %x 0x%x 0x%x]\r\n", cps->opcode, cps->WE, cps->HE, cps->BE, cps->value, cps->address);
+		commandPacket.address = 0;
+		commandPacket.HE = 0;
+		commandPacket.BE = 0;
+		commandPacket.WE = 0;
+		commandPacket.opcode = COMMAND_CONFIGURE;
+		commandPacket.value = 0;
+		
+		dataPacket.data1 = 0x3f;
+		dataPacket.data2 = 0;
+		dataPacket.data3 = 0;
+		dataPacket.data4 = 0;
+		dataPacket.data5 = 0;
+		dataPacket.source = 0;
+		
+		call Timer0.startPeriodic(1000);
+//		call Timer1.startPeriodic(1000);
+	}
+
+	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
+	{
+		// TODO Auto-generated method stub
+	}
+	async event void UartStream.receivedByte(uint8_t byte)
+	{
+	    char msgBuf[64];
+	    char msgLen;
+	    
+        call UartByte.send(byte);
+        if(byte=='[')
+        {
+            cmdBuf = (char*)&commandPacket;
+            cmdLen = 0;
+			call Leds.set(0);
+            started = TRUE;
+        }
+        else if(byte==']')
+        {
+            if(cmdLen == sizeof(command_packet_t))
+            {
+                newCommand = TRUE;
+            }
+            started = FALSE;
+            cmdLen = 0;
+        }
+        else if(started)
+        {
+            if(high)
+                cmdBuf[cmdLen] = asciihexToNum(byte)<<4;
+            else
+                cmdBuf[cmdLen++] |= asciihexToNum(byte);
+            high = !high;
+            call Leds.set(cmdLen);
+        }
+        if(newCommand)
+        {
+            msgLen = packetToStr(&commandPacket, msgBuf, PACKET_COMMAND);
+            call UartStream.send(msgBuf, msgLen);
+            newCommand = FALSE;
+        }
+	}
+
+	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error)
+	{
+//		call Leds.led1Toggle();
 	}
 
 	event void Timer0.fired()
 	{
-		atomic{
-			tempPtr = 0;
-		}
-		call Leds.led1Off();
+		uint8_t msgBuf[32];
+		uint8_t msgLen;
+		msgLen = packetToStr(&dataPacket, msgBuf, PACKET_DATA);
+		call UartStream.send(msgBuf, msgLen);
 	}
 
-	uint8_t* myptr = (uint8_t*)&myCommandPacket;
+	uint8_t* myptr = (uint8_t*)&commandPacket;
 	event void Timer1.fired()
 	{
 		uint8_t msgBuf[32];
 		uint8_t msgLen;
 		atomic {
-			msgLen = commandPacketToStr(&myCommandPacket, msgBuf);
+			msgLen = packetToStr(&commandPacket, msgBuf, PACKET_COMMAND);
 		}
-		call UartStream.send(msgBuf, msgLen);
+		if(call UartStream.send(msgBuf, msgLen) == FAIL)
+			call Leds.led0Toggle();
 	}
 }
