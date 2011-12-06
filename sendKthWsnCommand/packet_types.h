@@ -15,6 +15,15 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+
+#ifndef LOW
+#define LOW(n) (n & 0x0F)
+#endif
+
+#ifndef HIGH
+#define HIGH(n) ((n>>4) & 0x0F)
+#endif
+
 //[0:111OpVaAddr]
 #define SIZE_COMMAND (3+3+2+2+4+1)
 //[1:Dat1Dat2Dat3Dat4Dat5Addr]
@@ -81,8 +90,8 @@ extern "C" {
 
     enum
     {
-        PACKET_ERROR = -1,
-        PACKET_COMMAND = 0,
+        PACKET_ERROR = 0,
+        PACKET_COMMAND,
         PACKET_DATA,
         PACKET_STATUS
     };
