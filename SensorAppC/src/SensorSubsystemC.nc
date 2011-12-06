@@ -20,7 +20,7 @@ configuration SensorSubsystemC{
 	provides {
 		
 		interface Read<data_packet_t>;
-		interface ReadNow<data_packet_t>;
+		interface Read<data_packet_t> as ReadOne;
 		
 	}
 	
@@ -37,7 +37,7 @@ implementation{
 	components new PlatformSensorC(Sensor_Channel_3) as vol3;
 
 	Read		= SensorSubsystemP;
-	ReadNow		= SensorSubsystemP;
+	ReadOne		= SensorSubsystemP;
 	
 	SensorSubsystemP.TempADC -> TempSensor.Read;
 	SensorSubsystemP.vol0ADC -> vol0.Read;
