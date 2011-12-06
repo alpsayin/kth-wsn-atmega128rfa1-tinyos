@@ -1,3 +1,15 @@
+//
+//
+//  SensorSubsystemP.nc
+//
+//  aa
+//
+//  Created by Tian Junzhe on 12/5/11.
+//  Copyright 2011 KTH. All rights reserved.
+//
+//	zn
+//
+//
 
 #include "SensorConfig.h"
 
@@ -46,10 +58,10 @@ implementation{
 		mode = FALSE;
 		
 		call TempADC.read();
-		call vol0ADC.read();
-		call vol1ADC.read();
-		call vol2ADC.read();
-		call vol3ADC.read();
+//		call vol0ADC.read();
+//		call vol1ADC.read();
+//		call vol2ADC.read();
+//		call vol3ADC.read();
 		
 		return SUCCESS;
 	}
@@ -59,7 +71,7 @@ implementation{
 		
 		if(SUCCESS == result)
 			sensorData.TEMPERATURE = val;
-		
+			
 		call vol0ADC.read();
 	}
 
@@ -67,7 +79,7 @@ implementation{
 		
 		if(SUCCESS == result)
 			sensorData.PRESSURE = val;
-		
+			
 		call vol1ADC.read();
 	}
 

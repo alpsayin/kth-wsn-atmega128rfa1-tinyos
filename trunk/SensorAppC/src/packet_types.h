@@ -23,7 +23,7 @@ extern "C" {
 #define NODE_ID 100					//added by zn
 
 #define DEFAULT_TIMER_PERIOD	5	//unit: second
-#define DEFAULT_TIMER_BOUNDARY	48	//unit: day
+#define DEFAULT_TIMER_BOUNDARY	48ul	//unit: day
 
     typedef struct status_packet
     {

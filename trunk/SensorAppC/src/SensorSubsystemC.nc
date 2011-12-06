@@ -1,3 +1,15 @@
+//
+//
+//  SensorSubsystemC.nc
+//
+//  aa
+//
+//  Created by Tian Junzhe on 12/5/11.
+//  Copyright 2011 KTH. All rights reserved.
+//
+//	zn
+//
+//
 
 #include "SensorConfig.h"
 
