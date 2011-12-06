@@ -74,8 +74,7 @@ int main(int argc, char** argv)
     const char instr[]="\nsendKthWsnCommand command utility\n\
 ----------------------------------------------------------\
 \nSends a command through serial port to the root mote to be dispatched by radio\n\
-If -t is entered with -e then an echo command with a value will be sent, but\
- no interval will be actually set. Also note that interval time can be set to a maximum of 48\
+Note that interval time can be set to a maximum of 48\
  days. Received command packets, data packets and status packets are written into\
  different files (command_output.txt, data_output.txt and status_output.txt respectively).\
  Every line of the output contains one packet, \
@@ -104,7 +103,7 @@ sendKthWsnCommand -h1 -b1 -w1 -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
 \
 Example: \n\
 sendKthWsnCommand -h0 -b1 -w1 -t1h -aFFFF -f -l -p/dev/ttyUSB0\n\
-    history enabled \n\
+    history disabled \n\
     burst enabled \n\
     write enabled \n\
     interval=1 hour \n\
@@ -116,6 +115,7 @@ sendKthWsnCommand -h0 -b1 -w1 -t1h -aFFFF -f -l -p/dev/ttyUSB0\n\
 Example: \n\
 sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
     request an echo from node '01bc' with a value of 16\n\
+    start listening the network after command\n\
     listen /dev/ttyUSB0 port\n\
 ";
 
@@ -426,7 +426,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            strncpy(devicename, argv[i] + 2, strlen(argv[i]) - 2);
+            memcpy(devicename, argv[i] + 2, strlen(argv[i]) - 2);
         }
         portParam++;
     }
@@ -465,24 +465,24 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
             restoreDefaults();
             return EXIT_FAILURE;
         }
+        if(writeParam == 0)
+        {
+            fputs("WRITE ENABLE PARAMETER IS NOT ENTERED, WRITE_ENABLE=1 IS IMPLIED!\n\n", output);
+        }
+        else
+        {
+            if(histParam == 0)
+            {
+                fputs("HISTORY ENABLE PARAMETER IS NOT ENTERED, HISTORY_ENABLE=1 IS IMPLIED!\n", output);
+            }
+            if(burstParam == 0)
+            {
+                fputs("BURST ENABLE PARAMETER IS NOT ENTERED, BURST_ENABLE=1 IS IMPLIED!\n", output);
+            }
+            fputs("\n", output);
+        }
     }
     
-    if(writeParam == 0)
-    {
-        fputs("WRITE ENABLE PARAMETER IS NOT ENTERED, WRITE_ENABLE=1 IS IMPLIED!\n\n", output);
-    }
-    else
-    {
-        if(histParam == 0)
-        {
-            fputs("HISTORY ENABLE PARAMETER IS NOT ENTERED, HISTORY_ENABLE=1 IS IMPLIED!\n", output);
-        }
-        if(burstParam == 0)
-        {
-            fputs("BURST ENABLE PARAMETER IS NOT ENTERED, BURST_ENABLE=1 IS IMPLIED!\n", output);
-        }
-        fputs("\n", output);
-    }
 
     if(!no_command)
     {
@@ -740,6 +740,7 @@ int processReceiveBuffer()
         sprintf(buf, "source=%d\t", commandPacket.address);
         fputs(buf, commandOutput);
         //fputs("\n", stdout);
+        fflush(commandOutput);
     }
     else if(type == PACKET_DATA)
     {
@@ -763,6 +764,7 @@ int processReceiveBuffer()
         sprintf(buf, "source=%d\t", dataPacket.source);
         fputs(buf, dataOutput);
         //fputs("\n", stdout);
+        fflush(dataOutput);
     }
     else if(type == PACKET_STATUS)
     {
@@ -782,6 +784,7 @@ int processReceiveBuffer()
         sprintf(buf, "burst_enable=%d\t", statusPacket.burstEnable);
         fputs(buf, statusOutput);
         //fputs("\n", stdout);
+        fflush(statusOutput);
     }
     return 0;
 }
