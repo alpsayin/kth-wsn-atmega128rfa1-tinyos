@@ -16,10 +16,11 @@ configuration ControllerC{
 		interface Get<data_packet_t> as GetData;
 		interface Read<data_packet_t> as GetDataOne;
 		
-		interface Leds;
-
 	}
 
 }
 implementation{
+	
+	components ControllerP;
+	
 }
