@@ -47,10 +47,15 @@
           <commandLine>-march=i586 -Os -static</commandLine>
           <preprocessorList>
             <Elem>DEBUG</Elem>
+            <Elem>ALIX</Elem>
           </preprocessorList>
         </cTool>
         <ccTool>
           <commandLine>-march=i586 -Os -static</commandLine>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+            <Elem>ALIX</Elem>
+          </preprocessorList>
         </ccTool>
       </compileType>
     </conf>
@@ -65,10 +70,18 @@
           <developmentMode>5</developmentMode>
           <commandlineTool>gcc</commandlineTool>
           <commandLine>-march=i586 -Os -static</commandLine>
+          <preprocessorList>
+            <Elem>ALIX</Elem>
+            <Elem>RELEASE</Elem>
+          </preprocessorList>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <commandLine>-march=i586 -Os -static</commandLine>
+          <preprocessorList>
+            <Elem>RELEASE</Elem>
+            <Elem>ALIX</Elem>
+          </preprocessorList>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>

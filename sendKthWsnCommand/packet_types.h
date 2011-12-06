@@ -95,7 +95,8 @@ extern "C" {
         PACKET_DATA,
         PACKET_STATUS
     };
-    
+
+#ifdef ALIX
     int strToCommandPacket(command_packet_t* cp, char* buf);
     int strToDataPacket(data_packet_t* dp, char* buf);
     int strToStatusPacket(status_packet_t* sp, char* buf);
@@ -104,6 +105,7 @@ extern "C" {
     int dataPacketToStr(data_packet_t* dp, char* buf);
     int statusPacketToStr(status_packet_t* dp, char* buf);
     int getTypeOfPacket(char* buf);
+#endif
 
 
 #ifdef	__cplusplus

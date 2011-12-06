@@ -64,12 +64,12 @@ dist/Release/GNU-Linux-x86/sendkthwsncommand: ${OBJECTFILES}
 ${OBJECTDIR}/packet_types.o: packet_types.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/packet_types.o packet_types.c
+	$(COMPILE.c) -O2 -DALIX -DRELEASE -MMD -MP -MF $@.d -o ${OBJECTDIR}/packet_types.o packet_types.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -O2 -DALIX -DRELEASE -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.c
 
 # Subprojects
 .build-subprojects:

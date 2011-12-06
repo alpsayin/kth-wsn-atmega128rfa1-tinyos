@@ -63,11 +63,11 @@ dist/Debug/GNU-Linux-x86/sendkthwsncommand: ${OBJECTFILES}
 
 ${OBJECTDIR}/packet_types.o: packet_types.c 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.c) -g -DDEBUG -o ${OBJECTDIR}/packet_types.o packet_types.c
+	$(COMPILE.c) -g -DDEBUG -DALIX -o ${OBJECTDIR}/packet_types.o packet_types.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.c) -g -DDEBUG -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -DDEBUG -DALIX -o ${OBJECTDIR}/main.o main.c
 
 # Subprojects
 .build-subprojects:
