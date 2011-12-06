@@ -23,58 +23,122 @@ char asciihexToNum(char c)
         return c-'0';
     return 0;
 }
-void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc)
-{
-    dp->source = dpc->source;
-    dp->data1 = ( (uint16_t)(dpc->highBytes.data1)<<8 | dpc->lowBytes.data1);
-    dp->data2 = ( (uint16_t)(dpc->highBytes.data2)<<8 | dpc->lowBytes.data2);
-    dp->data3 = ( (uint16_t)(dpc->highBytes.data3)<<8 | dpc->lowBytes.data3);
-    dp->data4 = ( (uint16_t)(dpc->highBytes.data4)<<8 | dpc->lowBytes.data4);
-    dp->data5 = ( (uint16_t)(dpc->highBytes.data5)<<8 | dpc->lowBytes.data5);
-}
-void compressPacket(data_packet_t* dp, compressed_data_packet_t* dpc)
-{
-    dpc->source = dp->source;
-
-    dpc->lowBytes.data1 = (uint8_t)(dp->data1&0xFF);
-    dpc->highBytes.data1 = (uint8_t)((dp->data1>>8)&0x03);
-
-    dpc->lowBytes.data2 = (uint8_t)(dp->data2&0xFF);
-    dpc->highBytes.data2 = (uint8_t)((dp->data2>>8)&0x03);
-
-    dpc->lowBytes.data3 = (uint8_t)(dp->data3&0xFF);
-    dpc->highBytes.data3 = (uint8_t)((dp->data3>>8)&0x03);
-
-    dpc->lowBytes.data4 = (uint8_t)(dp->data4&0xFF);
-    dpc->highBytes.data4 = (uint8_t)((dp->data4>>8)&0x03);
-
-    dpc->lowBytes.data5 = (uint8_t)(dp->data5&0xFF);
-    dpc->highBytes.data5 = (uint8_t)((dp->data5>>8)&0x03);
-}
-int strToPacket(void* dp, char* buf)
+int strToCommandPacket(command_packet_t* cp, char* buf)
 {
     //TODO CHANGE THIS
-    uint8_t i=0, len, type;
-    char* ptr = (char*)dp;
+    uint8_t i=0;
+    uint8_t len = SIZE_COMMAND;
     if(buf[i++] != '[')
         return PACKET_ERROR;
-    switch( (type=LOW(buf[i++])) )
-    {
-        case PACKET_COMMAND: len = sizeof(command_packet_t); break;
-        case PACKET_DATA: len = sizeof(data_packet_t); break;
-        case PACKET_DATA_COMPRESSED: len = sizeof(compressed_data_packet_t); break;
-        case PACKET_STATUS: len = sizeof(status_packet_t); break;
-        default: return PACKET_ERROR;
-    }
+    if(asciihexToNum(buf[i++]) != PACKET_COMMAND)
+        return PACKET_ERROR;
     if(buf[i++] != ':')
         return PACKET_ERROR;
-    if(buf[i+2*len] != ']')
+    if(buf[len-1] != ']')
         return PACKET_ERROR;
-    for(ptr=(char*)dp; ptr<(char*)dp+len; ptr++) 
-    {
-        *ptr = (asciihexToNum(buf[i++])<<4) | asciihexToNum(buf[i++]);
-    }
+    //copy the actual data flags, opcode, value, address
+    cp->WE = buf[i++]&0x01;
+    cp->HE = buf[i++]&0x01;
+    cp->BE = buf[i++]&0x01;
+    cp->opcode = asciihexToNum(buf[i++])<<8;
+    cp->opcode |= asciihexToNum(buf[i++]);
+    cp->value = asciihexToNum(buf[i++])<<8;
+    cp->value |= asciihexToNum(buf[i++]);
+    cp->address = asciihexToNum(buf[i++])<<24;
+    cp->address |= asciihexToNum(buf[i++])<<16;
+    cp->address |= asciihexToNum(buf[i++])<<8;
+    cp->address |= asciihexToNum(buf[i++]);
+
     if(buf[i] != ']')
+        return PACKET_ERROR;
+    return PACKET_COMMAND;
+}
+int strToDataPacket(data_packet_t* dp, char* buf)
+{
+    //TODO CHANGE THIS
+    uint8_t i=0;
+    uint8_t len = SIZE_DATA;
+    if(buf[i++] != '[')
+        return PACKET_ERROR;
+    if(asciihexToNum(buf[i++]) != PACKET_DATA)
+        return PACKET_ERROR;
+    if(buf[i++] != ':')
+        return PACKET_ERROR;
+    if(buf[len-1] != ']')
+        return PACKET_ERROR;
+    //copy the actual data flags, opcode, value, address
+    dp->data1 = asciihexToNum(buf[i++])<<24;
+    dp->data1 |= asciihexToNum(buf[i++])<<16;
+    dp->data1 |= asciihexToNum(buf[i++])<<8;
+    dp->data1 |= asciihexToNum(buf[i++]);
+    dp->data2 = asciihexToNum(buf[i++])<<24;
+    dp->data2 |= asciihexToNum(buf[i++])<<16;
+    dp->data2 |= asciihexToNum(buf[i++])<<8;
+    dp->data2 |= asciihexToNum(buf[i++]);
+    dp->data3 = asciihexToNum(buf[i++])<<24;
+    dp->data3 |= asciihexToNum(buf[i++])<<16;
+    dp->data3 |= asciihexToNum(buf[i++])<<8;
+    dp->data3 |= asciihexToNum(buf[i++]);
+    dp->data4 = asciihexToNum(buf[i++])<<24;
+    dp->data4 |= asciihexToNum(buf[i++])<<16;
+    dp->data4 |= asciihexToNum(buf[i++])<<8;
+    dp->data4 |= asciihexToNum(buf[i++]);
+    dp->data5 = asciihexToNum(buf[i++])<<24;
+    dp->data5 |= asciihexToNum(buf[i++])<<16;
+    dp->data5 |= asciihexToNum(buf[i++])<<8;
+    dp->data5 |= asciihexToNum(buf[i++]);
+    dp->source = asciihexToNum(buf[i++])<<24;
+    dp->source |= asciihexToNum(buf[i++])<<16;
+    dp->source |= asciihexToNum(buf[i++])<<8;
+    dp->source |= asciihexToNum(buf[i++]);
+
+    if(buf[i] != ']')
+        return PACKET_ERROR;
+    return PACKET_DATA;
+}
+int strToStatusPacket(status_packet_t* sp, char* buf)
+{
+    //TODO CHANGE THIS
+    uint8_t i=0;
+    uint8_t len = SIZE_STATUS;
+    if(buf[i++] != '[')
+        return PACKET_ERROR;
+    if(asciihexToNum(buf[i++]) != PACKET_STATUS)
+        return PACKET_ERROR;
+    if(buf[i++] != ':')
+        return PACKET_ERROR;
+    if(buf[len-1] != ']')
+        return PACKET_ERROR;
+    //copy the actual node_id, burst interval, interval type, history enable, burst enable
+    sp->node_id = asciihexToNum(buf[i++])<<24;
+    sp->node_id |= asciihexToNum(buf[i++])<<16;
+    sp->node_id |= asciihexToNum(buf[i++])<<8;
+    sp->node_id |= asciihexToNum(buf[i++]);
+    sp->burstInterval = asciihexToNum(buf[i++])<<8;
+    sp->burstInterval |= asciihexToNum(buf[i++]);
+    sp->intervalType = asciihexToNum(buf[i++]);
+    sp->historyEnable = buf[i++]&0x01;
+    sp->burstEnable = buf[i++]&0x01;
+
+    if(buf[i] != ']')
+        return PACKET_ERROR;
+    return PACKET_STATUS;
+}
+int getTypeOfPacket(char* buf)
+{
+    int len, type;
+    if(buf[0]!='[')
+        return PACKET_ERROR;
+    if(buf[2]!=':')
+        return PACKET_ERROR;
+    switch( (type=asciihexToNum(buf[1])) )
+    {
+        case PACKET_COMMAND: len = SIZE_COMMAND; break;
+        case PACKET_DATA: len = SIZE_DATA; break;
+        case PACKET_STATUS: len = SIZE_STATUS; break;
+        default: return PACKET_ERROR;
+    }
+    if(buf[len-1] != ']')
         return PACKET_ERROR;
     return type;
 }
@@ -94,33 +158,13 @@ int commandToBuffer(command_packet_t* cp, char* buf)
     buf[i] = 0;
     return i;
 }
-int getTypeOfPacket(char* buf)
-{
-    int len, type;
-    if(buf[0]!='[')
-        return PACKET_ERROR;
-    if(buf[2]!=':')
-        return PACKET_ERROR;
-    switch( (type=LOW(buf[1])) )
-    {
-        case PACKET_COMMAND: len = sizeof(command_packet_t); break;
-        case PACKET_DATA: len = sizeof(data_packet_t); break;
-        case PACKET_DATA_COMPRESSED: len = sizeof(compressed_data_packet_t); break;
-        case PACKET_STATUS: len = sizeof(status_packet_t); break;
-        default: return PACKET_ERROR;
-    }
-    if(buf[3+2*len] != ']')
-        return PACKET_ERROR;
-    return type;
-}
 int dataPacketToStr(data_packet_t* dp, char* buf)
 {
-    uint8_t i, len;
+    uint8_t i=0;
     //header
     buf[i++]='[';
     buf[i++]=hexTable[PACKET_DATA];
     buf[i++]=':';
-    len = sizeof(data_packet_t);
     //data
     buf[i++] = hexTable[HIGH((dp->data1)>>8)];
     buf[i++] = hexTable[LOW((dp->data1)>>8)];
@@ -153,12 +197,11 @@ int dataPacketToStr(data_packet_t* dp, char* buf)
 }
 int commandPacketToStr(command_packet_t* cp, char* buf)
 {
-    uint8_t i, len;
+    uint8_t i=0;
     //header
     buf[i++]='[';
     buf[i++]=hexTable[PACKET_COMMAND];
     buf[i++]=':';
-    len = sizeof(data_packet_t);
     //data
     buf[i++] = hexTable[cp->WE];
     buf[i++] = hexTable[cp->HE];
@@ -178,12 +221,11 @@ int commandPacketToStr(command_packet_t* cp, char* buf)
 }
 int statusPacketToStr(status_packet_t* sp, char* buf)
 {
-    uint8_t i, len;
+    uint8_t i=0;
     //header
     buf[i++]='[';
     buf[i++]=hexTable[PACKET_DATA];
     buf[i++]=':';
-    len = sizeof(data_packet_t);
     //data
     buf[i++] = hexTable[HIGH((sp->node_id)>>8)];
     buf[i++] = hexTable[LOW((sp->node_id)>>8)];
