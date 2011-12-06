@@ -1,0 +1,1 @@
+strace -t -e trace=file,read,write -o strace.txt ./dist/Release/GNU-Linux-x86/sendkthwsncommand -w1 -h1 -b1 -f -v -t255m -aabcd -l -p/home/alpsayin/tinyos_workspace/fakeSerialPort2.txt
