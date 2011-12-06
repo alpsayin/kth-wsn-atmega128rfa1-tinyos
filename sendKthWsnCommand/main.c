@@ -426,7 +426,9 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            memcpy(devicename, argv[i] + 2, strlen(argv[i]) - 2);
+            val = strlen(argv[i]) - 2;
+            memcpy(devicename, argv[i] + 2, val);
+            devicename[val] = 0;
         }
         portParam++;
     }
@@ -435,7 +437,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
     commandPacket.HE&=commandPacket.WE; //write must be enabled for history enable
     commandPacket.BE&=commandPacket.WE; //write must be enabled for burst enable
 
-    if(echoParam+readParam+timeParam+commandPacket.WE == 0) //no command is entered
+    if(echoParam + readParam + timeParam + commandPacket.WE == 0) //no command is entered
     {
         if(commandPacket.opcode == COMMAND_CONFIGURE)
         {
@@ -451,7 +453,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
     }
     else
     {
-        if(echoParam+readParam+timeParam > 1)
+        if(echoParam + readParam + timeParam > 1)
         {
             fputs(instr, output);
             fputs("more than one commands are entered\n", output);
@@ -482,7 +484,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
             fputs("\n", output);
         }
     }
-    
+
 
     if(!no_command)
     {
