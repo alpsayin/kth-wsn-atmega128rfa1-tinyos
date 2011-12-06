@@ -3,13 +3,6 @@
 #include <inttypes.h>
 #include "packet_types.h"
 
-#ifndef LOW
-#define LOW(n) (n & 0x0F)
-#endif
-
-#ifndef HIGH
-#define HIGH(n) ((n>>4) & 0x0F)
-#endif
 
 static uint8_t hexTable[16] = "0123456789abcdef";
 
@@ -40,13 +33,13 @@ int strToCommandPacket(command_packet_t* cp, char* buf)
     cp->WE = buf[i++]&0x01;
     cp->HE = buf[i++]&0x01;
     cp->BE = buf[i++]&0x01;
-    cp->opcode = asciihexToNum(buf[i++])<<8;
+    cp->opcode = asciihexToNum(buf[i++])<<4;
     cp->opcode |= asciihexToNum(buf[i++]);
-    cp->value = asciihexToNum(buf[i++])<<8;
+    cp->value = asciihexToNum(buf[i++])<<4;
     cp->value |= asciihexToNum(buf[i++]);
-    cp->address = asciihexToNum(buf[i++])<<24;
-    cp->address |= asciihexToNum(buf[i++])<<16;
+    cp->address = asciihexToNum(buf[i++])<<12;
     cp->address |= asciihexToNum(buf[i++])<<8;
+    cp->address |= asciihexToNum(buf[i++])<<4;
     cp->address |= asciihexToNum(buf[i++]);
 
     if(buf[i] != ']')
@@ -67,33 +60,33 @@ int strToDataPacket(data_packet_t* dp, char* buf)
     if(buf[len-1] != ']')
         return PACKET_ERROR;
     //copy the actual data flags, opcode, value, address
-    dp->data1 = asciihexToNum(buf[i++])<<24;
-    dp->data1 |= asciihexToNum(buf[i++])<<16;
+    dp->data1 = asciihexToNum(buf[i++])<<12;
     dp->data1 |= asciihexToNum(buf[i++])<<8;
+    dp->data1 |= asciihexToNum(buf[i++])<<4;
     dp->data1 |= asciihexToNum(buf[i++]);
-    dp->data2 = asciihexToNum(buf[i++])<<24;
-    dp->data2 |= asciihexToNum(buf[i++])<<16;
+    dp->data2 = asciihexToNum(buf[i++])<<12;
     dp->data2 |= asciihexToNum(buf[i++])<<8;
+    dp->data2 |= asciihexToNum(buf[i++])<<4;
     dp->data2 |= asciihexToNum(buf[i++]);
-    dp->data3 = asciihexToNum(buf[i++])<<24;
-    dp->data3 |= asciihexToNum(buf[i++])<<16;
+    dp->data3 = asciihexToNum(buf[i++])<<12;
     dp->data3 |= asciihexToNum(buf[i++])<<8;
+    dp->data3 |= asciihexToNum(buf[i++])<<4;
     dp->data3 |= asciihexToNum(buf[i++]);
-    dp->data4 = asciihexToNum(buf[i++])<<24;
-    dp->data4 |= asciihexToNum(buf[i++])<<16;
+    dp->data4 = asciihexToNum(buf[i++])<<12;
     dp->data4 |= asciihexToNum(buf[i++])<<8;
+    dp->data4 |= asciihexToNum(buf[i++])<<4;
     dp->data4 |= asciihexToNum(buf[i++]);
-    dp->data5 = asciihexToNum(buf[i++])<<24;
-    dp->data5 |= asciihexToNum(buf[i++])<<16;
+    dp->data5 = asciihexToNum(buf[i++])<<12;
     dp->data5 |= asciihexToNum(buf[i++])<<8;
+    dp->data5 |= asciihexToNum(buf[i++])<<4;
     dp->data5 |= asciihexToNum(buf[i++]);
-    dp->source = asciihexToNum(buf[i++])<<24;
-    dp->source |= asciihexToNum(buf[i++])<<16;
+    dp->source = asciihexToNum(buf[i++])<<12;
     dp->source |= asciihexToNum(buf[i++])<<8;
+    dp->source |= asciihexToNum(buf[i++])<<4;
     dp->source |= asciihexToNum(buf[i++]);
-    dp->seqNo = asciihexToNum(buf[i++])<<24;
-    dp->seqNo |= asciihexToNum(buf[i++])<<16;
+    dp->seqNo = asciihexToNum(buf[i++])<<12;
     dp->seqNo |= asciihexToNum(buf[i++])<<8;
+    dp->seqNo |= asciihexToNum(buf[i++])<<4;
     dp->seqNo |= asciihexToNum(buf[i++]);
 
     if(buf[i] != ']')
@@ -114,11 +107,11 @@ int strToStatusPacket(status_packet_t* sp, char* buf)
     if(buf[len-1] != ']')
         return PACKET_ERROR;
     //copy the actual node_id, burst interval, interval type, history enable, burst enable
-    sp->node_id = asciihexToNum(buf[i++])<<24;
-    sp->node_id |= asciihexToNum(buf[i++])<<16;
+    sp->node_id = asciihexToNum(buf[i++])<<12;
     sp->node_id |= asciihexToNum(buf[i++])<<8;
+    sp->node_id |= asciihexToNum(buf[i++])<<4;
     sp->node_id |= asciihexToNum(buf[i++]);
-    sp->burstInterval = asciihexToNum(buf[i++])<<8;
+    sp->burstInterval = asciihexToNum(buf[i++])<<4;
     sp->burstInterval |= asciihexToNum(buf[i++]);
     sp->intervalType = asciihexToNum(buf[i++]);
     sp->historyEnable = buf[i++]&0x01;
