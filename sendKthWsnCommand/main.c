@@ -60,12 +60,13 @@ struct sigaction saio; //definition of signal action
 int main(int argc, char** argv)
 {
     char buf[BUFFER_SIZE];
-    char *ptr, *endPtr;
+    char *ptr;
     int i=0, val=0, no_command=0;
+    int burstParam=0, histParam=0, writeParam=0, readParam=0, timeParam=0, addrParam=0, portParam=0;
     char Key;
     uint8_t confirmation=1, verbose=0;
     int pos=0;
-    uint8_t high=1, started=0;
+    uint8_t started=0;
 
     input=stdin;
     output=stdout;
@@ -81,7 +82,7 @@ be set to a maximum of 48 days. Received command packets, data packets and statu
 the user can parse the output files easily by using a tool like awk.\n\
     Options:\n\
     -hE set history enable (0/1) \n\
-    -bE burst enable (0/1) (if this is not 1 -h is not effective) \n\
+    -bE burst enable (0/1) \n\
     -wE write enable (0/1) (if this is not 1 -h -b are not effective) \n\
     -tTimeU set measurement interval in seconds, minutes, hours or days (U=s/m/h/d) \n\
     -rType request data of Type (data/history/status)   \n\
@@ -160,7 +161,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
+            if(histParam>=1)
+            {
+                fputs(instr, output);
+                fputs("-h has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             commandPacket.HE=val > 0;
+            histParam++;
         }
         else if(!strncmp(argv[i], "-b", 2))
         {
@@ -179,7 +188,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
+            if(burstParam>=1)
+            {
+                fputs(instr, output);
+                fputs("-b has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             commandPacket.BE=val > 0;
+            burstParam++;
         }
         else if(!strncmp(argv[i], "-w", 2))
         {
@@ -198,7 +215,15 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
+            if(writeParam>=1)
+            {
+                fputs(instr, output);
+                fputs("-w has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             commandPacket.WE=val > 0;
+            writeParam++;
         }
         else if(!strncmp(argv[i], "-r", 2))
         {
@@ -223,6 +248,14 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
+            if(readParam>=1)
+            {
+                fputs(instr, output);
+                fputs("-r has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
+            readParam++;
         }
         else if(!strncmp(argv[i], "-t", 2))
         {
@@ -266,6 +299,14 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
             {
                 commandPacket.value=val;
             }
+            if(timeParam>=1)
+            {
+                fputs(instr, output);
+                fputs("-t has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
+            timeParam++;
         }
         else if(!strncmp(argv[i], "-a", 2))
         {
@@ -285,6 +326,14 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 return EXIT_FAILURE;
             }
             commandPacket.address=val;
+            if(addrParam>=1)
+            {
+                fputs(instr, output);
+                fputs("-a has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
+            addrParam++;
         }
         else if(!strncmp(argv[i], "-e", 2))
         {
@@ -340,7 +389,24 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            strncpy(devicename, argv[i]+2, strlen(argv[i])-2);
+            strncpy(devicename, argv[i] + 2, strlen(argv[i]) - 2);
+        }
+        portParam++;
+    }
+
+    if(writeParam == 0)
+    {
+        fputs("write enable parameter not entered, write_enable=0 is implied\n", output);
+    }
+    else
+    {
+        if(histParam == 0)
+        {
+            fputs("history enable parameter not entered, write_enable=0 is implied\n", output);
+        }
+        if(burstParam == 0)
+        {
+            fputs("burst enable parameter not entered, write_enable=0 is implied\n", output);
         }
     }
 
@@ -477,19 +543,19 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
         if(!statusOutput)
         {
             fputs("couldn't open status output file, using stdout instead\n", output);
-            statusOutput = stdout;
+            statusOutput=stdout;
         }
         dataOutput=fopen("data_output.txt", "w");
         if(!dataOutput)
         {
             fputs("couldn't open data output file, using stdout instead\n", output);
-            dataOutput = stdout;
+            dataOutput=stdout;
         }
         commandOutput=fopen("command_output.txt", "w");
         if(!commandOutput)
         {
             fputs("couldn't open command output file, using stdout instead\n", output);
-            commandOutput = stdout;
+            commandOutput=stdout;
         }
         fputs("started listening...\n", output);
     }
@@ -592,7 +658,7 @@ int processReceiveBuffer()
 #ifdef DEBUG
     printf("received packet with type -%d-\n", type);
 #endif
-    if(type!=PACKET_ERROR)
+    if(type != PACKET_ERROR)
     {
         sprintf(buf, "|%s|\n", receiveBuffer);
         fputs(buf, stdout);
@@ -739,57 +805,59 @@ static char *ooi_path;
 
 void ooi_unlink(void)
 {
-	unlink(ooi_path);
+    unlink(ooi_path);
 }
+
 int only_one_instance(void)
 {
-	struct flock fl;
-	size_t dirlen;
-	int lockFd;
-	char *dir;
+    struct flock fl;
+    size_t dirlen;
+    int lockFd;
+    char *dir;
 
-	/*
-	 * Place the lock in the home directory of this user;
-	 * therefore we only check for other instances by the same
-	 * user (and the user can trick us by changing HOME).
-	 */
-	dir = getenv("HOME");
-	if (dir == NULL || dir[0] != '/') {
-		fputs("Bad home directory.\n", stderr);
-		exit(1);
-	}
-	dirlen = strlen(dir);
+    /*
+     * Place the lock in the home directory of this user;
+     * therefore we only check for other instances by the same
+     * user (and the user can trick us by changing HOME).
+     */
+    dir=getenv("HOME");
+    if(dir == NULL || dir[0] != '/')
+    {
+        fputs("Bad home directory.\n", stderr);
+        exit(1);
+    }
+    dirlen=strlen(dir);
 
-	ooi_path = malloc(dirlen + sizeof("/" INSTANCE_LOCK));
-	if (ooi_path == NULL)
-		fail("malloc");
-	memcpy(ooi_path, dir, dirlen);
-	memcpy(ooi_path + dirlen, "/" INSTANCE_LOCK,
-	    sizeof("/" INSTANCE_LOCK));  /* copies '\0' */
+    ooi_path=malloc(dirlen + sizeof ("/" INSTANCE_LOCK));
+    if(ooi_path == NULL)
+        fail("malloc");
+    memcpy(ooi_path, dir, dirlen);
+    memcpy(ooi_path + dirlen, "/" INSTANCE_LOCK,
+           sizeof ("/" INSTANCE_LOCK)); /* copies '\0' */
 
-	lockFd = open(ooi_path, O_RDWR | O_CREAT, 0600);
-	if (lockFd < 0)
-        {
-		fail(ooi_path);
-        }
-	fl.l_start = 0;
-	fl.l_len = 0;
-	fl.l_type = F_WRLCK;
-	fl.l_whence = SEEK_SET;
-	if (fcntl(lockFd, F_SETLK, &fl) < 0)
-        {
-		fputs("Another instance of this program is running.\n",
-		    stderr);
-                return 1;
-	}
-/*
-        chmod(ooi_path, 0400);
-*/
+    lockFd=open(ooi_path, O_RDWR | O_CREAT, 0600);
+    if(lockFd < 0)
+    {
+        fail(ooi_path);
+    }
+    fl.l_start=0;
+    fl.l_len=0;
+    fl.l_type=F_WRLCK;
+    fl.l_whence=SEEK_SET;
+    if(fcntl(lockFd, F_SETLK, &fl) < 0)
+    {
+        fputs("Another instance of this program is running.\n",
+              stderr);
+        return 1;
+    }
+    /*
+            chmod(ooi_path, 0400);
+     */
 
-	/*
-	 * Run unlink(ooi_path) when the program exits. The program
-	 * always releases locks when it exits.
-	 */
-	atexit(ooi_unlink);
-        return 0;
+    /*
+     * Run unlink(ooi_path) when the program exits. The program
+     * always releases locks when it exits.
+     */
+    atexit(ooi_unlink);
+    return 0;
 }
