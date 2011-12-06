@@ -225,7 +225,7 @@ int statusPacketToStr(status_packet_t* sp, char* buf)
     uint8_t i=0;
     //header
     buf[i++]='[';
-    buf[i++]=hexTable[PACKET_DATA];
+    buf[i++]=hexTable[PACKET_STATUS];
     buf[i++]=':';
     //data
     buf[i++] = hexTable[HIGH((sp->node_id)>>8)];
