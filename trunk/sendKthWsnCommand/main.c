@@ -21,7 +21,7 @@
 #define DEFAULT_COMMAND COMMAND_CONFIGURE
 
 #define BAUDRATE B57600
-#define MODEMDEVICE "/home/alpsayin/tinyos_workspace/fakeSerialPort.txt"
+#define MODEMDEVICE "/dev/ttyUSB0"
 #define _POSIX_SOURCE 1         //POSIX compliant source
 #define FALSE 0
 #define TRUE 1
@@ -35,7 +35,7 @@ volatile int listen=0;
 volatile int wait_flag=0;
 char receiveBuffer[BUFFER_SIZE];
 
-char devicename[80]=MODEMDEVICE;
+char devicename[128]=MODEMDEVICE;
 long BAUD=B57600; // derived baud rate from command line
 long DATABITS=CS8; //8 data bits
 long STOPBITS=0; //1 stop bit
@@ -89,15 +89,18 @@ the user can parse the output files easily by using a tool like awk.\n\
     -f no confirmation \n\
     -e send echo command, expecting the same command to return\n\
     -l enables listening after command issue, if used no command has to be entered\n\
+    -p specifies the serial port to be used\
 \n\
 Example: \n\
-sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
+sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
     history enabled \n\
     burst enabled \n\
     write enabled \n\
     interval=1 hour \n\
     start listening the network after command\n\
-    request data from all nodes (broadcast) \n";
+    don't ask for confirmation\n\
+    request data from all nodes (broadcast) \n\
+    listen /dev/ttyUSB0 port\n";
 
     signal(SIGINT, sigint_handler);
 
@@ -327,6 +330,17 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                 return EXIT_FAILURE;
             }
             listen=1;
+        }
+        else if(!strncmp(argv[i], "-p", 2))
+        {
+            if(strlen(argv[i]) == 2)
+            {
+                fputs(instr, output);
+                fputs("-p has too few parameters\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
+            strncpy(devicename, argv[i]+2, strlen(argv[i])-2);
         }
     }
 
@@ -574,6 +588,9 @@ int processReceiveBuffer()
     status_packet_t statusPacket;
 
     type=getTypeOfPacket(receiveBuffer);
+#ifdef DEBUG
+    printf("received packet with type -%d-\n", type);
+#endif
     if(type!=PACKET_ERROR)
     {
         sprintf(buf, "|%s|\n", receiveBuffer);

@@ -3,14 +3,16 @@ implementation
 {
 	components MainC, SerialEchoC, PlatformSerialC, LedsC;
 	components DummyNotificationReceiverP;
-	components new TimerMilliC() as BufferTimer;
-	components new TimerMilliC() as LedTimer;
+	components new TimerMilliC() as Timer0;
+	components new TimerMilliC() as Timer1;
+	components new TimerMilliC() as Timer2;
+	components new TimerMilliC() as Timer3;
 	components new PacketTypesP() as PacketTypesImpl;
 	components new PacketTypesP() as PacketTypesDummy;
 	
 	SerialEchoC.PacketTypes -> PacketTypesImpl;
-	SerialEchoC.Timer1 -> LedTimer;
-	SerialEchoC.Timer0 -> BufferTimer;
+	SerialEchoC.Timer0 -> Timer0;
+	SerialEchoC.Timer1 -> Timer1;
 	SerialEchoC.Boot -> MainC.Boot;
 	SerialEchoC.UartStream -> PlatformSerialC;
 	SerialEchoC.UartByte -> PlatformSerialC;
@@ -19,4 +21,12 @@ implementation
 	DummyNotificationReceiverP.CommandNotification -> SerialEchoC;
 	DummyNotificationReceiverP.UartByte -> PlatformSerialC;
 	DummyNotificationReceiverP.PacketTypes -> PacketTypesDummy;
+	DummyNotificationReceiverP.Timer0 -> Timer2;
+	DummyNotificationReceiverP.Timer1 -> Timer3;
+	DummyNotificationReceiverP.Boot -> MainC.Boot;
+	
+	SerialEchoC.CommandNotification <- DummyNotificationReceiverP.CommandNotification;
+	SerialEchoC.ForwardCommand <- DummyNotificationReceiverP.ForwardCommand;
+	SerialEchoC.ForwardData <- DummyNotificationReceiverP.ForwardData;
+	SerialEchoC.ForwardStatus <- DummyNotificationReceiverP.ForwardStatus;
 }
