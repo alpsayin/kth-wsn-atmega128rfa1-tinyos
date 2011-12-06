@@ -92,26 +92,24 @@ implementation
 
 	event void Timer0.fired()
 	{
-		uint8_t msgBuf[32];
-		uint8_t msgLen;
+		
 	}
 
 	event void Timer1.fired()
 	{
-		uint8_t msgBuf[32];
-		uint8_t msgLen;
+		
 	}
 	task void processReceiveBufferTask()
 	{
 		//TODO atomic copy of receive buffer to a local buffer	
-    	char localBuf[64];
+    	uint8_t localBuf[64];
 		uint8_t type;
 	    data_packet_t localDataPacket;
 	    command_packet_t localCommandPacket;
 	    status_packet_t localStatusPacket;
 	    
 	    atomic {
-	    	strncpy(localBuf, receiveBuffer, pos);	
+	    	strncpy((char*)localBuf, (char*)receiveBuffer, pos);	
     	}
 
 	    type=call PacketTypes.getTypeOfPacket(localBuf);
@@ -159,7 +157,7 @@ implementation
 	async command error_t ForwardCommand.setNow(command_packet_t val)
 	{
 		// TODO check if busy, if not send else return busy
-    	char localBuf[64];
+    	uint8_t localBuf[64];
 		uint8_t len;
 	    command_packet_t localCommandPacket;
 	    
@@ -171,24 +169,24 @@ implementation
 	async command error_t ForwardData.setNow(data_packet_t val)
 	{
 		// TODO check if busy, if not send else return busy
-    	char localBuf[64];
+    	uint8_t localBuf[64];
 		uint8_t len;
 	    data_packet_t localDataPacket;
 	    
 	    localDataPacket = val;
-	    len = call PacketTypes.commandPacketToStr(&localDataPacket, localBuf);
+	    len = call PacketTypes.dataPacketToStr(&localDataPacket, localBuf);
 	    return call UartStream.send(localBuf, len);
 	}
 
 	async command error_t ForwardStatus.setNow(status_packet_t val)
 	{
 		// TODO check if busy, if not send else return busy
-    	char localBuf[64];
+    	uint8_t localBuf[64];
 		uint8_t len;
 	    status_packet_t localStatusPacket;
 	    
 	    localStatusPacket = val;
-	    len = call PacketTypes.commandPacketToStr(&localStatusPacket, localBuf);
+	    len = call PacketTypes.statusPacketToStr(&localStatusPacket, localBuf);
 	    return call UartStream.send(localBuf, len);
 	}
 }
