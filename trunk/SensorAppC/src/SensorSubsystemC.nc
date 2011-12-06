@@ -36,8 +36,8 @@ implementation{
 	components new PlatformSensorC(Sensor_Channel_2) as vol2;
 	components new PlatformSensorC(Sensor_Channel_3) as vol3;
 
-	Read		= SensorSubsystemP;
-	ReadOne		= SensorSubsystemP;
+	Read		= SensorSubsystemP.Read;
+	ReadOne		= SensorSubsystemP.ReadOne;
 	
 	SensorSubsystemP.TempADC -> TempSensor.Read;
 	SensorSubsystemP.vol0ADC -> vol0.Read;

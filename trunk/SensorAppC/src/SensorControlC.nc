@@ -30,8 +30,9 @@ configuration SensorControlC{
 		interface Read<data_packet_t> as ReadAdc;
 		interface Queue<data_packet_t> as StoreData;
 		interface Notify<status_packet_t>;
-		
+#ifdef LED_SENSOR_ENABLE
 		interface Leds;
+#endif
 	}
 	
 }
@@ -50,6 +51,7 @@ implementation{
 	
 	SensorControlP.Timer0 -> Timer0;
 	
+#ifdef LED_SENSOR_ENABLE
 	Leds = SensorControlP.Leds;
-	
+#endif
 }

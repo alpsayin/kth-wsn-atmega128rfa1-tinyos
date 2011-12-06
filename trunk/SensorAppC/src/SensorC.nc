@@ -39,9 +39,6 @@ configuration SensorC{
 		
 		interface Notify<status_packet_t>;
 
-		
-		interface Leds;
-
 	}
 	
 }
@@ -52,6 +49,11 @@ implementation{
 	components SensorSubsystemC;
 	components new QueueC(data_packet_t, BUFFER_SIZE) as SensorBuffer;
 	
+#ifdef LED_SENSOR_ENABLE
+	components LedsC;
+	SensorControlC.Leds -> LedsC.Leds;
+#endif
+	
 	Init		= SensorControlC.Init;
 	GetStatus	= SensorControlC.GetStatus;
 	GetData		= SensorControlC.GetData;
@@ -61,5 +63,4 @@ implementation{
 	SensorControlC.ReadAdc		-> SensorSubsystemC.Read;
 	SensorControlC.StoreData	-> SensorBuffer.Queue;	
 	
-	Leds = SensorControlC.Leds;
 }

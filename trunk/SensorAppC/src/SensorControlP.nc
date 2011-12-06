@@ -32,7 +32,7 @@ module SensorControlP{
 		interface Queue<data_packet_t> as StoreData;	//store sample in the history buffer
 
 		interface Notify<status_packet_t>;				//set interface for upper components and generate a notify signal when the buffer is full
-#ifdef LED_ENABLE
+#ifdef LED_SENSOR_ENABLE
 		interface Leds;
 #endif
 	}
@@ -58,7 +58,7 @@ implementation{
 
 	event void Timer0.fired(){				//every time the timer fired, the adc will sample all the sensors one time
 		
-#ifdef LED_ENABLE
+#ifdef LED_SENSOR_ENABLE
 		call Leds.led0Toggle();
 #endif
 		call ReadAdc.read();
@@ -132,12 +132,12 @@ implementation{
 		{
 			if(BUFFER_SIZE == call StoreData.size())
 			{
-#ifdef LED_ENABLE
+#ifdef LED_SENSOR_ENABLE
 				call Leds.led2On();
 #endif
 				call StoreData.dequeue();
 			}
-#ifdef LED_ENABLE
+#ifdef LED_SENSOR_ENABLE
 			else
 				call Leds.led2Off();
 #endif
@@ -148,7 +148,7 @@ implementation{
 					call StoreData.enqueue(val);
 					if(BUFFER_SIZE == call StoreData.size())
 					{
-#ifdef LED_ENABLE
+#ifdef LED_SENSOR_ENABLE
 						call Leds.led1Toggle();
 #endif
 						call Notify.enable();

@@ -16,10 +16,11 @@
 #ifndef SENSOR_CONFIG_H
 #define SENSOR_CONFIG_H
 
-#endif /* SENSOR_CONFIG_H */
 
 #include "packet_types.h"
 #include "PlatformSensorChannel.h"
+
+#define NODE_ID 100					//Only for testing
 
 #define BUFFER_SIZE 5
 
@@ -27,4 +28,12 @@
 #define TIMER_SCALE 1000
 #define TIMING_PHASE_SHIFT 0
 
-#define LED_ENABLE
+#define DEFAULT_TIMER_PERIOD	5	//unit: second
+#define DEFAULT_TIMER_BOUNDARY	48ul	//unit: day
+
+
+//#define LED_SENSOR_ENABLE
+
+
+
+#endif /* SENSOR_CONFIG_H */

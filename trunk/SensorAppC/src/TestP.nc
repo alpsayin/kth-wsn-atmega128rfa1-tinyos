@@ -28,7 +28,7 @@ module TestP{
 		interface Init;
 		interface Get<status_packet_t> as GetStatus;
 		interface Get<data_packet_t> as GetData;
-		interface ReadNow<data_packet_t> as GetDataNow;
+		interface Read<data_packet_t> as GetDataOne;
 	
 	}
 	
@@ -74,7 +74,7 @@ implementation{
 		return SUCCESS;
 	}
 
-	async event void GetDataNow.readDone(error_t result, data_packet_t val){
+	event void GetDataOne.readDone(error_t result, data_packet_t val){
 		// TODO Auto-generated method stub
 	}
 

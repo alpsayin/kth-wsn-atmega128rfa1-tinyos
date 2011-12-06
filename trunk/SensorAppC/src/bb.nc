@@ -18,17 +18,13 @@ implementation{
 	components MainC;
 	components SensorC;
 	components TestP;
-	components LedsC;
 	
 	TestP.Boot -> MainC.Boot;
 	
 	TestP.Init -> SensorC.Init;
 	TestP.GetData -> SensorC.GetData;
-	TestP.GetDataNow -> SensorC.GetDataNow;
+	TestP.GetDataOne -> SensorC.GetDataOne;
 	TestP.GetStatus -> SensorC.GetStatus;
-	
-	TestP.Leds -> LedsC.Leds;
-	SensorC.Leds -> LedsC.Leds;
 	
 	SensorC.Notify -> TestP.Notify;
 		
