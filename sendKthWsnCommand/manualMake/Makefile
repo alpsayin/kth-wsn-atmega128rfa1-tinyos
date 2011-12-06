@@ -2,13 +2,14 @@
 CC=gcc
 CFLAGS=-march=i586 -Os -g
 LDFLAGS=-static
- 
+DFLAGS=RELEASE
+
 INPUT=../main.c ../packet_types.c
 OUTPUT=sendkthwsncommand
 
 
 all:
-	$(CC) $(INPUT) -o $(OUTPUT) $(CFLAGS) $(LDFLAGS)
+	$(CC) $(INPUT) -o $(OUTPUT) $(CFLAGS) $(LDFLAGS) -D$(DFLAGS)
 
 clean:
 	rm -rf $(OUTPUT)

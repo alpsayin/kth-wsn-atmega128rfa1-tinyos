@@ -26,10 +26,14 @@ module SerialEchoC @safe()
 	provides
 	{
 		interface Notify<command_packet_t> as CommandNotification;
+		interface SetNow<command_packet_t> as ForwardCommand;
+		interface SetNow<data_packet_t> as ForwardData;
+		interface SetNow<status_packet_t> as ForwardStatus;
 	}
 }
 implementation
 {
+	//TODO implement a circular send buffer
 	task void processReceiveBufferTask();
 	const uint8_t hexTable[16] = "0123456789abcdef";
 
@@ -51,7 +55,7 @@ implementation
 
 	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
 	{
-		// TODO Auto-generated method stub
+		// TODO  UartStream.receiveDone not used
 	}
 	async event void UartStream.receivedByte(uint8_t byte)
 	{
@@ -83,7 +87,7 @@ implementation
 
 	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error)
 	{
-//		call Leds.led1Toggle();
+		//TODO  UartStream.sendDone not used
 	}
 
 	event void Timer0.fired()
@@ -120,6 +124,7 @@ implementation
 	        type=call PacketTypes.strToCommandPacket(&localCommandPacket, localBuf);
 	        if(type == PACKET_ERROR)
 	            return;
+	        //TODO we don't need to copy actually, think about it
 	        gCommandPacket = localCommandPacket;
 			signal CommandNotification.notify(gCommandPacket);
 	    }
@@ -149,5 +154,41 @@ implementation
 		enabled=TRUE;
 		started=FALSE;
 		return SUCCESS;
+	}
+
+	async command error_t ForwardCommand.setNow(command_packet_t val)
+	{
+		// TODO check if busy, if not send else return busy
+    	char localBuf[64];
+		uint8_t len;
+	    command_packet_t localCommandPacket;
+	    
+	    localCommandPacket = val;
+	    len = call PacketTypes.commandPacketToStr(&localCommandPacket, localBuf);
+	    return call UartStream.send(localBuf, len);
+	}
+
+	async command error_t ForwardData.setNow(data_packet_t val)
+	{
+		// TODO check if busy, if not send else return busy
+    	char localBuf[64];
+		uint8_t len;
+	    data_packet_t localDataPacket;
+	    
+	    localDataPacket = val;
+	    len = call PacketTypes.commandPacketToStr(&localDataPacket, localBuf);
+	    return call UartStream.send(localBuf, len);
+	}
+
+	async command error_t ForwardStatus.setNow(status_packet_t val)
+	{
+		// TODO check if busy, if not send else return busy
+    	char localBuf[64];
+		uint8_t len;
+	    status_packet_t localStatusPacket;
+	    
+	    localStatusPacket = val;
+	    len = call PacketTypes.commandPacketToStr(&localStatusPacket, localBuf);
+	    return call UartStream.send(localBuf, len);
 	}
 }

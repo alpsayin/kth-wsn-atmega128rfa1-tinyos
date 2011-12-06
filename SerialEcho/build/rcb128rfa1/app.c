@@ -1894,7 +1894,15 @@ typedef uint32_t HplAtmRfa1TimerMacP__CompareC__size_type;
 typedef TMilli SerialEchoC__Timer0__precision_tag;
 typedef command_packet_t SerialEchoC__CommandNotification__val_t;
 typedef TMilli SerialEchoC__Timer1__precision_tag;
+typedef command_packet_t SerialEchoC__ForwardCommand__data_type;
+typedef data_packet_t SerialEchoC__ForwardData__data_type;
+typedef status_packet_t SerialEchoC__ForwardStatus__data_type;
+typedef TMilli DummyNotificationReceiverP__Timer0__precision_tag;
 typedef command_packet_t DummyNotificationReceiverP__CommandNotification__val_t;
+typedef command_packet_t DummyNotificationReceiverP__ForwardCommand__data_type;
+typedef TMilli DummyNotificationReceiverP__Timer1__precision_tag;
+typedef data_packet_t DummyNotificationReceiverP__ForwardData__data_type;
+typedef status_packet_t DummyNotificationReceiverP__ForwardStatus__data_type;
 typedef T62khz /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__precision_tag;
 typedef uint32_t /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__size_type;
 typedef /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__size_type /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__size_type;
@@ -1930,7 +1938,15 @@ static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte);
 static void Atm128Rfa1SerialP__sendBlockingDoneTask__runTask(void );
 #line 75
 static void Atm128Rfa1SerialP__sendDoneTask__runTask(void );
-#line 75
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+static error_t Atm128Rfa1SerialP__Uart1Stream__send(
+#line 44
+uint8_t * buf, 
+
+
+
+uint16_t len);
+# 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void );
 # 99 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
 static void Atm128Rfa1SerialP__Uart1StreamBlocking__default__receiveDone(
@@ -2101,8 +2117,18 @@ uint8_t * buf,
 
 
 uint16_t len, error_t error);
+# 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SetNow.nc"
+static error_t SerialEchoC__ForwardData__setNow(SerialEchoC__ForwardData__data_type val);
+#line 53
+static error_t SerialEchoC__ForwardStatus__setNow(SerialEchoC__ForwardStatus__data_type val);
+# 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+static void DummyNotificationReceiverP__Timer0__fired(void );
+# 60 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Boot.nc"
+static void DummyNotificationReceiverP__Boot__booted(void );
 # 74 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Notify.nc"
 static void DummyNotificationReceiverP__CommandNotification__notify(DummyNotificationReceiverP__CommandNotification__val_t val);
+# 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+static void DummyNotificationReceiverP__Timer1__fired(void );
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__fired(void );
 # 103 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Alarm.nc"
@@ -2145,17 +2171,17 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406da8f0);
+uint8_t arg_0x406ff8f0);
 # 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406da8f0, 
+uint8_t arg_0x406ff8f0, 
 # 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t t0, uint32_t dt);
 #line 64
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406da8f0, 
+uint8_t arg_0x406ff8f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 9 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
@@ -2168,6 +2194,9 @@ static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__g
 #line 7
 static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToCommandPacket(command_packet_t *cp, char *buf);
 static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToDataPacket(data_packet_t *dp, char *buf);
+
+
+static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(command_packet_t *dp, char *buf);
 #line 6
 static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(char c);
 
@@ -2312,7 +2341,7 @@ uint8_t *Atm128Rfa1SerialP__txBuf;
 #line 31
 uint8_t *Atm128Rfa1SerialP__rxBuf;
 
-
+uint8_t Atm128Rfa1SerialP__txTmpBuf[64];
 
 uint16_t Atm128Rfa1SerialP__txLen;
 #line 35
@@ -2334,6 +2363,8 @@ static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte);
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__rxInterruptHandler(uint8_t byte);
 #line 255
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void );
+#line 280
+static error_t Atm128Rfa1SerialP__Uart1Stream__send(uint8_t *buf, uint16_t len);
 #line 344
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__sendDone(uint8_t *buf, uint16_t len, error_t err);
 
@@ -2711,6 +2742,14 @@ static error_t SerialEchoC__UartByte__send(uint8_t byte);
 static void SerialEchoC__CommandNotification__notify(SerialEchoC__CommandNotification__val_t val);
 # 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void SerialEchoC__Timer1__startPeriodicAt(uint32_t t0, uint32_t dt);
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+static error_t SerialEchoC__UartStream__send(
+#line 44
+uint8_t * buf, 
+
+
+
+uint16_t len);
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
 static void SerialEchoC__Leds__led1Toggle(void );
 # 14 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
@@ -2718,13 +2757,17 @@ static uint8_t SerialEchoC__PacketTypes__getTypeOfPacket(char *buf);
 #line 7
 static uint8_t SerialEchoC__PacketTypes__strToCommandPacket(command_packet_t *cp, char *buf);
 static uint8_t SerialEchoC__PacketTypes__strToDataPacket(data_packet_t *dp, char *buf);
+
+
+static uint8_t SerialEchoC__PacketTypes__commandPacketToStr(command_packet_t *dp, char *buf);
+#line 9
 static uint8_t SerialEchoC__PacketTypes__strToStatusPacket(status_packet_t *sp, char *buf);
-# 33 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 37 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 enum SerialEchoC____nesc_unnamed4287 {
-#line 33
+#line 37
   SerialEchoC__processReceiveBufferTask = 5U
 };
-#line 33
+#line 37
 typedef int SerialEchoC____nesc_sillytask_processReceiveBufferTask[SerialEchoC__processReceiveBufferTask];
 
 
@@ -2749,7 +2792,7 @@ static inline void SerialEchoC__UartStream__receiveDone(uint8_t *buf, uint16_t l
 
 
 static inline void SerialEchoC__UartStream__receivedByte(uint8_t byte);
-#line 84
+#line 88
 static inline void SerialEchoC__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error);
 
 
@@ -2767,14 +2810,36 @@ static inline void SerialEchoC__Timer1__fired(void );
 
 
 static inline void SerialEchoC__processReceiveBufferTask__runTask(void );
-#line 147
+#line 152
 static inline error_t SerialEchoC__CommandNotification__enable(void );
+#line 171
+static inline error_t SerialEchoC__ForwardData__setNow(data_packet_t val);
+#line 183
+static inline error_t SerialEchoC__ForwardStatus__setNow(status_packet_t val);
+# 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+static void DummyNotificationReceiverP__Timer0__startPeriodic(uint32_t dt);
 # 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
 static error_t DummyNotificationReceiverP__UartByte__send(uint8_t byte);
+# 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Notify.nc"
+static error_t DummyNotificationReceiverP__CommandNotification__enable(void );
+# 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+static void DummyNotificationReceiverP__Timer1__startPeriodic(uint32_t dt);
+# 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SetNow.nc"
+static error_t DummyNotificationReceiverP__ForwardData__setNow(DummyNotificationReceiverP__ForwardData__data_type val);
+#line 53
+static error_t DummyNotificationReceiverP__ForwardStatus__setNow(DummyNotificationReceiverP__ForwardStatus__data_type val);
 # 11 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
 static uint8_t DummyNotificationReceiverP__PacketTypes__commandPacketToStr(command_packet_t *dp, char *buf);
-# 13 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
-static inline void DummyNotificationReceiverP__CommandNotification__notify(command_packet_t val);
+# 23 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+status_packet_t DummyNotificationReceiverP__statusPacket;
+data_packet_t DummyNotificationReceiverP__dataPacket;
+static inline void DummyNotificationReceiverP__Boot__booted(void );
+#line 44
+static void DummyNotificationReceiverP__CommandNotification__notify(command_packet_t val);
+#line 59
+static inline void DummyNotificationReceiverP__Timer0__fired(void );
+#line 71
+static inline void DummyNotificationReceiverP__Timer1__fired(void );
 # 70 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__setMode(uint8_t mode);
 #line 54
@@ -2930,7 +2995,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406da8f0);
+uint8_t arg_0x406ff8f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4290 {
 #line 71
@@ -2941,7 +3006,7 @@ typedef int /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_sillytas
 #line 53
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4291 {
 
-  VirtualizeTimerC__0__NUM_TIMERS = 2U, 
+  VirtualizeTimerC__0__NUM_TIMERS = 4U, 
   VirtualizeTimerC__0__END_OF_LIST = 255
 };
 
@@ -2986,12 +3051,14 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(uint
 
 
 
-static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(uint8_t num, uint32_t dt);
+static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(uint8_t num, uint32_t dt);
 #line 179
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(uint8_t num, uint32_t t0, uint32_t dt);
 #line 204
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(uint8_t num);
-# 20 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypesP.nc"
+# 18 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypesP.nc"
+uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[16] = "0123456789abcdef";
+
 static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(char c);
 
 
@@ -3009,6 +3076,8 @@ static inline uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketT
 static inline uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToStatusPacket(status_packet_t *sp, char *buf);
 #line 135
 static inline uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__getTypeOfPacket(char *buf);
+#line 210
+static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(command_packet_t *cp, char *buf);
 #line 18
 uint8_t /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[16] = "0123456789abcdef";
 #line 210
@@ -4246,7 +4315,7 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFr
     }
 }
 
-# 89 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 93 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__Timer0__fired(void )
 {
   uint8_t msgBuf[32];
@@ -4254,12 +4323,122 @@ static inline void SerialEchoC__Timer0__fired(void )
 
 }
 
-#line 95
+#line 99
 static inline void SerialEchoC__Timer1__fired(void )
 {
   uint8_t msgBuf[32];
   uint8_t msgLen;
 
+}
+
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartStream.nc"
+inline static error_t SerialEchoC__UartStream__send(uint8_t * buf, uint16_t len){
+#line 48
+  unsigned char __nesc_result;
+#line 48
+
+#line 48
+  __nesc_result = Atm128Rfa1SerialP__Uart1Stream__send(buf, len);
+#line 48
+
+#line 48
+  return __nesc_result;
+#line 48
+}
+#line 48
+# 11 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
+inline static uint8_t SerialEchoC__PacketTypes__commandPacketToStr(command_packet_t *dp, char *buf){
+#line 11
+  unsigned char __nesc_result;
+#line 11
+
+#line 11
+  __nesc_result = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(dp, buf);
+#line 11
+
+#line 11
+  return __nesc_result;
+#line 11
+}
+#line 11
+# 171 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+static inline error_t SerialEchoC__ForwardData__setNow(data_packet_t val)
+{
+
+  char localBuf[64];
+  uint8_t len;
+  data_packet_t localDataPacket;
+
+  localDataPacket = val;
+  len = SerialEchoC__PacketTypes__commandPacketToStr(&localDataPacket, localBuf);
+  return SerialEchoC__UartStream__send(localBuf, len);
+}
+
+# 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SetNow.nc"
+inline static error_t DummyNotificationReceiverP__ForwardData__setNow(DummyNotificationReceiverP__ForwardData__data_type val){
+#line 53
+  unsigned char __nesc_result;
+#line 53
+
+#line 53
+  __nesc_result = SerialEchoC__ForwardData__setNow(val);
+#line 53
+
+#line 53
+  return __nesc_result;
+#line 53
+}
+#line 53
+# 59 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+static inline void DummyNotificationReceiverP__Timer0__fired(void )
+{
+  DummyNotificationReceiverP__dataPacket.data1++;
+  DummyNotificationReceiverP__dataPacket.data2++;
+  DummyNotificationReceiverP__dataPacket.data3++;
+  DummyNotificationReceiverP__dataPacket.data4++;
+  DummyNotificationReceiverP__dataPacket.data5++;
+  DummyNotificationReceiverP__dataPacket.seqNo++;
+  DummyNotificationReceiverP__dataPacket.source = 0x0002;
+  DummyNotificationReceiverP__ForwardData__setNow(DummyNotificationReceiverP__dataPacket);
+}
+
+# 183 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+static inline error_t SerialEchoC__ForwardStatus__setNow(status_packet_t val)
+{
+
+  char localBuf[64];
+  uint8_t len;
+  status_packet_t localStatusPacket;
+
+  localStatusPacket = val;
+  len = SerialEchoC__PacketTypes__commandPacketToStr(&localStatusPacket, localBuf);
+  return SerialEchoC__UartStream__send(localBuf, len);
+}
+
+# 53 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/SetNow.nc"
+inline static error_t DummyNotificationReceiverP__ForwardStatus__setNow(DummyNotificationReceiverP__ForwardStatus__data_type val){
+#line 53
+  unsigned char __nesc_result;
+#line 53
+
+#line 53
+  __nesc_result = SerialEchoC__ForwardStatus__setNow(val);
+#line 53
+
+#line 53
+  return __nesc_result;
+#line 53
+}
+#line 53
+# 71 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+static inline void DummyNotificationReceiverP__Timer1__fired(void )
+{
+  DummyNotificationReceiverP__statusPacket.historyEnable = 1;
+  DummyNotificationReceiverP__statusPacket.burstEnable = 1;
+  DummyNotificationReceiverP__statusPacket.burstInterval = 16;
+  DummyNotificationReceiverP__statusPacket.intervalType = INTERVAL_TYPE_DAYS;
+  DummyNotificationReceiverP__statusPacket.node_id = 0x0002;
+  DummyNotificationReceiverP__ForwardStatus__setNow(DummyNotificationReceiverP__statusPacket);
 }
 
 # 204 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
@@ -4268,9 +4447,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406da8f0){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406ff8f0){
 #line 83
-  switch (arg_0x406da8f0) {
+  switch (arg_0x406ff8f0) {
 #line 83
     case 0U:
 #line 83
@@ -4284,9 +4463,21 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
       break;
 #line 83
+    case 2U:
+#line 83
+      DummyNotificationReceiverP__Timer0__fired();
+#line 83
+      break;
+#line 83
+    case 3U:
+#line 83
+      DummyNotificationReceiverP__Timer1__fired();
+#line 83
+      break;
+#line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406da8f0);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406ff8f0);
 #line 83
       break;
 #line 83
@@ -4497,82 +4688,10 @@ inline static uint8_t SerialEchoC__PacketTypes__strToDataPacket(data_packet_t *d
 #line 8
 }
 #line 8
-# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
-inline static error_t DummyNotificationReceiverP__UartByte__send(uint8_t byte){
-#line 46
-  unsigned char __nesc_result;
-#line 46
-
-#line 46
-  __nesc_result = Atm128Rfa1SerialP__Uart1Byte__send(byte);
-#line 46
-
-#line 46
-  return __nesc_result;
-#line 46
-}
-#line 46
-# 210 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypesP.nc"
-static inline uint8_t /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__PacketTypes__commandPacketToStr(command_packet_t *cp, char *buf)
-{
-  uint8_t i = 0;
-
-  buf[i++] = '[';
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[PACKET_COMMAND];
-  buf[i++] = ':';
-
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->WE];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->HE];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->BE];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[(cp->opcode >> 4) & 0x0F];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->opcode & 0x0F];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[(cp->value >> 4) & 0x0F];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->value & 0x0F];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[((cp->address >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[(cp->address >> 8) & 0x0F];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[(cp->address >> 4) & 0x0F];
-  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->address & 0x0F];
-
-  buf[i++] = ']';
-  buf[i] = 0;
-  return i;
-}
-
-# 11 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
-inline static uint8_t DummyNotificationReceiverP__PacketTypes__commandPacketToStr(command_packet_t *dp, char *buf){
-#line 11
-  unsigned char __nesc_result;
-#line 11
-
-#line 11
-  __nesc_result = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__PacketTypes__commandPacketToStr(dp, buf);
-#line 11
-
-#line 11
-  return __nesc_result;
-#line 11
-}
-#line 11
-# 13 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
-static inline void DummyNotificationReceiverP__CommandNotification__notify(command_packet_t val)
-{
-  uint8_t msgBuf[64];
-  uint8_t msgLen;
-  uint8_t i;
-
-#line 18
-  msgLen = DummyNotificationReceiverP__PacketTypes__commandPacketToStr(&val, msgBuf);
-  DummyNotificationReceiverP__UartByte__send('|');
-  for (i = 0; i < msgBuf; i++) 
-    {
-      DummyNotificationReceiverP__UartByte__send(msgBuf[i]);
-    }
-  DummyNotificationReceiverP__UartByte__send('|');
-  DummyNotificationReceiverP__UartByte__send('\n');
-}
-
 # 74 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Notify.nc"
 inline static void SerialEchoC__CommandNotification__notify(SerialEchoC__CommandNotification__val_t val){
+#line 74
+  DummyNotificationReceiverP__CommandNotification__notify(val);
 #line 74
   DummyNotificationReceiverP__CommandNotification__notify(val);
 #line 74
@@ -4719,7 +4838,7 @@ inline static uint8_t SerialEchoC__PacketTypes__getTypeOfPacket(char *buf){
 #line 14
 }
 #line 14
-# 100 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 104 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
 {
 
@@ -4730,11 +4849,11 @@ static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
   status_packet_t localStatusPacket;
 
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 109
+#line 113
     {
       strncpy(localBuf, SerialEchoC__receiveBuffer, SerialEchoC__pos);
     }
-#line 111
+#line 115
     __nesc_atomic_end(__nesc_atomic); }
 
   type = SerialEchoC__PacketTypes__getTypeOfPacket(localBuf);
@@ -4748,12 +4867,11 @@ static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
       if (type == PACKET_ERROR) {
         return;
         }
-#line 123
       SerialEchoC__gCommandPacket = localCommandPacket;
       SerialEchoC__CommandNotification__notify(SerialEchoC__gCommandPacket);
     }
   else {
-#line 126
+#line 131
     if (type == PACKET_DATA) 
       {
         type = SerialEchoC__PacketTypes__strToDataPacket(&localDataPacket, localBuf);
@@ -4762,7 +4880,7 @@ static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
           }
       }
     else {
-#line 132
+#line 137
       if (type == PACKET_STATUS) 
         {
           type = SerialEchoC__PacketTypes__strToStatusPacket(&localStatusPacket, localBuf);
@@ -4774,6 +4892,62 @@ static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
     }
 }
 
+# 210 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypesP.nc"
+static inline uint8_t /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__PacketTypes__commandPacketToStr(command_packet_t *cp, char *buf)
+{
+  uint8_t i = 0;
+
+  buf[i++] = '[';
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[PACKET_COMMAND];
+  buf[i++] = ':';
+
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->WE];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->HE];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->BE];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[(cp->opcode >> 4) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->opcode & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[(cp->value >> 4) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->value & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[((cp->address >> 8) >> 4) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[(cp->address >> 8) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[(cp->address >> 4) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__hexTable[cp->address & 0x0F];
+
+  buf[i++] = ']';
+  buf[i] = 0;
+  return i;
+}
+
+# 11 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
+inline static uint8_t DummyNotificationReceiverP__PacketTypes__commandPacketToStr(command_packet_t *dp, char *buf){
+#line 11
+  unsigned char __nesc_result;
+#line 11
+
+#line 11
+  __nesc_result = /*SerialEchoAppC.PacketTypesDummy*/PacketTypesP__1__PacketTypes__commandPacketToStr(dp, buf);
+#line 11
+
+#line 11
+  return __nesc_result;
+#line 11
+}
+#line 11
+# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/UartByte.nc"
+inline static error_t DummyNotificationReceiverP__UartByte__send(uint8_t byte){
+#line 46
+  unsigned char __nesc_result;
+#line 46
+
+#line 46
+  __nesc_result = Atm128Rfa1SerialP__Uart1Byte__send(byte);
+#line 46
+
+#line 46
+  return __nesc_result;
+#line 46
+}
+#line 46
 # 39 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc"
 static inline void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__disableTxInterrupt(void )
 {
@@ -4865,7 +5039,7 @@ inline static error_t SerialEchoC__UartByte__send(uint8_t byte){
 #line 46
 }
 #line 46
-# 56 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 60 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__UartStream__receivedByte(uint8_t byte)
 {
   SerialEchoC__UartByte__send(byte);
@@ -4873,39 +5047,39 @@ static inline void SerialEchoC__UartStream__receivedByte(uint8_t byte)
     {
       SerialEchoC__pos = 0;
       { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 62
+#line 66
         {
           SerialEchoC__receiveBuffer[SerialEchoC__pos++] = byte;
         }
-#line 64
+#line 68
         __nesc_atomic_end(__nesc_atomic); }
       SerialEchoC__started = 1;
     }
   else {
-#line 67
+#line 71
     if (byte == ']' && SerialEchoC__started) 
       {
         { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 69
+#line 73
           {
             SerialEchoC__receiveBuffer[SerialEchoC__pos++] = byte;
             SerialEchoC__receiveBuffer[SerialEchoC__pos] = 0;
           }
-#line 72
+#line 76
           __nesc_atomic_end(__nesc_atomic); }
         SerialEchoC__started = 0;
         SerialEchoC__processReceiveBufferTask__postTask();
       }
     else {
-#line 76
+#line 80
       if (SerialEchoC__started) 
         {
           { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 78
+#line 82
             {
               SerialEchoC__receiveBuffer[SerialEchoC__pos++] = byte;
             }
-#line 80
+#line 84
             __nesc_atomic_end(__nesc_atomic); }
         }
       }
@@ -4925,7 +5099,7 @@ static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void )
   Atm128Rfa1SerialP__Uart1Stream__receivedByte(Atm128Rfa1SerialP__rxUnexpectedByte);
 }
 
-# 52 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 56 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__UartStream__receiveDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -4952,7 +5126,7 @@ static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 84 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 88 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -5037,6 +5211,65 @@ static __inline  void __nesc_enable_interrupt()
 {
    __asm volatile ("sei");}
 
+# 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+inline static void DummyNotificationReceiverP__Timer1__startPeriodic(uint32_t dt){
+#line 64
+  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(3U, dt);
+#line 64
+}
+#line 64
+inline static void DummyNotificationReceiverP__Timer0__startPeriodic(uint32_t dt){
+#line 64
+  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(2U, dt);
+#line 64
+}
+#line 64
+# 152 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+static inline error_t SerialEchoC__CommandNotification__enable(void )
+{
+  SerialEchoC__enabled = TRUE;
+  SerialEchoC__started = FALSE;
+  return SUCCESS;
+}
+
+# 59 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Notify.nc"
+inline static error_t DummyNotificationReceiverP__CommandNotification__enable(void ){
+#line 59
+  unsigned char __nesc_result;
+#line 59
+
+#line 59
+  __nesc_result = SerialEchoC__CommandNotification__enable();
+#line 59
+  __nesc_result = ecombine(__nesc_result, SerialEchoC__CommandNotification__enable());
+#line 59
+
+#line 59
+  return __nesc_result;
+#line 59
+}
+#line 59
+# 25 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+static inline void DummyNotificationReceiverP__Boot__booted(void )
+{
+  DummyNotificationReceiverP__statusPacket.node_id = 0x0002;
+  DummyNotificationReceiverP__statusPacket.burstEnable = 1;
+  DummyNotificationReceiverP__statusPacket.burstInterval = 16;
+  DummyNotificationReceiverP__statusPacket.historyEnable = 1;
+  DummyNotificationReceiverP__statusPacket.intervalType = INTERVAL_TYPE_DAYS;
+
+  DummyNotificationReceiverP__dataPacket.source = 0x0002;
+  DummyNotificationReceiverP__dataPacket.data1 = 0;
+  DummyNotificationReceiverP__dataPacket.data2 = 0;
+  DummyNotificationReceiverP__dataPacket.data3 = 0;
+  DummyNotificationReceiverP__dataPacket.data4 = 0;
+  DummyNotificationReceiverP__dataPacket.data5 = 0;
+  DummyNotificationReceiverP__dataPacket.seqNo = 0;
+  DummyNotificationReceiverP__CommandNotification__enable();
+  DummyNotificationReceiverP__Timer0__startPeriodic(1000);
+  DummyNotificationReceiverP__Timer1__startPeriodic(10000);
+}
+
 # 179 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(uint8_t num, uint32_t t0, uint32_t dt)
 {
@@ -5050,28 +5283,14 @@ inline static void SerialEchoC__Timer1__startPeriodicAt(uint32_t t0, uint32_t dt
 #line 114
 }
 #line 114
-# 154 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(uint8_t num, uint32_t dt)
-{
-  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(num, /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow(), dt, FALSE);
-}
-
-# 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+#line 64
 inline static void SerialEchoC__Timer0__startPeriodic(uint32_t dt){
 #line 64
   /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(0U, dt);
 #line 64
 }
 #line 64
-# 147 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
-static inline error_t SerialEchoC__CommandNotification__enable(void )
-{
-  SerialEchoC__enabled = TRUE;
-  SerialEchoC__started = FALSE;
-  return SUCCESS;
-}
-
-#line 45
+# 49 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__Boot__booted(void )
 {
   SerialEchoC__CommandNotification__enable();
@@ -5083,6 +5302,8 @@ static inline void SerialEchoC__Boot__booted(void )
 inline static void RealMainP__Boot__booted(void ){
 #line 60
   SerialEchoC__Boot__booted();
+#line 60
+  DummyNotificationReceiverP__Boot__booted();
 #line 60
 }
 #line 60
@@ -5567,6 +5788,76 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__fireTimers(uint
   /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask();
 }
 
+# 210 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypesP.nc"
+static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(command_packet_t *cp, char *buf)
+{
+  uint8_t i = 0;
+
+  buf[i++] = '[';
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[PACKET_COMMAND];
+  buf[i++] = ':';
+
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->WE];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->HE];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->BE];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[(cp->opcode >> 4) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->opcode & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[(cp->value >> 4) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->value & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[((cp->address >> 8) >> 4) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[(cp->address >> 8) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[(cp->address >> 4) & 0x0F];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->address & 0x0F];
+
+  buf[i++] = ']';
+  buf[i] = 0;
+  return i;
+}
+
+# 280 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+static error_t Atm128Rfa1SerialP__Uart1Stream__send(uint8_t *buf, uint16_t len)
+{
+
+  if (len == 0 || len > 64) {
+    return FAIL;
+    }
+#line 285
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      if (Atm128Rfa1SerialP__txBusy) 
+        {
+          unsigned char __nesc_temp = 
+#line 288
+          EBUSY;
+
+          {
+#line 288
+            __nesc_atomic_end(__nesc_atomic); 
+#line 288
+            return __nesc_temp;
+          }
+        }
+#line 289
+      Atm128Rfa1SerialP__txBusy = TRUE;
+    }
+#line 290
+    __nesc_atomic_end(__nesc_atomic); }
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 291
+    {
+      strncpy((char *)Atm128Rfa1SerialP__txTmpBuf, (char *)buf, len);
+    }
+#line 293
+    __nesc_atomic_end(__nesc_atomic); }
+  Atm128Rfa1SerialP__txBuf = Atm128Rfa1SerialP__txTmpBuf;
+  Atm128Rfa1SerialP__txLen = len;
+  Atm128Rfa1SerialP__txPos = 0;
+
+  * (volatile uint8_t *)0xCE = Atm128Rfa1SerialP__txBuf[Atm128Rfa1SerialP__txPos++];
+  Atm128Rfa1SerialP__txResult = SUCCESS;
+  return SUCCESS;
+}
+
 # 147 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformAlarmC.nc"
 static void /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__Alarm__startAt(/*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__to_size_type t0, /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__to_size_type dt)
 {
@@ -5596,6 +5887,24 @@ static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__a
     }
 #line 28
   return 0;
+}
+
+# 44 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+static void DummyNotificationReceiverP__CommandNotification__notify(command_packet_t val)
+{
+  char msgBuf[64];
+  uint8_t msgLen;
+  uint8_t i;
+
+#line 49
+  msgLen = DummyNotificationReceiverP__PacketTypes__commandPacketToStr(&val, msgBuf);
+  DummyNotificationReceiverP__UartByte__send('|');
+  for (i = 0; i < msgLen; i++) 
+    {
+      DummyNotificationReceiverP__UartByte__send(msgBuf[i]);
+    }
+  DummyNotificationReceiverP__UartByte__send('|');
+  DummyNotificationReceiverP__UartByte__send('\n');
 }
 
 # 173 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
@@ -5637,7 +5946,13 @@ static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte)
   return SUCCESS;
 }
 
-# 144 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
+# 154 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
+static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(uint8_t num, uint32_t dt)
+{
+  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(num, /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow(), dt, FALSE);
+}
+
+#line 144
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot)
 {
   /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer_t *timer = &/*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__m_timers[num];
