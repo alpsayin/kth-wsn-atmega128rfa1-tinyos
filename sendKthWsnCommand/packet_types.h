@@ -54,6 +54,7 @@ extern "C" {
         uint16_t data3 ; //2 byte
         uint16_t data4 ; //2 byte
         uint16_t data5 ; //2 byte
+        uint16_t seqNo ; //2 byte
     } data_packet_t;
 
     typedef struct command_packet {

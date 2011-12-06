@@ -75,8 +75,8 @@ int main(int argc, char** argv)
 If no command is specified by entering either -t or -r then -e is implied,\
  but if -t is entered with -e then an echo command with a value will be sent, no interval will be set.\
  If -e is entered, it overrides -t and -r, else if -t is entered it overrides -r. Also note that interval time can\
-be set to a maximum of 49 days. Received command packets, data packets and status packets are written into different files\
-(command_output.txt, data_output.txt and status_output.txt respectively). Every line of the output contains one packet,\
+be set to a maximum of 48 days. Received command packets, data packets and status packets are written into different files\
+(command_output.txt, data_output.txt and status_output.txt respectively). Every line of the output contains one packet, \
 the user can parse the output files easily by using a tool like awk.\n\
     Options:\n\
     -hE set history enable (0/1) \n\
@@ -96,7 +96,7 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
     write enabled \n\
     interval=1 hour \n\
     start listening the network after command\n\
-    read data from all nodes (broadcast) \n";
+    request data from all nodes (broadcast) \n";
 
     signal(SIGINT, sigint_handler);
 
@@ -323,7 +323,7 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
     }
 
     commandPacket.HE&=commandPacket.WE; //write must be enabled for history enable
-    commandPacket.BE&=commandPacket.HE; //history must be enabled for burst enable
+    //commandPacket.BE&=commandPacket.HE; //history must be enabled for burst enable
 
     if(!commandPacket.WE)
     {
@@ -594,6 +594,8 @@ int processReceiveBuffer()
             return -1;
         fputs("\nPACKET\t", dataOutput);
         fputs("type=data\t", dataOutput);
+        sprintf(buf, "seqNo=%d\t", dataPacket.seqNo);
+        fputs(buf, dataOutput);
         sprintf(buf, "TEMPERATURE=%d\t", dataPacket.TEMPERATURE);
         fputs(buf, dataOutput);
         sprintf(buf, "PRESSURE=%d\t", dataPacket.PRESSURE);
