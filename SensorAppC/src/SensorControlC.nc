@@ -1,3 +1,15 @@
+//
+//
+//  SensorControlC.nc
+//
+//  aa
+//
+//  Created by Tian Junzhe on 12/5/11.
+//  Copyright 2011 KTH. All rights reserved.
+//
+//	zn
+//
+//
 
 
 #include "SensorConfig.h"
@@ -8,7 +20,6 @@ configuration SensorControlC{
 	provides {
 		
 		interface Init;
-//		interface Set<status_packet_t>;
 		interface Get<status_packet_t> as GetStatus;
 		interface Get<data_packet_t> as GetData;
 	
@@ -20,6 +31,7 @@ configuration SensorControlC{
 		interface Queue<data_packet_t> as StoreData;
 		interface Notify<status_packet_t>;
 		
+		interface Leds;
 	}
 	
 }
@@ -29,7 +41,6 @@ implementation{
 	components new TimerMilliC() as Timer0;
 	
 	Init		= SensorControlP;
-//	Set			= SensorControlP;
 	ReadAdc		= SensorControlP;
 	GetStatus	= SensorControlP;
 	GetData		= SensorControlP;
@@ -38,5 +49,7 @@ implementation{
 	Notify		= SensorControlP;
 	
 	SensorControlP.Timer0 -> Timer0;
+	
+	Leds = SensorControlP.Leds;
 	
 }

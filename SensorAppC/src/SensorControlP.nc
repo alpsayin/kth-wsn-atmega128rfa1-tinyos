@@ -1,3 +1,15 @@
+//
+//
+//  SensorControlP.nc
+//
+//  aa
+//
+//  Created by Tian Junzhe on 12/5/11.
+//  Copyright 2011 KTH. All rights reserved.
+//
+//	zn
+//
+//
 
 #include "SensorConfig.h"
 
@@ -16,17 +28,19 @@ module SensorControlP{
 	uses {
 		
 		interface Read<data_packet_t> as ReadAdc;		//read a sample from SensorSubsystemC
-		interface Timer<TIMER_UNIT> as Timer0;			//internal timer for periodical reading
+		interface Timer<TMilli> as Timer0;			//internal timer for periodical reading
 		interface Queue<data_packet_t> as StoreData;	//store sample in the history buffer
 
 		interface Notify<status_packet_t>;				//set interface for upper components and generate a notify signal when the buffer is full
-
+#ifdef LED_ENABLE
+		interface Leds;
+#endif
 	}
 }
 implementation{
 
 	status_packet_t status;
-	data_packet_t DataTemp;
+	data_packet_t DataZERO;
 
 	command error_t Init.init(){			//initial function
 		
@@ -37,13 +51,27 @@ implementation{
         status.burstInterval	= 0;
         status.node_id			= NODE_ID;
         
+        DataZERO.source = 0;
+		
 		return SUCCESS;
 	}
 
 	event void Timer0.fired(){				//every time the timer fired, the adc will sample all the sensors one time
 		
+#ifdef LED_ENABLE
+		call Leds.led0Toggle();
+#endif
 		call ReadAdc.read();
 		
+	}
+	
+	error_t flushBuffer()
+	{
+		while(call StoreData.empty())
+		{
+			call StoreData.dequeue();
+		}
+		return SUCCESS;
 	}
 	
 	uint32_t calcTimerPeriod()				//calculate the timer period from status values configured
@@ -52,30 +80,44 @@ implementation{
 			switch(status.intervalType)
 			{
 				case 0:
-					return status.burstInterval;
+					return (status.burstInterval * 1 * TIMER_SCALE);
 				case 1:
-					return (status.burstInterval * 60); 
+					return (status.burstInterval * 60 * TIMER_SCALE); 
 				case 2:
-					return (status.burstInterval * 3600);
+					return (status.burstInterval * 3600 * TIMER_SCALE);
 				case 3:
-					return (status.burstInterval < DEFAULT_TIMER_BOUNDRY)?(status.burstInterval * 86400):(40 * 86400);
+					return (status.burstInterval < DEFAULT_TIMER_BOUNDARY)?(status.burstInterval * 86400 * TIMER_SCALE):(DEFAULT_TIMER_BOUNDARY * 86400 * TIMER_SCALE);
 			}
 		return DEFAULT_TIMER_PERIOD;
 	}
 	
 	event void Notify.notify(status_packet_t val){	//configure the sensor status
 		
+		status_packet_t status_temp = status;
 		status = val;
-		if(status.historyEnable)
+		
+		status.node_id = status_temp.node_id;
+		
+		if(status.historyEnable | status.burstEnable)
 		{
-			call Timer0.startPeriodic(calcTimerPeriod());	
+#if TIMING_PHASE_SHIFT==0
+			call Timer0.startPeriodic(calcTimerPeriod());
+#else
+			call Timer0.startPeriodicAt(calcTimerPeriod(), TIMING_PHASE_SHIFT);
+#endif
+
 		}
 		else
 			call Timer0.stop();
-		if(val.node_id)
+
+		if((0 == status.historyEnable) && (1 == status_temp.historyEnable))	//flush the native data buffer
 		{
-			status.node_id = NODE_ID;
-		}		
+				flushBuffer();
+		}
+//		if(val.node_id)
+//		{
+//			status.node_id = NODE_ID;
+//		}		
 	}
 
 	command status_packet_t GetStatus.get(){		//read the sensor status out
@@ -83,34 +125,58 @@ implementation{
 	}
 
 	event void ReadAdc.readDone(error_t result, data_packet_t val){	//after the sampling of the adc, this function will executed one time
+				
+		val.source = status.node_id;
 		
 		if(SUCCESS == result)
 		{
-			if(BUFFER_SIZE != call StoreData.size())
-				result = call StoreData.enqueue(val);
+			if(BUFFER_SIZE == call StoreData.size())
+			{
+#ifdef LED_ENABLE
+				call Leds.led2On();
+#endif
+				call StoreData.dequeue();
+			}
+#ifdef LED_ENABLE
 			else
-				call Notify.disable();
-		}
-		if(BUFFER_SIZE == (call StoreData.size()))
-		{
-			if(1 == status.burstEnable)
-				call Notify.enable();
+				call Leds.led2Off();
+#endif
+			if(status.historyEnable)
+			{
+				if(status.burstEnable)
+				{
+					call StoreData.enqueue(val);
+					if(BUFFER_SIZE == call StoreData.size())
+					{
+#ifdef LED_ENABLE
+						call Leds.led1Toggle();
+#endif
+						call Notify.enable();
+					}
+				}
+				else
+				{
+					call StoreData.enqueue(val);
+				}
+			}
+			
 			else
 			{
-				call StoreData.dequeue();
+				flushBuffer();
 				call StoreData.enqueue(val);
+				call Notify.enable();
 			}
 		}
 	}
 
 	command data_packet_t GetData.get(){		//read a sample out from data buffer(Queue) if it is not empty
-		
-		if(0 != call StoreData.size())
-			DataTemp = call StoreData.dequeue();
+			
+		if(call StoreData.size())
+		{
+			return DataZERO;
+		}
 		else
-			DataTemp.source = 0;
-		
-		return DataTemp;
+			return (call StoreData.dequeue());
 			
 	}
 }
