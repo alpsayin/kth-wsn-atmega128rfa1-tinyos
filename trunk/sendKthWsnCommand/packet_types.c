@@ -91,6 +91,10 @@ int strToDataPacket(data_packet_t* dp, char* buf)
     dp->source |= asciihexToNum(buf[i++])<<16;
     dp->source |= asciihexToNum(buf[i++])<<8;
     dp->source |= asciihexToNum(buf[i++]);
+    dp->seqNo = asciihexToNum(buf[i++])<<24;
+    dp->seqNo |= asciihexToNum(buf[i++])<<16;
+    dp->seqNo |= asciihexToNum(buf[i++])<<8;
+    dp->seqNo |= asciihexToNum(buf[i++]);
 
     if(buf[i] != ']')
         return PACKET_ERROR;
@@ -190,6 +194,10 @@ int dataPacketToStr(data_packet_t* dp, char* buf)
     buf[i++] = hexTable[LOW((dp->source)>>8)];
     buf[i++] = hexTable[HIGH((dp->source))];
     buf[i++] = hexTable[LOW((dp->source))];
+    buf[i++] = hexTable[HIGH((dp->seqNo)>>8)];
+    buf[i++] = hexTable[LOW((dp->seqNo)>>8)];
+    buf[i++] = hexTable[HIGH((dp->seqNo))];
+    buf[i++] = hexTable[LOW((dp->seqNo))];
     //footer
     buf[i++] = ']';
     buf[i] = 0;
