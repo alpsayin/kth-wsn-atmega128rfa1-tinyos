@@ -1,0 +1,4 @@
+configuration ControllerC{
+}
+implementation{
+}
