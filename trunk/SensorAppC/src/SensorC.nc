@@ -31,7 +31,7 @@ configuration SensorC{
 		interface Init;
 		interface Get<status_packet_t> as GetStatus;
 		interface Get<data_packet_t> as GetData;
-		interface ReadNow<data_packet_t> as GetDataNow;
+		interface Read<data_packet_t> as GetDataOne;
 	
 	}
 	
@@ -56,7 +56,7 @@ implementation{
 	GetStatus	= SensorControlC.GetStatus;
 	GetData		= SensorControlC.GetData;
 	Notify		= SensorControlC.Notify;
-	GetDataNow	= SensorSubsystemC.ReadNow;
+	GetDataOne	= SensorSubsystemC.ReadOne;
 	
 	SensorControlC.ReadAdc		-> SensorSubsystemC.Read;
 	SensorControlC.StoreData	-> SensorBuffer.Queue;	

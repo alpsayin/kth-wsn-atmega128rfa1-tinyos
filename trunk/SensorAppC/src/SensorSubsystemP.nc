@@ -19,7 +19,7 @@ module SensorSubsystemP{
 	provides {
 		
 		interface Read<data_packet_t>;
-		interface ReadNow<data_packet_t>;
+		interface Read<data_packet_t> as ReadOne;
 		
 	}
 	
@@ -53,7 +53,7 @@ implementation{
 	}
 	
 	
-	async command error_t ReadNow.read(){
+	command error_t ReadOne.read(){
 		
 		mode = FALSE;
 		
@@ -107,7 +107,7 @@ implementation{
 		if(mode)
 			signal Read.readDone(SUCCESS, sensorData);
 		else
-			signal ReadNow.readDone(SUCCESS, sensorData);
+			signal ReadOne.readDone(SUCCESS, sensorData);
 	}
 
 	
