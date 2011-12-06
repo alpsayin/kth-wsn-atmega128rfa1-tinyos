@@ -345,7 +345,7 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
     }
 
     commandPacket.HE&=commandPacket.WE; //write must be enabled for history enable
-    //commandPacket.BE&=commandPacket.HE; //history must be enabled for burst enable
+    commandPacket.BE&=commandPacket.WE; //write must be enabled for burst enable
 
     if(!commandPacket.WE)
     {
@@ -436,12 +436,13 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
     {
         fputs("command sending CANCELED...\n", output);
         restoreDefaults();
-        return EXIT_FAILURE;
+        return EXIT_SUCCESS;
     }
     sprintf(buf, "trying to open %s for read/write\n", devicename);
     fputs(buf, output);
     if(openComPort(O_RDWR))
     {
+        fputs("communication port could not be opened\n", output);
         restoreDefaults();
         return EXIT_FAILURE;
     }
@@ -482,13 +483,13 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
         if(!dataOutput)
         {
             fputs("couldn't open data output file, using stdout instead\n", output);
-            statusOutput = stdout;
+            dataOutput = stdout;
         }
         commandOutput=fopen("command_output.txt", "w");
         if(!commandOutput)
         {
             fputs("couldn't open command output file, using stdout instead\n", output);
-            statusOutput = stdout;
+            commandOutput = stdout;
         }
         fputs("started listening...\n", output);
     }
