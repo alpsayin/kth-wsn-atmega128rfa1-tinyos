@@ -558,14 +558,18 @@ void signal_handler_IO(int status)
 
 int processReceiveBuffer()
 {
-    char buf[32];
+    char buf[64];
     int type;
     data_packet_t dataPacket;
     command_packet_t commandPacket;
     status_packet_t statusPacket;
+
     type=getTypeOfPacket(receiveBuffer);
-    sprintf(buf, "|%s|\n", receiveBuffer);
-    fputs(buf, stdout);
+    if(type!=PACKET_ERROR)
+    {
+        sprintf(buf, "|%s|\n", receiveBuffer);
+        fputs(buf, stdout);
+    }
     if(type == PACKET_COMMAND)
     {
         type=strToCommandPacket(&commandPacket, receiveBuffer);
