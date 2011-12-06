@@ -14,11 +14,16 @@ extern "C" {
  
 #include <inttypes.h>
 
+#define INSTANCE_LOCK "wsn-code-lock"
+
 void signal_handler_IO(int status); //definition of signal handler
 void sigint_handler(int sig); //definition of signal handler
 void restoreDefaults();
 int processReceiveBuffer();
 int openComPort(long rw);
+int only_one_instance(void);
+void ooi_unlink(void);
+void fail(const char *message);
 
 #ifdef	__cplusplus
 }
