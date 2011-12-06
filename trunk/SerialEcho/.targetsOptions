@@ -10,7 +10,9 @@
 <exclude>.*\.svn.*</exclude>
 </excludes>
 <typedefs/>
-<macros/>
+<macros>
+<macro content="" name="UARTSTREAM_NONBLOCK" ncc="true" yeti="true"/>
+</macros>
 <boards/>
 <no-std-incl>false</no-std-incl>
 <component/>
