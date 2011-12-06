@@ -36,13 +36,6 @@ extern "C" {
 #define HUMIDITY data3
 #define LUMINOSITY data4
 #define BATTERY data5
-#ifndef LOW
-#define LOW(n) (n & 0x0F)
-#endif
-
-#ifndef HIGH
-#define HIGH(n) ((n>>4) & 0x0F)
-#endif
 
     typedef struct status_packet
     {
@@ -102,7 +95,7 @@ extern "C" {
         PACKET_DATA,
         PACKET_STATUS
     };
-
+    
 #ifdef	__cplusplus
 }
 #endif
