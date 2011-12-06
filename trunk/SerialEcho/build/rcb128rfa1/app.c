@@ -1749,8 +1749,8 @@ enum __nesc_unnamed4275 {
   ATMRFA1_CAPSC_OFF = 0, 
   ATMRFA1_CAPSC_ON = 1
 };
-# 55 "/home/alpsayin/tinyos_workspace/SerialEcho/src/packet_types.h"
-#line 47
+# 48 "/home/alpsayin/tinyos_workspace/SerialEcho/src/packet_types.h"
+#line 40
 typedef struct status_packet {
 
   uint8_t historyEnable : 1;
@@ -1778,7 +1778,7 @@ enum __nesc_unnamed4276 {
 
 
 
-#line 65
+#line 58
 typedef struct data_packet {
 
   uint16_t source;
@@ -1797,7 +1797,7 @@ typedef struct data_packet {
 
 
 
-#line 76
+#line 69
 typedef struct command_packet {
   uint8_t WE : 1;
   uint8_t HE : 1;
@@ -2145,11 +2145,17 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406dbc70);
-# 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+uint8_t arg_0x406da8f0);
+# 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(
+# 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
+uint8_t arg_0x406da8f0, 
+# 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+uint32_t t0, uint32_t dt);
+#line 64
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406dbc70, 
+uint8_t arg_0x406da8f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 9 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
@@ -2703,6 +2709,8 @@ static error_t SerialEchoC__processReceiveBufferTask__postTask(void );
 static error_t SerialEchoC__UartByte__send(uint8_t byte);
 # 74 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Notify.nc"
 static void SerialEchoC__CommandNotification__notify(SerialEchoC__CommandNotification__val_t val);
+# 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+static void SerialEchoC__Timer1__startPeriodicAt(uint32_t t0, uint32_t dt);
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
 static void SerialEchoC__Leds__led1Toggle(void );
 # 14 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
@@ -2765,7 +2773,7 @@ static inline error_t SerialEchoC__CommandNotification__enable(void );
 static error_t DummyNotificationReceiverP__UartByte__send(uint8_t byte);
 # 11 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
 static uint8_t DummyNotificationReceiverP__PacketTypes__commandPacketToStr(command_packet_t *dp, char *buf);
-# 14 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+# 13 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
 static inline void DummyNotificationReceiverP__CommandNotification__notify(command_packet_t val);
 # 70 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__setMode(uint8_t mode);
@@ -2922,7 +2930,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406dbc70);
+uint8_t arg_0x406da8f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4290 {
 #line 71
@@ -2968,7 +2976,7 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFro
 
 
 
-static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot);
+static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot);
 
 
 
@@ -2979,6 +2987,8 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTim
 
 
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(uint8_t num, uint32_t dt);
+#line 179
+static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(uint8_t num, uint32_t t0, uint32_t dt);
 #line 204
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(uint8_t num);
 # 20 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypesP.nc"
@@ -4258,9 +4268,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406dbc70){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406da8f0){
 #line 83
-  switch (arg_0x406dbc70) {
+  switch (arg_0x406da8f0) {
 #line 83
     case 0U:
 #line 83
@@ -4276,7 +4286,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406dbc70);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406da8f0);
 #line 83
       break;
 #line 83
@@ -4284,6 +4294,21 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
 }
 #line 83
+# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
+inline static error_t /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask(void ){
+#line 67
+  unsigned char __nesc_result;
+#line 67
+
+#line 67
+  __nesc_result = SchedulerBasicP__TaskBasic__postTask(/*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer);
+#line 67
+
+#line 67
+  return __nesc_result;
+#line 67
+}
+#line 67
 # 139 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fired(void )
 {
@@ -4528,19 +4553,22 @@ inline static uint8_t DummyNotificationReceiverP__PacketTypes__commandPacketToSt
 #line 11
 }
 #line 11
-# 14 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+# 13 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
 static inline void DummyNotificationReceiverP__CommandNotification__notify(command_packet_t val)
 {
   uint8_t msgBuf[64];
   uint8_t msgLen;
   uint8_t i;
 
-#line 19
+#line 18
   msgLen = DummyNotificationReceiverP__PacketTypes__commandPacketToStr(&val, msgBuf);
+  DummyNotificationReceiverP__UartByte__send('|');
   for (i = 0; i < msgBuf; i++) 
     {
       DummyNotificationReceiverP__UartByte__send(msgBuf[i]);
     }
+  DummyNotificationReceiverP__UartByte__send('|');
+  DummyNotificationReceiverP__UartByte__send('\n');
 }
 
 # 74 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Notify.nc"
@@ -5009,34 +5037,20 @@ static __inline  void __nesc_enable_interrupt()
 {
    __asm volatile ("sei");}
 
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
-inline static error_t /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask(void ){
-#line 67
-  unsigned char __nesc_result;
-#line 67
-
-#line 67
-  __nesc_result = SchedulerBasicP__TaskBasic__postTask(/*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer);
-#line 67
-
-#line 67
-  return __nesc_result;
-#line 67
-}
-#line 67
-# 144 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot)
+# 179 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
+static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(uint8_t num, uint32_t t0, uint32_t dt)
 {
-  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer_t *timer = &/*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__m_timers[num];
-
-#line 147
-  timer->t0 = t0;
-  timer->dt = dt;
-  timer->isoneshot = isoneshot;
-  timer->isrunning = TRUE;
-  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask();
+  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(num, t0, dt, FALSE);
 }
 
+# 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
+inline static void SerialEchoC__Timer1__startPeriodicAt(uint32_t t0, uint32_t dt){
+#line 114
+  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(1U, t0, dt);
+#line 114
+}
+#line 114
+# 154 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(uint8_t num, uint32_t dt)
 {
   /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(num, /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow(), dt, FALSE);
@@ -5062,6 +5076,7 @@ static inline void SerialEchoC__Boot__booted(void )
 {
   SerialEchoC__CommandNotification__enable();
   SerialEchoC__Timer0__startPeriodic(1000);
+  SerialEchoC__Timer1__startPeriodicAt(500, 1000);
 }
 
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Boot.nc"
@@ -5620,5 +5635,18 @@ static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte)
 #line 191
     __nesc_atomic_end(__nesc_atomic); }
   return SUCCESS;
+}
+
+# 144 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
+static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot)
+{
+  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer_t *timer = &/*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__m_timers[num];
+
+#line 147
+  timer->t0 = t0;
+  timer->dt = dt;
+  timer->isoneshot = isoneshot;
+  timer->isrunning = TRUE;
+  /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask();
 }
 

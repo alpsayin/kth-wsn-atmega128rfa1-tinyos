@@ -558,6 +558,7 @@ void signal_handler_IO(int status)
 
 int processReceiveBuffer()
 {
+    //TODO write into the html file you took from akis
     char buf[64];
     int type;
     data_packet_t dataPacket;
