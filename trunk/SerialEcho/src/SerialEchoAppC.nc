@@ -24,6 +24,7 @@ implementation
 	DummyNotificationReceiverP.Timer0 -> Timer2;
 	DummyNotificationReceiverP.Timer1 -> Timer3;
 	DummyNotificationReceiverP.Boot -> MainC.Boot;
+	DummyNotificationReceiverP.Leds -> LedsC;
 	
 	SerialEchoC.CommandNotification <- DummyNotificationReceiverP.CommandNotification;
 	SerialEchoC.ForwardCommand <- DummyNotificationReceiverP.ForwardCommand;

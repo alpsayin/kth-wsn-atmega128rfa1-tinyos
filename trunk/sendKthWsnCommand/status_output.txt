@@ -1,2 +1,0 @@
-
-PACKET	type=status	node_id=2	burst_interval=16	interval_type=3	history_enable=1	burst_enable=0	
