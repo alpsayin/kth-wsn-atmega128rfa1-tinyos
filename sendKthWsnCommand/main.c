@@ -24,26 +24,29 @@
 #define _POSIX_SOURCE 1         //POSIX compliant source
 #define FALSE 0
 #define TRUE 1
-#define BUFFER_SIZE 512
+#define BUFFER_SIZE 4096
 
 #include "packet_types.h"
 #include "main.h"
 
 volatile int new_message;
-volatile int listen = 0;
-volatile int wait_flag = 0;
-volatile char receiveBuffer[BUFFER_SIZE];
+volatile int listen=0;
+volatile int wait_flag=0;
+char receiveBuffer[BUFFER_SIZE];
 
-char devicename[80] = MODEMDEVICE;
-long BAUD = B57600; // derived baud rate from command line
-long DATABITS = CS8; //8 data bits
-long STOPBITS = 0; //1 stop bit
-long PARITYON = 0; //no parity
-long PARITY = 0; //no parity
+char devicename[80]=MODEMDEVICE;
+long BAUD=B57600; // derived baud rate from command line
+long DATABITS=CS8; //8 data bits
+long STOPBITS=0; //1 stop bit
+long PARITYON=0; //no parity
+long PARITY=0; //no parity
 
 int fd, tty;
 FILE *input;
 FILE *output;
+FILE *statusOutput;
+FILE *commandOutput;
+FILE *dataOutput;
 int status;
 
 command_packet_t commandPacket;
@@ -57,22 +60,24 @@ int main(int argc, char** argv)
 {
     char buf[BUFFER_SIZE];
     char *ptr, *endPtr;
-    int i = 0, val = 0, no_command = 0;
+    int i=0, val=0, no_command=0;
     char Key;
-    uint8_t confirmation = 1, verbose = 0;
+    uint8_t confirmation=1, verbose=0;
     int pos=0;
     uint8_t high=1, started=0;
 
-    input = stdin;
-    output = stdout;
+    input=stdin;
+    output=stdout;
 
-    const char instr[] = "\nsendKthWsnCommand command utility\n\
+    const char instr[]="\nsendKthWsnCommand command utility\n\
 ----------------------------------------------------------\
 \nSends a command through serial port to the root mote to be dispatched by radio\n\
 If no command is specified by entering either -t or -r then -e is implied,\
  but if -t is entered with -e then an echo command with a value will be sent, no interval will be set.\
  If -e is entered, it overrides -t and -r, else if -t is entered it overrides -r. Also note that interval time can\
-be set to a maximum of 49 days.  \n\
+be set to a maximum of 49 days. Received command packets, data packets and status packets are written into different files\
+(command_output.txt, data_output.txt and status_output.txt respectively). Every line of the output contains one packet,\
+the user can parse the output files easily by using a tool like awk.\n\
     Options:\n\
     -hE set history enable (0/1) \n\
     -bE burst enable (0/1) (if this is not 1 -h is not effective) \n\
@@ -96,110 +101,110 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
     signal(SIGINT, sigint_handler);
 
 
-    input = fopen("/dev/tty", "r"); //open the terminal keyboard
-    output = fopen("/dev/tty", "w"); //open the terminal screen
+    input=fopen("/dev/tty", "r"); //open the terminal keyboard
+    output=fopen("/dev/tty", "w"); //open the terminal screen
 
-    if (!input || !output)
+    if(!input || !output)
     {
         fprintf(stderr, "Unable to open /dev/tty\n");
         restoreDefaults();
         return EXIT_FAILURE;
     }
 
-    tty = open("/dev/tty", O_RDWR | O_NOCTTY | O_NONBLOCK); //set the user console port up
+    tty=open("/dev/tty", O_RDWR | O_NOCTTY | O_NONBLOCK); //set the user console port up
     tcgetattr(tty, &oldkey); // save current port settings   //so commands are interpreted right for this program
 
     cfsetispeed(&newkey, BAUDRATE);
     cfsetospeed(&newkey, BAUDRATE);
 
     // set new port settings for non-canonical input processing  //must be NOCTTY
-    newkey.c_cflag = BAUDRATE | CRTSCTS | CS8 | CLOCAL | CREAD;
-    newkey.c_iflag = IGNPAR;
-    newkey.c_oflag = OPOST | ONLCR;
-    newkey.c_lflag = ~(ICANON | ECHO | ECHOE | ISIG); //ICANON;
-    newkey.c_cc[VMIN] = 1;
-    newkey.c_cc[VTIME] = 0;
+    newkey.c_cflag=BAUDRATE | CRTSCTS | CS8 | CLOCAL | CREAD;
+    newkey.c_iflag=IGNPAR;
+    newkey.c_oflag=OPOST | ONLCR;
+    newkey.c_lflag= ~(ICANON | ECHO | ECHOE | ISIG); //ICANON;
+    newkey.c_cc[VMIN]=1;
+    newkey.c_cc[VTIME]=0;
     tcflush(tty, TCIFLUSH);
     tcsetattr(tty, TCSANOW, &newkey);
 
-    commandPacket.address = DEFAULT_ADDRESS; //default address is broadcast
-    commandPacket.opcode = DEFAULT_COMMAND;
+    commandPacket.address=DEFAULT_ADDRESS; //default address is broadcast
+    commandPacket.opcode=DEFAULT_COMMAND;
 
-    for (i = 0; i < argc; i++)
+    for(i=0; i < argc; i++)
     {
-        if (!strncmp(argv[i], "-h", 2))
+        if(!strncmp(argv[i], "-h", 2))
         {
-            if (strlen(argv[i]) == 2)
+            if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
                 fputs("-h has too few parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            val = strtol(argv[i] + 2, &ptr, 2);
-            if (ptr == argv[i] + 2)
+            val=strtol(argv[i] + 2, &ptr, 2);
+            if(ptr == argv[i] + 2)
             {
                 fputs(instr, output);
                 fputs("-h has faulty parameter\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            commandPacket.HE = val > 0;
+            commandPacket.HE=val > 0;
         }
-        else if (!strncmp(argv[i], "-b", 2))
+        else if(!strncmp(argv[i], "-b", 2))
         {
-            if (strlen(argv[i]) == 2)
+            if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
                 fputs("-b has too few parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            val = strtol(argv[i] + 2, &ptr, 2);
-            if (ptr == argv[i] + 2)
+            val=strtol(argv[i] + 2, &ptr, 2);
+            if(ptr == argv[i] + 2)
             {
                 fputs(instr, output);
                 fputs("-b has faulty parameter\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            commandPacket.BE = val > 0;
+            commandPacket.BE=val > 0;
         }
-        else if (!strncmp(argv[i], "-w", 2))
+        else if(!strncmp(argv[i], "-w", 2))
         {
-            if (strlen(argv[i]) == 2)
+            if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
                 fputs("-w has too few parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            val = strtol(argv[i] + 2, &ptr, 2);
-            if (ptr == argv[i] + 2)
+            val=strtol(argv[i] + 2, &ptr, 2);
+            if(ptr == argv[i] + 2)
             {
                 fputs(instr, output);
                 fputs("-w has faulty parameter\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            commandPacket.WE = val > 0;
+            commandPacket.WE=val > 0;
         }
-        else if (!strncmp(argv[i], "-r", 2))
+        else if(!strncmp(argv[i], "-r", 2))
         {
-            if (strlen(argv[i]) == 2)
+            if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
                 fputs("-r has too few parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            val = argv[i][2];
-            if (val == 'd')
-                commandPacket.opcode = COMMAND_READ_DATA;
-            else if (val == 'h')
-                commandPacket.opcode = COMMAND_READ_HISTORY;
-            else if (val == 's')
-                commandPacket.opcode = COMMAND_READ_STATUS;
+            val=argv[i][2];
+            if(val == 'd')
+                commandPacket.opcode=COMMAND_READ_DATA;
+            else if(val == 'h')
+                commandPacket.opcode=COMMAND_READ_HISTORY;
+            else if(val == 's')
+                commandPacket.opcode=COMMAND_READ_STATUS;
             else
             {
                 fputs(instr, output);
@@ -208,31 +213,31 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                 return EXIT_FAILURE;
             }
         }
-        else if (!strncmp(argv[i], "-t", 2))
+        else if(!strncmp(argv[i], "-t", 2))
         {
-            if (strlen(argv[i]) == 2)
+            if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
                 fputs("-t has too few parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            val = strtol(argv[i] + 2, &ptr, 10);
-            if (ptr == argv[i] + 2)
+            val=strtol(argv[i] + 2, &ptr, 10);
+            if(ptr == argv[i] + 2)
             {
                 fputs(instr, output);
                 fputs("-t has faulty parameter\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
-            } 
-            if (*ptr == 's')
-                commandPacket.opcode = COMMAND_INTERVAL_SECONDS;
-            else if (*ptr == 'm')
-                commandPacket.opcode = COMMAND_INTERVAL_MINUTES;
-            else if (*ptr == 'h')
-                commandPacket.opcode = COMMAND_INTERVAL_HOURS;
-            else if (*ptr == 'd')
-                commandPacket.opcode = COMMAND_INTERVAL_DAYS;
+            }
+            if(*ptr == 's')
+                commandPacket.opcode=COMMAND_INTERVAL_SECONDS;
+            else if(*ptr == 'm')
+                commandPacket.opcode=COMMAND_INTERVAL_MINUTES;
+            else if(*ptr == 'h')
+                commandPacket.opcode=COMMAND_INTERVAL_HOURS;
+            else if(*ptr == 'd')
+                commandPacket.opcode=COMMAND_INTERVAL_DAYS;
             else
             {
                 fputs(instr, output);
@@ -240,72 +245,72 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            if(*ptr=='d' && val>DEFAULT_TIMER_BOUNDARY)
+            if(*ptr == 'd' && val > DEFAULT_TIMER_BOUNDARY)
             {
                 sprintf(buf, "maximum time interval for bursts is %d days\ninterval time is adjusted to %d days automatically\n", DEFAULT_TIMER_BOUNDARY, DEFAULT_TIMER_BOUNDARY);
                 fputs(buf, output);
-                commandPacket.value = DEFAULT_TIMER_BOUNDARY;
+                commandPacket.value=DEFAULT_TIMER_BOUNDARY;
             }
             else
             {
-                commandPacket.value = val;
+                commandPacket.value=val;
             }
         }
-        else if (!strncmp(argv[i], "-a", 2))
+        else if(!strncmp(argv[i], "-a", 2))
         {
-            if (strlen(argv[i]) == 2)
+            if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
                 fputs("-a has too few parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            val = strtol(argv[i] + 2, &ptr, 16);
-            if (ptr == argv[i] + 2)
+            val=strtol(argv[i] + 2, &ptr, 16);
+            if(ptr == argv[i] + 2)
             {
                 fputs(instr, output);
                 fputs("-a has faulty parameter\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            commandPacket.address = val;
+            commandPacket.address=val;
         }
-        else if (!strncmp(argv[i], "-e", 2))
+        else if(!strncmp(argv[i], "-e", 2))
         {
-            if (strlen(argv[i]) != 2)
+            if(strlen(argv[i]) != 2)
             {
                 fputs(instr, output);
                 fputs("-e has too many parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            commandPacket.opcode = COMMAND_ECHO;
+            commandPacket.opcode=COMMAND_ECHO;
         }
-        else if (!strncmp(argv[i], "-f", 2))
+        else if(!strncmp(argv[i], "-f", 2))
         {
-            if (strlen(argv[i]) != 2)
+            if(strlen(argv[i]) != 2)
             {
                 fputs(instr, output);
                 fputs("-f has too many parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            confirmation = 0;
+            confirmation=0;
         }
-        else if (!strncmp(argv[i], "-v", 2))
+        else if(!strncmp(argv[i], "-v", 2))
         {
-            if (strlen(argv[i]) != 2)
+            if(strlen(argv[i]) != 2)
             {
                 fputs(instr, output);
                 fputs("-v has too many parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            verbose = 1;
+            verbose=1;
         }
-        else if (!strncmp(argv[i], "-l", 2))
+        else if(!strncmp(argv[i], "-l", 2))
         {
-            if (strlen(argv[i]) != 2)
+            if(strlen(argv[i]) != 2)
             {
                 fputs("listen", output);
                 fputs(instr, output);
@@ -313,30 +318,30 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            listen = 1;
+            listen=1;
         }
     }
 
-    commandPacket.HE &= commandPacket.WE; //write must be enabled for history enable
-    commandPacket.BE &= commandPacket.HE; //history must be enabled for burst enable
+    commandPacket.HE&=commandPacket.WE; //write must be enabled for history enable
+    commandPacket.BE&=commandPacket.HE; //history must be enabled for burst enable
 
-    if (!commandPacket.WE)
+    if(!commandPacket.WE)
     {
-        if (commandPacket.opcode == COMMAND_CONFIGURE)
+        if(commandPacket.opcode == COMMAND_CONFIGURE)
         {
-            if (!listen)
+            if(!listen)
             {
                 fputs(instr, output);
                 fputs("no command is entered\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            no_command = 1;
+            no_command=1;
         }
     }
-    if (!no_command)
+    if(!no_command)
     {
-        if (verbose)
+        if(verbose)
         {
             fputs("\n", output);
             fputs("Command Packet to be Sent\n", output);
@@ -346,47 +351,47 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
             fputs(buf, output);
             sprintf(buf, "Burst Enable\t:\t%d\n", commandPacket.BE);
             fputs(buf, output);
-            switch (commandPacket.opcode)
+            switch(commandPacket.opcode)
             {
-            case COMMAND_ECHO:
-                sprintf(buf, "Opcode\t\t:\tCommand Echo\n", commandPacket.opcode);
-                fputs(buf, output);
-                break;
-            case COMMAND_READ_DATA:
-                sprintf(buf, "Opcode\t\t:\tRead Data\n", commandPacket.opcode);
-                fputs(buf, output);
-                break;
-            case COMMAND_READ_HISTORY:
-                sprintf(buf, "Opcode\t\t:\tRead History\n", commandPacket.opcode);
-                fputs(buf, output);
-                break;
-            case COMMAND_READ_STATUS:
-                sprintf(buf, "Opcode\t\t:\tRead Status\n", commandPacket.opcode);
-                fputs(buf, output);
-                break;
-            case COMMAND_INTERVAL_SECONDS:
-                sprintf(buf, "Opcode\t\t:\tSet Interval Seconds\n", commandPacket.opcode);
-                fputs(buf, output);
-                break;
-            case COMMAND_INTERVAL_MINUTES:
-                sprintf(buf, "Opcode\t\t:\tSet Interval Minutes\n", commandPacket.opcode);
-                fputs(buf, output);
-                break;
-            case COMMAND_INTERVAL_HOURS:
-                sprintf(buf, "Opcode\t\t:\tSet Interval Hours\n", commandPacket.opcode);
-                fputs(buf, output);
-                break;
-            case COMMAND_CONFIGURE:
-                sprintf(buf, "Opcode\t\t:\tConfigure Settings\n", commandPacket.opcode);
-                fputs(buf, output);
-                break;
-            default:
-                sprintf(buf, "Opcode\t\t:\tUNKNOWN COMMAND\n", output);
-                fputs(buf, output);
+                case COMMAND_ECHO:
+                    sprintf(buf, "Opcode\t\t:\tCommand Echo\n", commandPacket.opcode);
+                    fputs(buf, output);
+                    break;
+                case COMMAND_READ_DATA:
+                    sprintf(buf, "Opcode\t\t:\tRead Data\n", commandPacket.opcode);
+                    fputs(buf, output);
+                    break;
+                case COMMAND_READ_HISTORY:
+                    sprintf(buf, "Opcode\t\t:\tRead History\n", commandPacket.opcode);
+                    fputs(buf, output);
+                    break;
+                case COMMAND_READ_STATUS:
+                    sprintf(buf, "Opcode\t\t:\tRead Status\n", commandPacket.opcode);
+                    fputs(buf, output);
+                    break;
+                case COMMAND_INTERVAL_SECONDS:
+                    sprintf(buf, "Opcode\t\t:\tSet Interval Seconds\n", commandPacket.opcode);
+                    fputs(buf, output);
+                    break;
+                case COMMAND_INTERVAL_MINUTES:
+                    sprintf(buf, "Opcode\t\t:\tSet Interval Minutes\n", commandPacket.opcode);
+                    fputs(buf, output);
+                    break;
+                case COMMAND_INTERVAL_HOURS:
+                    sprintf(buf, "Opcode\t\t:\tSet Interval Hours\n", commandPacket.opcode);
+                    fputs(buf, output);
+                    break;
+                case COMMAND_CONFIGURE:
+                    sprintf(buf, "Opcode\t\t:\tConfigure Settings\n", commandPacket.opcode);
+                    fputs(buf, output);
+                    break;
+                default:
+                    sprintf(buf, "Opcode\t\t:\tUNKNOWN COMMAND\n", output);
+                    fputs(buf, output);
             }
             sprintf(buf, "Value\t\t:\t%d\n", commandPacket.value);
             fputs(buf, output);
-            if (commandPacket.address == 0xFFFF)
+            if(commandPacket.address == 0xFFFF)
             {
                 fputs("Address\t\t:\tAll\n", output);
             }
@@ -399,13 +404,13 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
         }
     }
 
-    if (confirmation)
+    if(confirmation)
     {
         fputs("Do you want to continue?[y/N]\n", output);
-        val = getchar();
+        val=getchar();
     }
 
-    if (val != 'y' && confirmation == 1)
+    if(val != 'y' && confirmation == 1)
     {
         fputs("command sending CANCELED...\n", output);
         restoreDefaults();
@@ -413,27 +418,27 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
     }
     sprintf(buf, "trying to open %s for read/write\n", devicename);
     fputs(buf, output);
-    if (openComPort(O_RDWR))
+    if(openComPort(O_RDWR))
     {
         restoreDefaults();
         return EXIT_FAILURE;
     }
 
-    if (!no_command)
+    if(!no_command)
     {
 
         fputs("sending command to the root mote...\n", output);
         fflush(output);
 
-        val = commandToBuffer(&commandPacket, buf);
-        val = write(fd, buf, val);
+        val=commandToBuffer(&commandPacket, buf);
+        val=write(fd, buf, val);
         sprintf(buf, "%d bytes written\n", val);
         fputs(buf, output);
-        val = commandPacketToStr(&commandPacket, buf);
+        val=commandPacketToStr(&commandPacket, buf);
         fputs(buf, output);
         fputs("\n", output);
 #ifdef DEBUG
-        val = strToPacket(&commandPacket, buf);
+        val=strToCommandPacket(&commandPacket, buf);
         fputs(buf, output);
         fputs("Debug: Trying to open the written packet\n", output);
         commandPacketToStr(&commandPacket, buf);
@@ -443,49 +448,69 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
 #endif
     }
 
-    if (listen)
-        fputs("started listening...\n", output);
-
-    while (listen)
+    if(listen)
     {
-        status = fread(&Key, 1, 1, input);
-        //usleep(200);
-        if (status == 1) //if a key was hit
+        statusOutput=fopen("status_output.txt", "w");
+        if(!statusOutput)
         {
-            switch (Key)
+            fputs("couldn't open status output file, using stdout instead\n", output);
+            statusOutput = stdout;
+        }
+        dataOutput=fopen("data_output.txt", "w");
+        if(!dataOutput)
+        {
+            fputs("couldn't open data output file, using stdout instead\n", output);
+            statusOutput = stdout;
+        }
+        commandOutput=fopen("command_output.txt", "w");
+        if(!commandOutput)
+        {
+            fputs("couldn't open command output file, using stdout instead\n", output);
+            statusOutput = stdout;
+        }
+        fputs("started listening...\n", output);
+    }
+    while(listen)
+    {
+        status=fread(&Key, 1, 1, input);
+        //usleep(200);
+        if(status == 1) //if a key was hit
+        {
+            switch(Key)
             { /* branch to appropiate key handler */
-            case 0x1b: /* Esc */
-                listen = 0;
-                break;
-            default:
-                fputc((int) Key, output);
-                fputs("\nPress ESC to exit\n", output);
-                break;
+                case 0x1b: /* Esc */
+                    listen=0;
+                    break;
+                default:
+                    fputc((int)Key, output);
+                    fputs("\nPress ESC to exit\n", output);
+                    break;
             } //end of switch key
         } //end if a key was hit
-        if (!wait_flag)
+        if(!wait_flag)
         {
 #ifdef DEBUG
-            val = read(fd, buf, BUFFER_SIZE);
-            for (i = 0; i < val; i++)
+            val=read(fd, buf, BUFFER_SIZE);
+            for(i=0; i < val; i++)
             {
-                fputc((int) buf[i], stdout);
+                fputc((int)buf[i], stdout);
             }
 #endif
-            val = read(fd, buf, BUFFER_SIZE);
+            val=read(fd, buf, BUFFER_SIZE);
             //pre-processing -> take only characters between square brackets
-            for(i=0; i<val; i++)
+            for(i=0; i < val; i++)
             {
-                if(buf[i]=='[')
+                if(buf[i] == '[')
                 {
-                    pos = 0;
-                    receiveBuffer[pos++] = buf[i];
+                    pos=0;
+                    receiveBuffer[pos++]=buf[i];
                     started=1;
                     //fputc((int)buf[i], stdout);
                 }
-                else if(buf[i]==']')
+                else if(buf[i] == ']' && started)
                 {
-                    receiveBuffer[pos++] = buf[i];
+                    receiveBuffer[pos++]=buf[i];
+                    receiveBuffer[pos]=0;
                     started=0;
                     if(processReceiveBuffer())
                     {
@@ -496,12 +521,12 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l \n\
                 }
                 else if(started)
                 {
-                    receiveBuffer[pos++] = buf[i];
+                    receiveBuffer[pos++]=buf[i];
                     //fputc((int)buf[i], stdout);
                 }
             }
             fflush(stdout);
-            wait_flag = 1;
+            wait_flag=1;
         }
     }
 
@@ -514,7 +539,7 @@ void sigint_handler(int sig)
 {
     signal(sig, SIG_IGN);
     restoreDefaults();
-    listen = 0;
+    listen=0;
     exit(0);
 }
 
@@ -528,35 +553,91 @@ void signal_handler_IO(int status)
     /*
         fputs("sigio\n", output);
      */
-    wait_flag = 0;
+    wait_flag=0;
 }
 
 int processReceiveBuffer()
 {
+    char buf[32];
     int type;
-    char packetBuf[32];
+    data_packet_t dataPacket;
     command_packet_t commandPacket;
-    printf("%s\nexpected size=%d\n", receiveBuffer, sizeof(command_packet_t));
-    type = strToPacket(packetBuf, receiveBuffer);
-    printf("type=%d\n", type);
-    strncpy((char*)&commandPacket, packetBuf, sizeof(command_packet_t));
-    printf("data=%d\n", commandPacket.WE);
-    printf("data=%d\n", commandPacket.HE);
-    printf("data=%d\n", commandPacket.BE);
-    printf("data=%d\n", commandPacket.opcode);
-    printf("data=%d\n", commandPacket.value);
-    printf("source=%d\n", commandPacket.address);
-    
+    status_packet_t statusPacket;
+    type=getTypeOfPacket(receiveBuffer);
+    sprintf(buf, "|%s|\n", receiveBuffer);
+    fputs(buf, stdout);
+    if(type == PACKET_COMMAND)
+    {
+        type=strToCommandPacket(&commandPacket, receiveBuffer);
+        if(type == PACKET_ERROR)
+            return -1;
+        fputs("\nPACKET\t", commandOutput);
+        fputs("type=command\t", commandOutput);
+        sprintf(buf, "we=%d\t", commandPacket.WE);
+        fputs(buf, commandOutput);
+        sprintf(buf, "he=%d\t", commandPacket.HE);
+        fputs(buf, commandOutput);
+        sprintf(buf, "be=%d\t", commandPacket.BE);
+        fputs(buf, commandOutput);
+        sprintf(buf, "opcode=%d\t", commandPacket.opcode);
+        fputs(buf, commandOutput);
+        sprintf(buf, "value=%d\t", commandPacket.value);
+        fputs(buf, commandOutput);
+        sprintf(buf, "source=%d\t", commandPacket.address);
+        fputs(buf, commandOutput);
+        //fputs("\n", stdout);
+    }
+    else if(type == PACKET_DATA)
+    {
+        type=strToDataPacket(&dataPacket, receiveBuffer);
+        if(type == PACKET_ERROR)
+            return -1;
+        fputs("\nPACKET\t", dataOutput);
+        fputs("type=data\t", dataOutput);
+        sprintf(buf, "TEMPERATURE=%d\t", dataPacket.TEMPERATURE);
+        fputs(buf, dataOutput);
+        sprintf(buf, "PRESSURE=%d\t", dataPacket.PRESSURE);
+        fputs(buf, dataOutput);
+        sprintf(buf, "HUMIDITY=%d\t", dataPacket.HUMIDITY);
+        fputs(buf, dataOutput);
+        sprintf(buf, "LUMINOSITY=%d\t", dataPacket.LUMINOSITY);
+        fputs(buf, dataOutput);
+        sprintf(buf, "BATTERY=%d\t", dataPacket.BATTERY);
+        fputs(buf, dataOutput);
+        sprintf(buf, "source=%d\t", dataPacket.source);
+        fputs(buf, dataOutput);
+        //fputs("\n", stdout);
+    }
+    else if(type == PACKET_STATUS)
+    {
+        type=strToStatusPacket(&statusPacket, receiveBuffer);
+        if(type == PACKET_ERROR)
+            return -1;
+        fputs("\nPACKET\t", statusOutput);
+        fputs("type=status\t", statusOutput);
+        sprintf(buf, "node_id=%d\t", statusPacket.node_id);
+        fputs(buf, statusOutput);
+        sprintf(buf, "burst_interval=%d\t", statusPacket.burstInterval);
+        fputs(buf, statusOutput);
+        sprintf(buf, "interval_type=%d\t", statusPacket.intervalType);
+        fputs(buf, statusOutput);
+        sprintf(buf, "history_enable=%d\t", statusPacket.historyEnable);
+        fputs(buf, statusOutput);
+        sprintf(buf, "burst_enable=%d\t", statusPacket.burstEnable);
+        fputs(buf, statusOutput);
+        //fputs("\n", stdout);
+    }
     return 0;
 }
+
 int openComPort(long rw)
 {
     char errBuf[80];
 
     //open the device(com port) to be non-blocking (read will return immediately)
 
-    fd = open(devicename, rw | O_NOCTTY | O_NONBLOCK);
-    if (fd < 0)
+    fd=open(devicename, rw | O_NOCTTY | O_NONBLOCK);
+    if(fd < 0)
     {
         sprintf(errBuf, "cannot open %s\n", devicename);
         fputs(errBuf, output);
@@ -569,10 +650,10 @@ int openComPort(long rw)
     //discard the stupid data, which may cause overflow in the tasks
     tcflush(fd, TCIOFLUSH);
     //install the serial handler before making the device asynchronous
-    saio.sa_handler = signal_handler_IO;
+    saio.sa_handler=signal_handler_IO;
     sigemptyset(&saio.sa_mask); //saio.sa_mask = 0;
-    saio.sa_flags = 0;
-    saio.sa_restorer = NULL;
+    saio.sa_flags=0;
+    saio.sa_restorer=NULL;
     sigaction(SIGIO, &saio, NULL);
 
     // allow the process to receive SIGIO
@@ -587,14 +668,14 @@ int openComPort(long rw)
     cfsetospeed(&newtio, BAUD);
 
     // set new port settings for canonical input processing
-    newtio.c_cflag |= BAUD | DATABITS | STOPBITS | PARITYON | PARITY | CLOCAL | CREAD;
-    newtio.c_cflag &= ~CRTSCTS;
-    newtio.c_iflag |= IGNPAR;
-    newtio.c_iflag &= ~(IXON | IXOFF | IXANY);
-    newtio.c_oflag &= ~OPOST;
-    newtio.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG); //ICANON;
-    newtio.c_cc[VMIN] = 1;
-    newtio.c_cc[VTIME] = 0;
+    newtio.c_cflag|=BAUD | DATABITS | STOPBITS | PARITYON | PARITY | CLOCAL | CREAD;
+    newtio.c_cflag&= ~CRTSCTS;
+    newtio.c_iflag|=IGNPAR;
+    newtio.c_iflag&= ~(IXON | IXOFF | IXANY);
+    newtio.c_oflag&= ~OPOST;
+    newtio.c_lflag&= ~(ICANON | ECHO | ECHOE | ISIG); //ICANON;
+    newtio.c_cc[VMIN]=1;
+    newtio.c_cc[VTIME]=0;
     tcflush(fd, TCIFLUSH);
     tcsetattr(fd, TCSANOW, &newtio);
 

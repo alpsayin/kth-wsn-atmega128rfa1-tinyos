@@ -15,6 +15,12 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+//[0:111OpVaAddr]
+#define SIZE_COMMAND (3+3+2+2+4+1)
+//[1:Dat1Dat2Dat3Dat4Dat5Addr]
+#define SIZE_DATA (3+(6*4)+1)
+//[2:AddrBiTHB]
+#define SIZE_STATUS (3+4+2+3+1)
 
 #define TEMPERATURE data1
 #define PRESSURE data2
@@ -39,31 +45,6 @@ extern "C" {
         INTERVAL_TYPE_HOURS,
         INTERVAL_TYPE_DAYS
     };
-
-    typedef struct data_packet_low //size 4 bytes
-    {
-        uint8_t data1;
-        uint8_t data2;
-        uint8_t data3;
-        uint8_t data4;
-        uint8_t data5;
-    } data_packet_low_t;
-
-    typedef struct data_packet_high //size 1 byte
-    {
-        uint8_t data1 : 2;
-        uint8_t data2 : 2;
-        uint8_t data3 : 2;
-        uint8_t data4 : 2;
-        uint8_t data5 : 2;
-    } data_packet_high_t;
-
-    typedef struct compressed_data_packet //size 9 bytes
-    {
-        uint16_t source; //2 byte
-        data_packet_high_t highBytes; //4 bytes
-        data_packet_low_t lowBytes; //1 byte
-    } compressed_data_packet_t;
     
     typedef struct data_packet //size 12 bytes
     {
@@ -102,14 +83,12 @@ extern "C" {
         PACKET_ERROR = -1,
         PACKET_COMMAND = 0,
         PACKET_DATA,
-        PACKET_DATA_COMPRESSED,
         PACKET_STATUS
     };
     
-
-    void compressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
-    void decompressPacket(data_packet_t* dp, compressed_data_packet_t* dpc);
-    int strToPacket(void* dp, char* buf);
+    int strToCommandPacket(command_packet_t* cp, char* buf);
+    int strToDataPacket(data_packet_t* dp, char* buf);
+    int strToStatusPacket(status_packet_t* sp, char* buf);
     int commandToBuffer(command_packet_t* cp, char* buf);
     int commandPacketToStr(command_packet_t* dp, char* buf);
     int dataPacketToStr(data_packet_t* dp, char* buf);
