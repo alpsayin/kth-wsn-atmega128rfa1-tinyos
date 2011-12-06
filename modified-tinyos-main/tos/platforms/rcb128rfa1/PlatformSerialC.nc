@@ -45,7 +45,9 @@ implementation
   components Atm128Rfa1SerialC as Uart1;
   UartControl = Uart1.Uart1Control;
 #ifndef UARTSTREAM_BLOCK
-#warning nonblocking uartstream is still experimental and has its errors, you can define UARTSTREAM_BLOCK to use blocking uart but then receive interrupts will not work
+#ifndef UARTSTREAM_NONBLOCK
+#warning nonblocking uartstream is still experimental and has its errors, you can define UARTSTREAM_BLOCK to use blocking uart but then receive interrupts will not work. You can also define UARTSTREAM_NONBLOCK to disable this warning
+#endif
     UartStream = Uart1.Uart1Stream;
 #else
   UartStream = Uart1.Uart1StreamBlocking;
