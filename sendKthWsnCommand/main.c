@@ -62,7 +62,7 @@ int main(int argc, char** argv)
     char buf[BUFFER_SIZE];
     char *ptr;
     int i=0, val=0, no_command=0;
-    int burstParam=0, histParam=0, writeParam=0, readParam=0, timeParam=0, addrParam=0, portParam=0;
+    int burstParam=0, histParam=0, writeParam=0, readParam=0, timeParam=0, echoParam=0, addrParam=0, portParam=0;
     char Key;
     uint8_t confirmation=1, verbose=0;
     int pos=0;
@@ -74,34 +74,50 @@ int main(int argc, char** argv)
     const char instr[]="\nsendKthWsnCommand command utility\n\
 ----------------------------------------------------------\
 \nSends a command through serial port to the root mote to be dispatched by radio\n\
-If no command is specified by entering either -t or -r then -e is implied,\
- but if -t is entered with -e then an echo command with a value will be sent, no interval will be set.\
- If -e is entered, it overrides -t and -r, else if -t is entered it overrides -r. Also note that interval time can\
-be set to a maximum of 48 days. Received command packets, data packets and status packets are written into different files\
-(command_output.txt, data_output.txt and status_output.txt respectively). Every line of the output contains one packet, \
+If -t is entered with -e then an echo command with a value will be sent, but\
+ no interval will be actually set. Also note that interval time can be set to a maximum of 48\
+ days. Received command packets, data packets and status packets are written into\
+ different files (command_output.txt, data_output.txt and status_output.txt respectively).\
+ Every line of the output contains one packet, \
 the user can parse the output files easily by using a tool like awk.\n\
     Options:\n\
     -hE set history enable (0/1) \n\
     -bE burst enable (0/1) \n\
     -wE write enable (0/1) (if this is not 1 -h -b are not effective) \n\
-    -tTimeU set measurement interval in seconds, minutes, hours or days (U=s/m/h/d) \n\
-    -rType request data of Type (data/history/status)   \n\
+    -tTimeU set measurement interval in seconds, minutes, hours or days (Time=0-255) (U=s/m/h/d) \n\
+    -rType request data of Type, which can be data,history or status (Type=d/h/s)   \n\
     -aAddress the address that issue the command (address in radix 16)\n\
     -f no confirmation \n\
-    -e send echo command, expecting the same command to return\n\
+    -eValue send echo command, expecting the same command to return (Value=0-255)\n\
     -l enables listening after command issue, if used no command has to be entered\n\
     -p specifies the serial port to be used\
 \n\
 Example: \n\
-sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
+sendKthWsnCommand -h1 -b1 -w1 -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
+    history enabled \n\
+    burst enabled \n\
+    write enabled \n\
+    start listening the network after command\n\
+    don't ask for confirmation\n\
+    request data from all nodes (broadcast) \n\
+    listen /dev/ttyUSB0 port\n\
+\
+Example: \n\
+sendKthWsnCommand -h0 -b1 -w1 -t1h -aFFFF -f -l -p/dev/ttyUSB0\n\
     history enabled \n\
     burst enabled \n\
     write enabled \n\
     interval=1 hour \n\
     start listening the network after command\n\
     don't ask for confirmation\n\
-    request data from all nodes (broadcast) \n\
-    listen /dev/ttyUSB0 port\n";
+    set configuration for all nodes (broadcast) \n\
+    listen /dev/ttyUSB0 port\n\
+\
+Example: \n\
+sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
+    request an echo from node '01bc' with a value of 16\n\
+    listen /dev/ttyUSB0 port\n\
+";
 
     signal(SIGINT, sigint_handler);
 
@@ -113,6 +129,10 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
         fprintf(stderr, "Unable to open /dev/tty\n");
         restoreDefaults();
         return EXIT_FAILURE;
+    }
+    else
+    {
+        fputs("\n", output);
     }
 
     tty=open("/dev/tty", O_RDWR | O_NOCTTY | O_NONBLOCK); //set the user console port up
@@ -146,6 +166,13 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
     {
         if(!strncmp(argv[i], "-h", 2))
         {
+            if(histParam >= 1)
+            {
+                fputs(instr, output);
+                fputs("-h has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
@@ -161,18 +188,18 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            if(histParam>=1)
-            {
-                fputs(instr, output);
-                fputs("-h has been entered more than once\n", output);
-                restoreDefaults();
-                return EXIT_FAILURE;
-            }
             commandPacket.HE=val > 0;
             histParam++;
         }
         else if(!strncmp(argv[i], "-b", 2))
         {
+            if(burstParam >= 1)
+            {
+                fputs(instr, output);
+                fputs("-b has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
@@ -188,18 +215,18 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            if(burstParam>=1)
-            {
-                fputs(instr, output);
-                fputs("-b has been entered more than once\n", output);
-                restoreDefaults();
-                return EXIT_FAILURE;
-            }
             commandPacket.BE=val > 0;
             burstParam++;
         }
         else if(!strncmp(argv[i], "-w", 2))
         {
+            if(writeParam >= 1)
+            {
+                fputs(instr, output);
+                fputs("-w has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
@@ -215,18 +242,18 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            if(writeParam>=1)
-            {
-                fputs(instr, output);
-                fputs("-w has been entered more than once\n", output);
-                restoreDefaults();
-                return EXIT_FAILURE;
-            }
             commandPacket.WE=val > 0;
             writeParam++;
         }
         else if(!strncmp(argv[i], "-r", 2))
         {
+            if(readParam >= 1)
+            {
+                fputs(instr, output);
+                fputs("-r has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
@@ -248,17 +275,17 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            if(readParam>=1)
-            {
-                fputs(instr, output);
-                fputs("-r has been entered more than once\n", output);
-                restoreDefaults();
-                return EXIT_FAILURE;
-            }
             readParam++;
         }
         else if(!strncmp(argv[i], "-t", 2))
         {
+            if(timeParam >= 1)
+            {
+                fputs(instr, output);
+                fputs("-t has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
@@ -299,17 +326,17 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
             {
                 commandPacket.value=val;
             }
-            if(timeParam>=1)
-            {
-                fputs(instr, output);
-                fputs("-t has been entered more than once\n", output);
-                restoreDefaults();
-                return EXIT_FAILURE;
-            }
             timeParam++;
         }
         else if(!strncmp(argv[i], "-a", 2))
         {
+            if(addrParam >= 1)
+            {
+                fputs(instr, output);
+                fputs("-a has been entered more than once\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
             if(strlen(argv[i]) == 2)
             {
                 fputs(instr, output);
@@ -326,25 +353,35 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
                 return EXIT_FAILURE;
             }
             commandPacket.address=val;
-            if(addrParam>=1)
-            {
-                fputs(instr, output);
-                fputs("-a has been entered more than once\n", output);
-                restoreDefaults();
-                return EXIT_FAILURE;
-            }
             addrParam++;
         }
         else if(!strncmp(argv[i], "-e", 2))
         {
-            if(strlen(argv[i]) != 2)
+            if(echoParam >= 1)
             {
                 fputs(instr, output);
-                fputs("-e has too many parameters\n", output);
+                fputs("-e has been entered more than once\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
+            if(strlen(argv[i]) == 2)
+            {
+                fputs(instr, output);
+                fputs("-e has too few parameters\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
+            val=strtol(argv[i] + 2, &ptr, 10);
+            if(ptr == argv[i] + 2)
+            {
+                fputs(instr, output);
+                fputs("-e has faulty parameter\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
+            commandPacket.value=val;
             commandPacket.opcode=COMMAND_ECHO;
+            echoParam++;
         }
         else if(!strncmp(argv[i], "-f", 2))
         {
@@ -394,26 +431,11 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
         portParam++;
     }
 
-    if(writeParam == 0)
-    {
-        fputs("write enable parameter not entered, write_enable=0 is implied\n", output);
-    }
-    else
-    {
-        if(histParam == 0)
-        {
-            fputs("history enable parameter not entered, write_enable=0 is implied\n", output);
-        }
-        if(burstParam == 0)
-        {
-            fputs("burst enable parameter not entered, write_enable=0 is implied\n", output);
-        }
-    }
 
     commandPacket.HE&=commandPacket.WE; //write must be enabled for history enable
     commandPacket.BE&=commandPacket.WE; //write must be enabled for burst enable
 
-    if(!commandPacket.WE)
+    if(echoParam+readParam+timeParam+commandPacket.WE == 0) //no command is entered
     {
         if(commandPacket.opcode == COMMAND_CONFIGURE)
         {
@@ -427,6 +449,41 @@ sendKthWsnCommand -h1 -b1 -w1 -t1h -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
             no_command=1;
         }
     }
+    else
+    {
+        if(echoParam+readParam+timeParam > 1)
+        {
+            fputs(instr, output);
+            fputs("more than one commands are entered\n", output);
+            restoreDefaults();
+            return EXIT_FAILURE;
+        }
+        if(addrParam == 0)
+        {
+            fputs(instr, output);
+            fputs("no destination address is entered\n", output);
+            restoreDefaults();
+            return EXIT_FAILURE;
+        }
+    }
+    
+    if(writeParam == 0)
+    {
+        fputs("WRITE ENABLE PARAMETER IS NOT ENTERED, WRITE_ENABLE=1 IS IMPLIED!\n\n", output);
+    }
+    else
+    {
+        if(histParam == 0)
+        {
+            fputs("HISTORY ENABLE PARAMETER IS NOT ENTERED, HISTORY_ENABLE=1 IS IMPLIED!\n", output);
+        }
+        if(burstParam == 0)
+        {
+            fputs("BURST ENABLE PARAMETER IS NOT ENTERED, BURST_ENABLE=1 IS IMPLIED!\n", output);
+        }
+        fputs("\n", output);
+    }
+
     if(!no_command)
     {
         if(verbose)

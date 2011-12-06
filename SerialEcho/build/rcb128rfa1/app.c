@@ -2171,17 +2171,17 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40700c70);
+uint8_t arg_0x406ffc70);
 # 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40700c70, 
+uint8_t arg_0x406ffc70, 
 # 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t t0, uint32_t dt);
 #line 64
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40700c70, 
+uint8_t arg_0x406ffc70, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 9 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
@@ -2829,15 +2829,15 @@ static error_t DummyNotificationReceiverP__ForwardData__setNow(DummyNotification
 static error_t DummyNotificationReceiverP__ForwardStatus__setNow(DummyNotificationReceiverP__ForwardStatus__data_type val);
 # 11 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
 static uint8_t DummyNotificationReceiverP__PacketTypes__commandPacketToStr(command_packet_t *dp, uint8_t *buf);
-# 23 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+# 25 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
 status_packet_t DummyNotificationReceiverP__statusPacket;
 data_packet_t DummyNotificationReceiverP__dataPacket;
 static inline void DummyNotificationReceiverP__Boot__booted(void );
-#line 44
+#line 46
 static void DummyNotificationReceiverP__CommandNotification__notify(command_packet_t val);
-#line 59
+#line 61
 static inline void DummyNotificationReceiverP__Timer0__fired(void );
-#line 71
+#line 73
 static inline void DummyNotificationReceiverP__Timer1__fired(void );
 # 70 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc"
 static void /*TimerMilliP.AlarmMilli32C.Alarm62khz32C.AtmegaCompareP*/AtmegaCompareP__0__AtmegaCompare__setMode(uint8_t mode);
@@ -2994,7 +2994,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40700c70);
+uint8_t arg_0x406ffc70);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4290 {
 #line 71
@@ -4427,7 +4427,7 @@ inline static error_t DummyNotificationReceiverP__ForwardData__setNow(DummyNotif
 #line 53
 }
 #line 53
-# 59 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+# 61 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
 static inline void DummyNotificationReceiverP__Timer0__fired(void )
 {
   DummyNotificationReceiverP__dataPacket.data1++;
@@ -4446,7 +4446,7 @@ static inline uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketT
   uint8_t i = 0;
 
   buf[i++] = '[';
-  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[PACKET_DATA];
+  buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[PACKET_STATUS];
   buf[i++] = ':';
 
   buf[i++] = /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__hexTable[((sp->node_id >> 8) >> 4) & 0x0F];
@@ -4507,7 +4507,7 @@ inline static error_t DummyNotificationReceiverP__ForwardStatus__setNow(DummyNot
 #line 53
 }
 #line 53
-# 71 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+# 73 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
 static inline void DummyNotificationReceiverP__Timer1__fired(void )
 {
   DummyNotificationReceiverP__statusPacket.historyEnable = 1;
@@ -4515,7 +4515,7 @@ static inline void DummyNotificationReceiverP__Timer1__fired(void )
   DummyNotificationReceiverP__statusPacket.burstInterval = 16;
   DummyNotificationReceiverP__statusPacket.intervalType = INTERVAL_TYPE_DAYS;
   DummyNotificationReceiverP__statusPacket.node_id = 0x0002;
-  DummyNotificationReceiverP__ForwardStatus__setNow(DummyNotificationReceiverP__statusPacket);
+  while (DummyNotificationReceiverP__ForwardStatus__setNow(DummyNotificationReceiverP__statusPacket) != SUCCESS) ;
 }
 
 # 204 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
@@ -4524,9 +4524,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x40700c70){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406ffc70){
 #line 83
-  switch (arg_0x40700c70) {
+  switch (arg_0x406ffc70) {
 #line 83
     case 0U:
 #line 83
@@ -4554,7 +4554,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x40700c70);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406ffc70);
 #line 83
       break;
 #line 83
@@ -5326,7 +5326,7 @@ inline static error_t DummyNotificationReceiverP__CommandNotification__enable(vo
 #line 59
 }
 #line 59
-# 25 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+# 27 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
 static inline void DummyNotificationReceiverP__Boot__booted(void )
 {
   DummyNotificationReceiverP__statusPacket.node_id = 0x0002;
@@ -5940,14 +5940,14 @@ static uint8_t /*SerialEchoAppC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__a
   return 0;
 }
 
-# 44 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
+# 46 "/home/alpsayin/tinyos_workspace/SerialEcho/src/DummyNotificationReceiverP.nc"
 static void DummyNotificationReceiverP__CommandNotification__notify(command_packet_t val)
 {
   uint8_t msgBuf[64];
   uint8_t msgLen;
   uint8_t i;
 
-#line 49
+#line 51
   msgLen = DummyNotificationReceiverP__PacketTypes__commandPacketToStr(&val, msgBuf);
   DummyNotificationReceiverP__UartByte__send('|');
   for (i = 0; i < msgLen; i++) 
