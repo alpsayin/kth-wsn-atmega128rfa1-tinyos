@@ -19,6 +19,7 @@ module SerialEchoC @safe()
 		interface Boot;
 		interface UartStream;
 		interface UartByte;
+		interface StdControl as UartControl;
 		interface Timer<TMilli> as Timer0;
 		interface Timer<TMilli> as Timer1;
 		interface PacketTypes;
@@ -56,6 +57,7 @@ implementation
 		call CommandNotification.enable();	
 		call Timer0.startPeriodic(1000);
 		call Timer1.startPeriodicAt(500, 1000);
+		call UartControl.stop();
 	}
 
 	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)

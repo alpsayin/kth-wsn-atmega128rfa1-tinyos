@@ -13,6 +13,7 @@ implementation
 	SerialEchoC.Timer0 -> Timer0;
 	SerialEchoC.Timer1 -> Timer1;
 	SerialEchoC.Boot -> MainC.Boot;
+	SerialEchoC.UartControl -> PlatformSerialC;
 	SerialEchoC.UartStream -> PlatformSerialC;
 	SerialEchoC.UartByte -> PlatformSerialC;
 	SerialEchoC.Leds -> LedsC;
