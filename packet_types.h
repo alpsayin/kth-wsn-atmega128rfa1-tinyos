@@ -10,7 +10,7 @@
 
 #include <inttypes.h>
 
-#define DEFAULT_TIMER_BOUNDARY 48
+//#define DEFAULT_TIMER_BOUNDARY 48 //as: will be defined in another file
 
 #ifdef	__cplusplus
 extern "C" {
