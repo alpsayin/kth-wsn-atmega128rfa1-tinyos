@@ -18,6 +18,8 @@ implementation{
 	components MainC;
 	components SensorC;
 	components TestP;
+	components HplAtm128GeneralIOC as PIO;
+	components PlatformSerialC;
 	
 	TestP.Boot -> MainC.Boot;
 	
