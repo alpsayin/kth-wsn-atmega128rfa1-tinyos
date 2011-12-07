@@ -24,7 +24,7 @@ extern "C" {
 #define HIGH(n) ((n>>4) & 0x0F)
 #endif
 
-//[0:111OpVaAddr]
+//[0:WHBOpVaAddr]
 #define SIZE_COMMAND (3+3+2+2+4+1)
 //[1:Dat1Dat2Dat3Dat4Dat5Addr]
 #define SIZE_DATA (3+(7*4)+1)

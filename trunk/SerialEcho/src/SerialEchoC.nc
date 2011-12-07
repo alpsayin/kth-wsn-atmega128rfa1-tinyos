@@ -22,6 +22,10 @@ module SerialEchoC @safe()
 		interface Timer<TMilli> as Timer0;
 		interface Timer<TMilli> as Timer1;
 		interface PacketTypes;
+		
+		interface Queue<data_packet_t> as DataQueue;
+		interface Queue<status_packet_t> as StatusQueue;
+		interface Queue<command_packet_t> as CommandQueue;
 	}
 	provides
 	{
@@ -35,6 +39,7 @@ implementation
 {
 	//TODO implement a circular send buffer
 	task void processReceiveBufferTask();
+	task void forwardNextPacketTask();
 	const uint8_t hexTable[16] = "0123456789abcdef";
 
     norace bool started;
@@ -99,6 +104,7 @@ implementation
 	{
 		
 	}
+	
 	task void processReceiveBufferTask()
 	{
 		//TODO atomic copy of receive buffer to a local buffer	
@@ -156,37 +162,60 @@ implementation
 
 	async command error_t ForwardCommand.setNow(command_packet_t val)
 	{
-		// TODO check if busy, if not send else return busy
-    	uint8_t localBuf[64];
-		uint8_t len;
-	    command_packet_t localCommandPacket;
-	    
-	    localCommandPacket = val;
-	    len = call PacketTypes.commandPacketToStr(&localCommandPacket, localBuf);
-	    return call UartStream.send(localBuf, len);
+		error_t err = call CommandQueue.enqueue(val);
+		post forwardNextPacketTask();
+		return err;
 	}
 
 	async command error_t ForwardData.setNow(data_packet_t val)
 	{
-		// TODO check if busy, if not send else return busy
-    	uint8_t localBuf[64];
-		uint8_t len;
-	    data_packet_t localDataPacket;
-	    
-	    localDataPacket = val;
-	    len = call PacketTypes.dataPacketToStr(&localDataPacket, localBuf);
-	    return call UartStream.send(localBuf, len);
+		error_t err = call DataQueue.enqueue(val);
+		post forwardNextPacketTask();
+		return err;
 	}
 
 	async command error_t ForwardStatus.setNow(status_packet_t val)
 	{
-		// TODO check if busy, if not send else return busy
+		error_t err = call StatusQueue.enqueue(val);
+		post forwardNextPacketTask();
+		return err;
+	}
+	
+	task void forwardNextPacketTask()
+	{
     	uint8_t localBuf[64];
 		uint8_t len;
 	    status_packet_t localStatusPacket;
-	    
-	    localStatusPacket = val;
-	    len = call PacketTypes.statusPacketToStr(&localStatusPacket, localBuf);
-	    return call UartStream.send(localBuf, len);
+	    data_packet_t localDataPacket;
+	    command_packet_t localCommandPacket;
+		if(!call DataQueue.empty())
+		{
+			localDataPacket = call DataQueue.head();
+			len = call PacketTypes.dataPacketToStr(&localDataPacket, localBuf);
+			if(call UartStream.send(localBuf, len)==SUCCESS)
+				call DataQueue.dequeue();
+			else
+				post forwardNextPacketTask();
+		}
+		if(!call StatusQueue.empty())
+		{
+			localStatusPacket = call StatusQueue.head();
+			len = call PacketTypes.statusPacketToStr(&localStatusPacket, localBuf);
+			if(call UartStream.send(localBuf, len)==SUCCESS)
+				call StatusQueue.dequeue();
+			else
+				post forwardNextPacketTask();
+		}
+		if(!call CommandQueue.empty())
+		{
+			localCommandPacket = call CommandQueue.head();
+			len = call PacketTypes.commandPacketToStr(&localCommandPacket, localBuf);
+			if(call UartStream.send(localBuf, len)==SUCCESS)
+				call CommandQueue.dequeue();
+			else
+				post forwardNextPacketTask();
+		}
+		if(!call DataQueue.empty() || !call StatusQueue.empty() || !call CommandQueue.empty())
+			post forwardNextPacketTask();
 	}
 }

@@ -60,6 +60,7 @@ struct sigaction saio; //definition of signal action
 int main(int argc, char** argv)
 {
     char buf[BUFFER_SIZE];
+    char outputOpenMode[2] = "w\0";
     char *ptr;
     int i=0, val=0, no_command=0;
     int burstParam=0, histParam=0, writeParam=0, readParam=0, timeParam=0, echoParam=0, addrParam=0, portParam=0;
@@ -90,6 +91,7 @@ the user can parse the output files easily by using a tool like awk.\n\
     -eValue send echo command, expecting the same command to return (Value=0-255)\n\
     -l enables listening after command issue, if used no command has to be entered\n\
     -p specifies the serial port to be used\
+    -c if entered appends the outputs, if not deletes the old data and starts from scratch\n\
 \n\
 Example: \n\
 sendKthWsnCommand -h1 -b1 -w1 -rd -aFFFF -f -l -p/dev/ttyUSB0\n\
@@ -409,13 +411,23 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
         {
             if(strlen(argv[i]) != 2)
             {
-                fputs("listen", output);
                 fputs(instr, output);
                 fputs("-l has too many parameters\n", output);
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
             listen=1;
+        }
+        else if(!strncmp(argv[i], "-c", 2))
+        {
+            if(strlen(argv[i]) != 2)
+            {
+                fputs(instr, output);
+                fputs("-c has too many parameters\n", output);
+                restoreDefaults();
+                return EXIT_FAILURE;
+            }
+            strncpy(outputOpenMode, "a\0", 2);
         }
         else if(!strncmp(argv[i], "-p", 2))
         {
@@ -598,23 +610,35 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
 
     if(listen)
     {
-        statusOutput=fopen("status_output.txt", "w");
+        statusOutput=fopen("status_output.txt", outputOpenMode);
         if(!statusOutput)
         {
             fputs("couldn't open status output file, using stdout instead\n", output);
             statusOutput=stdout;
         }
-        dataOutput=fopen("data_output.txt", "w");
+        else if(outputOpenMode[0]=='w')
+        {
+            fputs("#type\tnode_id\tburst_interval\tinterval_type\thistory_enable\tburst_enable\n", statusOutput);
+        }
+        dataOutput=fopen("data_output.txt", outputOpenMode);
         if(!dataOutput)
         {
             fputs("couldn't open data output file, using stdout instead\n", output);
             dataOutput=stdout;
         }
-        commandOutput=fopen("command_output.txt", "w");
+        else if(outputOpenMode[0]=='w')
+        {
+            fputs("#type\tsource\tseqNo\ttemperature\tpressure\thumidity\tluminosity\tbattery\n", dataOutput);
+        }
+        commandOutput=fopen("command_output.txt", outputOpenMode);
         if(!commandOutput)
         {
             fputs("couldn't open command output file, using stdout instead\n", output);
             commandOutput=stdout;
+        }
+        else if(outputOpenMode[0]=='w')
+        {
+            fputs("#type\tsource\twrite_enable\thistory_enable\tburst_enable\toperation\tvalue\n", commandOutput);
         }
         fputs("started listening...\n", output);
     }
@@ -727,19 +751,29 @@ int processReceiveBuffer()
         type=strToCommandPacket(&commandPacket, receiveBuffer);
         if(type == PACKET_ERROR)
             return -1;
-        fputs("\nPACKET\t", commandOutput);
-        fputs("type=command\t", commandOutput);
-        sprintf(buf, "we=%d\t", commandPacket.WE);
+        fputs("\ncommand\t", commandOutput);
+        sprintf(buf, "%d\t", commandPacket.address);
         fputs(buf, commandOutput);
-        sprintf(buf, "he=%d\t", commandPacket.HE);
+        sprintf(buf, "%d\t", commandPacket.WE);
         fputs(buf, commandOutput);
-        sprintf(buf, "be=%d\t", commandPacket.BE);
+        sprintf(buf, "%d\t", commandPacket.HE);
         fputs(buf, commandOutput);
-        sprintf(buf, "opcode=%d\t", commandPacket.opcode);
+        sprintf(buf, "%d\t", commandPacket.BE);
         fputs(buf, commandOutput);
-        sprintf(buf, "value=%d\t", commandPacket.value);
-        fputs(buf, commandOutput);
-        sprintf(buf, "source=%d\t", commandPacket.address);
+        switch(commandPacket.opcode)
+        {
+            case COMMAND_CONFIGURE: fputs("configure\t", commandOutput); break;
+            case COMMAND_ECHO: fputs("echo\t", commandOutput); break;
+            case COMMAND_READ_DATA: fputs("read_data\t", commandOutput); break;
+            case COMMAND_READ_HISTORY: fputs("read_history\t", commandOutput); break;
+            case COMMAND_READ_STATUS: fputs("read_status\t", commandOutput); break;
+            case COMMAND_INTERVAL_SECONDS: fputs("set_interval_seconds\t", commandOutput); break;
+            case COMMAND_INTERVAL_MINUTES: fputs("set_interval_minutes\t", commandOutput); break;
+            case COMMAND_INTERVAL_HOURS: fputs("set_interval_hours\t", commandOutput); break;
+            case COMMAND_INTERVAL_DAYS: fputs("set_interval_days\t", commandOutput); break;
+            default: fputs("unknown\t", commandOutput); break;
+        }
+        sprintf(buf, "%d\t", commandPacket.value);
         fputs(buf, commandOutput);
         //fputs("\n", stdout);
         fflush(commandOutput);
@@ -749,21 +783,20 @@ int processReceiveBuffer()
         type=strToDataPacket(&dataPacket, receiveBuffer);
         if(type == PACKET_ERROR)
             return -1;
-        fputs("\nPACKET\t", dataOutput);
-        fputs("type=data\t", dataOutput);
-        sprintf(buf, "seqNo=%d\t", dataPacket.seqNo);
+        fputs("\ndata\t", dataOutput);
+        sprintf(buf, "%d\t", dataPacket.source);
         fputs(buf, dataOutput);
-        sprintf(buf, "TEMPERATURE=%d\t", dataPacket.TEMPERATURE);
+        sprintf(buf, "%d\t", dataPacket.seqNo);
         fputs(buf, dataOutput);
-        sprintf(buf, "PRESSURE=%d\t", dataPacket.PRESSURE);
+        sprintf(buf, "%d\t", dataPacket.TEMPERATURE);
         fputs(buf, dataOutput);
-        sprintf(buf, "HUMIDITY=%d\t", dataPacket.HUMIDITY);
+        sprintf(buf, "%d\t", dataPacket.PRESSURE);
         fputs(buf, dataOutput);
-        sprintf(buf, "LUMINOSITY=%d\t", dataPacket.LUMINOSITY);
+        sprintf(buf, "%d\t", dataPacket.HUMIDITY);
         fputs(buf, dataOutput);
-        sprintf(buf, "BATTERY=%d\t", dataPacket.BATTERY);
+        sprintf(buf, "%d\t", dataPacket.LUMINOSITY);
         fputs(buf, dataOutput);
-        sprintf(buf, "source=%d\t", dataPacket.source);
+        sprintf(buf, "%d\t", dataPacket.BATTERY);
         fputs(buf, dataOutput);
         //fputs("\n", stdout);
         fflush(dataOutput);
@@ -773,17 +806,22 @@ int processReceiveBuffer()
         type=strToStatusPacket(&statusPacket, receiveBuffer);
         if(type == PACKET_ERROR)
             return -1;
-        fputs("\nPACKET\t", statusOutput);
-        fputs("type=status\t", statusOutput);
-        sprintf(buf, "node_id=%d\t", statusPacket.node_id);
+        fputs("\nstatus\t", statusOutput);
+        sprintf(buf, "%d\t", statusPacket.node_id);
         fputs(buf, statusOutput);
-        sprintf(buf, "burst_interval=%d\t", statusPacket.burstInterval);
+        sprintf(buf, "%d\t", statusPacket.burstInterval);
         fputs(buf, statusOutput);
-        sprintf(buf, "interval_type=%d\t", statusPacket.intervalType);
+        switch(statusPacket.intervalType)
+        {
+            case INTERVAL_TYPE_SECONDS : fputs("seconds\t", statusOutput); break;
+            case INTERVAL_TYPE_MINUTES : fputs("minutes\t", statusOutput); break;
+            case INTERVAL_TYPE_HOURS : fputs("hours\t", statusOutput); break;
+            case INTERVAL_TYPE_DAYS : fputs("days\t", statusOutput); break;
+            default : fputs("unknown\t", statusOutput); break;
+        }
+        sprintf(buf, "%d\t", statusPacket.historyEnable);
         fputs(buf, statusOutput);
-        sprintf(buf, "history_enable=%d\t", statusPacket.historyEnable);
-        fputs(buf, statusOutput);
-        sprintf(buf, "burst_enable=%d\t", statusPacket.burstEnable);
+        sprintf(buf, "%d\t", statusPacket.burstEnable);
         fputs(buf, statusOutput);
         //fputs("\n", stdout);
         fflush(statusOutput);
