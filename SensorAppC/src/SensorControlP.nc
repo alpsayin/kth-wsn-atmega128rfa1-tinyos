@@ -95,9 +95,9 @@ implementation{
 		
 		status_packet_t status_temp = status;
 		status = val;
-		
+#ifdef CONSTANT_NODE_ID 
 		status.node_id = status_temp.node_id;
-		
+#endif
 		if(status.historyEnable | status.burstEnable)
 		{
 #if TIMING_PHASE_SHIFT==0

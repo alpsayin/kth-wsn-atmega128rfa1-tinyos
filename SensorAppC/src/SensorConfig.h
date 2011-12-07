@@ -34,6 +34,7 @@
 
 //#define LED_SENSOR_ENABLE
 
+#define CONSTANT_NODE_ID
 
 
 #endif /* SENSOR_CONFIG_H */
