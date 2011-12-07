@@ -15,6 +15,7 @@ extern "C" {
 #include <inttypes.h>
 
 #define INSTANCE_LOCK "wsn-code-lock"
+#define DEFAULT_TIMER_BOUNDARY 48
 
 void signal_handler_IO(int status); //definition of signal handler
 void sigint_handler(int sig); //definition of signal handler

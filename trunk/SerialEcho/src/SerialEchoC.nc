@@ -165,21 +165,24 @@ implementation
 	async command error_t ForwardCommand.setNow(command_packet_t val)
 	{
 		error_t err = call CommandQueue.enqueue(val);
-		post forwardNextPacketTask();
+		if(err == SUCCESS)
+			post forwardNextPacketTask();
 		return err;
 	}
 
 	async command error_t ForwardData.setNow(data_packet_t val)
 	{
 		error_t err = call DataQueue.enqueue(val);
-		post forwardNextPacketTask();
+		if(err == SUCCESS)
+			post forwardNextPacketTask();
 		return err;
 	}
 
 	async command error_t ForwardStatus.setNow(status_packet_t val)
 	{
 		error_t err = call StatusQueue.enqueue(val);
-		post forwardNextPacketTask();
+		if(err == SUCCESS)
+			post forwardNextPacketTask();
 		return err;
 	}
 	
