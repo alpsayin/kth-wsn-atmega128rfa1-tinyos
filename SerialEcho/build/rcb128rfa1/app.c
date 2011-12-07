@@ -1839,8 +1839,8 @@ struct __file {
 #line 261
   int size;
   int len;
-  int (*put)(char arg_0x40603e50, struct __file *arg_0x40602068);
-  int (*get)(struct __file *arg_0x40602458);
+  int (*put)(char arg_0x405fce50, struct __file *arg_0x40613068);
+  int (*get)(struct __file *arg_0x40613458);
   void *udata;
 };
 #line 405
@@ -1981,6 +1981,8 @@ static void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void );
 static void Atm128Rfa1SerialP__Uart1Interrupts__rxInterruptHandler(uint8_t byte);
 # 82 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Counter.nc"
 static void Atm128Rfa1SerialP__Counter__overflow(void );
+# 105 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/StdControl.nc"
+static error_t Atm128Rfa1SerialP__Uart1Control__stop(void );
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/McuPowerOverride.nc"
 static mcu_power_t Atm128Rfa1SerialP__Uart1PowerOverride__lowestState(void );
 # 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
@@ -2174,17 +2176,17 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406f08f0);
+uint8_t arg_0x406ff8f0);
 # 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406f08f0, 
+uint8_t arg_0x406ff8f0, 
 # 114 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t t0, uint32_t dt);
 #line 64
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406f08f0, 
+uint8_t arg_0x406ff8f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 9 "/home/alpsayin/tinyos_workspace/SerialEcho/src/PacketTypes.nc"
@@ -2421,7 +2423,8 @@ enum Atm128Rfa1SerialP____nesc_unnamed4284 {
 };
 #line 46
 typedef int Atm128Rfa1SerialP____nesc_sillytask_unexpectedByteReceivedTask[Atm128Rfa1SerialP__unexpectedByteReceivedTask];
-#line 30
+#line 29
+volatile bool Atm128Rfa1SerialP__started;
 volatile bool Atm128Rfa1SerialP__rxBusy;
 #line 30
 volatile bool Atm128Rfa1SerialP__txBusy;
@@ -2443,17 +2446,19 @@ error_t Atm128Rfa1SerialP__rxResult;
 uint8_t Atm128Rfa1SerialP__m_byte_time;
 #line 38
 uint8_t Atm128Rfa1SerialP__rxUnexpectedByte;
-#line 66
+#line 56
+static inline error_t Atm128Rfa1SerialP__Uart1Control__stop(void );
+#line 76
 static inline error_t Atm128Rfa1SerialP__Uart1Init__init(void );
-#line 173
+#line 191
 static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte);
-#line 233
+#line 260
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__rxInterruptHandler(uint8_t byte);
-#line 255
+#line 282
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void );
-#line 280
+#line 307
 static error_t Atm128Rfa1SerialP__Uart1Stream__send(uint8_t *buf, uint16_t len);
-#line 344
+#line 401
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__sendDone(uint8_t *buf, uint16_t len, error_t err);
 
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__receiveDone(uint8_t *buf, uint16_t len, error_t error);
@@ -2478,13 +2483,16 @@ static inline void Atm128Rfa1SerialP__sendDoneTask__runTask(void );
 
 
 static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void );
-#line 379
+#line 436
 static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void );
 
 
 
 
 static inline mcu_power_t Atm128Rfa1SerialP__Uart1PowerOverride__lowestState(void );
+
+
+
 
 
 
@@ -2910,20 +2918,22 @@ static uint8_t SerialEchoC__PacketTypes__strToDataPacket(data_packet_t *dp, uint
 static uint8_t SerialEchoC__PacketTypes__commandPacketToStr(command_packet_t *dp, uint8_t *buf);
 #line 9
 static uint8_t SerialEchoC__PacketTypes__strToStatusPacket(status_packet_t *sp, uint8_t *buf);
+# 105 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/StdControl.nc"
+static error_t SerialEchoC__UartControl__stop(void );
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t SerialEchoC__forwardNextPacketTask__postTask(void );
-# 41 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 42 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 enum SerialEchoC____nesc_unnamed4287 {
-#line 41
+#line 42
   SerialEchoC__processReceiveBufferTask = 5U
 };
-#line 41
+#line 42
 typedef int SerialEchoC____nesc_sillytask_processReceiveBufferTask[SerialEchoC__processReceiveBufferTask];
 enum SerialEchoC____nesc_unnamed4288 {
-#line 42
+#line 43
   SerialEchoC__forwardNextPacketTask = 6U
 };
-#line 42
+#line 43
 typedef int SerialEchoC____nesc_sillytask_forwardNextPacketTask[SerialEchoC__forwardNextPacketTask];
 
 
@@ -2943,12 +2953,13 @@ static inline void SerialEchoC__Boot__booted(void );
 
 
 
+
 static inline void SerialEchoC__UartStream__receiveDone(uint8_t *buf, uint16_t len, error_t error);
 
 
 
 static inline void SerialEchoC__UartStream__receivedByte(uint8_t byte);
-#line 93
+#line 95
 static inline void SerialEchoC__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error);
 
 
@@ -2965,9 +2976,9 @@ static inline void SerialEchoC__Timer1__fired(void );
 
 
 static inline void SerialEchoC__processReceiveBufferTask__runTask(void );
-#line 156
+#line 158
 static inline error_t SerialEchoC__CommandNotification__enable(void );
-#line 170
+#line 172
 static inline error_t SerialEchoC__ForwardData__setNow(data_packet_t val);
 
 
@@ -3138,7 +3149,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x406f08f0);
+uint8_t arg_0x406ff8f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4291 {
 #line 71
@@ -3393,7 +3404,7 @@ inline static error_t Atm128Rfa1SerialP__receiveDoneTask__postTask(void ){
 #line 67
 }
 #line 67
-# 233 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 260 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__rxInterruptHandler(uint8_t byte)
 {
   if (Atm128Rfa1SerialP__rxBuf) 
@@ -3479,7 +3490,7 @@ inline static error_t Atm128Rfa1SerialP__sendDoneTask__postTask(void ){
 #line 67
 }
 #line 67
-# 255 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 282 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void )
 {
   if (Atm128Rfa1SerialP__txBuf != (void *)0) 
@@ -3491,7 +3502,7 @@ static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void )
           Atm128Rfa1SerialP__txPos++;
         }
       else {
-#line 265
+#line 292
         if (Atm128Rfa1SerialP__txPos == Atm128Rfa1SerialP__txLen) 
           {
             Atm128Rfa1SerialP__txLen = 0;
@@ -3505,7 +3516,7 @@ static inline void Atm128Rfa1SerialP__Uart1Interrupts__txInterruptHandler(void )
           }
         }
     }
-#line 277
+#line 304
   Atm128Rfa1SerialP__Uart1Interrupts__clearTxInterrupt();
 }
 
@@ -3516,9 +3527,9 @@ inline static void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__txInterruptHandl
 #line 20
 }
 #line 20
-# 389 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 449 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__Counter__overflow(void )
-#line 389
+#line 449
 {
 }
 
@@ -4071,12 +4082,12 @@ inline static error_t PlatformP__LedsInit__init(void ){
 #line 62
 }
 #line 62
-# 66 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 76 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline error_t Atm128Rfa1SerialP__Uart1Init__init(void )
 {
   uint16_t brr = 34;
 
-#line 69
+#line 79
   Atm128Rfa1SerialP__m_byte_time = 68;
   * (volatile uint8_t *)0xC8 &= ~(1 << 7);
   * (volatile uint8_t *)0xC8 &= ~(1 << 6);
@@ -4555,7 +4566,7 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__updateFr
     }
 }
 
-# 98 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 100 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__Timer0__fired(void )
 {
 }
@@ -4637,12 +4648,12 @@ inline static error_t SerialEchoC__DataQueue__enqueue(SerialEchoC__DataQueue__t 
 #line 90
 }
 #line 90
-# 170 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 172 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline error_t SerialEchoC__ForwardData__setNow(data_packet_t val)
 {
   error_t err = SerialEchoC__DataQueue__enqueue(val);
 
-#line 173
+#line 175
   SerialEchoC__forwardNextPacketTask__postTask();
   return err;
 }
@@ -4732,12 +4743,12 @@ inline static error_t SerialEchoC__StatusQueue__enqueue(SerialEchoC__StatusQueue
 #line 90
 }
 #line 90
-# 177 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 179 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline error_t SerialEchoC__ForwardStatus__setNow(status_packet_t val)
 {
   error_t err = SerialEchoC__StatusQueue__enqueue(val);
 
-#line 180
+#line 182
   SerialEchoC__forwardNextPacketTask__postTask();
   return err;
 }
@@ -4774,9 +4785,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406f08f0){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x406ff8f0){
 #line 83
-  switch (arg_0x406f08f0) {
+  switch (arg_0x406ff8f0) {
 #line 83
     case 0U:
 #line 83
@@ -4804,7 +4815,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406f08f0);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x406ff8f0);
 #line 83
       break;
 #line 83
@@ -5285,7 +5296,7 @@ inline static SerialEchoC__DataQueue__t  SerialEchoC__DataQueue__head(void ){
 #line 73
 }
 #line 73
-# 184 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 186 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__forwardNextPacketTask__runTask(void )
 {
   uint8_t localBuf[64];
@@ -5294,7 +5305,7 @@ static inline void SerialEchoC__forwardNextPacketTask__runTask(void )
   data_packet_t localDataPacket;
   command_packet_t localCommandPacket;
 
-#line 191
+#line 193
   if (!SerialEchoC__DataQueue__empty()) 
     {
       localDataPacket = SerialEchoC__DataQueue__head();
@@ -5303,11 +5314,11 @@ static inline void SerialEchoC__forwardNextPacketTask__runTask(void )
         SerialEchoC__DataQueue__dequeue();
         }
       else {
-#line 198
+#line 200
         SerialEchoC__forwardNextPacketTask__postTask();
         }
     }
-#line 200
+#line 202
   if (!SerialEchoC__StatusQueue__empty()) 
     {
       localStatusPacket = SerialEchoC__StatusQueue__head();
@@ -5316,11 +5327,11 @@ static inline void SerialEchoC__forwardNextPacketTask__runTask(void )
         SerialEchoC__StatusQueue__dequeue();
         }
       else {
-#line 207
+#line 209
         SerialEchoC__forwardNextPacketTask__postTask();
         }
     }
-#line 209
+#line 211
   if (!SerialEchoC__CommandQueue__empty()) 
     {
       localCommandPacket = SerialEchoC__CommandQueue__head();
@@ -5329,11 +5340,11 @@ static inline void SerialEchoC__forwardNextPacketTask__runTask(void )
         SerialEchoC__CommandQueue__dequeue();
         }
       else {
-#line 216
+#line 218
         SerialEchoC__forwardNextPacketTask__postTask();
         }
     }
-#line 218
+#line 220
   if ((!SerialEchoC__DataQueue__empty() || !SerialEchoC__StatusQueue__empty()) || !SerialEchoC__CommandQueue__empty()) {
     SerialEchoC__forwardNextPacketTask__postTask();
     }
@@ -5618,7 +5629,7 @@ inline static uint8_t SerialEchoC__PacketTypes__getTypeOfPacket(uint8_t *buf){
 #line 14
 }
 #line 14
-# 108 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 110 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
 {
 
@@ -5629,11 +5640,11 @@ static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
   status_packet_t localStatusPacket;
 
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 117
+#line 119
     {
       strncpy((char *)localBuf, (char *)SerialEchoC__receiveBuffer, SerialEchoC__pos);
     }
-#line 119
+#line 121
     __nesc_atomic_end(__nesc_atomic); }
 
   type = SerialEchoC__PacketTypes__getTypeOfPacket(localBuf);
@@ -5651,7 +5662,7 @@ static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
       SerialEchoC__CommandNotification__notify(SerialEchoC__gCommandPacket);
     }
   else {
-#line 135
+#line 137
     if (type == PACKET_DATA) 
       {
         type = SerialEchoC__PacketTypes__strToDataPacket(&localDataPacket, localBuf);
@@ -5660,7 +5671,7 @@ static inline void SerialEchoC__processReceiveBufferTask__runTask(void )
           }
       }
     else {
-#line 141
+#line 143
       if (type == PACKET_STATUS) 
         {
           type = SerialEchoC__PacketTypes__strToStatusPacket(&localStatusPacket, localBuf);
@@ -5819,7 +5830,7 @@ inline static error_t SerialEchoC__UartByte__send(uint8_t byte){
 #line 46
 }
 #line 46
-# 65 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 67 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__UartStream__receivedByte(uint8_t byte)
 {
   SerialEchoC__UartByte__send(byte);
@@ -5827,39 +5838,39 @@ static inline void SerialEchoC__UartStream__receivedByte(uint8_t byte)
     {
       SerialEchoC__pos = 0;
       { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 71
+#line 73
         {
           SerialEchoC__receiveBuffer[SerialEchoC__pos++] = byte;
         }
-#line 73
+#line 75
         __nesc_atomic_end(__nesc_atomic); }
       SerialEchoC__started = 1;
     }
   else {
-#line 76
+#line 78
     if (byte == ']' && SerialEchoC__started) 
       {
         { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 78
+#line 80
           {
             SerialEchoC__receiveBuffer[SerialEchoC__pos++] = byte;
             SerialEchoC__receiveBuffer[SerialEchoC__pos] = 0;
           }
-#line 81
+#line 83
           __nesc_atomic_end(__nesc_atomic); }
         SerialEchoC__started = 0;
         SerialEchoC__processReceiveBufferTask__postTask();
       }
     else {
-#line 85
+#line 87
       if (SerialEchoC__started) 
         {
           { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 87
+#line 89
             {
               SerialEchoC__receiveBuffer[SerialEchoC__pos++] = byte;
             }
-#line 89
+#line 91
             __nesc_atomic_end(__nesc_atomic); }
         }
       }
@@ -5873,13 +5884,13 @@ inline static void Atm128Rfa1SerialP__Uart1Stream__receivedByte(uint8_t byte){
 #line 79
 }
 #line 79
-# 379 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 436 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1Stream__receivedByte(Atm128Rfa1SerialP__rxUnexpectedByte);
 }
 
-# 61 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 63 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__UartStream__receiveDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -5891,7 +5902,7 @@ inline static void Atm128Rfa1SerialP__Uart1Stream__receiveDone(uint8_t * buf, ui
 #line 99
 }
 #line 99
-# 367 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 424 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1Stream__receiveDone(Atm128Rfa1SerialP__rxBuf, Atm128Rfa1SerialP__rxLen, Atm128Rfa1SerialP__rxResult);
@@ -5902,11 +5913,11 @@ static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
     {
       Atm128Rfa1SerialP__rxBusy = FALSE;
     }
-#line 376
+#line 433
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 93 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 95 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -5918,15 +5929,15 @@ inline static void Atm128Rfa1SerialP__Uart1Stream__sendDone(uint8_t * buf, uint1
 #line 57
 }
 #line 57
-# 362 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 419 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__sendDoneTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1Stream__sendDone(Atm128Rfa1SerialP__txBuf, Atm128Rfa1SerialP__txLen, Atm128Rfa1SerialP__txResult);
 }
 
-#line 346
+#line 403
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__receiveDone(uint8_t *buf, uint16_t len, error_t error)
-#line 346
+#line 403
 {
 }
 
@@ -5937,15 +5948,15 @@ inline static void Atm128Rfa1SerialP__Uart1StreamBlocking__receiveDone(uint8_t *
 #line 99
 }
 #line 99
-# 357 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 414 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__receiveBlockingDoneTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1StreamBlocking__receiveDone(Atm128Rfa1SerialP__rxBuf, Atm128Rfa1SerialP__rxLen, Atm128Rfa1SerialP__rxResult);
 }
 
-#line 344
+#line 401
 static inline void Atm128Rfa1SerialP__Uart1StreamBlocking__default__sendDone(uint8_t *buf, uint16_t len, error_t err)
-#line 344
+#line 401
 {
 }
 
@@ -5956,7 +5967,7 @@ inline static void Atm128Rfa1SerialP__Uart1StreamBlocking__sendDone(uint8_t * bu
 #line 57
 }
 #line 57
-# 352 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 409 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline void Atm128Rfa1SerialP__sendBlockingDoneTask__runTask(void )
 {
   Atm128Rfa1SerialP__Uart1StreamBlocking__sendDone(Atm128Rfa1SerialP__txBuf, Atm128Rfa1SerialP__txLen, Atm128Rfa1SerialP__txResult);
@@ -6004,7 +6015,7 @@ inline static void DummyNotificationReceiverP__Timer0__startPeriodic(uint32_t dt
 #line 64
 }
 #line 64
-# 156 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 158 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline error_t SerialEchoC__CommandNotification__enable(void )
 {
   SerialEchoC__enabled = TRUE;
@@ -6050,6 +6061,58 @@ static inline void DummyNotificationReceiverP__Boot__booted(void )
   DummyNotificationReceiverP__Timer1__startPeriodic(10000);
 }
 
+# 56 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+static inline error_t Atm128Rfa1SerialP__Uart1Control__stop(void )
+{
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 58
+    {
+      if (Atm128Rfa1SerialP__rxBusy || Atm128Rfa1SerialP__txBusy) 
+        {
+          unsigned char __nesc_temp = 
+#line 60
+          EBUSY;
+
+          {
+#line 60
+            __nesc_atomic_end(__nesc_atomic); 
+#line 60
+            return __nesc_temp;
+          }
+        }
+#line 61
+      Atm128Rfa1SerialP__started = FALSE;
+
+      * (volatile uint8_t *)0xC8 &= ~(1 << 7);
+      * (volatile uint8_t *)0xC8 &= ~(1 << 6);
+
+      * (volatile uint8_t *)0xC9 |= 1 << 7;
+      * (volatile uint8_t *)0xC9 |= 1 << 6;
+
+      * (volatile uint8_t *)0xC9 |= 1 << 4;
+      * (volatile uint8_t *)0xC9 |= 1 << 3;
+    }
+#line 71
+    __nesc_atomic_end(__nesc_atomic); }
+
+  return SUCCESS;
+}
+
+# 105 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/StdControl.nc"
+inline static error_t SerialEchoC__UartControl__stop(void ){
+#line 105
+  unsigned char __nesc_result;
+#line 105
+
+#line 105
+  __nesc_result = Atm128Rfa1SerialP__Uart1Control__stop();
+#line 105
+
+#line 105
+  return __nesc_result;
+#line 105
+}
+#line 105
 # 179 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
 static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodicAt(uint8_t num, uint32_t t0, uint32_t dt)
 {
@@ -6070,12 +6133,13 @@ inline static void SerialEchoC__Timer0__startPeriodic(uint32_t dt){
 #line 64
 }
 #line 64
-# 54 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
+# 55 "/home/alpsayin/tinyos_workspace/SerialEcho/src/SerialEchoC.nc"
 static inline void SerialEchoC__Boot__booted(void )
 {
   SerialEchoC__CommandNotification__enable();
   SerialEchoC__Timer0__startPeriodic(1000);
   SerialEchoC__Timer1__startPeriodicAt(500, 1000);
+  SerialEchoC__UartControl__stop();
 }
 
 # 60 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Boot.nc"
@@ -6094,10 +6158,16 @@ static inline  mcu_power_t mcombine(mcu_power_t m1, mcu_power_t m2)
   return m1 < m2 ? m1 : m2;
 }
 
-# 384 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 441 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static inline mcu_power_t Atm128Rfa1SerialP__Uart1PowerOverride__lowestState(void )
 {
-  return ATM128_POWER_IDLE;
+  if (Atm128Rfa1SerialP__started == TRUE) {
+    return ATM128_POWER_IDLE;
+    }
+  else {
+#line 446
+    return ATM128_POWER_DOWN;
+    }
 }
 
 # 495 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc"
@@ -6587,40 +6657,58 @@ static void /*TimerMilliP.AlarmMilli32C.TransformAlarmC*/TransformAlarmC__0__Ala
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 280 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 307 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static error_t Atm128Rfa1SerialP__Uart1Stream__send(uint8_t *buf, uint16_t len)
 {
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 309
+    {
+      if (!Atm128Rfa1SerialP__started) 
+        {
+          unsigned char __nesc_temp = 
+#line 311
+          FAIL;
 
+          {
+#line 311
+            __nesc_atomic_end(__nesc_atomic); 
+#line 311
+            return __nesc_temp;
+          }
+        }
+    }
+#line 314
+    __nesc_atomic_end(__nesc_atomic); }
   if (len == 0 || len > 64) {
     return FAIL;
     }
-#line 285
+#line 317
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
     {
       if (Atm128Rfa1SerialP__txBusy) 
         {
           unsigned char __nesc_temp = 
-#line 288
+#line 320
           EBUSY;
 
           {
-#line 288
+#line 320
             __nesc_atomic_end(__nesc_atomic); 
-#line 288
+#line 320
             return __nesc_temp;
           }
         }
-#line 289
+#line 321
       Atm128Rfa1SerialP__txBusy = TRUE;
     }
-#line 290
+#line 322
     __nesc_atomic_end(__nesc_atomic); }
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 291
+#line 323
     {
       strncpy((char *)Atm128Rfa1SerialP__txTmpBuf, (char *)buf, len);
     }
-#line 293
+#line 325
     __nesc_atomic_end(__nesc_atomic); }
   Atm128Rfa1SerialP__txBuf = Atm128Rfa1SerialP__txTmpBuf;
   Atm128Rfa1SerialP__txLen = len;
@@ -6667,28 +6755,49 @@ static void DummyNotificationReceiverP__CommandNotification__notify(command_pack
   DummyNotificationReceiverP__UartByte__send('\n');
 }
 
-# 173 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+# 191 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
 static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte)
 {
+
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 194
+    {
+      if (!Atm128Rfa1SerialP__started) 
+        {
+          unsigned char __nesc_temp = 
+#line 196
+          FAIL;
+
+          {
+#line 196
+            __nesc_atomic_end(__nesc_atomic); 
+#line 196
+            return __nesc_temp;
+          }
+        }
+    }
+#line 199
+    __nesc_atomic_end(__nesc_atomic); }
+#line 198
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
     {
       if (Atm128Rfa1SerialP__txBusy) 
         {
           unsigned char __nesc_temp = 
-#line 178
+#line 201
           EBUSY;
 
           {
-#line 178
+#line 201
             __nesc_atomic_end(__nesc_atomic); 
-#line 178
+#line 201
             return __nesc_temp;
           }
         }
-#line 179
+#line 202
       Atm128Rfa1SerialP__txBusy = TRUE;
     }
-#line 180
+#line 203
     __nesc_atomic_end(__nesc_atomic); }
   Atm128Rfa1SerialP__Uart1Interrupts__clearTxInterrupt();
   Atm128Rfa1SerialP__Uart1Interrupts__disableTxInterrupt();
@@ -6701,7 +6810,7 @@ static error_t Atm128Rfa1SerialP__Uart1Byte__send(uint8_t byte)
     {
       Atm128Rfa1SerialP__txBusy = FALSE;
     }
-#line 191
+#line 214
     __nesc_atomic_end(__nesc_atomic); }
   return SUCCESS;
 }
