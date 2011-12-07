@@ -60,7 +60,7 @@ struct sigaction saio; //definition of signal action
 int main(int argc, char** argv)
 {
     char buf[BUFFER_SIZE];
-    char outputOpenMode[2] = "w\0";
+    char outputOpenMode[2]="w\0";
     char *ptr;
     int i=0, val=0, no_command=0;
     int burstParam=0, histParam=0, writeParam=0, readParam=0, timeParam=0, echoParam=0, addrParam=0, portParam=0;
@@ -438,9 +438,9 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
                 restoreDefaults();
                 return EXIT_FAILURE;
             }
-            val = strlen(argv[i]) - 2;
+            val=strlen(argv[i]) - 2;
             memcpy(devicename, argv[i] + 2, val);
-            devicename[val] = 0;
+            devicename[val]=0;
         }
         portParam++;
     }
@@ -616,7 +616,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
             fputs("couldn't open status output file, using stdout instead\n", output);
             statusOutput=stdout;
         }
-        else if(outputOpenMode[0]=='w')
+        else if(outputOpenMode[0] == 'w')
         {
             fputs("#type\tnode_id\tburst_interval\tinterval_type\thistory_enable\tburst_enable\n", statusOutput);
         }
@@ -626,7 +626,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
             fputs("couldn't open data output file, using stdout instead\n", output);
             dataOutput=stdout;
         }
-        else if(outputOpenMode[0]=='w')
+        else if(outputOpenMode[0] == 'w')
         {
             fputs("#type\tsource\tseqNo\ttemperature\tpressure\thumidity\tluminosity\tbattery\n", dataOutput);
         }
@@ -636,7 +636,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
             fputs("couldn't open command output file, using stdout instead\n", output);
             commandOutput=stdout;
         }
-        else if(outputOpenMode[0]=='w')
+        else if(outputOpenMode[0] == 'w')
         {
             fputs("#type\tsource\twrite_enable\thistory_enable\tburst_enable\toperation\tvalue\n", commandOutput);
         }
@@ -762,16 +762,26 @@ int processReceiveBuffer()
         fputs(buf, commandOutput);
         switch(commandPacket.opcode)
         {
-            case COMMAND_CONFIGURE: fputs("configure\t", commandOutput); break;
-            case COMMAND_ECHO: fputs("echo\t", commandOutput); break;
-            case COMMAND_READ_DATA: fputs("read_data\t", commandOutput); break;
-            case COMMAND_READ_HISTORY: fputs("read_history\t", commandOutput); break;
-            case COMMAND_READ_STATUS: fputs("read_status\t", commandOutput); break;
-            case COMMAND_INTERVAL_SECONDS: fputs("set_interval_seconds\t", commandOutput); break;
-            case COMMAND_INTERVAL_MINUTES: fputs("set_interval_minutes\t", commandOutput); break;
-            case COMMAND_INTERVAL_HOURS: fputs("set_interval_hours\t", commandOutput); break;
-            case COMMAND_INTERVAL_DAYS: fputs("set_interval_days\t", commandOutput); break;
-            default: fputs("unknown\t", commandOutput); break;
+            case COMMAND_CONFIGURE: fputs("configure\t", commandOutput);
+                break;
+            case COMMAND_ECHO: fputs("echo\t", commandOutput);
+                break;
+            case COMMAND_READ_DATA: fputs("read_data\t", commandOutput);
+                break;
+            case COMMAND_READ_HISTORY: fputs("read_history\t", commandOutput);
+                break;
+            case COMMAND_READ_STATUS: fputs("read_status\t", commandOutput);
+                break;
+            case COMMAND_INTERVAL_SECONDS: fputs("set_interval_seconds\t", commandOutput);
+                break;
+            case COMMAND_INTERVAL_MINUTES: fputs("set_interval_minutes\t", commandOutput);
+                break;
+            case COMMAND_INTERVAL_HOURS: fputs("set_interval_hours\t", commandOutput);
+                break;
+            case COMMAND_INTERVAL_DAYS: fputs("set_interval_days\t", commandOutput);
+                break;
+            default: fputs("unknown\t", commandOutput);
+                break;
         }
         sprintf(buf, "%d\t", commandPacket.value);
         fputs(buf, commandOutput);
@@ -813,11 +823,16 @@ int processReceiveBuffer()
         fputs(buf, statusOutput);
         switch(statusPacket.intervalType)
         {
-            case INTERVAL_TYPE_SECONDS : fputs("seconds\t", statusOutput); break;
-            case INTERVAL_TYPE_MINUTES : fputs("minutes\t", statusOutput); break;
-            case INTERVAL_TYPE_HOURS : fputs("hours\t", statusOutput); break;
-            case INTERVAL_TYPE_DAYS : fputs("days\t", statusOutput); break;
-            default : fputs("unknown\t", statusOutput); break;
+            case INTERVAL_TYPE_SECONDS: fputs("seconds\t", statusOutput);
+                break;
+            case INTERVAL_TYPE_MINUTES: fputs("minutes\t", statusOutput);
+                break;
+            case INTERVAL_TYPE_HOURS: fputs("hours\t", statusOutput);
+                break;
+            case INTERVAL_TYPE_DAYS: fputs("days\t", statusOutput);
+                break;
+            default: fputs("unknown\t", statusOutput);
+                break;
         }
         sprintf(buf, "%d\t", statusPacket.historyEnable);
         fputs(buf, statusOutput);
