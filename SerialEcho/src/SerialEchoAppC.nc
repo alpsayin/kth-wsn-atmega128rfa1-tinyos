@@ -2,13 +2,12 @@ configuration SerialEchoAppC {}
 implementation
 {
 	components MainC, SerialEchoC, PlatformSerialC, LedsC;
-	components DummyNotificationReceiverP;
 	components new TimerMilliC() as Timer0;
 	components new TimerMilliC() as Timer1;
-	components new TimerMilliC() as Timer2;
-	components new TimerMilliC() as Timer3;
 	components new PacketTypesP() as PacketTypesImpl;
-	components new PacketTypesP() as PacketTypesDummy;
+	components new QueueC(data_packet_t, 255) as DataQueue;
+	components new QueueC(command_packet_t, 32) as CommandQueue;
+	components new QueueC(status_packet_t, 32) as StatusQueue;
 	
 	SerialEchoC.PacketTypes -> PacketTypesImpl;
 	SerialEchoC.Timer0 -> Timer0;
@@ -17,7 +16,14 @@ implementation
 	SerialEchoC.UartStream -> PlatformSerialC;
 	SerialEchoC.UartByte -> PlatformSerialC;
 	SerialEchoC.Leds -> LedsC;
+	SerialEchoC.DataQueue -> DataQueue;
+	SerialEchoC.StatusQueue -> StatusQueue;
+	SerialEchoC.CommandQueue -> CommandQueue;
 	
+	components DummyNotificationReceiverP;
+	components new PacketTypesP() as PacketTypesDummy;
+	components new TimerMilliC() as Timer2;
+	components new TimerMilliC() as Timer3;
 	DummyNotificationReceiverP.CommandNotification -> SerialEchoC;
 	DummyNotificationReceiverP.UartByte -> PlatformSerialC;
 	DummyNotificationReceiverP.PacketTypes -> PacketTypesDummy;

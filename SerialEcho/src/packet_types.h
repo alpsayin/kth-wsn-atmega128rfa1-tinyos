@@ -24,7 +24,7 @@ extern "C" {
 #define HIGH(n) ((n>>4) & 0x0F)
 #endif
 
-//[0:111OpVaAddr]
+//[0:WHBOpVaAddr]
 #define SIZE_COMMAND (3+3+2+2+4+1)
 //[1:Dat1Dat2Dat3Dat4Dat5Addr]
 #define SIZE_DATA (3+(7*4)+1)
@@ -95,7 +95,19 @@ extern "C" {
         PACKET_DATA,
         PACKET_STATUS
     };
-    
+
+#ifdef ALIX
+    int strToCommandPacket(command_packet_t* cp, char* buf);
+    int strToDataPacket(data_packet_t* dp, char* buf);
+    int strToStatusPacket(status_packet_t* sp, char* buf);
+    int commandToBuffer(command_packet_t* cp, char* buf);
+    int commandPacketToStr(command_packet_t* dp, char* buf);
+    int dataPacketToStr(data_packet_t* dp, char* buf);
+    int statusPacketToStr(status_packet_t* dp, char* buf);
+    int getTypeOfPacket(char* buf);
+#endif
+
+
 #ifdef	__cplusplus
 }
 #endif
