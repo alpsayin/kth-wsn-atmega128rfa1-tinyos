@@ -618,7 +618,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
         }
         else if(outputOpenMode[0] == 'w')
         {
-            fputs("#type\tnode_id\tburst_interval\tinterval_type\thistory_enable\tburst_enable\n", statusOutput);
+            fputs("#\tnode_id\tburst_interval\tinterval_type\thistory_enable\tburst_enable\n", statusOutput);
         }
         dataOutput=fopen("data_output.txt", outputOpenMode);
         if(!dataOutput)
@@ -628,7 +628,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
         }
         else if(outputOpenMode[0] == 'w')
         {
-            fputs("#type\tsource\tseqNo\ttemperature\tpressure\thumidity\tluminosity\tbattery\n", dataOutput);
+            fputs("#\tsource\tseqNo\ttemperature\tpressure\thumidity\tluminosity\tbattery\n", dataOutput);
         }
         commandOutput=fopen("command_output.txt", outputOpenMode);
         if(!commandOutput)
@@ -638,7 +638,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
         }
         else if(outputOpenMode[0] == 'w')
         {
-            fputs("#type\tsource\twrite_enable\thistory_enable\tburst_enable\toperation\tvalue\n", commandOutput);
+            fputs("#\tsource\twrite_enable\thistory_enable\tburst_enable\toperation\tvalue\n", commandOutput);
         }
         fputs("started listening...\n", output);
     }
@@ -751,7 +751,8 @@ int processReceiveBuffer()
         type=strToCommandPacket(&commandPacket, receiveBuffer);
         if(type == PACKET_ERROR)
             return -1;
-        fputs("\ncommand\t", commandOutput);
+        //fputs("\ncommand\t", commandOutput);
+        fputs("\n", commandOutput);
         sprintf(buf, "%d\t", commandPacket.address);
         fputs(buf, commandOutput);
         sprintf(buf, "%d\t", commandPacket.WE);
@@ -793,7 +794,8 @@ int processReceiveBuffer()
         type=strToDataPacket(&dataPacket, receiveBuffer);
         if(type == PACKET_ERROR)
             return -1;
-        fputs("\ndata\t", dataOutput);
+        //fputs("\ndata\t", dataOutput);
+        fputs("\n", dataOutput);
         sprintf(buf, "%d\t", dataPacket.source);
         fputs(buf, dataOutput);
         sprintf(buf, "%d\t", dataPacket.seqNo);
@@ -816,7 +818,8 @@ int processReceiveBuffer()
         type=strToStatusPacket(&statusPacket, receiveBuffer);
         if(type == PACKET_ERROR)
             return -1;
-        fputs("\nstatus\t", statusOutput);
+        //fputs("\nstatus\t", statusOutput);
+        fputs("\n", statusOutput);
         sprintf(buf, "%d\t", statusPacket.node_id);
         fputs(buf, statusOutput);
         sprintf(buf, "%d\t", statusPacket.burstInterval);
