@@ -57,8 +57,18 @@ implementation
 	{ 
 	  atomic {
 	    if(rxBusy || txBusy)
-	      return FAIL;
+	      return EBUSY;
 	    started = FALSE;
+	    
+	    CLR_BIT(UCSR1A, RXC1);
+	    CLR_BIT(UCSR1A, TXC1);	//clear rx & tx complete flags
+	
+	    SET_BIT(UCSR1B, RXCIE1);	//enable rx intr
+	    SET_BIT(UCSR1B, TXCIE1);  // enable tx intr
+	    
+	    SET_BIT(UCSR1B, RXEN1); //enable rx
+	    SET_BIT(UCSR1B, TXEN1);  // enable tx
+	    
 	  }
 	  return SUCCESS;
 	}
@@ -110,6 +120,10 @@ implementation
 	async command error_t Uart1StreamBlocking.send(uint8_t *buf, uint16_t len)
 	{
 		uint16_t i;
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
 		atomic
 		{
 			if(txBusy)
@@ -141,6 +155,10 @@ implementation
 	async command error_t Uart1StreamBlocking.receive(uint8_t *buf, uint16_t len)
 	{
 		uint16_t i;
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
 		atomic
 		{
 			if(rxBusy)
@@ -172,6 +190,11 @@ implementation
 
 	async command error_t Uart1Byte.send(uint8_t byte)
 	{
+		
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
 		atomic
 		{
 			if(txBusy)
@@ -195,8 +218,12 @@ implementation
 	async command error_t Uart1Byte.receive(uint8_t *byte, uint8_t timeout)
 	{
 		uint16_t timeout_milli = m_byte_time * timeout + 1;
-    	uint32_t start;
+		uint32_t start;
 
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
 		atomic
 		{
 			if(rxBusy)
@@ -204,8 +231,8 @@ implementation
 			rxBusy = TRUE;
 		}
 		
-    	start = call Counter.get();
-    	call Uart1Interrupts.disableRxInterrupt(); 
+		start = call Counter.get();
+		call Uart1Interrupts.disableRxInterrupt(); 
 		call Uart1Interrupts.clearRxInterrupt();
 		while( !call Uart1Interrupts.isRxInterruptPending() )
 		{			
@@ -279,6 +306,11 @@ implementation
 
 	async command error_t Uart1Stream.send(uint8_t *buf, uint16_t len)
 	{
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
+		
 	  //return call Uart1StreamBlocking.send(buf, len);
 		if(len==0 || len>UART1_BUFFER_SIZE)
 			return FAIL;
@@ -302,6 +334,11 @@ implementation
 	
 	async command error_t Uart1Stream.receive(uint8_t *buf, uint16_t len)
 	{
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
+		
 		if(len == 0)
 			return FAIL;
 		atomic
@@ -319,24 +356,44 @@ implementation
 
 	async command error_t Uart1Stream.disableReceiveInterrupt()
 	{
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
+		
 		call Uart1Interrupts.disableRxInterrupt();
 		return SUCCESS;
 	}
 
 	async command error_t Uart1Stream.enableReceiveInterrupt()
 	{
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
+		
 		call Uart1Interrupts.enableRxInterrupt();
 		return SUCCESS;
 	}
 	
 	async command error_t Uart1StreamBlocking.enableReceiveInterrupt()
 	{
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
+		
 		call Uart1Interrupts.enableRxInterrupt();
 		return SUCCESS;
 	}
 
 	async command error_t Uart1StreamBlocking.disableReceiveInterrupt()
 	{
+		atomic {
+		  if(!started)
+		    return FAIL;
+		}
+		
 		call Uart1Interrupts.disableRxInterrupt();
 		return SUCCESS;
 	}
@@ -383,7 +440,10 @@ implementation
 
 	async command mcu_power_t Uart1PowerOverride.lowestState()
 	{
-		return ATM128_POWER_IDLE;
+	  if(started==TRUE)
+	    return ATM128_POWER_IDLE;
+	  else
+	    return ATM128_POWER_DOWN;
 	}
 
 	async event void Counter.overflow(){}
