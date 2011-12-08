@@ -326,7 +326,7 @@ implementation
 			txBusy = TRUE;	
 		}
 		atomic {
-		  strncpy((char*)txTmpBuf, (char*)buf, len);
+		  memcpy((char*)txTmpBuf, (char*)buf, len);
 		}
 		txBuf = txTmpBuf;
 		txLen = len;
