@@ -1600,26 +1600,104 @@ enum __nesc_unnamed4263 {
   LEDS_LED6 = 1 << 6, 
   LEDS_LED7 = 1 << 7
 };
+# 52 "/home/alpsayin/tinyos_workspace/SerialPacketSocket/src/packet_types.h"
+#line 44
+typedef struct status_packet {
+
+  uint8_t historyEnable : 1;
+  uint8_t burstEnable : 1;
+  uint8_t reserved : 4;
+  uint8_t intervalType : 2;
+  uint8_t burstInterval : 8;
+  uint16_t node_id;
+} status_packet_t;
+
+enum __nesc_unnamed4264 {
+
+  INTERVAL_TYPE_SECONDS = 0, 
+  INTERVAL_TYPE_MINUTES, 
+  INTERVAL_TYPE_HOURS, 
+  INTERVAL_TYPE_DAYS
+};
+
+
+
+
+
+
+
+
+
+
+#line 62
+typedef struct data_packet {
+
+  uint16_t source;
+  uint16_t data1;
+  uint16_t data2;
+  uint16_t data3;
+  uint16_t data4;
+  uint16_t data5;
+  uint16_t seqNo;
+} data_packet_t;
+
+
+
+
+
+
+
+
+#line 73
+typedef struct command_packet {
+  uint8_t WE : 1;
+  uint8_t HE : 1;
+  uint8_t BE : 1;
+  uint8_t opcode : 5;
+  uint8_t value;
+  uint16_t address;
+} command_packet_t;
+
+enum __nesc_unnamed4265 {
+
+  COMMAND_CONFIGURE = 0, 
+  COMMAND_ECHO, 
+  COMMAND_READ_DATA, 
+  COMMAND_READ_HISTORY, 
+  COMMAND_READ_STATUS, 
+  COMMAND_INTERVAL_SECONDS, 
+  COMMAND_INTERVAL_MINUTES, 
+  COMMAND_INTERVAL_HOURS, 
+  COMMAND_INTERVAL_DAYS
+};
+
+enum __nesc_unnamed4266 {
+
+  PACKET_ERROR = 0, 
+  PACKET_COMMAND, 
+  PACKET_DATA, 
+  PACKET_STATUS
+};
 # 41 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.h"
-typedef struct __nesc_unnamed4264 {
+typedef struct __nesc_unnamed4267 {
 #line 41
   int notUsed;
 } 
 #line 41
 TSecond;
-typedef struct __nesc_unnamed4265 {
+typedef struct __nesc_unnamed4268 {
 #line 42
   int notUsed;
 } 
 #line 42
 TMilli;
-typedef struct __nesc_unnamed4266 {
+typedef struct __nesc_unnamed4269 {
 #line 43
   int notUsed;
 } 
 #line 43
 T32khz;
-typedef struct __nesc_unnamed4267 {
+typedef struct __nesc_unnamed4270 {
 #line 44
   int notUsed;
 } 
@@ -1637,7 +1715,7 @@ T62khz;
 
 
 
-enum __nesc_unnamed4268 {
+enum __nesc_unnamed4271 {
 
 
   ATMRFA1_CLK8_OFF = 0, 
@@ -1664,7 +1742,7 @@ enum __nesc_unnamed4268 {
 };
 
 
-enum __nesc_unnamed4269 {
+enum __nesc_unnamed4272 {
 
 
   ATMRFA1_COM8_OFF = 0, 
@@ -1677,7 +1755,7 @@ enum __nesc_unnamed4269 {
 
 
 
-enum __nesc_unnamed4270 {
+enum __nesc_unnamed4273 {
 
 
   ATMRFA1_CLK16_OFF = 0, 
@@ -1709,7 +1787,7 @@ enum __nesc_unnamed4270 {
 };
 
 
-enum __nesc_unnamed4271 {
+enum __nesc_unnamed4274 {
 
 
   ATMRFA1_COM16_NORMAL = 0, 
@@ -1719,7 +1797,7 @@ enum __nesc_unnamed4271 {
 };
 
 
-enum __nesc_unnamed4272 {
+enum __nesc_unnamed4275 {
 
   ATMRFA1_CAP16_RISING_EDGE = 0x01, 
   ATMRFA1_CAP16_NOISE_CANCEL = 0x02
@@ -1729,7 +1807,7 @@ enum __nesc_unnamed4272 {
 
 
 
-enum __nesc_unnamed4273 {
+enum __nesc_unnamed4276 {
 
   ATMRFA1_CLKSC_DISABLE = 0, 
   ATMRFA1_CLKSC_XTAL = 1 << 5, 
@@ -1737,95 +1815,17 @@ enum __nesc_unnamed4273 {
 };
 
 
-enum __nesc_unnamed4274 {
+enum __nesc_unnamed4277 {
 
   ATMRFA1_COMSC_ABSOLUTE = 0, 
   ATMRFA1_COMSC_RELATIVE = 1
 };
 
 
-enum __nesc_unnamed4275 {
+enum __nesc_unnamed4278 {
 
   ATMRFA1_CAPSC_OFF = 0, 
   ATMRFA1_CAPSC_ON = 1
-};
-# 48 "/home/alpsayin/tinyos_workspace/SerialPacketSocket/src/packet_types.h"
-#line 40
-typedef struct status_packet {
-
-  uint8_t historyEnable : 1;
-  uint8_t burstEnable : 1;
-  uint8_t reserved : 4;
-  uint8_t intervalType : 2;
-  uint8_t burstInterval : 8;
-  uint16_t node_id;
-} status_packet_t;
-
-enum __nesc_unnamed4276 {
-
-  INTERVAL_TYPE_SECONDS = 0, 
-  INTERVAL_TYPE_MINUTES, 
-  INTERVAL_TYPE_HOURS, 
-  INTERVAL_TYPE_DAYS
-};
-
-
-
-
-
-
-
-
-
-
-#line 58
-typedef struct data_packet {
-
-  uint16_t source;
-  uint16_t data1;
-  uint16_t data2;
-  uint16_t data3;
-  uint16_t data4;
-  uint16_t data5;
-  uint16_t seqNo;
-} data_packet_t;
-
-
-
-
-
-
-
-
-#line 69
-typedef struct command_packet {
-  uint8_t WE : 1;
-  uint8_t HE : 1;
-  uint8_t BE : 1;
-  uint8_t opcode : 5;
-  uint8_t value;
-  uint16_t address;
-} command_packet_t;
-
-enum __nesc_unnamed4277 {
-
-  COMMAND_CONFIGURE = 0, 
-  COMMAND_ECHO, 
-  COMMAND_READ_DATA, 
-  COMMAND_READ_HISTORY, 
-  COMMAND_READ_STATUS, 
-  COMMAND_INTERVAL_SECONDS, 
-  COMMAND_INTERVAL_MINUTES, 
-  COMMAND_INTERVAL_HOURS, 
-  COMMAND_INTERVAL_DAYS
-};
-
-enum __nesc_unnamed4278 {
-
-  PACKET_ERROR = 0, 
-  PACKET_COMMAND, 
-  PACKET_DATA, 
-  PACKET_STATUS
 };
 # 43 "/usr/lib/gcc/avr/4.1.2/include/stdarg.h" 3
 typedef __builtin_va_list __gnuc_va_list;
@@ -1839,8 +1839,8 @@ struct __file {
 #line 261
   int size;
   int len;
-  int (*put)(char arg_0x405fcf20, struct __file *arg_0x40613120);
-  int (*get)(struct __file *arg_0x40613510);
+  int (*put)(char arg_0x405fc6a0, struct __file *arg_0x405fc888);
+  int (*get)(struct __file *arg_0x405fcc78);
   void *udata;
 };
 #line 405
@@ -2273,11 +2273,11 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4076cc70);
+uint8_t arg_0x4076c8f0);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4076cc70, 
+uint8_t arg_0x4076c8f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
@@ -3248,7 +3248,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4076cc70);
+uint8_t arg_0x4076c8f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4291 {
 #line 71
@@ -4707,9 +4707,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x4076cc70){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x4076c8f0){
 #line 83
-  switch (arg_0x4076cc70) {
+  switch (arg_0x4076c8f0) {
 #line 83
     case 0U:
 #line 83
@@ -4725,7 +4725,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x4076cc70);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x4076c8f0);
 #line 83
       break;
 #line 83

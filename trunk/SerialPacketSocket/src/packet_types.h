@@ -37,6 +37,10 @@ extern "C" {
 #define LUMINOSITY data4
 #define BATTERY data5
 
+#define QUEUE_SIZE_SERIAL_DATA 255
+#define QUEUE_SIZE_SERIAL_STATUS 32
+#define QUEUE_SIZE_SERIAL_COMMAND 32
+
     typedef struct status_packet
     {
         uint8_t historyEnable : 1;
