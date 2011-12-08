@@ -36,6 +36,8 @@ module SerialPacketForwarderP @safe()
 }
 implementation
 {
+	
+	#define COMMAND_RECEIVE_BUFFER_SIZE 64
 	//TODO implement a circular send buffer
 	task void processReceiveBufferTask();
 	task void forwardNextPacketTask();
@@ -48,7 +50,7 @@ implementation
     data_packet_t gDataPacket;
     status_packet_t gStatusPacket;
     
-    char receiveBuffer[64];	
+    char receiveBuffer[COMMAND_RECEIVE_BUFFER_SIZE];	
 	uint8_t pos;
 
 
@@ -84,15 +86,20 @@ implementation
         {
             atomic {
             	pos=0;
-            	receiveBuffer[pos++]=byte;
+        		receiveBuffer[pos++]=byte;
             }
             started=1;
         }
         else if(byte == ']' && started)
         {
         	atomic{
-	            receiveBuffer[pos++]=byte;
-	            receiveBuffer[pos]=0;
+        		if(pos<COMMAND_RECEIVE_BUFFER_SIZE)
+        		{
+		            receiveBuffer[pos++]=byte;
+		            receiveBuffer[pos]=0;
+	            }
+	            else
+	            	pos=0;
             }
             started=0;
 			post processReceiveBufferTask();
@@ -100,7 +107,12 @@ implementation
         else if(started)
         {
         	atomic {
-            	receiveBuffer[pos++]=byte;
+        		if(pos<COMMAND_RECEIVE_BUFFER_SIZE)
+        		{
+            		receiveBuffer[pos++]=byte;
+        		}
+	            else
+	            	pos=0;
         	}
         }
 	}
@@ -112,14 +124,14 @@ implementation
 	task void processReceiveBufferTask()
 	{
 		//TODO atomic copy of receive buffer to a local buffer	
-    	uint8_t localBuf[64];
+    	uint8_t localBuf[COMMAND_RECEIVE_BUFFER_SIZE];
 		uint8_t type;
 	    data_packet_t localDataPacket;
 	    command_packet_t localCommandPacket;
 	    status_packet_t localStatusPacket;
 	    
 	    atomic {
-	    	strncpy((char*)localBuf, (char*)receiveBuffer, pos);
+	    	strncpy((char*)localBuf, (char*)receiveBuffer, pos<=COMMAND_RECEIVE_BUFFER_SIZE?pos:COMMAND_RECEIVE_BUFFER_SIZE);
 	    	localBuf[pos]=0;
     	}
 	    type=call PacketTypes.getTypeOfPacket(localBuf);
@@ -136,18 +148,18 @@ implementation
 	        gCommandPacket = localCommandPacket;
 			signal CommandNotification.notify(gCommandPacket);
 	    }
-	    else if(type == PACKET_DATA)
-	    {
-	        type=call PacketTypes.strToDataPacket(&localDataPacket, localBuf);
-	        if(type == PACKET_ERROR)
-	            return;
-	    }
-	    else if(type == PACKET_STATUS)
-	    {
-	        type=call PacketTypes.strToStatusPacket(&localStatusPacket, localBuf);
-	        if(type == PACKET_ERROR)
-	            return;
-	    }
+//	    else if(type == PACKET_DATA)
+//	    {
+//	        type=call PacketTypes.strToDataPacket(&localDataPacket, localBuf);
+//	        if(type == PACKET_ERROR)
+//	            return;
+//	    }
+//	    else if(type == PACKET_STATUS)
+//	    {
+//	        type=call PacketTypes.strToStatusPacket(&localStatusPacket, localBuf);
+//	        if(type == PACKET_ERROR)
+//	            return;
+//	    }
 	}
 
 	async command error_t ForwardCommand.setNow(command_packet_t val)

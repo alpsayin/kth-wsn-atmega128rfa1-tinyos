@@ -893,12 +893,12 @@ int writeComPort(char* buf, int len)
 
 void restoreDefaults()
 {
-    fputs("exiting...\n", output);
+    fputs("exiting in 3 seconds...\n",output);
     fflush(output);
     tcsetattr(tty, TCSANOW, &oldkey);
     close(tty);
     close(fd);
-    sleep(2);
+    sleep(3);
 }
 
 #pragma GCC pop_options
