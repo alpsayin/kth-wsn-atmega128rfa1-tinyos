@@ -21,6 +21,7 @@ void signal_handler_IO(int status); //definition of signal handler
 void sigint_handler(int sig); //definition of signal handler
 void restoreDefaults();
 int processReceiveBuffer();
+int writeComPort(char* buf, int len);
 int openComPort(long rw);
 int only_one_instance(void);
 void ooi_unlink(void);

@@ -62,7 +62,7 @@ int main(int argc, char** argv)
     char buf[BUFFER_SIZE];
     char outputOpenMode[2]="w\0";
     char *ptr;
-    int i=0, val=0, no_command=0;
+    int rw_mode=0, i=0, val=0, no_command=0;
     int burstParam=0, histParam=0, writeParam=0, readParam=0, timeParam=0, echoParam=0, addrParam=0, portParam=0;
     char Key;
     uint8_t confirmation=1, verbose=0;
@@ -481,17 +481,17 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
         }
         if(writeParam == 0)
         {
-            fputs("WRITE ENABLE PARAMETER IS NOT ENTERED, WRITE_ENABLE=1 IS IMPLIED!\n\n", output);
+            fputs("WRITE ENABLE PARAMETER IS NOT ENTERED, WRITE_ENABLE=0 IS IMPLIED!\n\n", output);
         }
         else
         {
             if(histParam == 0)
             {
-                fputs("HISTORY ENABLE PARAMETER IS NOT ENTERED, HISTORY_ENABLE=1 IS IMPLIED!\n", output);
+                fputs("HISTORY ENABLE PARAMETER IS NOT ENTERED, HISTORY_ENABLE=0 IS IMPLIED!\n", output);
             }
             if(burstParam == 0)
             {
-                fputs("BURST ENABLE PARAMETER IS NOT ENTERED, BURST_ENABLE=1 IS IMPLIED!\n", output);
+                fputs("BURST ENABLE PARAMETER IS NOT ENTERED, BURST_ENABLE=0 IS IMPLIED!\n", output);
             }
             fputs("\n", output);
         }
@@ -577,6 +577,27 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
     }
     sprintf(buf, "trying to open %s for read/write\n", devicename);
     fputs(buf, output);
+
+    if(listen && !no_command)
+    {
+        rw_mode = O_RDWR;
+    }
+    else if(listen && no_command)
+    {
+        rw_mode = O_RDONLY;
+    }
+    else if(!listen && !no_command)
+    {
+        rw_mode = O_WRONLY;
+    }
+    else
+    {
+        fputs(instr, output);
+        fputs("no command && no listen?! how did the program even get here?!?\n", output);
+        restoreDefaults();
+        return EXIT_SUCCESS;
+    }
+
     if(openComPort(O_RDWR))
     {
         fputs("communication port could not be opened\n", output);
@@ -591,7 +612,8 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
         fflush(output);
 
         val=commandPacketToStr(&commandPacket, buf);
-        val=write(fd, buf, val);
+        val=writeComPort(buf, val);
+
         sprintf(buf, "%d bytes written\n", val);
         fputs(buf, output);
         val=commandPacketToStr(&commandPacket, buf);
@@ -706,6 +728,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
 
     return (EXIT_SUCCESS);
 }
+
 
 void sigint_handler(int sig)
 {
@@ -847,6 +870,24 @@ int processReceiveBuffer()
     return 0;
 }
 
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+int writeComPort(char* buf, int len)
+{
+    int i,val;
+    for(i=0; i < len; i++)
+    {
+#ifdef DEBUG
+        printf("sending %d/%d\n", i, len);
+#endif
+        if(write(fd, buf++, 1))
+            val++;
+        usleep(100000);
+    }
+    return val;
+}
+
+#pragma GCC pop_options
 int openComPort(long rw)
 {
     char errBuf[80];
