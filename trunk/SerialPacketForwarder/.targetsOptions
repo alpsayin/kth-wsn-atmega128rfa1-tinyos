@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<buildTargets>
+<default version="4">
+<default>true</default>
+<project/>
+<target>rcb128rfa1</target>
+<make-extras/>
+<includes/>
+<excludes>
+<exclude>.*\.svn.*</exclude>
+</excludes>
+<typedefs/>
+<macros>
+<macro content="" name="UARTSTREAM_NONBLOCK" ncc="true" yeti="true"/>
+</macros>
+<boards/>
+<no-std-incl>false</no-std-incl>
+<component/>
+<component-file>/SerialPacketForwarder/src/SerialPacketForwarderTestC.nc</component-file>
+<include-last-build>true</include-last-build>
+<include-env-default-paths>true</include-env-default-paths>
+<environment_variables/>
+</default>
+<client-data/>
+</buildTargets>
