@@ -879,15 +879,24 @@ int processReceiveBuffer()
 int writeComPort(char* buf, int len)
 {
     int i,val=0;
+    fputs("sending [", output);
+    for(i=0; i < len; i++)
+        fputc(' ', output);
+    fputs("]", output);
+    for(i=0; i < len+1; i++)
+        fputc('\b', output);
+    fflush(output);
+    
     for(i=0; i < len; i++)
     {
-#ifdef DEBUG
-        printf("sending %d/%d\n", i, len);
-#endif
+        fputc('=', output);
         if(write(fd, buf++, 1))
             val++;
         usleep(200000);
+        fflush(output);
     }
+    fputs("]\n", output);
+    fflush(output);
     return val;
 }
 
