@@ -104,7 +104,6 @@ extern "C" {
     int strToCommandPacket(command_packet_t* cp, char* buf);
     int strToDataPacket(data_packet_t* dp, char* buf);
     int strToStatusPacket(status_packet_t* sp, char* buf);
-    int commandToBuffer(command_packet_t* cp, char* buf);
     int commandPacketToStr(command_packet_t* dp, char* buf);
     int dataPacketToStr(data_packet_t* dp, char* buf);
     int statusPacketToStr(status_packet_t* dp, char* buf);
