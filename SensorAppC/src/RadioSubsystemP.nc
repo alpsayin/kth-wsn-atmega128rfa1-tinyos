@@ -5,324 +5,258 @@
 #include "RadioConfig.h"
 
 #include <stdio.h>
+#include "packet_types.h"
 
 
-module RadioSubsystemP{
-
-//	uses 
-//	{
-//		interface Leds;
-//		
-//		interface Boot;
-//		interface Receive;
-//		interface AMSend;
-//		
-//		interface Timer<TMilli> as MilliTimer;
-//		interface Timer<TMilli> as TemperatureTimer;
-//		interface Timer<TMilli> as RegisterPrinter;
-//		
-//		interface SplitControl as AMControl;
-//		interface Packet;
-//		interface AMPacket;
-// 
-//		interface UartStream;
-//		interface UartByte;
-//		
-//		interface StdControl as DisseminationControl;
-//		interface DisseminationValue<kth_wsn_command_t> as CommandValue;
-//		interface DisseminationUpdate<kth_wsn_command_t> as CommandUpdate;
-//		
-//		interface StdControl as RoutingControl;
-//		interface Send as CollectionSend;
-//		interface Receive as CollectionReceive;
-//		interface RootControl as RootControl;
-//		interface Read<uint16_t> as TempRead;
-//		
-//	}
+module RadioSubsystemP
+{
+	provides
+	{
+		interface Init as RadioSubsystemInit;	
+		
+		interface SetNow<data_packet_t[RADIO_HISTORY_SIZE]> as SetRadioHistory;
+		interface SetNow<data_packet_t> as SetRadioData;
+		interface SetNow<command_packet_t> as SetRadioCommand;
+		interface SetNow<status_packet_t> as SetRadioStatus;
+		interface Notify<command_packet_t> as NotifyRadioCommand;
+	}
+	uses 
+	{
+		interface Leds;
+		
+		interface SplitControl as AMControl;
+ 
+		interface StdControl as DisseminationControl;
+		interface DisseminationValue<command_packet_t> as CommandValue;
+		interface DisseminationUpdate<command_packet_t> as CommandUpdate;
+		
+		interface StdControl as RoutingControl;
+		
+		interface Send as DataCollectionSend;
+		interface Receive as DataCollectionReceive;
+		
+		interface Send as HistoryCollectionSend;
+		interface Receive as HistoryCollectionReceive;
+		
+		interface Send as CommandCollectionSend;
+		interface Receive as CommandCollectionReceive;
+		
+		interface Send as StatusCollectionSend;
+		interface Receive as StatusCollectionReceive;
+		
+		interface Set<data_packet_t> as ForwardData;
+		interface Set<status_packet_t> as ForwardStatus;
+		interface Set<command_packet_t> as ForwardCommand;
+	}
 
 
 }
-implementation{
+implementation
+{
+	message_t packet;
+	bool locked=FALSE;
+	bool commandReceptionEnabled=TRUE;
+	bool receiveBusy=FALSE;
+			
+	command error_t RadioSubsystemInit.init() 
+	{
+		return call AMControl.start();
+	}
 	
-//	
-//	message_t packet;
-//
-//	bool locked;
-//	uint16_t localTemp = 0;
-//	uint16_t counter = 0;
-//  	uint16_t destination = AM_BROADCAST_ADDR;
-//  	kth_wsn_command_t localCommand;
-// 	kth_wsn_data_t localData;
-//
-//	void printAddressRegisters()
-//	{
-//		uint8_t msgBuf[64];
-//		uint16_t msgLen;
-//		IEEE_ADDR_0 = TOS_AM_ADDRESS;
-//		msgLen = sprintf(msgBuf,"SHORT_ADDR = 0x%x%x\n", SHORT_ADDR_1, SHORT_ADDR_0);
-//		call UartStream.send(msgBuf, msgLen);
-//		msgLen = sprintf(msgBuf,"PAN_ID = 0x%x%x\n", PAN_ID_1 ,PAN_ID_0);
-//		call UartStream.send(msgBuf, msgLen);
-//		msgLen = sprintf(msgBuf,"IEEE_ADDR = 0x%x%x%x%x%x%x%x%x\n", IEEE_ADDR_7 ,IEEE_ADDR_6, IEEE_ADDR_5 ,IEEE_ADDR_4, IEEE_ADDR_3 ,IEEE_ADDR_2, IEEE_ADDR_1 ,IEEE_ADDR_0);
-//		call UartStream.send(msgBuf, msgLen);
-//	}
-//
-//	task void sendCollectionMessageLedsTask() 
-//	{
-//		kth_wsn_data_t* dataMsg = (kth_wsn_data_t*)call CollectionSend.getPayload(&packet, sizeof(kth_wsn_data_t));
-//		dataMsg->type = DATA_TYPE_LEDS;
-//		atomic
-//		{
-//			dataMsg->data = call Leds.get();
-//		}
-//		dataMsg->source = TOS_NODE_ID;
-// 
-//		if (call CollectionSend.send(&packet, sizeof(kth_wsn_data_t)) != SUCCESS) 
-//		{
-//			call UartStream.send("CollectionSend fail\n", strlen("CollectionSend fail\n"));	
-//		}
-//		else 
-//			locked = TRUE;
-//	}
-//
-//	task void sendCollectionMessageTempTask() 
-//	{
-//		kth_wsn_data_t* dataMsg = (kth_wsn_data_t*)call CollectionSend.getPayload(&packet, sizeof(kth_wsn_data_t));
-//		dataMsg->type = DATA_TYPE_TEMP;
-//		atomic
-//		{
-//			dataMsg->data = localTemp;
-//		}
-//		dataMsg->source = TOS_NODE_ID;
-// 
-//		if (call CollectionSend.send(&packet, sizeof(kth_wsn_data_t)) != SUCCESS) 
-//		{
-//			call UartStream.send("CollectionSend fail\n", strlen("CollectionSend fail\n"));	
-//		}
-//		else 
-//			locked = TRUE;
-//	}
-//	task void disseminateValueTask()
-//	{
-//		uint8_t intCounter;
-//		uint8_t intDestination;
-//		atomic
-//		{
-//			intDestination = destination;
-//			intCounter = counter;
-//		}
-//		localCommand.forReal = intDestination;
-//		localCommand.commandByte = intCounter;
-//		call CommandUpdate.change(&localCommand);
-//	}
-//
-//	task void sendMessageTask()
-//	{
-//		uint16_t intCounter;
-//		uint16_t intDestination;
-//		atomic
-//		{
-//			intDestination = destination;
-//			intCounter = counter;
-//		}
-//		if (locked) 
-//		{
-//			return;
-//		}
-//		else 
-//		{
-//			radio_count_msg_t* rcm = (radio_count_msg_t*)call Packet.getPayload(&packet, sizeof(radio_count_msg_t));
-//			if (rcm == NULL) 
-//			{
-//				return;
-//			}
-//	
-//			rcm->counter = intCounter;
-//			if (call AMSend.send( intDestination, &packet, sizeof(radio_count_msg_t)) == SUCCESS) 
-//			{
-////				call UartByte.send(intCounter);
-//				locked = TRUE;
-//			}
-//		}
-//	}
-// 
-//	event void Boot.booted() 
-//	{
-//		call RegisterPrinter.startPeriodic(1000);
-//		call AMControl.start();
-//	}
-//
-//	event void AMControl.startDone(error_t err) 
-//	{
-//		uint8_t msgBuf[32];
-//		uint8_t msgLen;
-//		if (err == SUCCESS) 
-//		{
-//			msgLen = sprintf(msgBuf, "this board's ieee802.15.4 address is %d\n", call AMPacket.address());
-//			call UartStream.send(msgBuf, msgLen);
-//			call DisseminationControl.start();
-//			call RoutingControl.start();
-//			if(TOS_NODE_ID==2)
-//			{
-//				call RootControl.setRoot();
-//			}
-//			printAddressRegisters();
-//			call MilliTimer.startPeriodic(1000);
-//			call TemperatureTimer.startPeriodic(500);
-//		}
-//		else 
-//		{
-//			call AMControl.start();
-//		}
-//	}
-//
-//	event void AMControl.stopDone(error_t err) 
-//	{
-//		// do nothing
-//	}
-// 
-//	event void MilliTimer.fired() 
-//	{
-//		if(TOS_NODE_ID==4)
-//		{
-//			atomic{
-//		    counter++;
-//		    }
-//		    post sendMessageTask();
-//		}
-//	}
-//
-//	event message_t* Receive.receive(message_t* bufPtr, void* payload, uint8_t len) 
-//	{
-//		uint8_t msgBuf[32];
-//		uint8_t msgLen;
-//		if (len != sizeof(radio_count_msg_t)) 
-//		{
-//			return bufPtr;
-//		}
-//		else
-//		{
-//			radio_count_msg_t* rcm = (radio_count_msg_t*)payload;
-//			msgLen = sprintf(msgBuf, "received count =  %d\n", rcm->counter);
-//			call UartStream.send(msgBuf, msgLen);
-//			if (rcm->counter & 0x1) 
-//			{
-//				call Leds.led0On();
-//			}
-//			else 
-//			{
-//				call Leds.led0Off();
-//			}
-//			if (rcm->counter & 0x2) 
-//			{
-//				call Leds.led1On();
-//			}
-//			else 
-//			{
-//				call Leds.led1Off();
-//			}
-//			if (rcm->counter & 0x4) 
-//			{
-//				call Leds.led2On();
-//			}
-//			else 
-//			{
-//				call Leds.led2Off();
-//			}
-//			return bufPtr;
-//		}
-//	}
-//
-//	event void AMSend.sendDone(message_t* bufPtr, error_t error) 
-//	{
-//		if (&packet == bufPtr) 
-//		{
-//			locked = FALSE;
-//		}
-//	}
-//
-//
-//	async event void UartStream.receivedByte(uint8_t byte)
-//	{
-//		call UartByte.send(byte);
-//		atomic
-//		{
-//			counter = byte&0x0F;
-//			destination = (byte&0xF0)>>4;
-//		}
-////		post sendMessageTask();	
-//		post disseminateValueTask();
-//	}
-//
-//	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error)
-//	{
-//		// TODO Auto-generated method stub
-//	}
-//
-//	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
-//	{
-//		// TODO Auto-generated method stub
-//	}
-//	
-//
-//	event void CommandValue.changed()
-//	{
-//		uint8_t msgBuf[32];
-//		uint8_t msgLen;
-//		const kth_wsn_command_t* newVal = call CommandValue.get();
-//		msgLen = sprintf(msgBuf, "Command received[%d] -> 0x%x\n",newVal->forReal!=0?1:0, newVal->commandByte);
-//		call UartStream.send(msgBuf, msgLen);
-//		if(newVal->forReal != 0)
-//		{
-//			switch(newVal->commandByte)
-//			{
-//				case 0x01 : post sendCollectionMessageTempTask(); break;
-//				case 0x02 : post sendCollectionMessageLedsTask(); break;
-//				default	: post sendCollectionMessageLedsTask(); break;	 	
-//			}
-//		}
-//		else
-//		{
-//			call Leds.set(newVal->commandByte);
-//		}
-//	}
-//
-//	event void CollectionSend.sendDone(message_t *msg, error_t error)
-//	{
-//	    if (error != SUCCESS) 
-//		{
-//			call UartStream.send("CollectionSendDone fail\n",strlen("CollectionSendDone fail\n"));	
-//		}
-//	    locked = FALSE;
-//	}
-//
-//	event message_t * CollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
-//	{
-//		uint8_t msgBuf[64];
-//		uint8_t msgLen;
-//		kth_wsn_data_t* newData = (kth_wsn_data_t*)payload;
-//		msgLen = sprintf(msgBuf, "Data received from: 0x%x\ttype: 0x%x\tvalue:%d\n", newData->source, newData->type, newData->data);
-//		call UartStream.send(msgBuf, msgLen);
-//		return msg;
-//	}
-//
-//	event void TempRead.readDone(error_t result, uint16_t val)
-//	{
-//		atomic
-//		{
-//			localTemp = val;	
-//		}
-//	}
-//
-//	event void TemperatureTimer.fired()
-//	{
-//		call TempRead.read();
-//	}
-//
-//	event void RegisterPrinter.fired()
-//	{
-//		
-//	}
+	event void AMControl.startDone(error_t err) 
+	{
+		if (err == SUCCESS) 
+		{
+			call DisseminationControl.start();
+			call RoutingControl.start();
+		}
+		else 
+		{
+			call AMControl.start();
+		}
+	}
 	
+	event void AMControl.stopDone(error_t error)
+	{
+		// do nothing
+	}
+
+	event void CommandValue.changed()
+	{
+		command_packet_t receivedCommandPacket;
+		receiveBusy=TRUE;
+		if(commandReceptionEnabled)
+		{
+			receivedCommandPacket = *call CommandValue.get();
+			signal NotifyRadioCommand.notify(receivedCommandPacket);
+		}
+		receiveBusy=FALSE;
+	}
+
+	event message_t * DataCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
+	{
+		data_packet_t* dataPtr = (data_packet_t*)payload;
+		while(call ForwardData.set(*dataPtr)!=SUCCESS);
+		return msg;
+	}
+
+	event message_t * HistoryCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
+	{
+		uint8_t i;
+		data_packet_t* historyPtr = (data_packet_t*)payload;
+		for(i=0; i<RADIO_HISTORY_SIZE; i++)
+		{
+			while(call ForwardData.set(historyPtr[i])!=SUCCESS);
+		}
+		return msg;
+	}
+
+	event message_t * CommandCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
+	{
+		// TODO Auto-generated method stub
+		command_packet_t* commandPtr = (command_packet_t*)payload;
+		while(call ForwardCommand.set(*commandPtr)!=SUCCESS);
+		return msg;
+	}
+
+	event message_t * StatusCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
+	{
+		// TODO Auto-generated method stub
+		status_packet_t* statusPtr = (status_packet_t*)payload;
+		while(call ForwardStatus.set(*statusPtr)!=SUCCESS);
+		return msg;
+	}
+
+	async command error_t SetRadioData.setNow(data_packet_t val)
+	{
+		error_t err;
+		atomic {
+			if(locked)
+			{
+				return EBUSY;
+			}
+			locked = TRUE;
+		}
+		data_packet_t* msgDataPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, sizeof(data_packet_t));
+		atomic {
+			*msgDataPtr = val;
+		}
+		err = call DataCollectionSend.send(&packet, sizeof(data_packet_t));
+		if(err!=SUCCESS)
+		{
+			locked = FALSE;
+		}
+		return err;
+	}
+
+	async command error_t SetRadioHistory.setNow(data_packet_t val[RADIO_HISTORY_SIZE])
+	{
+		error_t err;
+		uint8_t i;
+		data_packet_t* msgHistoryPtr;
+		if(RADIO_HISTORY_SIZE > call DataCollectionSend.maxPayloadLength())
+		{
+			return ESIZE;
+		}
+		
+		atomic {
+			if(locked)
+			{
+				return EBUSY;
+			}
+			locked = TRUE;
+		}
+		msgHistoryPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, sizeof(data_packet_t));
+		atomic {
+			memcpy(msgHistoryPtr, val, RADIO_HISTORY_SIZE);
+		}
+		err = call DataCollectionSend.send(&packet, sizeof(data_packet_t));
+		if(err!=SUCCESS)
+		{
+			locked = FALSE;
+		}
+		return err;
+	}
 	
+	async command error_t SetRadioCommand.setNow(command_packet_t val)
+	{
+		error_t err;
+		atomic {
+			if(locked)
+			{
+				return EBUSY;
+			}
+			locked = TRUE;
+		}
+		command_packet_t* msgCommandPtr = (command_packet_t*)call CommandCollectionSend.getPayload(&packet, sizeof(command_packet_t));
+		atomic {
+			*msgCommandPtr = val;
+		}
+		err = call CommandCollectionSend.send(&packet, sizeof(command_packet_t));
+		if(err!=SUCCESS)
+		{
+			locked = FALSE;
+		}
+		return err;
+	}
+
+	async command error_t SetRadioStatus.setNow(status_packet_t val)
+	{
+		error_t err;
+		atomic {
+			if(locked)
+			{
+				return EBUSY;
+			}
+			locked = TRUE;
+		}
+		status_packet_t* msgStatusPtr = (status_packet_t*)call StatusCollectionSend.getPayload(&packet, sizeof(status_packet_t));
+		atomic {
+			*msgStatusPtr = val;
+		}
+		err = call StatusCollectionSend.send(&packet, sizeof(status_packet_t));
+		if(err!=SUCCESS)
+		{
+			locked = FALSE;
+		}
+		return err;
+	}
+
+	command error_t NotifyRadioCommand.enable()
+	{
+		receiveBusy=FALSE;
+		commandReceptionEnabled=TRUE;
+		return SUCCESS;
+	}
+
+	command error_t NotifyRadioCommand.disable()
+	{
+		if(receiveBusy)
+		{
+			return EBUSY;
+		}
+		else
+		{
+			commandReceptionEnabled=FALSE;
+		}
+		return SUCCESS;
+	}
+
+	
+	event void DataCollectionSend.sendDone(message_t *msg, error_t error)
+	{
+		locked = FALSE;
+	}
+	event void CommandCollectionSend.sendDone(message_t *msg, error_t error)
+	{
+		locked = FALSE;
+	}
+	event void StatusCollectionSend.sendDone(message_t *msg, error_t error)
+	{
+		locked = FALSE;
+	}
+	event void HistoryCollectionSend.sendDone(message_t *msg, error_t error)
+	{
+		locked = FALSE;
+	}
 }

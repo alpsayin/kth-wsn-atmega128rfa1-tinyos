@@ -1,87 +1,68 @@
 
 #include "RadioConfig.h"
+#include "packet_types.h"
 
-configuration RadioSubsystemC{
-	
+configuration RadioSubsystemC
+{
+	provides 
+	{
+		interface RootControl;
+		interface SetNow<data_packet_t> as SetRadioData;
+		interface SetNow<command_packet_t> as SetRadioCommand;
+		interface SetNow<status_packet_t> as SetRadioStatus;
+		interface Notify<command_packet_t> as NotifyRadioCommand;
+	}
 	uses
 	{
-#ifdef LED_RADIO_ENABLE	
-		interface Leds;
-#endif
-
-		interface Init;
-//		
-//		interface Timer<TMilli> as MilliTimer;
-//		interface Timer<TMilli> as TemperatureTimer;
-//		interface Timer<TMilli> as RegisterPrinter;
-//		
-		interface SplitControl as AMControl;
-		interface Packet;
-	
-//		interface UartStream;
-//		interface UartByte;
-		
-		interface StdControl as DisseminationControl;
-		interface DisseminationValue<kth_wsn_command_t> as CommandValue;
-		interface DisseminationUpdate<kth_wsn_command_t> as CommandUpdate;
-		
-		interface StdControl as RoutingControl;
-		interface Send as CollectionSend;
-		interface Receive as CollectionReceive;
-		interface RootControl as RootControl;
-		interface Read<uint16_t> as TempRead;
-	
-	}	
-	
+		interface Set<data_packet_t> as ForwardData;
+		interface Set<status_packet_t> as ForwardStatus;
+		interface Set<command_packet_t> as ForwardCommand;
+	}
 }
-implementation{
+implementation
+{
+	components RadioSubsystemP;
 	
-//	components MainC, RadioCountToLedsC as App, LedsC;
-//  App.Boot -> MainC.Boot;
-//  App.Leds -> LedsC;
-//  
-//  components new AMSenderC(AM_RADIO_COUNT_MSG);
-//  App.AMSend -> AMSenderC;
-//  App.Packet -> AMSenderC;
-//  
-//  components new AMReceiverC(AM_RADIO_COUNT_MSG);
-//  App.Receive -> AMReceiverC;
-//
-//  components new TimerMilliC();
-//  App.MilliTimer -> TimerMilliC;
-//  
-//  components new TimerMilliC() as RegisterPrinterTimer;
-//  App.RegisterPrinter -> RegisterPrinterTimer;
-//  
-//  components new TimerMilliC() as TemperatureTimer;
-//  App.TemperatureTimer -> TemperatureTimer;
-//  
-//  components ActiveMessageC;
-//  App.AMControl -> ActiveMessageC;
-//  App.AMPacket -> ActiveMessageC.AMPacket;
-//  
-//  components PlatformSerialC;
-//  App.UartStream -> PlatformSerialC;
-//  App.UartByte -> PlatformSerialC;
-//  
-//  components new QueueC(kth_wsn_command_t, 10);
-//  
-//  components DisseminationC;
-//  App.DisseminationControl -> DisseminationC;
-//  
-//  components new DisseminatorC(kth_wsn_command_t, 0xaa) as DissCommand;
-//  App.CommandValue -> DissCommand;
-//  App.CommandUpdate -> DissCommand;
-//  
-//  components CollectionC as Collector;
-//  App.RoutingControl -> Collector;
-//  App.RootControl -> Collector;
-//  App.CollectionReceive -> Collector.Receive[0xbb];
-//  
-//  components new CollectionSenderC(0xbb);
-//  App.CollectionSend -> CollectionSenderC;
-//  
-//  components new PlatformSensorC(Sensor_Channel_T) as TempSensor;
-//  App.TempRead -> TempSensor;
+	SetRadioData = RadioSubsystemP.SetRadioData;
+	SetRadioStatus = RadioSubsystemP.SetRadioStatus;
+	SetRadioCommand = RadioSubsystemP.SetRadioCommand;
+	NotifyRadioCommand = RadioSubsystemP.NotifyRadioCommand;
+	
+	ForwardData = RadioSubsystemP.ForwardData;
+	ForwardStatus = RadioSubsystemP.ForwardStatus;
+	ForwardCommand = RadioSubsystemP.ForwardCommand;
+	
+	//components MainC;
+	//MainC.SoftwareInit -> RadioSubsystemP.RadioSubsystemInit;
+	
+	components LedsC;
+  	RadioSubsystemP.Leds -> LedsC;
+
+	components DisseminationC;
+	RadioSubsystemP.DisseminationControl -> DisseminationC;
+	  
+	components new DisseminatorC(command_packet_t, 0xaa) as DissCommand;
+	RadioSubsystemP.CommandValue -> DissCommand;
+	RadioSubsystemP.CommandUpdate -> DissCommand;
+	  
+	components CollectionC as Collector;
+	RadioSubsystemP.RoutingControl -> Collector;
+	RootControl = Collector.RootControl;
+	RadioSubsystemP.DataCollectionReceive -> Collector.Receive[0xbb];
+	RadioSubsystemP.StatusCollectionReceive -> Collector.Receive[0xcc];
+	RadioSubsystemP.CommandCollectionReceive -> Collector.Receive[0xdd];
+	RadioSubsystemP.HistoryCollectionReceive -> Collector.Receive[0xee];
+  
+	components new CollectionSenderC(0xbb) as DataCollectionSender;
+	RadioSubsystemP.DataCollectionSend -> DataCollectionSender;
+	
+	components new CollectionSenderC(0xcc) as StatusCollectionSender;
+	RadioSubsystemP.StatusCollectionSend -> StatusCollectionSender;
+	
+	components new CollectionSenderC(0xdd) as CommandCollectionSender;
+	RadioSubsystemP.CommandCollectionSend -> CommandCollectionSender;
+	
+	components new CollectionSenderC(0xee) as HistoryCollectionSender;
+	RadioSubsystemP.HistoryCollectionSend -> HistoryCollectionSender;
 	
 }
