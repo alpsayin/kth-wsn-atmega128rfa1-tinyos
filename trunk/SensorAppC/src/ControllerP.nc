@@ -145,7 +145,7 @@ implementation{
 //this function will be executed if there is a command received from serial port
 	event void CommandNotification.notify(command_packet_t val){
 		status_packet_t status_temp,status_new;
-		
+//		bool correct=FALSE;
 		//TODO broadcast this val to radio first
 		
 		status_temp = call GetStatus.get();
@@ -155,44 +155,46 @@ implementation{
 			switch(val.opcode)
 			{
 				case COMMAND_CONFIGURE:
-					if(1 == val.WE)
-					{
-						status_new.burstEnable		= val.BE;
-						status_new.historyEnable	= val.HE;
-						status_new.burstInterval	= val.value;
-						status_new.node_id			= val.address;		//if defined CONSTANT_NODE_ID
-																		//in SensorConfig.h, update node_id
-																		//will give no effect
-					}
+					//correct = TRUE;
+					break;
+				case COMMAND_READ_DATA:
+					call GetDataOne.read();
+					break;
+				case COMMAND_READ_HISTORY:
+					call Notify.enable();
+					break;
+				case COMMAND_READ_STATUS:
+					call ForwardStatus.setNow(call GetStatus.get());
+					break;
+				case COMMAND_INTERVAL_SECONDS:
+					status_new.intervalType = INTERVAL_TYPE_SECONDS;
+					break; 
+				case COMMAND_INTERVAL_MINUTES:
+					status_new.intervalType = INTERVAL_TYPE_MINUTES;
+					break;
+				case COMMAND_INTERVAL_HOURS:
+					status_new.intervalType = INTERVAL_TYPE_HOURS;
+					break;
+				case COMMAND_INTERVAL_DAYS:
+					status_new.intervalType = INTERVAL_TYPE_DAYS;
 					break;
 				case COMMAND_ECHO:
 					call ForwardCommand.setNow(val);
-					return;
-				case COMMAND_READ_DATA:
-					call GetDataOne.read();
-					return;
-				case COMMAND_READ_HISTORY:
-					call Notify.enable();
-					return;
-				case COMMAND_READ_STATUS:
-					call ForwardStatus.setNow(call GetStatus.get());
-					return;
-				case COMMAND_INTERVAL_SECONDS:
-					status_new.intervalType = 0;
-					break; 
-				case COMMAND_INTERVAL_MINUTES:
-					status_new.intervalType = 1;
-					break;
-				case COMMAND_INTERVAL_HOURS:
-					status_new.intervalType = 2;
-					break;
-				case COMMAND_INTERVAL_DAYS:
-					status_new.intervalType = 3;
-					break;
 				default:
 					return;
 			}
-			signal Notify.notify(status_new);
+			if(1 == val.WE)
+			{
+				status_new.burstEnable		= val.BE;
+				status_new.historyEnable	= val.HE;
+				status_new.burstInterval	= val.value;
+				status_new.node_id			= (0xffff!=val.address)?val.address:status_temp.node_id;
+																//if defined CONSTANT_NODE_ID
+																//in SensorConfig.h, update node_id
+																//will give no effect
+					
+				signal Notify.notify(status_new);
+			}
 		}
 	}
 
