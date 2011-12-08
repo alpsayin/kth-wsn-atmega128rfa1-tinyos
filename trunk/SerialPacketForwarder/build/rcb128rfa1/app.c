@@ -2142,13 +2142,7 @@ static error_t SerialPacketForwarderP__SerialPacketForwarderInit__init(void );
 static error_t SerialPacketForwarderP__ForwardStatus__setNow(SerialPacketForwarderP__ForwardStatus__data_type val);
 # 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SerialPacketForwarderP__forwardNextPacketTask__runTask(void );
-# 10 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
-static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToStatusPacket(status_packet_t *sp, uint8_t *buf);
-
-
-
-
-
+# 16 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__getTypeOfPacket(uint8_t *buf);
 #line 14
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__statusPacketToStr(status_packet_t *dp, uint8_t *buf);
@@ -2156,7 +2150,7 @@ static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__Packet
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__dataPacketToStr(data_packet_t *dp, uint8_t *buf);
 #line 8
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToCommandPacket(command_packet_t *cp, uint8_t *buf);
-static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToDataPacket(data_packet_t *dp, uint8_t *buf);
+
 
 
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(command_packet_t *dp, uint8_t *buf);
@@ -2288,11 +2282,11 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4077d8f0);
+uint8_t arg_0x4077e8f0);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4077d8f0, 
+uint8_t arg_0x4077e8f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 #line 64
@@ -2952,28 +2946,26 @@ static uint8_t SerialPacketForwarderP__PacketTypes__statusPacketToStr(status_pac
 static uint8_t SerialPacketForwarderP__PacketTypes__dataPacketToStr(data_packet_t *dp, uint8_t *buf);
 #line 8
 static uint8_t SerialPacketForwarderP__PacketTypes__strToCommandPacket(command_packet_t *cp, uint8_t *buf);
-static uint8_t SerialPacketForwarderP__PacketTypes__strToDataPacket(data_packet_t *dp, uint8_t *buf);
+
 
 
 static uint8_t SerialPacketForwarderP__PacketTypes__commandPacketToStr(command_packet_t *dp, uint8_t *buf);
-#line 10
-static uint8_t SerialPacketForwarderP__PacketTypes__strToStatusPacket(status_packet_t *sp, uint8_t *buf);
 # 95 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/StdControl.nc"
 static error_t SerialPacketForwarderP__UartControl__start(void );
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t SerialPacketForwarderP__forwardNextPacketTask__postTask(void );
-# 40 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 42 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 enum SerialPacketForwarderP____nesc_unnamed4287 {
-#line 40
+#line 42
   SerialPacketForwarderP__processReceiveBufferTask = 5U
 };
-#line 40
+#line 42
 typedef int SerialPacketForwarderP____nesc_sillytask_processReceiveBufferTask[SerialPacketForwarderP__processReceiveBufferTask];
 enum SerialPacketForwarderP____nesc_unnamed4288 {
-#line 41
+#line 43
   SerialPacketForwarderP__forwardNextPacketTask = 6U
 };
-#line 41
+#line 43
 typedef int SerialPacketForwarderP____nesc_sillytask_forwardNextPacketTask[SerialPacketForwarderP__forwardNextPacketTask];
 
 
@@ -2989,7 +2981,7 @@ uint8_t SerialPacketForwarderP__pos;
 
 
 static inline error_t SerialPacketForwarderP__SerialPacketForwarderInit__init(void );
-#line 69
+#line 71
 static error_t SerialPacketForwarderP__CommandNotification__enable(void );
 
 
@@ -3002,13 +2994,13 @@ static inline void SerialPacketForwarderP__UartStream__receiveDone(uint8_t *buf,
 
 
 static void SerialPacketForwarderP__UartStream__receivedByte(uint8_t byte);
-#line 108
+#line 120
 static inline void SerialPacketForwarderP__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error);
 
 
 
 static inline void SerialPacketForwarderP__processReceiveBufferTask__runTask(void );
-#line 153
+#line 165
 static inline error_t SerialPacketForwarderP__ForwardCommand__setNow(command_packet_t val);
 
 
@@ -3048,10 +3040,6 @@ static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__Packet
 
 
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToCommandPacket(command_packet_t *cp, uint8_t *buf);
-#line 60
-static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToDataPacket(data_packet_t *dp, uint8_t *buf);
-#line 107
-static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToStatusPacket(status_packet_t *sp, uint8_t *buf);
 #line 135
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__getTypeOfPacket(uint8_t *buf);
 #line 153
@@ -3296,7 +3284,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4077d8f0);
+uint8_t arg_0x4077e8f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4291 {
 #line 71
@@ -4760,16 +4748,16 @@ inline static error_t SerialPacketForwarderP__DataQueue__enqueue(SerialPacketFor
 #line 90
 }
 #line 90
-# 161 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 173 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline error_t SerialPacketForwarderP__ForwardData__setNow(data_packet_t val)
 {
   error_t err = SerialPacketForwarderP__DataQueue__enqueue(val);
 
-#line 164
+#line 176
   if (err == SUCCESS) {
     SerialPacketForwarderP__forwardNextPacketTask__postTask();
     }
-#line 166
+#line 178
   return err;
 }
 
@@ -4858,16 +4846,16 @@ inline static error_t SerialPacketForwarderP__CommandQueue__enqueue(SerialPacket
 #line 90
 }
 #line 90
-# 153 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 165 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline error_t SerialPacketForwarderP__ForwardCommand__setNow(command_packet_t val)
 {
   error_t err = SerialPacketForwarderP__CommandQueue__enqueue(val);
 
-#line 156
+#line 168
   if (err == SUCCESS) {
     SerialPacketForwarderP__forwardNextPacketTask__postTask();
     }
-#line 158
+#line 170
   return err;
 }
 
@@ -4943,16 +4931,16 @@ inline static error_t SerialPacketForwarderP__StatusQueue__enqueue(SerialPacketF
 #line 90
 }
 #line 90
-# 169 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 181 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline error_t SerialPacketForwarderP__ForwardStatus__setNow(status_packet_t val)
 {
   error_t err = SerialPacketForwarderP__StatusQueue__enqueue(val);
 
-#line 172
+#line 184
   if (err == SUCCESS) {
     SerialPacketForwarderP__forwardNextPacketTask__postTask();
     }
-#line 174
+#line 186
   return err;
 }
 
@@ -4993,9 +4981,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x4077d8f0){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x4077e8f0){
 #line 83
-  switch (arg_0x4077d8f0) {
+  switch (arg_0x4077e8f0) {
 #line 83
     case 0U:
 #line 83
@@ -5011,7 +4999,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x4077d8f0);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x4077e8f0);
 #line 83
       break;
 #line 83
@@ -5471,7 +5459,7 @@ inline static SerialPacketForwarderP__DataQueue__t  SerialPacketForwarderP__Data
 #line 73
 }
 #line 73
-# 177 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 189 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
 {
   uint8_t localBuf[64];
@@ -5480,7 +5468,7 @@ static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
   data_packet_t localDataPacket;
   command_packet_t localCommandPacket;
 
-#line 184
+#line 196
   if (!SerialPacketForwarderP__DataQueue__empty()) 
     {
       localDataPacket = SerialPacketForwarderP__DataQueue__head();
@@ -5489,11 +5477,11 @@ static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
         SerialPacketForwarderP__DataQueue__dequeue();
         }
       else {
-#line 191
+#line 203
         SerialPacketForwarderP__forwardNextPacketTask__postTask();
         }
     }
-#line 193
+#line 205
   if (!SerialPacketForwarderP__StatusQueue__empty()) 
     {
       localStatusPacket = SerialPacketForwarderP__StatusQueue__head();
@@ -5502,11 +5490,11 @@ static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
         SerialPacketForwarderP__StatusQueue__dequeue();
         }
       else {
-#line 200
+#line 212
         SerialPacketForwarderP__forwardNextPacketTask__postTask();
         }
     }
-#line 202
+#line 214
   if (!SerialPacketForwarderP__CommandQueue__empty()) 
     {
       localCommandPacket = SerialPacketForwarderP__CommandQueue__head();
@@ -5515,145 +5503,16 @@ static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
         SerialPacketForwarderP__CommandQueue__dequeue();
         }
       else {
-#line 209
+#line 221
         SerialPacketForwarderP__forwardNextPacketTask__postTask();
         }
     }
-#line 211
+#line 223
   if ((!SerialPacketForwarderP__DataQueue__empty() || !SerialPacketForwarderP__StatusQueue__empty()) || !SerialPacketForwarderP__CommandQueue__empty()) {
     SerialPacketForwarderP__forwardNextPacketTask__postTask();
     }
 }
 
-# 107 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
-static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToStatusPacket(status_packet_t *sp, uint8_t *buf)
-{
-
-  uint8_t i = 0;
-  uint8_t len = 3 + 4 + 2 + 3 + 1;
-
-#line 112
-  if (buf[i++] != '[') {
-    return PACKET_ERROR;
-    }
-#line 114
-  if (/*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) != PACKET_STATUS) {
-    return PACKET_ERROR;
-    }
-#line 116
-  if (buf[i++] != ':') {
-    return PACKET_ERROR;
-    }
-#line 118
-  if (buf[len - 1] != ']') {
-    return PACKET_ERROR;
-    }
-  sp->node_id = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  sp->node_id |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  sp->node_id |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  sp->node_id |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  sp->burstInterval = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  sp->burstInterval |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  sp->intervalType = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  sp->historyEnable = buf[i++] & 0x01;
-  sp->burstEnable = buf[i++] & 0x01;
-
-  if (buf[i] != ']') {
-    return PACKET_ERROR;
-    }
-#line 133
-  return PACKET_STATUS;
-}
-
-# 10 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
-inline static uint8_t SerialPacketForwarderP__PacketTypes__strToStatusPacket(status_packet_t *sp, uint8_t *buf){
-#line 10
-  unsigned char __nesc_result;
-#line 10
-
-#line 10
-  __nesc_result = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToStatusPacket(sp, buf);
-#line 10
-
-#line 10
-  return __nesc_result;
-#line 10
-}
-#line 10
-# 60 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
-static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToDataPacket(data_packet_t *dp, uint8_t *buf)
-{
-
-  uint8_t i = 0;
-  uint8_t len = 3 + 7 * 4 + 1;
-
-#line 65
-  if (buf[i++] != '[') {
-    return PACKET_ERROR;
-    }
-#line 67
-  if (/*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) != PACKET_DATA) {
-    return PACKET_ERROR;
-    }
-#line 69
-  if (buf[i++] != ':') {
-    return PACKET_ERROR;
-    }
-#line 71
-  if (buf[len - 1] != ']') {
-    return PACKET_ERROR;
-    }
-  dp->data1 = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  dp->data1 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  dp->data1 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  dp->data1 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  dp->data2 = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  dp->data2 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  dp->data2 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  dp->data2 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  dp->data3 = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  dp->data3 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  dp->data3 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  dp->data3 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  dp->data4 = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  dp->data4 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  dp->data4 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  dp->data4 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  dp->data5 = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  dp->data5 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  dp->data5 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  dp->data5 |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  dp->source = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  dp->source |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  dp->source |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  dp->source |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  dp->seqNo = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  dp->seqNo |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  dp->seqNo |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  dp->seqNo |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-
-  if (buf[i] != ']') {
-    return PACKET_ERROR;
-    }
-#line 105
-  return PACKET_DATA;
-}
-
-# 9 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
-inline static uint8_t SerialPacketForwarderP__PacketTypes__strToDataPacket(data_packet_t *dp, uint8_t *buf){
-#line 9
-  unsigned char __nesc_result;
-#line 9
-
-#line 9
-  __nesc_result = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToDataPacket(dp, buf);
-#line 9
-
-#line 9
-  return __nesc_result;
-#line 9
-}
-#line 9
 # 57 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
 static inline void /*HplAtm128GeneralIOC.PortE.Bit3*/HplAtm128GeneralIOPinP__19__IO__toggle(void )
 #line 57
@@ -5843,7 +5702,7 @@ inline static uint8_t SerialPacketForwarderP__PacketTypes__getTypeOfPacket(uint8
 #line 16
 }
 #line 16
-# 112 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 124 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline void SerialPacketForwarderP__processReceiveBufferTask__runTask(void )
 {
 
@@ -5854,12 +5713,12 @@ static inline void SerialPacketForwarderP__processReceiveBufferTask__runTask(voi
   status_packet_t localStatusPacket;
 
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 121
+#line 133
     {
-      strncpy((char *)localBuf, (char *)SerialPacketForwarderP__receiveBuffer, SerialPacketForwarderP__pos);
+      strncpy((char *)localBuf, (char *)SerialPacketForwarderP__receiveBuffer, SerialPacketForwarderP__pos <= 64 ? SerialPacketForwarderP__pos : 64);
       localBuf[SerialPacketForwarderP__pos] = 0;
     }
-#line 124
+#line 136
     __nesc_atomic_end(__nesc_atomic); }
   type = SerialPacketForwarderP__PacketTypes__getTypeOfPacket(localBuf);
   if (type != PACKET_ERROR) 
@@ -5874,26 +5733,6 @@ static inline void SerialPacketForwarderP__processReceiveBufferTask__runTask(voi
         }
       SerialPacketForwarderP__gCommandPacket = localCommandPacket;
       SerialPacketForwarderP__CommandNotification__notify(SerialPacketForwarderP__gCommandPacket);
-    }
-  else {
-#line 139
-    if (type == PACKET_DATA) 
-      {
-        type = SerialPacketForwarderP__PacketTypes__strToDataPacket(&localDataPacket, localBuf);
-        if (type == PACKET_ERROR) {
-          return;
-          }
-      }
-    else {
-#line 145
-      if (type == PACKET_STATUS) 
-        {
-          type = SerialPacketForwarderP__PacketTypes__strToStatusPacket(&localStatusPacket, localBuf);
-          if (type == PACKET_ERROR) {
-            return;
-            }
-        }
-      }
     }
 }
 
@@ -5913,7 +5752,7 @@ static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void )
   Atm128Rfa1SerialP__Uart1Stream__receivedByte(localUnexpectedByte);
 }
 
-# 76 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 78 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline void SerialPacketForwarderP__UartStream__receiveDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -5940,7 +5779,7 @@ static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 108 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 120 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline void SerialPacketForwarderP__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -6011,7 +5850,7 @@ inline static error_t SerialPacketForwarderP__UartControl__start(void ){
 #line 95
 }
 #line 95
-# 55 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 57 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline error_t SerialPacketForwarderP__SerialPacketForwarderInit__init(void )
 {
   SerialPacketForwarderP__UartControl__start();
@@ -6299,47 +6138,60 @@ static error_t SchedulerBasicP__TaskBasic__postTask(uint8_t id)
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 80 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 82 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static void SerialPacketForwarderP__UartStream__receivedByte(uint8_t byte)
 {
   SerialPacketForwarderP__UartByte__send(byte);
   if (byte == '[') 
     {
       { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 85
+#line 87
         {
           SerialPacketForwarderP__pos = 0;
           SerialPacketForwarderP__receiveBuffer[SerialPacketForwarderP__pos++] = byte;
         }
-#line 88
+#line 90
         __nesc_atomic_end(__nesc_atomic); }
       SerialPacketForwarderP__started = 1;
     }
   else {
-#line 91
+#line 93
     if (byte == ']' && SerialPacketForwarderP__started) 
       {
         { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 93
+#line 95
           {
-            SerialPacketForwarderP__receiveBuffer[SerialPacketForwarderP__pos++] = byte;
-            SerialPacketForwarderP__receiveBuffer[SerialPacketForwarderP__pos] = 0;
+            if (SerialPacketForwarderP__pos < 64) 
+              {
+                SerialPacketForwarderP__receiveBuffer[SerialPacketForwarderP__pos++] = byte;
+                SerialPacketForwarderP__receiveBuffer[SerialPacketForwarderP__pos] = 0;
+              }
+            else {
+              SerialPacketForwarderP__pos = 0;
+              }
           }
-#line 96
+#line 104
           __nesc_atomic_end(__nesc_atomic); }
+#line 104
         SerialPacketForwarderP__started = 0;
         SerialPacketForwarderP__processReceiveBufferTask__postTask();
       }
     else {
-#line 100
+#line 107
       if (SerialPacketForwarderP__started) 
         {
           { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 102
+#line 109
             {
-              SerialPacketForwarderP__receiveBuffer[SerialPacketForwarderP__pos++] = byte;
+              if (SerialPacketForwarderP__pos < 64) 
+                {
+                  SerialPacketForwarderP__receiveBuffer[SerialPacketForwarderP__pos++] = byte;
+                }
+              else {
+                SerialPacketForwarderP__pos = 0;
+                }
             }
-#line 104
+#line 117
             __nesc_atomic_end(__nesc_atomic); }
         }
       }
@@ -6820,7 +6672,7 @@ static error_t Atm128Rfa1SerialP__Uart1Control__start(void )
   return Atm128Rfa1SerialP__Uart1Init__init();
 }
 
-# 69 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 71 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static error_t SerialPacketForwarderP__CommandNotification__enable(void )
 {
   SerialPacketForwarderP__enabled = TRUE;
