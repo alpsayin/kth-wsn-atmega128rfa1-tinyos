@@ -47,6 +47,7 @@ module RadioSubsystemP
 		interface Set<data_packet_t> as ForwardData;
 		interface Set<status_packet_t> as ForwardStatus;
 		interface Set<command_packet_t> as ForwardCommand;
+		interface Notify<command_packet_t> as NotifySerialCommand;
 	}
 
 
@@ -60,6 +61,8 @@ implementation
 			
 	command error_t RadioSubsystemInit.init() 
 	{
+		//if root is going to be set, it MUST be done before a call to this init
+		//otherwise it must be called again
 		return call AMControl.start();
 	}
 	
@@ -79,6 +82,11 @@ implementation
 	event void AMControl.stopDone(error_t error)
 	{
 		// do nothing
+	}
+
+	event void NotifySerialCommand.notify(command_packet_t val)
+	{
+		call CommandUpdate.change(&val);
 	}
 
 	event void CommandValue.changed()
@@ -113,7 +121,6 @@ implementation
 
 	event message_t * CommandCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
 	{
-		// TODO Auto-generated method stub
 		command_packet_t* commandPtr = (command_packet_t*)payload;
 		while(call ForwardCommand.set(*commandPtr)!=SUCCESS);
 		return msg;
@@ -121,7 +128,6 @@ implementation
 
 	event message_t * StatusCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
 	{
-		// TODO Auto-generated method stub
 		status_packet_t* statusPtr = (status_packet_t*)payload;
 		while(call ForwardStatus.set(*statusPtr)!=SUCCESS);
 		return msg;

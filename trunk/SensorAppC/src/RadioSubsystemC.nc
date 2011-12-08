@@ -6,7 +6,10 @@ configuration RadioSubsystemC
 {
 	provides 
 	{
-		interface RootControl;
+		//these interfaces should be used by Controller to send packets/receive commands
+		//if a root is going to be set, it must be set with RootControl before Init
+		interface RootControl as RadioSubsystemRootControl;
+		interface Init as RadioSubsystemInit;
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
@@ -14,15 +17,19 @@ configuration RadioSubsystemC
 	}
 	uses
 	{
+		//these interfaces should be wired to SerialPacketForwarderC
+		//they shouldn't be used by controller
 		interface Set<data_packet_t> as ForwardData;
 		interface Set<status_packet_t> as ForwardStatus;
 		interface Set<command_packet_t> as ForwardCommand;
+		interface Notify<command_packet_t> as NotifySerialCommand;
 	}
 }
 implementation
 {
 	components RadioSubsystemP;
 	
+	RadioSubsystemInit = RadioSubsystemP.RadioSubsystemInit;
 	SetRadioData = RadioSubsystemP.SetRadioData;
 	SetRadioStatus = RadioSubsystemP.SetRadioStatus;
 	SetRadioCommand = RadioSubsystemP.SetRadioCommand;
@@ -31,6 +38,7 @@ implementation
 	ForwardData = RadioSubsystemP.ForwardData;
 	ForwardStatus = RadioSubsystemP.ForwardStatus;
 	ForwardCommand = RadioSubsystemP.ForwardCommand;
+	NotifySerialCommand = RadioSubsystemP.NotifySerialCommand;
 	
 	//components MainC;
 	//MainC.SoftwareInit -> RadioSubsystemP.RadioSubsystemInit;
@@ -47,7 +55,7 @@ implementation
 	  
 	components CollectionC as Collector;
 	RadioSubsystemP.RoutingControl -> Collector;
-	RootControl = Collector.RootControl;
+	RadioSubsystemRootControl = Collector.RootControl;
 	RadioSubsystemP.DataCollectionReceive -> Collector.Receive[0xbb];
 	RadioSubsystemP.StatusCollectionReceive -> Collector.Receive[0xcc];
 	RadioSubsystemP.CommandCollectionReceive -> Collector.Receive[0xdd];
