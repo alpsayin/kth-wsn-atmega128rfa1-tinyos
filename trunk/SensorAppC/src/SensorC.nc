@@ -29,6 +29,7 @@ configuration SensorC{
 	provides {
 
 		interface Init;
+		
 		interface Get<status_packet_t> as GetStatus;
 		interface Get<data_packet_t> as GetData;
 		interface Read<data_packet_t> as GetDataOne;
@@ -36,6 +37,8 @@ configuration SensorC{
 	}
 	
 	uses {
+		
+		interface Set<uint8_t> as SPEnable;
 		
 		interface Notify<status_packet_t>;
 
@@ -55,6 +58,7 @@ implementation{
 #endif
 	
 	Init		= SensorControlC.Init;
+	SPEnable	= SensorControlC.SPEnable;
 	GetStatus	= SensorControlC.GetStatus;
 	GetData		= SensorControlC.GetData;
 	Notify		= SensorControlC.Notify;

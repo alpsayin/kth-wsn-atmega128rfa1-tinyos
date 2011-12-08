@@ -17,17 +17,22 @@ configuration bb{}
 implementation{
 	components MainC;
 	components SensorC;
+	components ControllerC;
 	components TestP;
-	components HplAtm128GeneralIOC as PIO;
-	components PlatformSerialC;
 	
-	TestP.Boot -> MainC.Boot;
+	SensorC.Init		<- ControllerC.InitSensorC;
+	SensorC.SPEnable	-> ControllerC;
+	SensorC.GetData		<- ControllerC;
+	SensorC.GetDataOne	<- ControllerC;
+	SensorC.GetStatus	<- ControllerC;
+	SensorC.Notify		-> ControllerC;
 	
-	TestP.Init -> SensorC.Init;
-	TestP.GetData -> SensorC.GetData;
-	TestP.GetDataOne -> SensorC.GetDataOne;
-	TestP.GetStatus -> SensorC.GetStatus;
+	MainC.Boot <- TestP.Boot;
 	
-	SensorC.Notify -> TestP.Notify;
-		
+	ControllerC.CommandNotification -> TestP.CommandNotification;
+	ControllerC.ForwardCommand		-> TestP.ForwardCommand;
+	ControllerC.ForwardData			-> TestP.ForwardData;
+	ControllerC.ForwardStatus		-> TestP.ForwardStatus;
+	ControllerC.Init				<- TestP.Init;
+	
 }

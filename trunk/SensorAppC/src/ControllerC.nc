@@ -6,11 +6,15 @@ configuration ControllerC{
 	provides {
 		
 		interface Init;
+		
+		interface Set<uint8_t> as SPEnable;
 		interface Notify<status_packet_t>;
 			
 	}
 	
 	uses {
+		
+		interface Init as InitSensorC;
 		
 		interface Get<status_packet_t> as GetStatus;
 		interface Get<data_packet_t> as GetData;
@@ -18,6 +22,7 @@ configuration ControllerC{
 		
 	}
 	
+//-----------------------connect to Serial Port------------------------------
 	uses {
 		
 		interface Notify<command_packet_t> as CommandNotification;
@@ -31,8 +36,10 @@ configuration ControllerC{
 implementation{
 	
 	components ControllerP;
-	
 	Init		= ControllerP.Init;
+	InitSensorC = ControllerP.InitSensorC;
+	
+	SPEnable	= ControllerP.SPEnable;
 	GetStatus	= ControllerP.GetStatus;
 	GetData		= ControllerP.GetData;
 	GetDataOne	= ControllerP.GetDataOne;
@@ -42,10 +49,15 @@ implementation{
 	components PlatformSerialC;
 	ControllerP.UartControl -> PlatformSerialC.UartControl;
 	ControllerP.UartStream	-> PlatformSerialC.UartStream;
-	ControllerP.UartByte	-> PlatformSerialC.UartByte;
 #endif
 	
 	components RadioSubsystemC;
 
+	components IOInterfaceC;
+	ControllerP.CheckRoot			-> IOInterfaceC.CheckRoot;
+	ControllerP.LightSensorEnable	-> IOInterfaceC.LightSensorEnable;
+	ControllerP.HumiditySensorEnable-> IOInterfaceC.HumiditySensorEnable;
+	ControllerP.PressureSensorEnable-> IOInterfaceC.PressureSensorEnable;
+	ControllerP.VoltageSensorEnable -> IOInterfaceC.VoltageSensorEnable;
 
 }
