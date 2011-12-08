@@ -20,8 +20,6 @@ module SerialPacketSocketC @safe()
 		interface UartStream;
 		interface UartByte;
 		interface StdControl as UartControl;
-		interface Timer<TMilli> as Timer0;
-		interface Timer<TMilli> as Timer1;
 		interface PacketTypes;
 		
 		interface Queue<data_packet_t> as DataQueue;
@@ -55,9 +53,7 @@ implementation
 	event void Boot.booted()
 	{
 		call CommandNotification.enable();	
-		call Timer0.startPeriodic(1000);
-		call Timer1.startPeriodicAt(500, 1000);
-		call UartControl.stop();
+		call UartControl.start();
 	}
 
 	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
@@ -70,7 +66,7 @@ implementation
         if(byte == '[')
         {
             pos=0;
-            atomic{
+            atomic {
             	receiveBuffer[pos++]=byte;
             }
             started=1;
@@ -86,7 +82,7 @@ implementation
         }
         else if(started)
         {
-        	atomic{
+        	atomic {
             	receiveBuffer[pos++]=byte;
         	}
         }
@@ -95,16 +91,6 @@ implementation
 	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error)
 	{
 		//TODO  UartStream.sendDone not used
-	}
-
-	event void Timer0.fired()
-	{
-		
-	}
-
-	event void Timer1.fired()
-	{
-		
 	}
 	
 	task void processReceiveBufferTask()
@@ -123,7 +109,9 @@ implementation
 	    type=call PacketTypes.getTypeOfPacket(localBuf);
 	    if(type!=PACKET_ERROR)
 	    {
+	    	#ifdef DEBUG
 			call Leds.led1Toggle();
+			#endif
 	    }
 	    if(type == PACKET_COMMAND)
 	    {

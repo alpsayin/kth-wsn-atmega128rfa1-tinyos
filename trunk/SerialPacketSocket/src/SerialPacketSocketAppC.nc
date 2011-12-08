@@ -2,16 +2,12 @@ configuration SerialPacketSocketAppC {}
 implementation
 {
 	components MainC, SerialPacketSocketC, PlatformSerialC, LedsC;
-	components new TimerMilliC() as Timer0;
-	components new TimerMilliC() as Timer1;
 	components new PacketTypesP() as PacketTypesImpl;
 	components new QueueC(data_packet_t, 255) as DataQueue;
 	components new QueueC(command_packet_t, 32) as CommandQueue;
 	components new QueueC(status_packet_t, 32) as StatusQueue;
 	
 	SerialPacketSocketC.PacketTypes -> PacketTypesImpl;
-	SerialPacketSocketC.Timer0 -> Timer0;
-	SerialPacketSocketC.Timer1 -> Timer1;
 	SerialPacketSocketC.Boot -> MainC.Boot;
 	SerialPacketSocketC.UartControl -> PlatformSerialC;
 	SerialPacketSocketC.UartStream -> PlatformSerialC;
@@ -23,13 +19,13 @@ implementation
 	
 	components DummyNotificationReceiverP;
 	components new PacketTypesP() as PacketTypesDummy;
-	components new TimerMilliC() as Timer2;
-	components new TimerMilliC() as Timer3;
+	components new TimerMilliC() as Timer0;
+	components new TimerMilliC() as Timer1;
 	DummyNotificationReceiverP.CommandNotification -> SerialPacketSocketC;
 	DummyNotificationReceiverP.UartByte -> PlatformSerialC;
 	DummyNotificationReceiverP.PacketTypes -> PacketTypesDummy;
-	DummyNotificationReceiverP.Timer0 -> Timer2;
-	DummyNotificationReceiverP.Timer1 -> Timer3;
+	DummyNotificationReceiverP.Timer0 -> Timer0;
+	DummyNotificationReceiverP.Timer1 -> Timer1;
 	DummyNotificationReceiverP.Boot -> MainC.Boot;
 	DummyNotificationReceiverP.Leds -> LedsC;
 	
