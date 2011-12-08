@@ -3,8 +3,6 @@
 
 interface PacketTypes
 {
-	async command uint8_t asciihexToNum(uint8_t c);
-	
 	async command uint8_t strToCommandPacket(command_packet_t* cp, uint8_t* buf);
     async command uint8_t strToDataPacket(data_packet_t* dp, uint8_t* buf);
     async command uint8_t strToStatusPacket(status_packet_t* sp, uint8_t* buf);

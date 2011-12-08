@@ -192,10 +192,12 @@ typedef struct { unsigned char nxdata[1]; } __attribute__((packed)) nxle_uint8_t
 typedef struct { unsigned char nxdata[2]; } __attribute__((packed)) nxle_uint16_t;typedef uint16_t __nesc_nxbase_nxle_uint16_t  ;
 typedef struct { unsigned char nxdata[4]; } __attribute__((packed)) nxle_uint32_t;typedef uint32_t __nesc_nxbase_nxle_uint32_t  ;
 typedef struct { unsigned char nxdata[8]; } __attribute__((packed)) nxle_uint64_t;typedef uint64_t __nesc_nxbase_nxle_uint64_t  ;
-# 121 "/usr/lib/gcc/avr/4.1.2/../../../../avr/include/string.h" 3
+# 117 "/usr/lib/gcc/avr/4.1.2/../../../../avr/include/string.h" 3
+extern void *memcpy(void *arg_0x402a4c38, const void *arg_0x402a4dd0, size_t arg_0x402a8010);
+
+
+
 extern void *memset(void *arg_0x402ab0a8, int arg_0x402ab200, size_t arg_0x402ab398);
-#line 137
-extern char *strncpy(char *arg_0x402b31a0, const char *arg_0x402b3338, size_t arg_0x402b34d0);
 # 71 "/usr/lib/gcc/avr/4.1.2/../../../../avr/include/stdlib.h" 3
 #line 68
 typedef struct __nesc_unnamed4242 {
@@ -1600,8 +1602,8 @@ enum __nesc_unnamed4263 {
   LEDS_LED6 = 1 << 6, 
   LEDS_LED7 = 1 << 7
 };
-# 52 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/packet_types.h"
-#line 44
+# 55 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/packet_types.h"
+#line 47
 typedef struct status_packet {
 
   uint8_t historyEnable : 1;
@@ -1629,7 +1631,7 @@ enum __nesc_unnamed4264 {
 
 
 
-#line 62
+#line 65
 typedef struct data_packet {
 
   uint16_t source;
@@ -1648,7 +1650,7 @@ typedef struct data_packet {
 
 
 
-#line 73
+#line 76
 typedef struct command_packet {
   uint8_t WE : 1;
   uint8_t HE : 1;
@@ -1941,11 +1943,7 @@ static void DummyNotificationReceiverP__Boot__booted(void );
 static void DummyNotificationReceiverP__CommandNotification__notify(DummyNotificationReceiverP__CommandNotification__val_t val);
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void DummyNotificationReceiverP__Timer1__fired(void );
-# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void );
-
-
-
+# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
 static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__makeOutput(void );
 #line 40
 static void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__set(void );
@@ -2044,9 +2042,7 @@ static void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__setSendData(void );
 static void Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__clearRxInterrupt(void );
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Init.nc"
 static error_t LedsP__Init__init(void );
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-static void LedsP__Leds__led0Toggle(void );
-#line 83
+# 83 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
 static void LedsP__Leds__led1Toggle(void );
 # 76 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/McuSleep.nc"
 static void McuSleepC__McuSleep__sleep(void );
@@ -2142,20 +2138,18 @@ static error_t SerialPacketForwarderP__SerialPacketForwarderInit__init(void );
 static error_t SerialPacketForwarderP__ForwardStatus__setNow(SerialPacketForwarderP__ForwardStatus__data_type val);
 # 75 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SerialPacketForwarderP__forwardNextPacketTask__runTask(void );
-# 16 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
+# 14 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__getTypeOfPacket(uint8_t *buf);
-#line 14
+#line 12
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__statusPacketToStr(status_packet_t *dp, uint8_t *buf);
-#line 13
+#line 11
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__dataPacketToStr(data_packet_t *dp, uint8_t *buf);
-#line 8
+#line 6
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToCommandPacket(command_packet_t *cp, uint8_t *buf);
 
 
 
 static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(command_packet_t *dp, uint8_t *buf);
-#line 6
-static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(uint8_t c);
 # 73 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc"
 static 
 #line 71
@@ -2282,11 +2276,11 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__fire
 #line 83
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4077e8f0);
+uint8_t arg_0x407fe8f0);
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4077e8f0, 
+uint8_t arg_0x407fe8f0, 
 # 64 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 #line 64
@@ -2323,7 +2317,7 @@ static inline void DummyNotificationReceiverP__Timer1__fired(void );
 # 55 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
 static __inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__set(void );
 
-static inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void );
+
 
 
 
@@ -2605,11 +2599,7 @@ static inline bool Atm128Rfa1Uart1InterruptsP__Uart1Interrupts__isTxInterruptPen
 void __vector_36(void ) __attribute((signal))   ;
 #line 75
 void __vector_38(void ) __attribute((signal))   ;
-# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-static void LedsP__Led0__toggle(void );
-
-
-
+# 46 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
 static void LedsP__Led0__makeOutput(void );
 #line 40
 static void LedsP__Led0__set(void );
@@ -2631,8 +2621,6 @@ static void LedsP__Led2__makeOutput(void );
 static void LedsP__Led2__set(void );
 # 52 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
 static inline error_t LedsP__Init__init(void );
-#line 72
-static inline void LedsP__Leds__led0Toggle(void );
 #line 86
 static inline void LedsP__Leds__led1Toggle(void );
 # 62 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/McuPowerOverride.nc"
@@ -2918,8 +2906,6 @@ uint8_t * buf,
 
 
 uint16_t len);
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-static void SerialPacketForwarderP__Leds__led0Toggle(void );
 # 73 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc"
 static 
 #line 71
@@ -2938,13 +2924,13 @@ SerialPacketForwarderP__CommandQueue__t
 SerialPacketForwarderP__CommandQueue__dequeue(void );
 #line 50
 static bool SerialPacketForwarderP__CommandQueue__empty(void );
-# 16 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
+# 14 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
 static uint8_t SerialPacketForwarderP__PacketTypes__getTypeOfPacket(uint8_t *buf);
-#line 14
+#line 12
 static uint8_t SerialPacketForwarderP__PacketTypes__statusPacketToStr(status_packet_t *dp, uint8_t *buf);
-#line 13
+#line 11
 static uint8_t SerialPacketForwarderP__PacketTypes__dataPacketToStr(data_packet_t *dp, uint8_t *buf);
-#line 8
+#line 6
 static uint8_t SerialPacketForwarderP__PacketTypes__strToCommandPacket(command_packet_t *cp, uint8_t *buf);
 
 
@@ -2954,34 +2940,29 @@ static uint8_t SerialPacketForwarderP__PacketTypes__commandPacketToStr(command_p
 static error_t SerialPacketForwarderP__UartControl__start(void );
 # 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t SerialPacketForwarderP__forwardNextPacketTask__postTask(void );
-# 42 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 41 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 enum SerialPacketForwarderP____nesc_unnamed4287 {
-#line 42
+#line 41
   SerialPacketForwarderP__processReceiveBufferTask = 5U
 };
-#line 42
+#line 41
 typedef int SerialPacketForwarderP____nesc_sillytask_processReceiveBufferTask[SerialPacketForwarderP__processReceiveBufferTask];
 enum SerialPacketForwarderP____nesc_unnamed4288 {
-#line 43
+#line 42
   SerialPacketForwarderP__forwardNextPacketTask = 6U
 };
-#line 43
+#line 42
 typedef int SerialPacketForwarderP____nesc_sillytask_forwardNextPacketTask[SerialPacketForwarderP__forwardNextPacketTask];
-
 
 bool SerialPacketForwarderP__started;
 bool SerialPacketForwarderP__enabled;
-
-command_packet_t SerialPacketForwarderP__gCommandPacket;
-
-
 
 char SerialPacketForwarderP__receiveBuffer[64];
 uint8_t SerialPacketForwarderP__pos;
 
 
 static inline error_t SerialPacketForwarderP__SerialPacketForwarderInit__init(void );
-#line 71
+#line 65
 static error_t SerialPacketForwarderP__CommandNotification__enable(void );
 
 
@@ -2994,13 +2975,13 @@ static inline void SerialPacketForwarderP__UartStream__receiveDone(uint8_t *buf,
 
 
 static void SerialPacketForwarderP__UartStream__receivedByte(uint8_t byte);
-#line 120
+#line 114
 static inline void SerialPacketForwarderP__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error);
 
 
 
 static inline void SerialPacketForwarderP__processReceiveBufferTask__runTask(void );
-#line 165
+#line 156
 static inline error_t SerialPacketForwarderP__ForwardCommand__setNow(command_packet_t val);
 
 
@@ -3026,27 +3007,15 @@ static inline error_t SerialPacketForwarderP__ForwardStatus__setNow(status_packe
 
 
 static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void );
-# 18 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
-uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[16] = "0123456789abcdef";
-
-static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(uint8_t c);
-
-
-
-
-
-
-
-
-
+# 17 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToCommandPacket(command_packet_t *cp, uint8_t *buf);
-#line 135
+#line 121
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__getTypeOfPacket(uint8_t *buf);
-#line 153
+#line 139
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__dataPacketToStr(data_packet_t *dp, uint8_t *buf);
-#line 194
+#line 180
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(command_packet_t *cp, uint8_t *buf);
-#line 218
+#line 204
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__statusPacketToStr(status_packet_t *sp, uint8_t *buf);
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/system/QueueC.nc"
 /*SerialPacketForwarderC.DataQueue*/QueueC__0__queue_t  /*SerialPacketForwarderC.DataQueue*/QueueC__0__queue[255];
@@ -3284,7 +3253,7 @@ static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__stop
 
 static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x4077e8f0);
+uint8_t arg_0x407fe8f0);
 #line 71
 enum /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4291 {
 #line 71
@@ -4748,16 +4717,16 @@ inline static error_t SerialPacketForwarderP__DataQueue__enqueue(SerialPacketFor
 #line 90
 }
 #line 90
-# 173 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 164 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline error_t SerialPacketForwarderP__ForwardData__setNow(data_packet_t val)
 {
   error_t err = SerialPacketForwarderP__DataQueue__enqueue(val);
 
-#line 176
+#line 167
   if (err == SUCCESS) {
     SerialPacketForwarderP__forwardNextPacketTask__postTask();
     }
-#line 178
+#line 169
   return err;
 }
 
@@ -4846,16 +4815,16 @@ inline static error_t SerialPacketForwarderP__CommandQueue__enqueue(SerialPacket
 #line 90
 }
 #line 90
-# 165 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 156 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline error_t SerialPacketForwarderP__ForwardCommand__setNow(command_packet_t val)
 {
   error_t err = SerialPacketForwarderP__CommandQueue__enqueue(val);
 
-#line 168
+#line 159
   if (err == SUCCESS) {
     SerialPacketForwarderP__forwardNextPacketTask__postTask();
     }
-#line 170
+#line 161
   return err;
 }
 
@@ -4931,16 +4900,16 @@ inline static error_t SerialPacketForwarderP__StatusQueue__enqueue(SerialPacketF
 #line 90
 }
 #line 90
-# 181 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 172 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline error_t SerialPacketForwarderP__ForwardStatus__setNow(status_packet_t val)
 {
   error_t err = SerialPacketForwarderP__StatusQueue__enqueue(val);
 
-#line 184
+#line 175
   if (err == SUCCESS) {
     SerialPacketForwarderP__forwardNextPacketTask__postTask();
     }
-#line 186
+#line 177
   return err;
 }
 
@@ -4981,9 +4950,9 @@ static inline void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__d
 }
 
 # 83 "/opt/tinyos-main/src/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x4077e8f0){
+inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x407fe8f0){
 #line 83
-  switch (arg_0x4077e8f0) {
+  switch (arg_0x407fe8f0) {
 #line 83
     case 0U:
 #line 83
@@ -4999,7 +4968,7 @@ inline static void /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__f
 #line 83
     default:
 #line 83
-      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x4077e8f0);
+      /*TimerMilliP.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x407fe8f0);
 #line 83
       break;
 #line 83
@@ -5190,47 +5159,47 @@ inline static error_t SerialPacketForwarderP__UartStream__send(uint8_t * buf, ui
 #line 48
 }
 #line 48
-# 194 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
+# 180 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(command_packet_t *cp, uint8_t *buf)
 {
   uint8_t i = 0;
 
   buf[i++] = '[';
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[PACKET_COMMAND];
+  buf[i++] = PACKET_COMMAND >= 0 && PACKET_COMMAND <= 15 ? PACKET_COMMAND < 10 ? PACKET_COMMAND + '0' : PACKET_COMMAND - 10 + 'a' : 'N';
   buf[i++] = ':';
 
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->WE];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->HE];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->BE];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(cp->opcode >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->opcode & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(cp->value >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->value & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((cp->address >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(cp->address >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(cp->address >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[cp->address & 0x0F];
+  buf[i++] = cp->WE >= 0 && cp->WE <= 15 ? cp->WE < 10 ? cp->WE + '0' : cp->WE - 10 + 'a' : 'N';
+  buf[i++] = cp->HE >= 0 && cp->HE <= 15 ? cp->HE < 10 ? cp->HE + '0' : cp->HE - 10 + 'a' : 'N';
+  buf[i++] = cp->BE >= 0 && cp->BE <= 15 ? cp->BE < 10 ? cp->BE + '0' : cp->BE - 10 + 'a' : 'N';
+  buf[i++] = ((cp->opcode >> 4) & 0x0F) >= 0 && ((cp->opcode >> 4) & 0x0F) <= 15 ? ((cp->opcode >> 4) & 0x0F) < 10 ? ((cp->opcode >> 4) & 0x0F) + '0' : ((cp->opcode >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (cp->opcode & 0x0F) >= 0 && (cp->opcode & 0x0F) <= 15 ? (cp->opcode & 0x0F) < 10 ? (cp->opcode & 0x0F) + '0' : (cp->opcode & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((cp->value >> 4) & 0x0F) >= 0 && ((cp->value >> 4) & 0x0F) <= 15 ? ((cp->value >> 4) & 0x0F) < 10 ? ((cp->value >> 4) & 0x0F) + '0' : ((cp->value >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (cp->value & 0x0F) >= 0 && (cp->value & 0x0F) <= 15 ? (cp->value & 0x0F) < 10 ? (cp->value & 0x0F) + '0' : (cp->value & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (((cp->address >> 8) >> 4) & 0x0F) >= 0 && (((cp->address >> 8) >> 4) & 0x0F) <= 15 ? (((cp->address >> 8) >> 4) & 0x0F) < 10 ? (((cp->address >> 8) >> 4) & 0x0F) + '0' : (((cp->address >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((cp->address >> 8) & 0x0F) >= 0 && ((cp->address >> 8) & 0x0F) <= 15 ? ((cp->address >> 8) & 0x0F) < 10 ? ((cp->address >> 8) & 0x0F) + '0' : ((cp->address >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((cp->address >> 4) & 0x0F) >= 0 && ((cp->address >> 4) & 0x0F) <= 15 ? ((cp->address >> 4) & 0x0F) < 10 ? ((cp->address >> 4) & 0x0F) + '0' : ((cp->address >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (cp->address & 0x0F) >= 0 && (cp->address & 0x0F) <= 15 ? (cp->address & 0x0F) < 10 ? (cp->address & 0x0F) + '0' : (cp->address & 0x0F) - 10 + 'a' : 'N';
 
   buf[i++] = ']';
   buf[i] = 0;
   return i;
 }
 
-# 12 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
+# 10 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
 inline static uint8_t SerialPacketForwarderP__PacketTypes__commandPacketToStr(command_packet_t *dp, uint8_t *buf){
-#line 12
+#line 10
   unsigned char __nesc_result;
-#line 12
+#line 10
 
-#line 12
+#line 10
   __nesc_result = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__commandPacketToStr(dp, buf);
-#line 12
+#line 10
 
-#line 12
+#line 10
   return __nesc_result;
-#line 12
+#line 10
 }
-#line 12
+#line 10
 # 73 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc"
 inline static SerialPacketForwarderP__CommandQueue__t  SerialPacketForwarderP__CommandQueue__head(void ){
 #line 73
@@ -5289,45 +5258,45 @@ inline static SerialPacketForwarderP__StatusQueue__t  SerialPacketForwarderP__St
 #line 81
 }
 #line 81
-# 218 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
+# 204 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__statusPacketToStr(status_packet_t *sp, uint8_t *buf)
 {
   uint8_t i = 0;
 
   buf[i++] = '[';
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[PACKET_STATUS];
+  buf[i++] = PACKET_STATUS >= 0 && PACKET_STATUS <= 15 ? PACKET_STATUS < 10 ? PACKET_STATUS + '0' : PACKET_STATUS - 10 + 'a' : 'N';
   buf[i++] = ':';
 
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((sp->node_id >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(sp->node_id >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(sp->node_id >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[sp->node_id & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(sp->burstInterval >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[sp->burstInterval & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[sp->intervalType];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[sp->historyEnable];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[sp->burstEnable];
+  buf[i++] = (((sp->node_id >> 8) >> 4) & 0x0F) >= 0 && (((sp->node_id >> 8) >> 4) & 0x0F) <= 15 ? (((sp->node_id >> 8) >> 4) & 0x0F) < 10 ? (((sp->node_id >> 8) >> 4) & 0x0F) + '0' : (((sp->node_id >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((sp->node_id >> 8) & 0x0F) >= 0 && ((sp->node_id >> 8) & 0x0F) <= 15 ? ((sp->node_id >> 8) & 0x0F) < 10 ? ((sp->node_id >> 8) & 0x0F) + '0' : ((sp->node_id >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((sp->node_id >> 4) & 0x0F) >= 0 && ((sp->node_id >> 4) & 0x0F) <= 15 ? ((sp->node_id >> 4) & 0x0F) < 10 ? ((sp->node_id >> 4) & 0x0F) + '0' : ((sp->node_id >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (sp->node_id & 0x0F) >= 0 && (sp->node_id & 0x0F) <= 15 ? (sp->node_id & 0x0F) < 10 ? (sp->node_id & 0x0F) + '0' : (sp->node_id & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((sp->burstInterval >> 4) & 0x0F) >= 0 && ((sp->burstInterval >> 4) & 0x0F) <= 15 ? ((sp->burstInterval >> 4) & 0x0F) < 10 ? ((sp->burstInterval >> 4) & 0x0F) + '0' : ((sp->burstInterval >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (sp->burstInterval & 0x0F) >= 0 && (sp->burstInterval & 0x0F) <= 15 ? (sp->burstInterval & 0x0F) < 10 ? (sp->burstInterval & 0x0F) + '0' : (sp->burstInterval & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = sp->intervalType >= 0 && sp->intervalType <= 15 ? sp->intervalType < 10 ? sp->intervalType + '0' : sp->intervalType - 10 + 'a' : 'N';
+  buf[i++] = sp->historyEnable >= 0 && sp->historyEnable <= 15 ? sp->historyEnable < 10 ? sp->historyEnable + '0' : sp->historyEnable - 10 + 'a' : 'N';
+  buf[i++] = sp->burstEnable >= 0 && sp->burstEnable <= 15 ? sp->burstEnable < 10 ? sp->burstEnable + '0' : sp->burstEnable - 10 + 'a' : 'N';
 
   buf[i++] = ']';
   buf[i] = 0;
   return i;
 }
 
-# 14 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
+# 12 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
 inline static uint8_t SerialPacketForwarderP__PacketTypes__statusPacketToStr(status_packet_t *dp, uint8_t *buf){
-#line 14
+#line 12
   unsigned char __nesc_result;
-#line 14
+#line 12
 
-#line 14
+#line 12
   __nesc_result = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__statusPacketToStr(dp, buf);
-#line 14
+#line 12
 
-#line 14
+#line 12
   return __nesc_result;
-#line 14
+#line 12
 }
-#line 14
+#line 12
 # 73 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc"
 inline static SerialPacketForwarderP__StatusQueue__t  SerialPacketForwarderP__StatusQueue__head(void ){
 #line 73
@@ -5386,64 +5355,64 @@ inline static SerialPacketForwarderP__DataQueue__t  SerialPacketForwarderP__Data
 #line 81
 }
 #line 81
-# 153 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
+# 139 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__dataPacketToStr(data_packet_t *dp, uint8_t *buf)
 {
   uint8_t i = 0;
 
   buf[i++] = '[';
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[PACKET_DATA];
+  buf[i++] = PACKET_DATA >= 0 && PACKET_DATA <= 15 ? PACKET_DATA < 10 ? PACKET_DATA + '0' : PACKET_DATA - 10 + 'a' : 'N';
   buf[i++] = ':';
 
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((dp->data1 >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data1 >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data1 >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[dp->data1 & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((dp->data2 >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data2 >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data2 >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[dp->data2 & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((dp->data3 >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data3 >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data3 >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[dp->data3 & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((dp->data4 >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data4 >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data4 >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[dp->data4 & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((dp->data5 >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data5 >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->data5 >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[dp->data5 & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((dp->source >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->source >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->source >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[dp->source & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[((dp->seqNo >> 8) >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->seqNo >> 8) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[(dp->seqNo >> 4) & 0x0F];
-  buf[i++] = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__hexTable[dp->seqNo & 0x0F];
+  buf[i++] = (((dp->data1 >> 8) >> 4) & 0x0F) >= 0 && (((dp->data1 >> 8) >> 4) & 0x0F) <= 15 ? (((dp->data1 >> 8) >> 4) & 0x0F) < 10 ? (((dp->data1 >> 8) >> 4) & 0x0F) + '0' : (((dp->data1 >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data1 >> 8) & 0x0F) >= 0 && ((dp->data1 >> 8) & 0x0F) <= 15 ? ((dp->data1 >> 8) & 0x0F) < 10 ? ((dp->data1 >> 8) & 0x0F) + '0' : ((dp->data1 >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data1 >> 4) & 0x0F) >= 0 && ((dp->data1 >> 4) & 0x0F) <= 15 ? ((dp->data1 >> 4) & 0x0F) < 10 ? ((dp->data1 >> 4) & 0x0F) + '0' : ((dp->data1 >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (dp->data1 & 0x0F) >= 0 && (dp->data1 & 0x0F) <= 15 ? (dp->data1 & 0x0F) < 10 ? (dp->data1 & 0x0F) + '0' : (dp->data1 & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (((dp->data2 >> 8) >> 4) & 0x0F) >= 0 && (((dp->data2 >> 8) >> 4) & 0x0F) <= 15 ? (((dp->data2 >> 8) >> 4) & 0x0F) < 10 ? (((dp->data2 >> 8) >> 4) & 0x0F) + '0' : (((dp->data2 >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data2 >> 8) & 0x0F) >= 0 && ((dp->data2 >> 8) & 0x0F) <= 15 ? ((dp->data2 >> 8) & 0x0F) < 10 ? ((dp->data2 >> 8) & 0x0F) + '0' : ((dp->data2 >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data2 >> 4) & 0x0F) >= 0 && ((dp->data2 >> 4) & 0x0F) <= 15 ? ((dp->data2 >> 4) & 0x0F) < 10 ? ((dp->data2 >> 4) & 0x0F) + '0' : ((dp->data2 >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (dp->data2 & 0x0F) >= 0 && (dp->data2 & 0x0F) <= 15 ? (dp->data2 & 0x0F) < 10 ? (dp->data2 & 0x0F) + '0' : (dp->data2 & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (((dp->data3 >> 8) >> 4) & 0x0F) >= 0 && (((dp->data3 >> 8) >> 4) & 0x0F) <= 15 ? (((dp->data3 >> 8) >> 4) & 0x0F) < 10 ? (((dp->data3 >> 8) >> 4) & 0x0F) + '0' : (((dp->data3 >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data3 >> 8) & 0x0F) >= 0 && ((dp->data3 >> 8) & 0x0F) <= 15 ? ((dp->data3 >> 8) & 0x0F) < 10 ? ((dp->data3 >> 8) & 0x0F) + '0' : ((dp->data3 >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data3 >> 4) & 0x0F) >= 0 && ((dp->data3 >> 4) & 0x0F) <= 15 ? ((dp->data3 >> 4) & 0x0F) < 10 ? ((dp->data3 >> 4) & 0x0F) + '0' : ((dp->data3 >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (dp->data3 & 0x0F) >= 0 && (dp->data3 & 0x0F) <= 15 ? (dp->data3 & 0x0F) < 10 ? (dp->data3 & 0x0F) + '0' : (dp->data3 & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (((dp->data4 >> 8) >> 4) & 0x0F) >= 0 && (((dp->data4 >> 8) >> 4) & 0x0F) <= 15 ? (((dp->data4 >> 8) >> 4) & 0x0F) < 10 ? (((dp->data4 >> 8) >> 4) & 0x0F) + '0' : (((dp->data4 >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data4 >> 8) & 0x0F) >= 0 && ((dp->data4 >> 8) & 0x0F) <= 15 ? ((dp->data4 >> 8) & 0x0F) < 10 ? ((dp->data4 >> 8) & 0x0F) + '0' : ((dp->data4 >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data4 >> 4) & 0x0F) >= 0 && ((dp->data4 >> 4) & 0x0F) <= 15 ? ((dp->data4 >> 4) & 0x0F) < 10 ? ((dp->data4 >> 4) & 0x0F) + '0' : ((dp->data4 >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (dp->data4 & 0x0F) >= 0 && (dp->data4 & 0x0F) <= 15 ? (dp->data4 & 0x0F) < 10 ? (dp->data4 & 0x0F) + '0' : (dp->data4 & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (((dp->data5 >> 8) >> 4) & 0x0F) >= 0 && (((dp->data5 >> 8) >> 4) & 0x0F) <= 15 ? (((dp->data5 >> 8) >> 4) & 0x0F) < 10 ? (((dp->data5 >> 8) >> 4) & 0x0F) + '0' : (((dp->data5 >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data5 >> 8) & 0x0F) >= 0 && ((dp->data5 >> 8) & 0x0F) <= 15 ? ((dp->data5 >> 8) & 0x0F) < 10 ? ((dp->data5 >> 8) & 0x0F) + '0' : ((dp->data5 >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->data5 >> 4) & 0x0F) >= 0 && ((dp->data5 >> 4) & 0x0F) <= 15 ? ((dp->data5 >> 4) & 0x0F) < 10 ? ((dp->data5 >> 4) & 0x0F) + '0' : ((dp->data5 >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (dp->data5 & 0x0F) >= 0 && (dp->data5 & 0x0F) <= 15 ? (dp->data5 & 0x0F) < 10 ? (dp->data5 & 0x0F) + '0' : (dp->data5 & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (((dp->source >> 8) >> 4) & 0x0F) >= 0 && (((dp->source >> 8) >> 4) & 0x0F) <= 15 ? (((dp->source >> 8) >> 4) & 0x0F) < 10 ? (((dp->source >> 8) >> 4) & 0x0F) + '0' : (((dp->source >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->source >> 8) & 0x0F) >= 0 && ((dp->source >> 8) & 0x0F) <= 15 ? ((dp->source >> 8) & 0x0F) < 10 ? ((dp->source >> 8) & 0x0F) + '0' : ((dp->source >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->source >> 4) & 0x0F) >= 0 && ((dp->source >> 4) & 0x0F) <= 15 ? ((dp->source >> 4) & 0x0F) < 10 ? ((dp->source >> 4) & 0x0F) + '0' : ((dp->source >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (dp->source & 0x0F) >= 0 && (dp->source & 0x0F) <= 15 ? (dp->source & 0x0F) < 10 ? (dp->source & 0x0F) + '0' : (dp->source & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (((dp->seqNo >> 8) >> 4) & 0x0F) >= 0 && (((dp->seqNo >> 8) >> 4) & 0x0F) <= 15 ? (((dp->seqNo >> 8) >> 4) & 0x0F) < 10 ? (((dp->seqNo >> 8) >> 4) & 0x0F) + '0' : (((dp->seqNo >> 8) >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->seqNo >> 8) & 0x0F) >= 0 && ((dp->seqNo >> 8) & 0x0F) <= 15 ? ((dp->seqNo >> 8) & 0x0F) < 10 ? ((dp->seqNo >> 8) & 0x0F) + '0' : ((dp->seqNo >> 8) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = ((dp->seqNo >> 4) & 0x0F) >= 0 && ((dp->seqNo >> 4) & 0x0F) <= 15 ? ((dp->seqNo >> 4) & 0x0F) < 10 ? ((dp->seqNo >> 4) & 0x0F) + '0' : ((dp->seqNo >> 4) & 0x0F) - 10 + 'a' : 'N';
+  buf[i++] = (dp->seqNo & 0x0F) >= 0 && (dp->seqNo & 0x0F) <= 15 ? (dp->seqNo & 0x0F) < 10 ? (dp->seqNo & 0x0F) + '0' : (dp->seqNo & 0x0F) - 10 + 'a' : 'N';
 
   buf[i++] = ']';
   buf[i] = 0;
   return i;
 }
 
-# 13 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
+# 11 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
 inline static uint8_t SerialPacketForwarderP__PacketTypes__dataPacketToStr(data_packet_t *dp, uint8_t *buf){
-#line 13
+#line 11
   unsigned char __nesc_result;
-#line 13
+#line 11
 
-#line 13
+#line 11
   __nesc_result = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__dataPacketToStr(dp, buf);
-#line 13
+#line 11
 
-#line 13
+#line 11
   return __nesc_result;
-#line 13
+#line 11
 }
-#line 13
+#line 11
 # 73 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc"
 inline static SerialPacketForwarderP__DataQueue__t  SerialPacketForwarderP__DataQueue__head(void ){
 #line 73
@@ -5459,7 +5428,7 @@ inline static SerialPacketForwarderP__DataQueue__t  SerialPacketForwarderP__Data
 #line 73
 }
 #line 73
-# 189 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 180 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
 {
   uint8_t localBuf[64];
@@ -5468,7 +5437,7 @@ static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
   data_packet_t localDataPacket;
   command_packet_t localCommandPacket;
 
-#line 196
+#line 187
   if (!SerialPacketForwarderP__DataQueue__empty()) 
     {
       localDataPacket = SerialPacketForwarderP__DataQueue__head();
@@ -5477,11 +5446,11 @@ static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
         SerialPacketForwarderP__DataQueue__dequeue();
         }
       else {
-#line 203
+#line 194
         SerialPacketForwarderP__forwardNextPacketTask__postTask();
         }
     }
-#line 205
+#line 196
   if (!SerialPacketForwarderP__StatusQueue__empty()) 
     {
       localStatusPacket = SerialPacketForwarderP__StatusQueue__head();
@@ -5490,11 +5459,11 @@ static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
         SerialPacketForwarderP__StatusQueue__dequeue();
         }
       else {
-#line 212
+#line 203
         SerialPacketForwarderP__forwardNextPacketTask__postTask();
         }
     }
-#line 214
+#line 205
   if (!SerialPacketForwarderP__CommandQueue__empty()) 
     {
       localCommandPacket = SerialPacketForwarderP__CommandQueue__head();
@@ -5503,11 +5472,11 @@ static inline void SerialPacketForwarderP__forwardNextPacketTask__runTask(void )
         SerialPacketForwarderP__CommandQueue__dequeue();
         }
       else {
-#line 221
+#line 212
         SerialPacketForwarderP__forwardNextPacketTask__postTask();
         }
     }
-#line 223
+#line 214
   if ((!SerialPacketForwarderP__DataQueue__empty() || !SerialPacketForwarderP__StatusQueue__empty()) || !SerialPacketForwarderP__CommandQueue__empty()) {
     SerialPacketForwarderP__forwardNextPacketTask__postTask();
     }
@@ -5561,178 +5530,143 @@ inline static void SerialPacketForwarderP__CommandNotification__notify(SerialPac
 #line 74
 }
 #line 74
-# 30 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
+# 17 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToCommandPacket(command_packet_t *cp, uint8_t *buf)
 {
-
   uint8_t i = 0;
   uint8_t len = 3 + 3 + 2 + 2 + 4 + 1;
 
-#line 35
+#line 21
   if (buf[i++] != '[') {
     return PACKET_ERROR;
     }
-#line 37
-  if (/*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) != PACKET_COMMAND) {
+#line 23
+  if ((buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0) != PACKET_COMMAND) {
     return PACKET_ERROR;
     }
-#line 39
+#line 25
   if (buf[i++] != ':') {
     return PACKET_ERROR;
     }
-#line 41
+#line 27
   if (buf[len - 1] != ']') {
     return PACKET_ERROR;
     }
   cp->WE = buf[i++] != 0;
   cp->HE = buf[i++] != 0;
   cp->BE = buf[i++] != 0;
-  cp->opcode = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  cp->opcode |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  cp->value = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  cp->value |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
-  cp->address = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 12;
-  cp->address |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 8;
-  cp->address |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]) << 4;
-  cp->address |= /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[i++]);
+  cp->opcode = (buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0) << 4;
+  cp->opcode |= buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0;
+  cp->value = (buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0) << 4;
+  cp->value |= buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0;
+  cp->address = (buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0) << 12;
+  cp->address |= (buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0) << 8;
+  cp->address |= (buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0) << 4;
+  cp->address |= buf[i++] >= '0' && buf[i++] <= '9' ? buf[i++] - '0' : buf[i++] >= 'a' && buf[i++] <= 'f' ? buf[i++] - 'a' : buf[i++] >= 'A' && buf[i++] <= 'F' ? buf[i++] - 'A' : 0;
 
   if (buf[i] != ']') {
     return PACKET_ERROR;
     }
-#line 58
+#line 44
   return PACKET_COMMAND;
 }
 
-# 8 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
+# 6 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
 inline static uint8_t SerialPacketForwarderP__PacketTypes__strToCommandPacket(command_packet_t *cp, uint8_t *buf){
-#line 8
+#line 6
   unsigned char __nesc_result;
-#line 8
+#line 6
 
-#line 8
+#line 6
   __nesc_result = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__strToCommandPacket(cp, buf);
-#line 8
+#line 6
 
-#line 8
+#line 6
   return __nesc_result;
-#line 8
+#line 6
 }
-#line 8
-# 57 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static inline void /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle(void )
-#line 57
-{
-#line 57
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 57
-    * (volatile uint8_t * )46U ^= 1 << 2;
-#line 57
-    __nesc_atomic_end(__nesc_atomic); }
-}
-
-# 42 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/GeneralIO.nc"
-inline static void LedsP__Led0__toggle(void ){
-#line 42
-  /*HplAtm128GeneralIOC.PortE.Bit2*/HplAtm128GeneralIOPinP__18__IO__toggle();
-#line 42
-}
-#line 42
-# 72 "/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc"
-static inline void LedsP__Leds__led0Toggle(void )
-#line 72
-{
-  LedsP__Led0__toggle();
-}
-
-# 67 "/opt/tinyos-main/src/tinyos-main/tos/interfaces/Leds.nc"
-inline static void SerialPacketForwarderP__Leds__led0Toggle(void ){
-#line 67
-  LedsP__Leds__led0Toggle();
-#line 67
-}
-#line 67
-# 135 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
+#line 6
+# 121 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
 static inline uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__getTypeOfPacket(uint8_t *buf)
 {
   int len;
-#line 137
+#line 123
   int type;
 
-#line 138
+#line 124
   if (buf[0] != '[') {
     return PACKET_ERROR;
     }
-#line 140
+#line 126
   if (buf[2] != ':') {
     return PACKET_ERROR;
     }
-#line 142
-  switch ((type = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(buf[1]))) 
+#line 128
+  switch ((type = buf[1] >= '0' && buf[1] <= '9' ? buf[1] - '0' : buf[1] >= 'a' && buf[1] <= 'f' ? buf[1] - 'a' : buf[1] >= 'A' && buf[1] <= 'F' ? buf[1] - 'A' : 0)) 
     {
       case PACKET_COMMAND: len = 3 + 3 + 2 + 2 + 4 + 1;
-#line 144
+#line 130
       break;
       case PACKET_DATA: len = 3 + 7 * 4 + 1;
-#line 145
+#line 131
       break;
       case PACKET_STATUS: len = 3 + 4 + 2 + 3 + 1;
-#line 146
+#line 132
       break;
       default: return PACKET_ERROR;
     }
   if (buf[len - 1] != ']') {
     return PACKET_ERROR;
     }
-#line 151
+#line 137
   return type;
 }
 
-# 16 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
+# 14 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypes.nc"
 inline static uint8_t SerialPacketForwarderP__PacketTypes__getTypeOfPacket(uint8_t *buf){
-#line 16
+#line 14
   unsigned char __nesc_result;
-#line 16
+#line 14
 
-#line 16
+#line 14
   __nesc_result = /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__getTypeOfPacket(buf);
-#line 16
+#line 14
 
-#line 16
+#line 14
   return __nesc_result;
-#line 16
+#line 14
 }
-#line 16
-# 124 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+#line 14
+# 118 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline void SerialPacketForwarderP__processReceiveBufferTask__runTask(void )
 {
-
   uint8_t localBuf[64];
   uint8_t type;
-  data_packet_t localDataPacket;
+
+
   command_packet_t localCommandPacket;
-  status_packet_t localStatusPacket;
 
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 133
+#line 126
     {
-      strncpy((char *)localBuf, (char *)SerialPacketForwarderP__receiveBuffer, SerialPacketForwarderP__pos <= 64 ? SerialPacketForwarderP__pos : 64);
+      memcpy((char *)localBuf, (char *)SerialPacketForwarderP__receiveBuffer, SerialPacketForwarderP__pos <= 64 ? SerialPacketForwarderP__pos : 64);
       localBuf[SerialPacketForwarderP__pos] = 0;
     }
-#line 136
+#line 129
     __nesc_atomic_end(__nesc_atomic); }
   type = SerialPacketForwarderP__PacketTypes__getTypeOfPacket(localBuf);
   if (type != PACKET_ERROR) 
     {
-      SerialPacketForwarderP__Leds__led0Toggle();
     }
+
   if (type == PACKET_COMMAND) 
     {
       type = SerialPacketForwarderP__PacketTypes__strToCommandPacket(&localCommandPacket, localBuf);
       if (type == PACKET_ERROR) {
         return;
         }
-      SerialPacketForwarderP__gCommandPacket = localCommandPacket;
-      SerialPacketForwarderP__CommandNotification__notify(SerialPacketForwarderP__gCommandPacket);
+#line 140
+      SerialPacketForwarderP__CommandNotification__notify(localCommandPacket);
     }
 }
 
@@ -5752,7 +5686,7 @@ static inline void Atm128Rfa1SerialP__unexpectedByteReceivedTask__runTask(void )
   Atm128Rfa1SerialP__Uart1Stream__receivedByte(localUnexpectedByte);
 }
 
-# 78 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 72 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline void SerialPacketForwarderP__UartStream__receiveDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -5779,7 +5713,7 @@ static inline void Atm128Rfa1SerialP__receiveDoneTask__runTask(void )
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 120 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 114 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline void SerialPacketForwarderP__UartStream__sendDone(uint8_t *buf, uint16_t len, error_t error)
 {
 }
@@ -5850,7 +5784,7 @@ inline static error_t SerialPacketForwarderP__UartControl__start(void ){
 #line 95
 }
 #line 95
-# 57 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 51 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static inline error_t SerialPacketForwarderP__SerialPacketForwarderInit__init(void )
 {
   SerialPacketForwarderP__UartControl__start();
@@ -6138,28 +6072,28 @@ static error_t SchedulerBasicP__TaskBasic__postTask(uint8_t id)
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 82 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 76 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static void SerialPacketForwarderP__UartStream__receivedByte(uint8_t byte)
 {
   SerialPacketForwarderP__UartByte__send(byte);
   if (byte == '[') 
     {
       { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 87
+#line 81
         {
           SerialPacketForwarderP__pos = 0;
           SerialPacketForwarderP__receiveBuffer[SerialPacketForwarderP__pos++] = byte;
         }
-#line 90
+#line 84
         __nesc_atomic_end(__nesc_atomic); }
       SerialPacketForwarderP__started = 1;
     }
   else {
-#line 93
+#line 87
     if (byte == ']' && SerialPacketForwarderP__started) 
       {
         { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 95
+#line 89
           {
             if (SerialPacketForwarderP__pos < 64) 
               {
@@ -6170,18 +6104,18 @@ static void SerialPacketForwarderP__UartStream__receivedByte(uint8_t byte)
               SerialPacketForwarderP__pos = 0;
               }
           }
-#line 104
+#line 98
           __nesc_atomic_end(__nesc_atomic); }
-#line 104
+#line 98
         SerialPacketForwarderP__started = 0;
         SerialPacketForwarderP__processReceiveBufferTask__postTask();
       }
     else {
-#line 107
+#line 101
       if (SerialPacketForwarderP__started) 
         {
           { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 109
+#line 103
             {
               if (SerialPacketForwarderP__pos < 64) 
                 {
@@ -6191,7 +6125,7 @@ static void SerialPacketForwarderP__UartStream__receivedByte(uint8_t byte)
                 SerialPacketForwarderP__pos = 0;
                 }
             }
-#line 117
+#line 111
             __nesc_atomic_end(__nesc_atomic); }
         }
       }
@@ -6628,7 +6562,7 @@ static error_t Atm128Rfa1SerialP__Uart1Stream__send(uint8_t *buf, uint16_t len)
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
 #line 328
     {
-      strncpy((char *)Atm128Rfa1SerialP__txTmpBuf, (char *)buf, len);
+      memcpy((char *)Atm128Rfa1SerialP__txTmpBuf, (char *)buf, len);
     }
 #line 330
     __nesc_atomic_end(__nesc_atomic); }
@@ -6641,25 +6575,7 @@ static error_t Atm128Rfa1SerialP__Uart1Stream__send(uint8_t *buf, uint16_t len)
   return SUCCESS;
 }
 
-# 20 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc"
-static uint8_t /*SerialPacketForwarderC.PacketTypesImpl*/PacketTypesP__0__PacketTypes__asciihexToNum(uint8_t c)
-{
-  if (c >= 'a' && c <= 'z') {
-    return (uint8_t )(c - 'a' + 10);
-    }
-#line 24
-  if (c >= 'A' && c <= 'Z') {
-    return (uint8_t )(c - 'A' + 10);
-    }
-#line 26
-  if (c >= '0' && c <= '9') {
-    return (uint8_t )(c - '0');
-    }
-#line 28
-  return 0;
-}
-
-# 48 "/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialP.nc"
+#line 48
 static error_t Atm128Rfa1SerialP__Uart1Control__start(void )
 {
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
@@ -6672,7 +6588,7 @@ static error_t Atm128Rfa1SerialP__Uart1Control__start(void )
   return Atm128Rfa1SerialP__Uart1Init__init();
 }
 
-# 71 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
+# 65 "/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc"
 static error_t SerialPacketForwarderP__CommandNotification__enable(void )
 {
   SerialPacketForwarderP__enabled = TRUE;
