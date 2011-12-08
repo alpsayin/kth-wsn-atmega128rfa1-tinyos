@@ -273,8 +273,13 @@ implementation
 		}
 		else
 		{
-			rxUnexpectedByte = byte;
-			post unexpectedByteReceivedTask();	
+		  rxUnexpectedByte = byte;
+		  signal Uart1Stream.receivedByte(rxUnexpectedByte);	
+		  
+		  //atomic {
+		  //  rxUnexpectedByte = byte;
+		  //}
+		  //post unexpectedByteReceivedTask();	
 		}
 		call Uart1Interrupts.clearRxInterrupt(); //for convenience
 	}
@@ -435,7 +440,11 @@ implementation
 
 	task void unexpectedByteReceivedTask()
 	{
-		signal Uart1Stream.receivedByte(rxUnexpectedByte);	
+	  uint8_t localUnexpectedByte; 
+	  atomic {
+	    localUnexpectedByte = rxUnexpectedByte;
+	  }
+	  signal Uart1Stream.receivedByte(localUnexpectedByte);	
 	}
 
 	async command mcu_power_t Uart1PowerOverride.lowestState()
