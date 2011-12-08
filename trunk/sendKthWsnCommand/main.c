@@ -590,7 +590,7 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
         fputs("sending command to the root mote...\n", output);
         fflush(output);
 
-        val=commandToBuffer(&commandPacket, buf);
+        val=commandPacketToStr(&commandPacket, buf);
         val=write(fd, buf, val);
         sprintf(buf, "%d bytes written\n", val);
         fputs(buf, output);
