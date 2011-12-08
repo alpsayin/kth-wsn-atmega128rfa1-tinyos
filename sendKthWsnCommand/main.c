@@ -575,20 +575,24 @@ sendKthWsnCommand -e16 -l -a01bc -p/dev/ttyUSB0\n\
         restoreDefaults();
         return EXIT_SUCCESS;
     }
-    sprintf(buf, "trying to open %s for read/write\n", devicename);
-    fputs(buf, output);
 
     if(listen && !no_command)
     {
         rw_mode = O_RDWR;
+        sprintf(buf, "trying to open %s for read/write\n", devicename);
+        fputs(buf, output);
     }
     else if(listen && no_command)
     {
         rw_mode = O_RDONLY;
+        sprintf(buf, "trying to open %s for read\n", devicename);
+        fputs(buf, output);
     }
     else if(!listen && !no_command)
     {
         rw_mode = O_WRONLY;
+        sprintf(buf, "trying to open %s for write\n", devicename);
+        fputs(buf, output);
     }
     else
     {
@@ -874,7 +878,7 @@ int processReceiveBuffer()
 #pragma GCC optimize ("O0")
 int writeComPort(char* buf, int len)
 {
-    int i,val;
+    int i,val=0;
     for(i=0; i < len; i++)
     {
 #ifdef DEBUG
@@ -882,9 +886,19 @@ int writeComPort(char* buf, int len)
 #endif
         if(write(fd, buf++, 1))
             val++;
-        usleep(100000);
+        usleep(200000);
     }
     return val;
+}
+
+void restoreDefaults()
+{
+    fputs("exiting...\n", output);
+    fflush(output);
+    tcsetattr(tty, TCSANOW, &oldkey);
+    close(tty);
+    close(fd);
+    sleep(2);
 }
 
 #pragma GCC pop_options
@@ -944,13 +958,6 @@ int openComPort(long rw)
     return 0;
 }
 
-void restoreDefaults()
-{
-    fputs("exiting...\n", output);
-    tcsetattr(tty, TCSANOW, &oldkey);
-    close(tty);
-    close(fd);
-}
 
 void fail(const char *message)
 {

@@ -6,55 +6,55 @@
     </wire>
     <wire loc="72:/opt/tinyos-main/src/tinyos-main/tos/system/MainC.nc">
       <from><interface-ref name="Boot" scoped="" ref="0x403f6cf8"/></from>
-      <to><interface-ref name="Boot" scoped="" ref="0x404b3790"/></to>
+      <to><interface-ref name="Boot" scoped="" ref="0x404b3cd0"/></to>
     </wire>
     <wire loc="14:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderTestC.nc">
       <from><interface-ref name="Leds" scoped="" ref="0x403ff848"/></from>
-      <to><interface-ref name="Leds" scoped="" ref="0x405388f8"/></to>
+      <to><interface-ref name="Leds" scoped="" ref="0x405384d8"/></to>
     </wire>
     <wire loc="51:/opt/tinyos-main/src/tinyos-main/tos/system/LedsC.nc">
-      <from><interface-ref name="Leds" scoped="" ref="0x405388f8"/></from>
-      <to><interface-ref name="Leds" scoped="" ref="0x40545e08"/></to>
+      <from><interface-ref name="Leds" scoped="" ref="0x405384d8"/></from>
+      <to><interface-ref name="Leds" scoped="" ref="0x405449a8"/></to>
     </wire>
     <wire loc="17:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderTestC.nc">
       <from><interface-ref name="UartByte" scoped="" ref="0x403fdd20"/></from>
-      <to><interface-ref name="UartByte" scoped="" ref="0x40632060"/></to>
+      <to><interface-ref name="UartByte" scoped="" ref="0x40632628"/></to>
     </wire>
     <wire loc="55:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
-      <from><interface-ref name="UartByte" scoped="" ref="0x40632060"/></from>
+      <from><interface-ref name="UartByte" scoped="" ref="0x40632628"/></from>
       <to><interface-ref name="Uart1Byte" scoped="" ref="0x404d5328"/></to>
     </wire>
     <wire loc="20:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderTestC.nc">
       <from><interface-ref name="CommandNotification" scoped="" ref="0x40407f18"/></from>
-      <to><interface-ref name="CommandNotification" scoped="" ref="0x40630860"/></to>
+      <to><interface-ref name="CommandNotification" scoped="" ref="0x404a1e88"/></to>
     </wire>
     <wire loc="34:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="CommandNotification" scoped="" ref="0x40630860"/></from>
-      <to><interface-ref name="CommandNotification" scoped="" ref="0x40676e38"/></to>
+      <from><interface-ref name="CommandNotification" scoped="" ref="0x404a1e88"/></from>
+      <to><interface-ref name="CommandNotification" scoped="" ref="0x40674010"/></to>
     </wire>
     <wire loc="21:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderTestC.nc">
       <from><interface-ref name="ForwardCommand" scoped="" ref="0x40405c38"/></from>
-      <to><interface-ref name="ForwardCommand" scoped="" ref="0x4062f7a8"/></to>
+      <to><interface-ref name="ForwardCommand" scoped="" ref="0x4062fde8"/></to>
     </wire>
     <wire loc="35:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="ForwardCommand" scoped="" ref="0x4062f7a8"/></from>
-      <to><interface-ref name="ForwardCommand" scoped="" ref="0x40674d88"/></to>
+      <from><interface-ref name="ForwardCommand" scoped="" ref="0x4062fde8"/></from>
+      <to><interface-ref name="ForwardCommand" scoped="" ref="0x40673010"/></to>
     </wire>
     <wire loc="22:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderTestC.nc">
       <from><interface-ref name="ForwardData" scoped="" ref="0x404086b8"/></from>
-      <to><interface-ref name="ForwardData" scoped="" ref="0x4062d248"/></to>
+      <to><interface-ref name="ForwardData" scoped="" ref="0x4062d888"/></to>
     </wire>
     <wire loc="36:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="ForwardData" scoped="" ref="0x4062d248"/></from>
-      <to><interface-ref name="ForwardData" scoped="" ref="0x40673800"/></to>
+      <from><interface-ref name="ForwardData" scoped="" ref="0x4062d888"/></from>
+      <to><interface-ref name="ForwardData" scoped="" ref="0x40673a78"/></to>
     </wire>
     <wire loc="23:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderTestC.nc">
       <from><interface-ref name="ForwardStatus" scoped="" ref="0x40404158"/></from>
-      <to><interface-ref name="ForwardStatus" scoped="" ref="0x4062dcd8"/></to>
+      <to><interface-ref name="ForwardStatus" scoped="" ref="0x4062c338"/></to>
     </wire>
     <wire loc="37:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="ForwardStatus" scoped="" ref="0x4062dcd8"/></from>
-      <to><interface-ref name="ForwardStatus" scoped="" ref="0x406722a0"/></to>
+      <from><interface-ref name="ForwardStatus" scoped="" ref="0x4062c338"/></from>
+      <to><interface-ref name="ForwardStatus" scoped="" ref="0x40672520"/></to>
     </wire>
     <wire loc="26:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderTestC.nc">
       <from><interface-ref name="PacketTypes" scoped="" ref="0x40401328"/></from>
@@ -106,7 +106,7 @@
     </wire>
     <wire loc="53:/opt/tinyos-main/src/tinyos-main/tos/system/LedsC.nc">
       <from><interface-ref name="Init" scoped="" ref="0x404291c8"/></from>
-      <to><interface-ref name="Init" scoped="" ref="0x40545ac0"/></to>
+      <to><interface-ref name="Init" scoped="" ref="0x40544660"/></to>
     </wire>
     <wire loc="51:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformLedsC.nc">
       <from><interface-ref name="Led2" scoped="" ref="0x4042c010"/></from>
@@ -174,7 +174,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin0" scoped="" ref="0x4046ca28"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x407b23b0"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x407cd3b0"/></to>
     </wire>
     <wire loc="105:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD4" scoped="" ref="0x4042d750"/></from>
@@ -306,7 +306,7 @@
     </wire>
     <wire>
       <from><interface-ref name="Pin7" scoped="" ref="0x4048bac8"/></from>
-      <to><interface-ref name="IO" scoped="" ref="0x40879010"/></to>
+      <to><interface-ref name="IO" scoped="" ref="0x40878010"/></to>
     </wire>
     <wire loc="101:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/pins/HplAtm128GeneralIOC.nc">
       <from><interface-ref name="PortD0" scoped="" ref="0x40430ea8"/></from>
@@ -426,7 +426,7 @@
     </wire>
     <wire loc="57:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformC.nc">
       <from><interface-ref name="RadioInit" scoped="" ref="0x404ac5c0"/></from>
-      <to><interface-ref name="RFA1RadioOff" scoped="" ref="0x404b0458"/></to>
+      <to><interface-ref name="RFA1RadioOff" scoped="" ref="0x404b0948"/></to>
     </wire>
     <wire loc="55:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformC.nc">
       <from><interface-ref name="McuInit" scoped="" ref="0x404a3de0"/></from>
@@ -434,10 +434,10 @@
     </wire>
     <wire loc="23:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
       <from><interface-ref name="SoftwareInit" scoped="" ref="0x404b4130"/></from>
-      <to><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x406768c8"/></to>
+      <to><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x40676a10"/></to>
     </wire>
     <wire loc="67:/opt/tinyos-main/src/tinyos-main/tos/system/MainC.nc">
-      <from><interface-ref name="Scheduler" scoped="" ref="0x404b3b28"/></from>
+      <from><interface-ref name="Scheduler" scoped="" ref="0x406180c0"/></from>
       <to><interface-ref name="Scheduler" scoped="" ref="0x402ff378"/></to>
     </wire>
     <wire loc="53:/opt/tinyos-main/src/tinyos-main/tos/system/TinySchedulerC.nc">
@@ -445,7 +445,7 @@
       <to><interface-ref name="Scheduler" scoped="" ref="0x403c83e0"/></to>
     </wire>
     <wire loc="68:/opt/tinyos-main/src/tinyos-main/tos/system/MainC.nc">
-      <from><interface-ref name="PlatformInit" scoped="" ref="0x40627100"/></from>
+      <from><interface-ref name="PlatformInit" scoped="" ref="0x40618688"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x404b4918"/></to>
     </wire>
     <wire loc="52:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformC.nc">
@@ -453,7 +453,7 @@
       <to><interface-ref name="Init" scoped="" ref="0x404a39f0"/></to>
     </wire>
     <wire loc="71:/opt/tinyos-main/src/tinyos-main/tos/system/MainC.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x40627508"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x40618a90"/></from>
       <to><interface-ref name="SoftwareInit" scoped="" ref="0x404b4130"/></to>
     </wire>
     <wire loc="50:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/McuInitC.nc">
@@ -466,7 +466,7 @@
     </wire>
     <wire loc="48:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/Counter62khz32C.nc">
       <from><interface-ref name="TimerInit" scoped="" ref="0x404b1cd0"/></from>
-      <to><interface-ref name="Init" scoped="" ref="0x40589520"/></to>
+      <to><interface-ref name="Init" scoped="" ref="0x405872c0"/></to>
     </wire>
     <wire loc="51:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/McuInitC.nc">
       <from><interface-ref name="TimerInit" scoped="" ref="0x404b82b0"/></from>
@@ -501,28 +501,28 @@
       <to><interface-ref name="Uart1Control" scoped="" ref="0x404d4bd0"/></to>
     </wire>
     <wire loc="18:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialC.nc">
-      <from><interface-ref name="Leds" scoped="" ref="0x40536010"/></from>
-      <to><interface-ref name="Leds" scoped="" ref="0x405388f8"/></to>
+      <from><interface-ref name="Leds" scoped="" ref="0x40536980"/></from>
+      <to><interface-ref name="Leds" scoped="" ref="0x405384d8"/></to>
     </wire>
     <wire loc="19:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialC.nc">
       <from><interface-ref name="Counter" scoped="" ref="0x404e9d98"/></from>
-      <to><interface-ref name="Counter" scoped="" ref="0x40564b80"/></to>
+      <to><interface-ref name="Counter" scoped="" ref="0x40573890"/></to>
     </wire>
     <wire loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/CounterMilli32C.nc">
-      <from><interface-ref name="Counter" scoped="" ref="0x40564b80"/></from>
-      <to><interface-ref name="Counter" scoped="" ref="0x40570490"/></to>
+      <from><interface-ref name="Counter" scoped="" ref="0x40573890"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x4056e0c0"/></to>
     </wire>
     <wire loc="20:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialC.nc">
       <from><interface-ref name="Uart1Interrupts" scoped="" ref="0x404eb240"/></from>
-      <to><interface-ref name="Uart1Interrupts" scoped="" ref="0x405393c8"/></to>
+      <to><interface-ref name="Uart1Interrupts" scoped="" ref="0x40539cc0"/></to>
     </wire>
     <wire loc="21:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialC.nc">
       <from><interface-ref name="Leds" scoped="" ref="0x404e3ed0"/></from>
-      <to><interface-ref name="Leds" scoped="" ref="0x405388f8"/></to>
+      <to><interface-ref name="Leds" scoped="" ref="0x405384d8"/></to>
     </wire>
     <wire loc="61:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
       <from><interface-ref name="McuPowerOverride" scoped="" ref="0x403e5218"/></from>
-      <to><interface-ref name="McuPowerOverride" scoped="" ref="0x405c01e0"/></to>
+      <to><interface-ref name="McuPowerOverride" scoped="" ref="0x405c0d48"/></to>
     </wire>
     <wire loc="22:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1SerialC.nc">
       <from><interface-ref name="McuPowerOverride" scoped="" ref="0x403e5218"/></from>
@@ -579,73 +579,73 @@
       </to>
     </wire>
     <wire loc="54:/opt/tinyos-main/src/tinyos-main/tos/system/LedsC.nc">
-      <from><interface-ref name="Led0" scoped="" ref="0x40552b00"/></from>
+      <from><interface-ref name="Led0" scoped="" ref="0x405516a0"/></from>
       <to><interface-ref name="Led0" scoped="" ref="0x40422b70"/></to>
     </wire>
     <wire loc="55:/opt/tinyos-main/src/tinyos-main/tos/system/LedsC.nc">
-      <from><interface-ref name="Led1" scoped="" ref="0x40551580"/></from>
+      <from><interface-ref name="Led1" scoped="" ref="0x405500b0"/></from>
       <to><interface-ref name="Led1" scoped="" ref="0x404255a0"/></to>
     </wire>
     <wire loc="56:/opt/tinyos-main/src/tinyos-main/tos/system/LedsC.nc">
-      <from><interface-ref name="Led2" scoped="" ref="0x40550010"/></from>
+      <from><interface-ref name="Led2" scoped="" ref="0x40550a98"/></from>
       <to><interface-ref name="Led2" scoped="" ref="0x4042c010"/></to>
     </wire>
     <wire loc="48:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/CounterMilli32C.nc">
-      <from><interface-ref name="CounterFrom" scoped="" ref="0x4056f6f8"/></from>
-      <to><interface-ref name="Counter" scoped="" ref="0x4057d430"/></to>
+      <from><interface-ref name="CounterFrom" scoped="" ref="0x4057f380"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x4058a128"/></to>
     </wire>
     <wire loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/Counter62khz32C.nc">
-      <from><interface-ref name="Counter" scoped="" ref="0x4057d430"/></from>
-      <to><interface-ref name="Counter" scoped="" ref="0x40589958"/></to>
+      <from><interface-ref name="Counter" scoped="" ref="0x4058a128"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x405876f8"/></to>
     </wire>
     <wire loc="51:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/Counter62khz32C.nc">
-      <from><interface-ref name="AtmegaCounter" scoped="" ref="0x40598b10"/></from>
-      <to><interface-ref name="Counter" scoped="" ref="0x40594d80"/></to>
+      <from><interface-ref name="AtmegaCounter" scoped="" ref="0x40597898"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x405a3a70"/></to>
     </wire>
     <wire loc="52:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
-      <from><interface-ref name="Counter" scoped="" ref="0x40594d80"/></from>
-      <to><interface-ref name="Counter" scoped="" ref="0x405ad278"/></to>
+      <from><interface-ref name="Counter" scoped="" ref="0x405a3a70"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x405afea8"/></to>
     </wire>
     <wire loc="57:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
-      <from><interface-ref name="BeaconCapture" scoped="" ref="0x405b29a8"/></from>
-      <to><interface-ref name="BeaconCapture" scoped="" ref="0x405c2158"/></to>
+      <from><interface-ref name="BeaconCapture" scoped="" ref="0x405b15e8"/></from>
+      <to><interface-ref name="BeaconCapture" scoped="" ref="0x405c2d58"/></to>
     </wire>
     <wire loc="56:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
-      <from><interface-ref name="SfdCapture" scoped="" ref="0x405b3860"/></from>
-      <to><interface-ref name="SfdCapture" scoped="" ref="0x405c5010"/></to>
+      <from><interface-ref name="SfdCapture" scoped="" ref="0x405b2420"/></from>
+      <to><interface-ref name="SfdCapture" scoped="" ref="0x405c5be0"/></to>
     </wire>
     <wire loc="53:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
-      <from><interface-ref name="Compare" scoped="" ref="0x4059f470"/>
+      <from><interface-ref name="Compare" scoped="" ref="0x4059e120"/>
       <arguments>
         <value cst="I:0">
           <type-int cname="int" size="I:2" alignment="I:1"></type-int>
         </value>
       </arguments>
       </from>
-      <to><interface-ref name="CompareA" scoped="" ref="0x405bc408"/></to>
+      <to><interface-ref name="CompareA" scoped="" ref="0x405bb010"/></to>
     </wire>
     <wire loc="54:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
-      <from><interface-ref name="Compare" scoped="" ref="0x4059f470"/>
+      <from><interface-ref name="Compare" scoped="" ref="0x4059e120"/>
       <arguments>
         <value cst="I:1">
           <type-int cname="int" size="I:2" alignment="I:1"></type-int>
         </value>
       </arguments>
       </from>
-      <to><interface-ref name="CompareB" scoped="" ref="0x405b9830"/></to>
+      <to><interface-ref name="CompareB" scoped="" ref="0x405b8408"/></to>
     </wire>
     <wire loc="55:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
-      <from><interface-ref name="Compare" scoped="" ref="0x4059f470"/>
+      <from><interface-ref name="Compare" scoped="" ref="0x4059e120"/>
       <arguments>
         <value cst="I:2">
           <type-int cname="int" size="I:2" alignment="I:1"></type-int>
         </value>
       </arguments>
       </from>
-      <to><interface-ref name="CompareC" scoped="" ref="0x405b7bd0"/></to>
+      <to><interface-ref name="CompareC" scoped="" ref="0x405b6830"/></to>
     </wire>
     <wire loc="60:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
-      <from><interface-ref name="McuPowerState" scoped="" ref="0x405c05d0"/></from>
+      <from><interface-ref name="McuPowerState" scoped="" ref="0x405bf150"/></from>
       <to><interface-ref name="McuPowerState" scoped="" ref="0x403dc148"/></to>
     </wire>
     <wire loc="54:/opt/tinyos-main/src/tinyos-main/tos/system/TinySchedulerC.nc">
@@ -657,51 +657,51 @@
       <to><interface-ref name="McuSleep" scoped="" ref="0x403df470"/></to>
     </wire>
     <wire loc="51:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
-      <from><interface-ref name="UartStream" scoped="" ref="0x404a1768"/></from>
+      <from><interface-ref name="UartStream" scoped="" ref="0x40426cf0"/></from>
       <to><interface-ref name="Uart1Stream" scoped="" ref="0x404db950"/></to>
     </wire>
     <wire loc="46:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
-      <from><interface-ref name="UartControl" scoped="" ref="0x404a12e8"/></from>
+      <from><interface-ref name="UartControl" scoped="" ref="0x40426870"/></from>
       <to><interface-ref name="Uart1Control" scoped="" ref="0x404d35a8"/></to>
     </wire>
     <wire loc="33:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x406302f0"/></from>
-      <to><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x406768c8"/></to>
+      <from><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x404a1918"/></from>
+      <to><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x40676a10"/></to>
     </wire>
     <wire loc="24:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="PacketTypes" scoped="" ref="0x4066d2a0"/></from>
+      <from><interface-ref name="PacketTypes" scoped="" ref="0x4066d5c0"/></from>
       <to><interface-ref name="PacketTypes" scoped="" ref="0x406d8ad0"/></to>
     </wire>
     <wire loc="25:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="UartControl" scoped="" ref="0x4065ae00"/></from>
-      <to><interface-ref name="UartControl" scoped="" ref="0x404a12e8"/></to>
+      <from><interface-ref name="UartControl" scoped="" ref="0x4066d158"/></from>
+      <to><interface-ref name="UartControl" scoped="" ref="0x40426870"/></to>
     </wire>
     <wire loc="26:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="UartStream" scoped="" ref="0x4065a060"/></from>
-      <to><interface-ref name="UartStream" scoped="" ref="0x404a1768"/></to>
+      <from><interface-ref name="UartStream" scoped="" ref="0x4065a380"/></from>
+      <to><interface-ref name="UartStream" scoped="" ref="0x40426cf0"/></to>
     </wire>
     <wire loc="27:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="UartByte" scoped="" ref="0x4065a910"/></from>
-      <to><interface-ref name="UartByte" scoped="" ref="0x40632060"/></to>
+      <from><interface-ref name="UartByte" scoped="" ref="0x4065ac30"/></from>
+      <to><interface-ref name="UartByte" scoped="" ref="0x40632628"/></to>
     </wire>
     <wire loc="28:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="Leds" scoped="" ref="0x4065b3f8"/></from>
-      <to><interface-ref name="Leds" scoped="" ref="0x405388f8"/></to>
+      <from><interface-ref name="Leds" scoped="" ref="0x4065b730"/></from>
+      <to><interface-ref name="Leds" scoped="" ref="0x405384d8"/></to>
     </wire>
     <wire loc="29:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="DataQueue" scoped="" ref="0x4066c1d8"/></from>
+      <from><interface-ref name="DataQueue" scoped="" ref="0x406653b8"/></from>
       <to><interface-ref name="Queue" scoped="" ref="0x4069f010"/></to>
     </wire>
     <wire loc="30:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="StatusQueue" scoped="" ref="0x4066be98"/></from>
+      <from><interface-ref name="StatusQueue" scoped="" ref="0x406660a0"/></from>
       <to><interface-ref name="Queue" scoped="" ref="0x406ef4b8"/></to>
     </wire>
     <wire loc="31:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
-      <from><interface-ref name="CommandQueue" scoped="" ref="0x40664c30"/></from>
+      <from><interface-ref name="CommandQueue" scoped="" ref="0x40664d70"/></from>
       <to><interface-ref name="Queue" scoped="" ref="0x406f3aa8"/></to>
     </wire>
     <wire loc="40:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
-      <from><interface-ref name="processReceiveBufferTask" scoped="" ref="0x40671180"/></from>
+      <from><interface-ref name="processReceiveBufferTask" scoped="" ref="0x40671478"/></from>
       <to><interface-ref name="TaskBasic" scoped="" ref="0x40304a98"/>
       <arguments>
         <value cst="I:5">
@@ -711,7 +711,7 @@
       </to>
     </wire>
     <wire loc="41:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
-      <from><interface-ref name="forwardNextPacketTask" scoped="" ref="0x406719e8"/></from>
+      <from><interface-ref name="forwardNextPacketTask" scoped="" ref="0x40671ce0"/></from>
       <to><interface-ref name="TaskBasic" scoped="" ref="0x40304a98"/>
       <arguments>
         <value cst="I:6">
@@ -746,15 +746,15 @@
     </wire>
     <wire>
       <from><interface-ref name="Counter" scoped="" ref="0x40995010"/></from>
-      <to><interface-ref name="Counter" scoped="" ref="0x40564b80"/></to>
+      <to><interface-ref name="Counter" scoped="" ref="0x40573890"/></to>
     </wire>
     <wire>
       <from><interface-ref name="AtmegaCounter" scoped="" ref="0x4098d558"/></from>
-      <to><interface-ref name="Counter" scoped="" ref="0x40594d80"/></to>
+      <to><interface-ref name="Counter" scoped="" ref="0x405a3a70"/></to>
     </wire>
     <wire>
       <from><interface-ref name="AtmegaCompare" scoped="" ref="0x4098a550"/></from>
-      <to><interface-ref name="Compare" scoped="" ref="0x4059f470"/>
+      <to><interface-ref name="Compare" scoped="" ref="0x4059e120"/>
       <arguments>
         <value cst="I:0">
           <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:1"></type-int>
@@ -2205,8 +2205,8 @@
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
           </type-int>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -2228,8 +2228,8 @@
       <instance number="0">
         <component-ref qname="AtmegaCounterP"/>
         <arguments>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -2371,8 +2371,8 @@
       <instance number="0">
         <component-ref qname="AtmegaCompareP"/>
         <arguments>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -2401,8 +2401,8 @@
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
           </type-int>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -2523,46 +2523,46 @@
         <long>&#10; TransformCounterC decreases precision and/or widens an Counter.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param to_precision_tag A type indicating the precision of the transformed&#10;   Counter.&#10; @param to_size_type The type for the width of the transformed Counter.&#10; @param from_precision_tag A type indicating the precision of the original&#10;   Counter.&#10; @param from_size_type The type for the width of the original Counter.&#10; @param bit_shift_right Original time units will be 2 to the power &#10;   &#60;code>bit_shift_right&#60;/code> larger than transformed time units.&#10; @param upper_count_type A type large enough to store the upper bits --&#10;   those needed above from_size_type after its shift right to fill&#10;   to_size_type.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
       </documentation>
       <parameters>
-        <typedef name="to_precision_tag" ref="0x40571b00" loc="55:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
+        <typedef name="to_precision_tag" ref="0x405707f8" loc="55:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
           <component-ref qname="TransformCounterC"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="to_precision_tag" scoped="" ref="0x40571b00"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="to_precision_tag" scoped="" ref="0x405707f8"/></type-var>
         </typedef>
-        <typedef name="to_size_type" ref="0x4056e010" loc="56:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
+        <typedef name="to_size_type" ref="0x40570c58" loc="56:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
           <component-ref qname="TransformCounterC"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="to_size_type" scoped="" ref="0x4056e010"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="to_size_type" scoped="" ref="0x40570c58"/></type-var>
         </typedef>
-        <typedef name="from_precision_tag" ref="0x4056e278" loc="57:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
+        <typedef name="from_precision_tag" ref="0x40570ec0" loc="57:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
           <component-ref qname="TransformCounterC"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="from_precision_tag" scoped="" ref="0x4056e278"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="from_precision_tag" scoped="" ref="0x40570ec0"/></type-var>
         </typedef>
-        <typedef name="from_size_type" ref="0x4056e6e8" loc="58:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
+        <typedef name="from_size_type" ref="0x4056d370" loc="58:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
           <component-ref qname="TransformCounterC"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="from_size_type" scoped="" ref="0x4056e6e8"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="from_size_type" scoped="" ref="0x4056d370"/></type-var>
         </typedef>
-        <constant name="bit_shift_right" ref="0x4056e950" loc="59:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
+        <constant name="bit_shift_right" ref="0x4056d5d8" loc="59:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
           <component-ref qname="TransformCounterC"/>
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
             <typename><typedef-ref name="uint8_t" ref="0x401bab68"/></typename>
           </type-int>
         </constant>
-        <typedef name="upper_count_type" ref="0x4056edd8" loc="60:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
+        <typedef name="upper_count_type" ref="0x4056da60" loc="60:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
           <component-ref qname="TransformCounterC"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="upper_count_type" scoped="" ref="0x4056edd8"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="upper_count_type" scoped="" ref="0x4056da60"/></type-var>
         </typedef>
       </parameters>
       <module/>
     </component>
     <component qname="AtmegaCounterP" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc" abstract="">
       <parameters>
-        <typedef name="precision_tag" ref="0x4058ad98" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
+        <typedef name="precision_tag" ref="0x40589aa8" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
           <component-ref qname="AtmegaCounterP"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x4058ad98"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x40589aa8"/></type-var>
         </typedef>
-        <typedef name="size_type" ref="0x405871d8" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
+        <typedef name="size_type" ref="0x40589ed8" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
           <component-ref qname="AtmegaCounterP"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405871d8"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40589ed8"/></type-var>
         </typedef>
-        <constant name="mode" ref="0x405873c8" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
+        <constant name="mode" ref="0x40586120" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
           <component-ref qname="AtmegaCounterP"/>
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
             <typename><typedef-ref name="uint8_t" ref="0x401bab68"/></typename>
@@ -2693,7 +2693,7 @@
           <component-ref qname="VirtualizeTimerC"/>
           <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x40781ef8"/></type-var>
         </typedef>
-        <constant name="max_timers" ref="0x4077e0f0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc">
+        <constant name="max_timers" ref="0x4077d0f0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc">
           <component-ref qname="VirtualizeTimerC"/>
           <type-int cname="int" size="I:2" alignment="I:1"></type-int>
         </constant>
@@ -3715,21 +3715,21 @@
         <function-ref name="clr" scoped="" ref="0x40473670"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x407b23b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x407cd3b0" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortB.Bit0"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407b23b0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x407cd3b0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x407b2588"/>
-        <function-ref name="isInput" scoped="" ref="0x407b2668"/>
-        <function-ref name="toggle" scoped="" ref="0x407b2748"/>
-        <function-ref name="isOutput" scoped="" ref="0x407b2828"/>
-        <function-ref name="get" scoped="" ref="0x407b2908"/>
-        <function-ref name="makeOutput" scoped="" ref="0x407b29e8"/>
-        <function-ref name="set" scoped="" ref="0x407b2ac8"/>
-        <function-ref name="clr" scoped="" ref="0x407b2ba8"/>
+        <function-ref name="makeInput" scoped="" ref="0x407cd588"/>
+        <function-ref name="isInput" scoped="" ref="0x407cd668"/>
+        <function-ref name="toggle" scoped="" ref="0x407cd748"/>
+        <function-ref name="isOutput" scoped="" ref="0x407cd828"/>
+        <function-ref name="get" scoped="" ref="0x407cd908"/>
+        <function-ref name="makeOutput" scoped="" ref="0x407cd9e8"/>
+        <function-ref name="set" scoped="" ref="0x407cdac8"/>
+        <function-ref name="clr" scoped="" ref="0x407cdba8"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="IO" ref="0x407ccd70" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
@@ -4650,21 +4650,21 @@
         <function-ref name="clr" scoped="" ref="0x4087bd30"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="IO" ref="0x40879010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
+    <interface provided="1" name="IO" ref="0x40878010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc">
       <component-ref qname="HplAtm128GeneralIOC.PortF.Bit7"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40879010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="IO" scoped="" ref="0x40878010"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x408791e8"/>
-        <function-ref name="isInput" scoped="" ref="0x408792c8"/>
-        <function-ref name="toggle" scoped="" ref="0x408793a8"/>
-        <function-ref name="isOutput" scoped="" ref="0x40879488"/>
-        <function-ref name="get" scoped="" ref="0x40879568"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40879648"/>
-        <function-ref name="set" scoped="" ref="0x40879728"/>
-        <function-ref name="clr" scoped="" ref="0x40879808"/>
+        <function-ref name="makeInput" scoped="" ref="0x408781e8"/>
+        <function-ref name="isInput" scoped="" ref="0x408782c8"/>
+        <function-ref name="toggle" scoped="" ref="0x408783a8"/>
+        <function-ref name="isOutput" scoped="" ref="0x40878488"/>
+        <function-ref name="get" scoped="" ref="0x40878568"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40878648"/>
+        <function-ref name="set" scoped="" ref="0x40878728"/>
+        <function-ref name="clr" scoped="" ref="0x40878808"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="Pin2" ref="0x40491410" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128/pins/HplAtm128GeneralIOPortP.nc">
@@ -5363,145 +5363,145 @@
         <function-ref name="runTask" scoped="" ref="0x404f2cc8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Uart1Interrupts" ref="0x405393c8" loc="7:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc">
+    <interface provided="1" name="Uart1Interrupts" ref="0x40539cc0" loc="7:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc">
       <component-ref qname="Atm128Rfa1Uart1InterruptsP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Uart1Interrupts" scoped="" ref="0x405393c8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Uart1Interrupts" scoped="" ref="0x40539cc0"/></type-interface>
       <instance>
         <interfacedef-ref qname="SerialInterrupts"/>
       </instance>
       <interface-functions>
-        <function-ref name="isTxInterruptPending" scoped="" ref="0x40539e60"/>
-        <function-ref name="txInterruptHandler" scoped="" ref="0x40539680"/>
-        <function-ref name="rxInterruptHandler" scoped="" ref="0x40539760"/>
-        <function-ref name="enableRxInterrupt" scoped="" ref="0x40539840"/>
-        <function-ref name="enableTxInterrupt" scoped="" ref="0x40539920"/>
-        <function-ref name="disableRxInterrupt" scoped="" ref="0x40539a00"/>
-        <function-ref name="clearTxInterrupt" scoped="" ref="0x40539ae0"/>
-        <function-ref name="isRxInterruptPending" scoped="" ref="0x40539bc0"/>
-        <function-ref name="disableTxInterrupt" scoped="" ref="0x40539ca0"/>
-        <function-ref name="setSendData" scoped="" ref="0x405395a0"/>
-        <function-ref name="clearRxInterrupt" scoped="" ref="0x40539d80"/>
+        <function-ref name="isTxInterruptPending" scoped="" ref="0x405367f0"/>
+        <function-ref name="txInterruptHandler" scoped="" ref="0x40536010"/>
+        <function-ref name="rxInterruptHandler" scoped="" ref="0x405360f0"/>
+        <function-ref name="enableRxInterrupt" scoped="" ref="0x405361d0"/>
+        <function-ref name="enableTxInterrupt" scoped="" ref="0x405362b0"/>
+        <function-ref name="disableRxInterrupt" scoped="" ref="0x40536390"/>
+        <function-ref name="clearTxInterrupt" scoped="" ref="0x40536470"/>
+        <function-ref name="isRxInterruptPending" scoped="" ref="0x40536550"/>
+        <function-ref name="disableTxInterrupt" scoped="" ref="0x40536630"/>
+        <function-ref name="setSendData" scoped="" ref="0x40539e98"/>
+        <function-ref name="clearRxInterrupt" scoped="" ref="0x40536710"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Leds" ref="0x40536010" loc="8:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc">
+    <interface provided="0" name="Leds" ref="0x40536980" loc="8:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/usart/Atm128Rfa1Uart1InterruptsP.nc">
       <component-ref qname="Atm128Rfa1Uart1InterruptsP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Leds" scoped="" ref="0x40536010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Leds" scoped="" ref="0x40536980"/></type-interface>
       <instance>
         <interfacedef-ref qname="Leds"/>
       </instance>
       <interface-functions>
-        <function-ref name="led0Off" scoped="" ref="0x405361e8"/>
-        <function-ref name="led0Toggle" scoped="" ref="0x405362c8"/>
-        <function-ref name="led1On" scoped="" ref="0x405363a8"/>
-        <function-ref name="led1Toggle" scoped="" ref="0x40536488"/>
-        <function-ref name="led2Toggle" scoped="" ref="0x40536568"/>
-        <function-ref name="get" scoped="" ref="0x40536648"/>
-        <function-ref name="led1Off" scoped="" ref="0x40536728"/>
-        <function-ref name="led2Off" scoped="" ref="0x40536aa8"/>
-        <function-ref name="set" scoped="" ref="0x40536808"/>
-        <function-ref name="led0On" scoped="" ref="0x405368e8"/>
-        <function-ref name="led2On" scoped="" ref="0x405369c8"/>
+        <function-ref name="led0Off" scoped="" ref="0x40536b58"/>
+        <function-ref name="led0Toggle" scoped="" ref="0x40536c38"/>
+        <function-ref name="led1On" scoped="" ref="0x40536d18"/>
+        <function-ref name="led1Toggle" scoped="" ref="0x40536df8"/>
+        <function-ref name="led2Toggle" scoped="" ref="0x40536ed8"/>
+        <function-ref name="get" scoped="" ref="0x40535010"/>
+        <function-ref name="led1Off" scoped="" ref="0x405350f0"/>
+        <function-ref name="led2Off" scoped="" ref="0x40535470"/>
+        <function-ref name="set" scoped="" ref="0x405351d0"/>
+        <function-ref name="led0On" scoped="" ref="0x405352b0"/>
+        <function-ref name="led2On" scoped="" ref="0x40535390"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Leds" ref="0x405388f8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/system/LedsC.nc">
+    <interface provided="1" name="Leds" ref="0x405384d8" loc="46:/opt/tinyos-main/src/tinyos-main/tos/system/LedsC.nc">
       <component-ref qname="LedsC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Leds" scoped="" ref="0x405388f8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Leds" scoped="" ref="0x405384d8"/></type-interface>
       <instance>
         <interfacedef-ref qname="Leds"/>
       </instance>
       <interface-functions>
-        <function-ref name="led0Off" scoped="" ref="0x40538ad0"/>
-        <function-ref name="led0Toggle" scoped="" ref="0x40538bb0"/>
-        <function-ref name="led1On" scoped="" ref="0x40538c90"/>
-        <function-ref name="led1Toggle" scoped="" ref="0x40538d70"/>
-        <function-ref name="led2Toggle" scoped="" ref="0x40538e50"/>
-        <function-ref name="get" scoped="" ref="0x40545010"/>
-        <function-ref name="led1Off" scoped="" ref="0x405450f0"/>
-        <function-ref name="led2Off" scoped="" ref="0x40545470"/>
-        <function-ref name="set" scoped="" ref="0x405451d0"/>
-        <function-ref name="led0On" scoped="" ref="0x405452b0"/>
-        <function-ref name="led2On" scoped="" ref="0x40545390"/>
+        <function-ref name="led0Off" scoped="" ref="0x405386b0"/>
+        <function-ref name="led0Toggle" scoped="" ref="0x40538790"/>
+        <function-ref name="led1On" scoped="" ref="0x40538870"/>
+        <function-ref name="led1Toggle" scoped="" ref="0x40538950"/>
+        <function-ref name="led2Toggle" scoped="" ref="0x40538a30"/>
+        <function-ref name="get" scoped="" ref="0x40538b10"/>
+        <function-ref name="led1Off" scoped="" ref="0x40538bf0"/>
+        <function-ref name="led2Off" scoped="" ref="0x40544010"/>
+        <function-ref name="set" scoped="" ref="0x40538cd0"/>
+        <function-ref name="led0On" scoped="" ref="0x40538db0"/>
+        <function-ref name="led2On" scoped="" ref="0x40538e90"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Led0" ref="0x40552b00" loc="44:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
+    <interface provided="0" name="Led0" ref="0x405516a0" loc="44:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
       <component-ref qname="LedsP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Led0" scoped="" ref="0x40552b00"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Led0" scoped="" ref="0x405516a0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40552cd8"/>
-        <function-ref name="isInput" scoped="" ref="0x40552db8"/>
-        <function-ref name="toggle" scoped="" ref="0x40552e98"/>
-        <function-ref name="isOutput" scoped="" ref="0x40551010"/>
-        <function-ref name="get" scoped="" ref="0x405510f0"/>
-        <function-ref name="makeOutput" scoped="" ref="0x405511d0"/>
-        <function-ref name="set" scoped="" ref="0x405512b0"/>
-        <function-ref name="clr" scoped="" ref="0x40551390"/>
+        <function-ref name="makeInput" scoped="" ref="0x40551878"/>
+        <function-ref name="isInput" scoped="" ref="0x40551958"/>
+        <function-ref name="toggle" scoped="" ref="0x40551a38"/>
+        <function-ref name="isOutput" scoped="" ref="0x40551b18"/>
+        <function-ref name="get" scoped="" ref="0x40551bf8"/>
+        <function-ref name="makeOutput" scoped="" ref="0x40551cd8"/>
+        <function-ref name="set" scoped="" ref="0x40551db8"/>
+        <function-ref name="clr" scoped="" ref="0x40551e98"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Init" ref="0x40545ac0" loc="40:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
+    <interface provided="1" name="Init" ref="0x40544660" loc="40:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
       <component-ref qname="LedsP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Init" scoped="" ref="0x40545ac0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Init" scoped="" ref="0x40544660"/></type-interface>
       <instance>
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x40545c98"/>
+        <function-ref name="init" scoped="" ref="0x40544838"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Led1" ref="0x40551580" loc="45:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
+    <interface provided="0" name="Led1" ref="0x405500b0" loc="45:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
       <component-ref qname="LedsP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Led1" scoped="" ref="0x40551580"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Led1" scoped="" ref="0x405500b0"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x40551758"/>
-        <function-ref name="isInput" scoped="" ref="0x40551838"/>
-        <function-ref name="toggle" scoped="" ref="0x40551918"/>
-        <function-ref name="isOutput" scoped="" ref="0x405519f8"/>
-        <function-ref name="get" scoped="" ref="0x40551ad8"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40551bb8"/>
-        <function-ref name="set" scoped="" ref="0x40551c98"/>
-        <function-ref name="clr" scoped="" ref="0x40551d78"/>
+        <function-ref name="makeInput" scoped="" ref="0x40550288"/>
+        <function-ref name="isInput" scoped="" ref="0x40550368"/>
+        <function-ref name="toggle" scoped="" ref="0x40550448"/>
+        <function-ref name="isOutput" scoped="" ref="0x40550528"/>
+        <function-ref name="get" scoped="" ref="0x40550608"/>
+        <function-ref name="makeOutput" scoped="" ref="0x405506e8"/>
+        <function-ref name="set" scoped="" ref="0x405507c8"/>
+        <function-ref name="clr" scoped="" ref="0x405508a8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Leds" ref="0x40545e08" loc="41:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
+    <interface provided="1" name="Leds" ref="0x405449a8" loc="41:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
       <component-ref qname="LedsP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Leds" scoped="" ref="0x40545e08"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Leds" scoped="" ref="0x405449a8"/></type-interface>
       <instance>
         <interfacedef-ref qname="Leds"/>
       </instance>
       <interface-functions>
-        <function-ref name="led0Off" scoped="" ref="0x40552010"/>
-        <function-ref name="led0Toggle" scoped="" ref="0x405520f0"/>
-        <function-ref name="led1On" scoped="" ref="0x405521d0"/>
-        <function-ref name="led1Toggle" scoped="" ref="0x405522b0"/>
-        <function-ref name="led2Toggle" scoped="" ref="0x40552390"/>
-        <function-ref name="get" scoped="" ref="0x40552470"/>
-        <function-ref name="led1Off" scoped="" ref="0x40552550"/>
-        <function-ref name="led2Off" scoped="" ref="0x405528d0"/>
-        <function-ref name="set" scoped="" ref="0x40552630"/>
-        <function-ref name="led0On" scoped="" ref="0x40552710"/>
-        <function-ref name="led2On" scoped="" ref="0x405527f0"/>
+        <function-ref name="led0Off" scoped="" ref="0x40544b80"/>
+        <function-ref name="led0Toggle" scoped="" ref="0x40544c60"/>
+        <function-ref name="led1On" scoped="" ref="0x40544d40"/>
+        <function-ref name="led1Toggle" scoped="" ref="0x40544e20"/>
+        <function-ref name="led2Toggle" scoped="" ref="0x40544f00"/>
+        <function-ref name="get" scoped="" ref="0x40551010"/>
+        <function-ref name="led1Off" scoped="" ref="0x405510f0"/>
+        <function-ref name="led2Off" scoped="" ref="0x40551470"/>
+        <function-ref name="set" scoped="" ref="0x405511d0"/>
+        <function-ref name="led0On" scoped="" ref="0x405512b0"/>
+        <function-ref name="led2On" scoped="" ref="0x40551390"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Led2" ref="0x40550010" loc="46:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
+    <interface provided="0" name="Led2" ref="0x40550a98" loc="46:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/LedsP.nc">
       <component-ref qname="LedsP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Led2" scoped="" ref="0x40550010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Led2" scoped="" ref="0x40550a98"/></type-interface>
       <instance>
         <interfacedef-ref qname="GeneralIO"/>
       </instance>
       <interface-functions>
-        <function-ref name="makeInput" scoped="" ref="0x405501e8"/>
-        <function-ref name="isInput" scoped="" ref="0x405502c8"/>
-        <function-ref name="toggle" scoped="" ref="0x405503a8"/>
-        <function-ref name="isOutput" scoped="" ref="0x40550488"/>
-        <function-ref name="get" scoped="" ref="0x40550568"/>
-        <function-ref name="makeOutput" scoped="" ref="0x40550648"/>
-        <function-ref name="set" scoped="" ref="0x40550728"/>
-        <function-ref name="clr" scoped="" ref="0x40550808"/>
+        <function-ref name="makeInput" scoped="" ref="0x40550c70"/>
+        <function-ref name="isInput" scoped="" ref="0x40550d50"/>
+        <function-ref name="toggle" scoped="" ref="0x40550e30"/>
+        <function-ref name="isOutput" scoped="" ref="0x40550f10"/>
+        <function-ref name="get" scoped="" ref="0x4054e010"/>
+        <function-ref name="makeOutput" scoped="" ref="0x4054e0f0"/>
+        <function-ref name="set" scoped="" ref="0x4054e1d0"/>
+        <function-ref name="clr" scoped="" ref="0x4054e2b0"/>
       </interface-functions>
     </interface>
     <interface provided="0" name="McuPowerOverride" ref="0x403e5218" loc="88:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/McuSleepC.nc">
@@ -5554,9 +5554,9 @@
         <function-ref name="update" scoped="" ref="0x403dc320"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Counter" ref="0x40564b80" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/CounterMilli32C.nc">
+    <interface provided="1" name="Counter" ref="0x40573890" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/CounterMilli32C.nc">
       <component-ref qname="CounterMilli32C"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x40564b80"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x40573890"/></type-interface>
       <instance>
         <interfacedef-ref qname="Counter"/>
         <arguments>
@@ -5569,20 +5569,20 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="get" scoped="" ref="0x40573308"/>
-        <function-ref name="clearOverflow" scoped="" ref="0x405737f8"/>
-        <function-ref name="isOverflowPending" scoped="" ref="0x40573580"/>
-        <function-ref name="overflow" scoped="" ref="0x40573a70"/>
+        <function-ref name="get" scoped="" ref="0x40571010"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x40571500"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x40571288"/>
+        <function-ref name="overflow" scoped="" ref="0x40571778"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="CounterFrom" ref="0x4056f6f8" loc="63:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
+    <interface provided="0" name="CounterFrom" ref="0x4057f380" loc="63:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
       <component-ref qname="CounterMilli32C.TransformCounterC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="CounterFrom" scoped="" ref="0x4056f6f8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="CounterFrom" scoped="" ref="0x4057f380"/></type-interface>
       <instance>
         <interfacedef-ref qname="Counter"/>
         <arguments>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -5590,15 +5590,15 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="get" scoped="" ref="0x4056fe48"/>
-        <function-ref name="clearOverflow" scoped="" ref="0x4057e350"/>
-        <function-ref name="isOverflowPending" scoped="" ref="0x4057e0d8"/>
-        <function-ref name="overflow" scoped="" ref="0x4057e5c8"/>
+        <function-ref name="get" scoped="" ref="0x4057fad0"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x4057d010"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x4057fd48"/>
+        <function-ref name="overflow" scoped="" ref="0x4057d288"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Counter" ref="0x40570490" loc="62:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
+    <interface provided="1" name="Counter" ref="0x4056e0c0" loc="62:/opt/tinyos-main/src/tinyos-main/tos/lib/timer/TransformCounterC.nc">
       <component-ref qname="CounterMilli32C.TransformCounterC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x40570490"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x4056e0c0"/></type-interface>
       <instance>
         <interfacedef-ref qname="Counter"/>
         <arguments>
@@ -5611,20 +5611,20 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="get" scoped="" ref="0x40570be0"/>
-        <function-ref name="clearOverflow" scoped="" ref="0x4056f110"/>
-        <function-ref name="isOverflowPending" scoped="" ref="0x40570e58"/>
-        <function-ref name="overflow" scoped="" ref="0x4056f388"/>
+        <function-ref name="get" scoped="" ref="0x4056e810"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x4056ed00"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x4056ea88"/>
+        <function-ref name="overflow" scoped="" ref="0x4057f010"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Counter" ref="0x4057d430" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/Counter62khz32C.nc">
+    <interface provided="1" name="Counter" ref="0x4058a128" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/Counter62khz32C.nc">
       <component-ref qname="Counter62khz32C"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x4057d430"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x4058a128"/></type-interface>
       <instance>
         <interfacedef-ref qname="Counter"/>
         <arguments>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -5632,15 +5632,15 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="get" scoped="" ref="0x4057db80"/>
-        <function-ref name="clearOverflow" scoped="" ref="0x4058a088"/>
-        <function-ref name="isOverflowPending" scoped="" ref="0x4057ddf8"/>
-        <function-ref name="overflow" scoped="" ref="0x4058a300"/>
+        <function-ref name="get" scoped="" ref="0x4058a878"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x4058ad68"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x4058aaf0"/>
+        <function-ref name="overflow" scoped="" ref="0x40589010"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Init" ref="0x40589520" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
+    <interface provided="1" name="Init" ref="0x405872c0" loc="39:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
       <component-ref qname="Counter62khz32C.AtmegaCounterP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Init" scoped="" ref="0x40589520"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Init" scoped="" ref="0x405872c0"/></type-interface>
       <attribute-value>
         <attribute-ref name="exactlyonce" ref="0x402f97d0"/>
         <value-structured>
@@ -5651,17 +5651,17 @@
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x405896f8"/>
+        <function-ref name="init" scoped="" ref="0x40587498"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Counter" ref="0x40589958" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
+    <interface provided="1" name="Counter" ref="0x405876f8" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
       <component-ref qname="Counter62khz32C.AtmegaCounterP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x40589958"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x405876f8"/></type-interface>
       <instance>
         <interfacedef-ref qname="Counter"/>
         <arguments>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -5669,15 +5669,15 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="get" scoped="" ref="0x405980d8"/>
-        <function-ref name="clearOverflow" scoped="" ref="0x405985c8"/>
-        <function-ref name="isOverflowPending" scoped="" ref="0x40598350"/>
-        <function-ref name="overflow" scoped="" ref="0x40598840"/>
+        <function-ref name="get" scoped="" ref="0x40587e48"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x40597350"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x405970d8"/>
+        <function-ref name="overflow" scoped="" ref="0x405975c8"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="AtmegaCounter" ref="0x40598b10" loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
+    <interface provided="0" name="AtmegaCounter" ref="0x40597898" loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounterP.nc">
       <component-ref qname="Counter62khz32C.AtmegaCounterP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="AtmegaCounter" scoped="" ref="0x40598b10"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="AtmegaCounter" scoped="" ref="0x40597898"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCounter"/>
         <arguments>
@@ -5687,21 +5687,21 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x40596600"/>
-        <function-ref name="test" scoped="" ref="0x40597990"/>
-        <function-ref name="get" scoped="" ref="0x40597200"/>
-        <function-ref name="reset" scoped="" ref="0x40597c08"/>
-        <function-ref name="getMode" scoped="" ref="0x405968a0"/>
-        <function-ref name="overflow" scoped="" ref="0x40597718"/>
-        <function-ref name="isOn" scoped="" ref="0x40596388"/>
-        <function-ref name="set" scoped="" ref="0x40597478"/>
-        <function-ref name="start" scoped="" ref="0x40597e80"/>
-        <function-ref name="stop" scoped="" ref="0x40596110"/>
+        <function-ref name="setMode" scoped="" ref="0x40594300"/>
+        <function-ref name="test" scoped="" ref="0x40596688"/>
+        <function-ref name="get" scoped="" ref="0x40597ee0"/>
+        <function-ref name="reset" scoped="" ref="0x40596900"/>
+        <function-ref name="getMode" scoped="" ref="0x405945a0"/>
+        <function-ref name="overflow" scoped="" ref="0x40596410"/>
+        <function-ref name="isOn" scoped="" ref="0x40594088"/>
+        <function-ref name="set" scoped="" ref="0x40596170"/>
+        <function-ref name="start" scoped="" ref="0x40596b78"/>
+        <function-ref name="stop" scoped="" ref="0x40596df0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="BeaconCapture" ref="0x405b29a8" loc="44:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
+    <interface provided="1" name="BeaconCapture" ref="0x405b15e8" loc="44:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
       <component-ref qname="HplAtmRfa1TimerMacC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="BeaconCapture" scoped="" ref="0x405b29a8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="BeaconCapture" scoped="" ref="0x405b15e8"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCapture"/>
         <arguments>
@@ -5711,21 +5711,21 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405b0418"/>
-        <function-ref name="test" scoped="" ref="0x405b17a0"/>
-        <function-ref name="fired" scoped="" ref="0x405b1528"/>
-        <function-ref name="get" scoped="" ref="0x405b1010"/>
-        <function-ref name="reset" scoped="" ref="0x405b1a18"/>
-        <function-ref name="getMode" scoped="" ref="0x405b06b8"/>
-        <function-ref name="isOn" scoped="" ref="0x405b01a0"/>
-        <function-ref name="set" scoped="" ref="0x405b1288"/>
-        <function-ref name="start" scoped="" ref="0x405b1c90"/>
-        <function-ref name="stop" scoped="" ref="0x405b1f08"/>
+        <function-ref name="setMode" scoped="" ref="0x405af068"/>
+        <function-ref name="test" scoped="" ref="0x405b03e8"/>
+        <function-ref name="fired" scoped="" ref="0x405b0170"/>
+        <function-ref name="get" scoped="" ref="0x405b1c30"/>
+        <function-ref name="reset" scoped="" ref="0x405b0660"/>
+        <function-ref name="getMode" scoped="" ref="0x405af308"/>
+        <function-ref name="isOn" scoped="" ref="0x405b0dc8"/>
+        <function-ref name="set" scoped="" ref="0x405b1ea8"/>
+        <function-ref name="start" scoped="" ref="0x405b08d8"/>
+        <function-ref name="stop" scoped="" ref="0x405b0b50"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Counter" ref="0x40594d80" loc="41:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
+    <interface provided="1" name="Counter" ref="0x405a3a70" loc="41:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
       <component-ref qname="HplAtmRfa1TimerMacC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x40594d80"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x405a3a70"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCounter"/>
         <arguments>
@@ -5735,21 +5735,21 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405a07f0"/>
-        <function-ref name="test" scoped="" ref="0x405a1b70"/>
-        <function-ref name="get" scoped="" ref="0x405a13e0"/>
-        <function-ref name="reset" scoped="" ref="0x405a1de8"/>
-        <function-ref name="getMode" scoped="" ref="0x405a0a90"/>
-        <function-ref name="overflow" scoped="" ref="0x405a18f8"/>
-        <function-ref name="isOn" scoped="" ref="0x405a0578"/>
-        <function-ref name="set" scoped="" ref="0x405a1658"/>
-        <function-ref name="start" scoped="" ref="0x405a0088"/>
-        <function-ref name="stop" scoped="" ref="0x405a0300"/>
+        <function-ref name="setMode" scoped="" ref="0x4059f500"/>
+        <function-ref name="test" scoped="" ref="0x405a0868"/>
+        <function-ref name="get" scoped="" ref="0x405a00d8"/>
+        <function-ref name="reset" scoped="" ref="0x405a0ae0"/>
+        <function-ref name="getMode" scoped="" ref="0x4059f7a0"/>
+        <function-ref name="overflow" scoped="" ref="0x405a05f0"/>
+        <function-ref name="isOn" scoped="" ref="0x4059f288"/>
+        <function-ref name="set" scoped="" ref="0x405a0350"/>
+        <function-ref name="start" scoped="" ref="0x405a0d58"/>
+        <function-ref name="stop" scoped="" ref="0x4059f010"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="SfdCapture" ref="0x405b3860" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
+    <interface provided="1" name="SfdCapture" ref="0x405b2420" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
       <component-ref qname="HplAtmRfa1TimerMacC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="SfdCapture" scoped="" ref="0x405b3860"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="SfdCapture" scoped="" ref="0x405b2420"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCapture"/>
         <arguments>
@@ -5759,21 +5759,21 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405b22e0"/>
-        <function-ref name="test" scoped="" ref="0x405a7668"/>
-        <function-ref name="fired" scoped="" ref="0x405a73f0"/>
-        <function-ref name="get" scoped="" ref="0x405b3ea8"/>
-        <function-ref name="reset" scoped="" ref="0x405a78e0"/>
-        <function-ref name="getMode" scoped="" ref="0x405b2580"/>
-        <function-ref name="isOn" scoped="" ref="0x405b2068"/>
-        <function-ref name="set" scoped="" ref="0x405a7150"/>
-        <function-ref name="start" scoped="" ref="0x405a7b58"/>
-        <function-ref name="stop" scoped="" ref="0x405a7dd0"/>
+        <function-ref name="setMode" scoped="" ref="0x405a6ee0"/>
+        <function-ref name="test" scoped="" ref="0x405a6288"/>
+        <function-ref name="fired" scoped="" ref="0x405a6010"/>
+        <function-ref name="get" scoped="" ref="0x405b2a68"/>
+        <function-ref name="reset" scoped="" ref="0x405a6500"/>
+        <function-ref name="getMode" scoped="" ref="0x405b11c0"/>
+        <function-ref name="isOn" scoped="" ref="0x405a6c68"/>
+        <function-ref name="set" scoped="" ref="0x405b2ce0"/>
+        <function-ref name="start" scoped="" ref="0x405a6778"/>
+        <function-ref name="stop" scoped="" ref="0x405a69f0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Compare" ref="0x4059f470" loc="42:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
+    <interface provided="1" name="Compare" ref="0x4059e120" loc="42:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacC.nc">
       <component-ref qname="HplAtmRfa1TimerMacC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Compare" scoped="" ref="0x4059f470"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Compare" scoped="" ref="0x4059e120"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCompare"/>
         <arguments>
@@ -5788,22 +5788,22 @@
         </type-int>
       </interface-parameters>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405a9ee0"/>
-        <function-ref name="test" scoped="" ref="0x405a9288"/>
-        <function-ref name="fired" scoped="" ref="0x405a9010"/>
-        <function-ref name="force" scoped="" ref="0x405a8438"/>
-        <function-ref name="get" scoped="" ref="0x4059fab8"/>
-        <function-ref name="reset" scoped="" ref="0x405a9500"/>
-        <function-ref name="getMode" scoped="" ref="0x405a81c0"/>
-        <function-ref name="isOn" scoped="" ref="0x405a9c68"/>
-        <function-ref name="set" scoped="" ref="0x4059fd30"/>
-        <function-ref name="start" scoped="" ref="0x405a9778"/>
-        <function-ref name="stop" scoped="" ref="0x405a99f0"/>
+        <function-ref name="setMode" scoped="" ref="0x405a8b80"/>
+        <function-ref name="test" scoped="" ref="0x4059eef8"/>
+        <function-ref name="fired" scoped="" ref="0x4059ec80"/>
+        <function-ref name="force" scoped="" ref="0x405a70b8"/>
+        <function-ref name="get" scoped="" ref="0x4059e768"/>
+        <function-ref name="reset" scoped="" ref="0x405a81a0"/>
+        <function-ref name="getMode" scoped="" ref="0x405a8e20"/>
+        <function-ref name="isOn" scoped="" ref="0x405a8908"/>
+        <function-ref name="set" scoped="" ref="0x4059e9e0"/>
+        <function-ref name="start" scoped="" ref="0x405a8418"/>
+        <function-ref name="stop" scoped="" ref="0x405a8690"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="CompareA" ref="0x405bc408" loc="42:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
+    <interface provided="1" name="CompareA" ref="0x405bb010" loc="42:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
       <component-ref qname="HplAtmRfa1TimerMacP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="CompareA" scoped="" ref="0x405bc408"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="CompareA" scoped="" ref="0x405bb010"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCompare"/>
         <arguments>
@@ -5813,22 +5813,22 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405bbee0"/>
-        <function-ref name="test" scoped="" ref="0x405bb288"/>
-        <function-ref name="fired" scoped="" ref="0x405bb010"/>
-        <function-ref name="force" scoped="" ref="0x405b9438"/>
-        <function-ref name="get" scoped="" ref="0x405bca50"/>
-        <function-ref name="reset" scoped="" ref="0x405bb500"/>
-        <function-ref name="getMode" scoped="" ref="0x405b91c0"/>
-        <function-ref name="isOn" scoped="" ref="0x405bbc68"/>
-        <function-ref name="set" scoped="" ref="0x405bccc8"/>
-        <function-ref name="start" scoped="" ref="0x405bb778"/>
-        <function-ref name="stop" scoped="" ref="0x405bb9f0"/>
+        <function-ref name="setMode" scoped="" ref="0x405baa68"/>
+        <function-ref name="test" scoped="" ref="0x405bbde8"/>
+        <function-ref name="fired" scoped="" ref="0x405bbb70"/>
+        <function-ref name="force" scoped="" ref="0x405b8010"/>
+        <function-ref name="get" scoped="" ref="0x405bb658"/>
+        <function-ref name="reset" scoped="" ref="0x405ba088"/>
+        <function-ref name="getMode" scoped="" ref="0x405bad08"/>
+        <function-ref name="isOn" scoped="" ref="0x405ba7f0"/>
+        <function-ref name="set" scoped="" ref="0x405bb8d0"/>
+        <function-ref name="start" scoped="" ref="0x405ba300"/>
+        <function-ref name="stop" scoped="" ref="0x405ba578"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="BeaconCapture" ref="0x405c2158" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
+    <interface provided="1" name="BeaconCapture" ref="0x405c2d58" loc="46:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
       <component-ref qname="HplAtmRfa1TimerMacP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="BeaconCapture" scoped="" ref="0x405c2158"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="BeaconCapture" scoped="" ref="0x405c2d58"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCapture"/>
         <arguments>
@@ -5838,31 +5838,31 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405c1c68"/>
-        <function-ref name="test" scoped="" ref="0x405c1010"/>
-        <function-ref name="fired" scoped="" ref="0x405c2cb8"/>
-        <function-ref name="get" scoped="" ref="0x405c27a0"/>
-        <function-ref name="reset" scoped="" ref="0x405c1288"/>
-        <function-ref name="getMode" scoped="" ref="0x405c1f08"/>
-        <function-ref name="isOn" scoped="" ref="0x405c19f0"/>
-        <function-ref name="set" scoped="" ref="0x405c2a18"/>
-        <function-ref name="start" scoped="" ref="0x405c1500"/>
-        <function-ref name="stop" scoped="" ref="0x405c1778"/>
+        <function-ref name="setMode" scoped="" ref="0x405c07f0"/>
+        <function-ref name="test" scoped="" ref="0x405c1b70"/>
+        <function-ref name="fired" scoped="" ref="0x405c18f8"/>
+        <function-ref name="get" scoped="" ref="0x405c13e0"/>
+        <function-ref name="reset" scoped="" ref="0x405c1de8"/>
+        <function-ref name="getMode" scoped="" ref="0x405c0a90"/>
+        <function-ref name="isOn" scoped="" ref="0x405c0578"/>
+        <function-ref name="set" scoped="" ref="0x405c1658"/>
+        <function-ref name="start" scoped="" ref="0x405c0088"/>
+        <function-ref name="stop" scoped="" ref="0x405c0300"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="McuPowerOverride" ref="0x405c01e0" loc="47:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
+    <interface provided="1" name="McuPowerOverride" ref="0x405c0d48" loc="47:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
       <component-ref qname="HplAtmRfa1TimerMacP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="McuPowerOverride" scoped="" ref="0x405c01e0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="McuPowerOverride" scoped="" ref="0x405c0d48"/></type-interface>
       <instance>
         <interfacedef-ref qname="McuPowerOverride"/>
       </instance>
       <interface-functions>
-        <function-ref name="lowestState" scoped="" ref="0x405c03b8"/>
+        <function-ref name="lowestState" scoped="" ref="0x405c0f20"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="CompareB" ref="0x405b9830" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
+    <interface provided="1" name="CompareB" ref="0x405b8408" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
       <component-ref qname="HplAtmRfa1TimerMacP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="CompareB" scoped="" ref="0x405b9830"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="CompareB" scoped="" ref="0x405b8408"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCompare"/>
         <arguments>
@@ -5872,22 +5872,22 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405b72c0"/>
-        <function-ref name="test" scoped="" ref="0x405b8628"/>
-        <function-ref name="fired" scoped="" ref="0x405b83b0"/>
-        <function-ref name="force" scoped="" ref="0x405b77d8"/>
-        <function-ref name="get" scoped="" ref="0x405b9e78"/>
-        <function-ref name="reset" scoped="" ref="0x405b88a0"/>
-        <function-ref name="getMode" scoped="" ref="0x405b7560"/>
-        <function-ref name="isOn" scoped="" ref="0x405b7048"/>
-        <function-ref name="set" scoped="" ref="0x405b8110"/>
-        <function-ref name="start" scoped="" ref="0x405b8b18"/>
-        <function-ref name="stop" scoped="" ref="0x405b8d90"/>
+        <function-ref name="setMode" scoped="" ref="0x405b7ee0"/>
+        <function-ref name="test" scoped="" ref="0x405b7288"/>
+        <function-ref name="fired" scoped="" ref="0x405b7010"/>
+        <function-ref name="force" scoped="" ref="0x405b6438"/>
+        <function-ref name="get" scoped="" ref="0x405b8a50"/>
+        <function-ref name="reset" scoped="" ref="0x405b7500"/>
+        <function-ref name="getMode" scoped="" ref="0x405b61c0"/>
+        <function-ref name="isOn" scoped="" ref="0x405b7c68"/>
+        <function-ref name="set" scoped="" ref="0x405b8cc8"/>
+        <function-ref name="start" scoped="" ref="0x405b7778"/>
+        <function-ref name="stop" scoped="" ref="0x405b79f0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Counter" ref="0x405ad278" loc="41:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
+    <interface provided="1" name="Counter" ref="0x405afea8" loc="41:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
       <component-ref qname="HplAtmRfa1TimerMacP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x405ad278"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Counter" scoped="" ref="0x405afea8"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCounter"/>
         <arguments>
@@ -5897,31 +5897,31 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405bdcc0"/>
-        <function-ref name="test" scoped="" ref="0x405bd068"/>
-        <function-ref name="get" scoped="" ref="0x405ad8c0"/>
-        <function-ref name="reset" scoped="" ref="0x405bd2e0"/>
-        <function-ref name="getMode" scoped="" ref="0x405bc010"/>
-        <function-ref name="overflow" scoped="" ref="0x405addd8"/>
-        <function-ref name="isOn" scoped="" ref="0x405bda48"/>
-        <function-ref name="set" scoped="" ref="0x405adb38"/>
-        <function-ref name="start" scoped="" ref="0x405bd558"/>
-        <function-ref name="stop" scoped="" ref="0x405bd7d0"/>
+        <function-ref name="setMode" scoped="" ref="0x405bc908"/>
+        <function-ref name="test" scoped="" ref="0x405bdc98"/>
+        <function-ref name="get" scoped="" ref="0x405bd508"/>
+        <function-ref name="reset" scoped="" ref="0x405bdf10"/>
+        <function-ref name="getMode" scoped="" ref="0x405bcba8"/>
+        <function-ref name="overflow" scoped="" ref="0x405bda20"/>
+        <function-ref name="isOn" scoped="" ref="0x405bc690"/>
+        <function-ref name="set" scoped="" ref="0x405bd780"/>
+        <function-ref name="start" scoped="" ref="0x405bc1a0"/>
+        <function-ref name="stop" scoped="" ref="0x405bc418"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="McuPowerState" ref="0x405c05d0" loc="52:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
+    <interface provided="0" name="McuPowerState" ref="0x405bf150" loc="52:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
       <component-ref qname="HplAtmRfa1TimerMacP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="McuPowerState" scoped="" ref="0x405c05d0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="McuPowerState" scoped="" ref="0x405bf150"/></type-interface>
       <instance>
         <interfacedef-ref qname="McuPowerState"/>
       </instance>
       <interface-functions>
-        <function-ref name="update" scoped="" ref="0x405c07a8"/>
+        <function-ref name="update" scoped="" ref="0x405bf328"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="SfdCapture" ref="0x405c5010" loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
+    <interface provided="1" name="SfdCapture" ref="0x405c5be0" loc="45:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
       <component-ref qname="HplAtmRfa1TimerMacP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="SfdCapture" scoped="" ref="0x405c5010"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="SfdCapture" scoped="" ref="0x405c5be0"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCapture"/>
         <arguments>
@@ -5931,21 +5931,21 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405c4a68"/>
-        <function-ref name="test" scoped="" ref="0x405c5de8"/>
-        <function-ref name="fired" scoped="" ref="0x405c5b70"/>
-        <function-ref name="get" scoped="" ref="0x405c5658"/>
-        <function-ref name="reset" scoped="" ref="0x405c4088"/>
-        <function-ref name="getMode" scoped="" ref="0x405c4d08"/>
-        <function-ref name="isOn" scoped="" ref="0x405c47f0"/>
-        <function-ref name="set" scoped="" ref="0x405c58d0"/>
-        <function-ref name="start" scoped="" ref="0x405c4300"/>
-        <function-ref name="stop" scoped="" ref="0x405c4578"/>
+        <function-ref name="setMode" scoped="" ref="0x405c2690"/>
+        <function-ref name="test" scoped="" ref="0x405c4a08"/>
+        <function-ref name="fired" scoped="" ref="0x405c4790"/>
+        <function-ref name="get" scoped="" ref="0x405c4278"/>
+        <function-ref name="reset" scoped="" ref="0x405c4c80"/>
+        <function-ref name="getMode" scoped="" ref="0x405c2930"/>
+        <function-ref name="isOn" scoped="" ref="0x405c2418"/>
+        <function-ref name="set" scoped="" ref="0x405c44f0"/>
+        <function-ref name="start" scoped="" ref="0x405c4ef8"/>
+        <function-ref name="stop" scoped="" ref="0x405c21a0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="CompareC" ref="0x405b7bd0" loc="44:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
+    <interface provided="1" name="CompareC" ref="0x405b6830" loc="44:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/HplAtmRfa1TimerMacP.nc">
       <component-ref qname="HplAtmRfa1TimerMacP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="CompareC" scoped="" ref="0x405b7bd0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="CompareC" scoped="" ref="0x405b6830"/></type-interface>
       <instance>
         <interfacedef-ref qname="AtmegaCompare"/>
         <arguments>
@@ -5955,69 +5955,69 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setMode" scoped="" ref="0x405c6640"/>
-        <function-ref name="test" scoped="" ref="0x405b69c8"/>
-        <function-ref name="fired" scoped="" ref="0x405b6750"/>
-        <function-ref name="force" scoped="" ref="0x405c6b58"/>
-        <function-ref name="get" scoped="" ref="0x405b6238"/>
-        <function-ref name="reset" scoped="" ref="0x405b6c40"/>
-        <function-ref name="getMode" scoped="" ref="0x405c68e0"/>
-        <function-ref name="isOn" scoped="" ref="0x405c63c8"/>
-        <function-ref name="set" scoped="" ref="0x405b64b0"/>
-        <function-ref name="start" scoped="" ref="0x405b6eb8"/>
-        <function-ref name="stop" scoped="" ref="0x405c6150"/>
+        <function-ref name="setMode" scoped="" ref="0x405c52c0"/>
+        <function-ref name="test" scoped="" ref="0x405c6628"/>
+        <function-ref name="fired" scoped="" ref="0x405c63b0"/>
+        <function-ref name="force" scoped="" ref="0x405c57d8"/>
+        <function-ref name="get" scoped="" ref="0x405b6e78"/>
+        <function-ref name="reset" scoped="" ref="0x405c68a0"/>
+        <function-ref name="getMode" scoped="" ref="0x405c5560"/>
+        <function-ref name="isOn" scoped="" ref="0x405c5048"/>
+        <function-ref name="set" scoped="" ref="0x405c6110"/>
+        <function-ref name="start" scoped="" ref="0x405c6b18"/>
+        <function-ref name="stop" scoped="" ref="0x405c6d90"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="RFA1RadioOff" ref="0x404b0458" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/radio/RFA1RadioOffP.nc">
+    <interface provided="1" name="RFA1RadioOff" ref="0x404b0948" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/radio/RFA1RadioOffP.nc">
       <component-ref qname="RFA1RadioOffP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="RFA1RadioOff" scoped="" ref="0x404b0458"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="RFA1RadioOff" scoped="" ref="0x404b0948"/></type-interface>
       <instance>
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x404b0630"/>
+        <function-ref name="init" scoped="" ref="0x404b0b20"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="SoftwareInit" ref="0x40627508" loc="60:/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc">
+    <interface provided="0" name="SoftwareInit" ref="0x40618a90" loc="60:/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc">
       <component-ref qname="RealMainP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="SoftwareInit" scoped="" ref="0x40627508"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="SoftwareInit" scoped="" ref="0x40618a90"/></type-interface>
       <instance>
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x406276e0"/>
+        <function-ref name="init" scoped="" ref="0x40618c68"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Boot" ref="0x404b3790" loc="57:/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc">
+    <interface provided="1" name="Boot" ref="0x404b3cd0" loc="57:/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc">
       <component-ref qname="RealMainP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Boot" scoped="" ref="0x404b3790"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Boot" scoped="" ref="0x404b3cd0"/></type-interface>
       <instance>
         <interfacedef-ref qname="Boot"/>
       </instance>
       <interface-functions>
-        <function-ref name="booted" scoped="" ref="0x404b3968"/>
+        <function-ref name="booted" scoped="" ref="0x404b3ea8"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="PlatformInit" ref="0x40627100" loc="59:/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc">
+    <interface provided="0" name="PlatformInit" ref="0x40618688" loc="59:/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc">
       <component-ref qname="RealMainP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="PlatformInit" scoped="" ref="0x40627100"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="PlatformInit" scoped="" ref="0x40618688"/></type-interface>
       <instance>
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x406272d8"/>
+        <function-ref name="init" scoped="" ref="0x40618860"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Scheduler" ref="0x404b3b28" loc="58:/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc">
+    <interface provided="0" name="Scheduler" ref="0x406180c0" loc="58:/opt/tinyos-main/src/tinyos-main/tos/system/RealMainP.nc">
       <component-ref qname="RealMainP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Scheduler" scoped="" ref="0x404b3b28"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Scheduler" scoped="" ref="0x406180c0"/></type-interface>
       <instance>
         <interfacedef-ref qname="Scheduler"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x404b3d00"/>
-        <function-ref name="taskLoop" scoped="" ref="0x404b3de0"/>
-        <function-ref name="runNextTask" scoped="" ref="0x404b3ec0"/>
+        <function-ref name="init" scoped="" ref="0x40618298"/>
+        <function-ref name="taskLoop" scoped="" ref="0x40618378"/>
+        <function-ref name="runNextTask" scoped="" ref="0x40618458"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="TaskBasic" ref="0x40304a98" loc="48:/opt/tinyos-main/src/tinyos-main/tos/system/TinySchedulerC.nc">
@@ -6086,47 +6086,47 @@
         <function-ref name="runNextTask" scoped="" ref="0x403c8778"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="UartByte" ref="0x40632060" loc="41:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
+    <interface provided="1" name="UartByte" ref="0x40632628" loc="41:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
       <component-ref qname="PlatformSerialC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartByte" scoped="" ref="0x40632060"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartByte" scoped="" ref="0x40632628"/></type-interface>
       <instance>
         <interfacedef-ref qname="UartByte"/>
       </instance>
       <interface-functions>
-        <function-ref name="send" scoped="" ref="0x40632238"/>
-        <function-ref name="receive" scoped="" ref="0x40632318"/>
+        <function-ref name="send" scoped="" ref="0x40632800"/>
+        <function-ref name="receive" scoped="" ref="0x406328e0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="UartStream" ref="0x404a1768" loc="40:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
+    <interface provided="1" name="UartStream" ref="0x40426cf0" loc="40:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
       <component-ref qname="PlatformSerialC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartStream" scoped="" ref="0x404a1768"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartStream" scoped="" ref="0x40426cf0"/></type-interface>
       <instance>
         <interfacedef-ref qname="UartStream"/>
       </instance>
       <interface-functions>
-        <function-ref name="send" scoped="" ref="0x404a1940"/>
-        <function-ref name="receivedByte" scoped="" ref="0x404a1a20"/>
-        <function-ref name="receive" scoped="" ref="0x404a1b00"/>
-        <function-ref name="enableReceiveInterrupt" scoped="" ref="0x404a1be0"/>
-        <function-ref name="receiveDone" scoped="" ref="0x404a1cc0"/>
-        <function-ref name="disableReceiveInterrupt" scoped="" ref="0x404a1da0"/>
-        <function-ref name="sendDone" scoped="" ref="0x404a1e80"/>
+        <function-ref name="send" scoped="" ref="0x40426ec8"/>
+        <function-ref name="receivedByte" scoped="" ref="0x40632010"/>
+        <function-ref name="receive" scoped="" ref="0x406320f0"/>
+        <function-ref name="enableReceiveInterrupt" scoped="" ref="0x406321d0"/>
+        <function-ref name="receiveDone" scoped="" ref="0x406322b0"/>
+        <function-ref name="disableReceiveInterrupt" scoped="" ref="0x40632390"/>
+        <function-ref name="sendDone" scoped="" ref="0x40632470"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="UartControl" ref="0x404a12e8" loc="39:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
+    <interface provided="1" name="UartControl" ref="0x40426870" loc="39:/opt/tinyos-main/src/tinyos-main/tos/platforms/rcb128rfa1/PlatformSerialC.nc">
       <component-ref qname="PlatformSerialC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartControl" scoped="" ref="0x404a12e8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartControl" scoped="" ref="0x40426870"/></type-interface>
       <instance>
         <interfacedef-ref qname="StdControl"/>
       </instance>
       <interface-functions>
-        <function-ref name="start" scoped="" ref="0x404a14c0"/>
-        <function-ref name="stop" scoped="" ref="0x404a15a0"/>
+        <function-ref name="start" scoped="" ref="0x40426a48"/>
+        <function-ref name="stop" scoped="" ref="0x40426b28"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="CommandNotification" ref="0x40630860" loc="9:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
+    <interface provided="1" name="CommandNotification" ref="0x404a1e88" loc="9:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
       <component-ref qname="SerialPacketForwarderC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="CommandNotification" scoped="" ref="0x40630860"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="CommandNotification" scoped="" ref="0x404a1e88"/></type-interface>
       <instance>
         <interfacedef-ref qname="Notify"/>
         <arguments>
@@ -6136,14 +6136,14 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="disable" scoped="" ref="0x4062f0f0"/>
-        <function-ref name="enable" scoped="" ref="0x40630e88"/>
-        <function-ref name="notify" scoped="" ref="0x4062f348"/>
+        <function-ref name="disable" scoped="" ref="0x4062f730"/>
+        <function-ref name="enable" scoped="" ref="0x4062f4d8"/>
+        <function-ref name="notify" scoped="" ref="0x4062f988"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="ForwardCommand" ref="0x4062f7a8" loc="10:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
+    <interface provided="1" name="ForwardCommand" ref="0x4062fde8" loc="10:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
       <component-ref qname="SerialPacketForwarderC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardCommand" scoped="" ref="0x4062f7a8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardCommand" scoped="" ref="0x4062fde8"/></type-interface>
       <instance>
         <interfacedef-ref qname="SetNow"/>
         <arguments>
@@ -6153,12 +6153,12 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setNow" scoped="" ref="0x4062fdf0"/>
+        <function-ref name="setNow" scoped="" ref="0x4062d468"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="ForwardData" ref="0x4062d248" loc="11:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
+    <interface provided="1" name="ForwardData" ref="0x4062d888" loc="11:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
       <component-ref qname="SerialPacketForwarderC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardData" scoped="" ref="0x4062d248"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardData" scoped="" ref="0x4062d888"/></type-interface>
       <instance>
         <interfacedef-ref qname="SetNow"/>
         <arguments>
@@ -6168,12 +6168,12 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setNow" scoped="" ref="0x4062d890"/>
+        <function-ref name="setNow" scoped="" ref="0x4062ded0"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="ForwardStatus" ref="0x4062dcd8" loc="12:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
+    <interface provided="1" name="ForwardStatus" ref="0x4062c338" loc="12:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
       <component-ref qname="SerialPacketForwarderC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardStatus" scoped="" ref="0x4062dcd8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardStatus" scoped="" ref="0x4062c338"/></type-interface>
       <instance>
         <interfacedef-ref qname="SetNow"/>
         <arguments>
@@ -6183,44 +6183,44 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setNow" scoped="" ref="0x4062c370"/>
+        <function-ref name="setNow" scoped="" ref="0x4062c980"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="SerialPacketForwarderInit" ref="0x406302f0" loc="8:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
+    <interface provided="1" name="SerialPacketForwarderInit" ref="0x404a1918" loc="8:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderC.nc">
       <component-ref qname="SerialPacketForwarderC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x406302f0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x404a1918"/></type-interface>
       <instance>
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x406304c8"/>
+        <function-ref name="init" scoped="" ref="0x404a1af0"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="processReceiveBufferTask" ref="0x40671180" loc="40:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="processReceiveBufferTask" ref="0x40671478" loc="40:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="processReceiveBufferTask" scoped="" ref="0x40671180"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="processReceiveBufferTask" scoped="" ref="0x40671478"/></type-interface>
       <instance>
         <interfacedef-ref qname="TaskBasic"/>
       </instance>
       <interface-functions>
-        <function-ref name="postTask" scoped="" ref="0x40671358"/>
-        <function-ref name="runTask" scoped="" ref="0x40671438"/>
+        <function-ref name="postTask" scoped="" ref="0x40671650"/>
+        <function-ref name="runTask" scoped="" ref="0x40671730"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="UartByte" ref="0x4065a910" loc="20:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="UartByte" ref="0x4065ac30" loc="20:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartByte" scoped="" ref="0x4065a910"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartByte" scoped="" ref="0x4065ac30"/></type-interface>
       <instance>
         <interfacedef-ref qname="UartByte"/>
       </instance>
       <interface-functions>
-        <function-ref name="send" scoped="" ref="0x4065aae8"/>
-        <function-ref name="receive" scoped="" ref="0x4065abc8"/>
+        <function-ref name="send" scoped="" ref="0x4065ae08"/>
+        <function-ref name="receive" scoped="" ref="0x4065aee8"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="StatusQueue" ref="0x4066be98" loc="25:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="StatusQueue" ref="0x406660a0" loc="25:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="StatusQueue" scoped="" ref="0x4066be98"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="StatusQueue" scoped="" ref="0x406660a0"/></type-interface>
       <instance>
         <interfacedef-ref qname="Queue"/>
         <arguments>
@@ -6230,18 +6230,18 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="head" scoped="" ref="0x40666be0"/>
-        <function-ref name="enqueue" scoped="" ref="0x40664380"/>
-        <function-ref name="element" scoped="" ref="0x406646d0"/>
-        <function-ref name="maxSize" scoped="" ref="0x40666988"/>
-        <function-ref name="dequeue" scoped="" ref="0x40664010"/>
-        <function-ref name="empty" scoped="" ref="0x406664d8"/>
-        <function-ref name="size" scoped="" ref="0x40666730"/>
+        <function-ref name="head" scoped="" ref="0x40666dd0"/>
+        <function-ref name="enqueue" scoped="" ref="0x406644c0"/>
+        <function-ref name="element" scoped="" ref="0x40664810"/>
+        <function-ref name="maxSize" scoped="" ref="0x40666b78"/>
+        <function-ref name="dequeue" scoped="" ref="0x40664150"/>
+        <function-ref name="empty" scoped="" ref="0x406666c8"/>
+        <function-ref name="size" scoped="" ref="0x40666920"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="CommandNotification" ref="0x40676e38" loc="31:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="1" name="CommandNotification" ref="0x40674010" loc="31:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="CommandNotification" scoped="" ref="0x40676e38"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="CommandNotification" scoped="" ref="0x40674010"/></type-interface>
       <instance>
         <interfacedef-ref qname="Notify"/>
         <arguments>
@@ -6251,14 +6251,14 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="disable" scoped="" ref="0x406746d0"/>
-        <function-ref name="enable" scoped="" ref="0x40674478"/>
-        <function-ref name="notify" scoped="" ref="0x40674928"/>
+        <function-ref name="disable" scoped="" ref="0x40674890"/>
+        <function-ref name="enable" scoped="" ref="0x40674638"/>
+        <function-ref name="notify" scoped="" ref="0x40674ae8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="ForwardCommand" ref="0x40674d88" loc="32:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="1" name="ForwardCommand" ref="0x40673010" loc="32:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardCommand" scoped="" ref="0x40674d88"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardCommand" scoped="" ref="0x40673010"/></type-interface>
       <instance>
         <interfacedef-ref qname="SetNow"/>
         <arguments>
@@ -6268,12 +6268,12 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setNow" scoped="" ref="0x406733e0"/>
+        <function-ref name="setNow" scoped="" ref="0x40673658"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="DataQueue" ref="0x4066c1d8" loc="24:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="DataQueue" ref="0x406653b8" loc="24:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="DataQueue" scoped="" ref="0x4066c1d8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="DataQueue" scoped="" ref="0x406653b8"/></type-interface>
       <instance>
         <interfacedef-ref qname="Queue"/>
         <arguments>
@@ -6283,54 +6283,54 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="head" scoped="" ref="0x4066cf08"/>
-        <function-ref name="enqueue" scoped="" ref="0x4066b608"/>
-        <function-ref name="element" scoped="" ref="0x4066b958"/>
-        <function-ref name="maxSize" scoped="" ref="0x4066ccb0"/>
-        <function-ref name="dequeue" scoped="" ref="0x4066b298"/>
-        <function-ref name="empty" scoped="" ref="0x4066c800"/>
-        <function-ref name="size" scoped="" ref="0x4066ca58"/>
+        <function-ref name="head" scoped="" ref="0x4066b110"/>
+        <function-ref name="enqueue" scoped="" ref="0x4066b7f0"/>
+        <function-ref name="element" scoped="" ref="0x4066bb40"/>
+        <function-ref name="maxSize" scoped="" ref="0x40665e90"/>
+        <function-ref name="dequeue" scoped="" ref="0x4066b480"/>
+        <function-ref name="empty" scoped="" ref="0x406659e0"/>
+        <function-ref name="size" scoped="" ref="0x40665c38"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="UartStream" ref="0x4065a060" loc="19:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="UartStream" ref="0x4065a380" loc="19:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartStream" scoped="" ref="0x4065a060"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartStream" scoped="" ref="0x4065a380"/></type-interface>
       <instance>
         <interfacedef-ref qname="UartStream"/>
       </instance>
       <interface-functions>
-        <function-ref name="send" scoped="" ref="0x4065a238"/>
-        <function-ref name="receivedByte" scoped="" ref="0x4065a318"/>
-        <function-ref name="receive" scoped="" ref="0x4065a3f8"/>
-        <function-ref name="enableReceiveInterrupt" scoped="" ref="0x4065a4d8"/>
-        <function-ref name="receiveDone" scoped="" ref="0x4065a5b8"/>
-        <function-ref name="disableReceiveInterrupt" scoped="" ref="0x4065a698"/>
-        <function-ref name="sendDone" scoped="" ref="0x4065a778"/>
+        <function-ref name="send" scoped="" ref="0x4065a558"/>
+        <function-ref name="receivedByte" scoped="" ref="0x4065a638"/>
+        <function-ref name="receive" scoped="" ref="0x4065a718"/>
+        <function-ref name="enableReceiveInterrupt" scoped="" ref="0x4065a7f8"/>
+        <function-ref name="receiveDone" scoped="" ref="0x4065a8d8"/>
+        <function-ref name="disableReceiveInterrupt" scoped="" ref="0x4065a9b8"/>
+        <function-ref name="sendDone" scoped="" ref="0x4065aa98"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Leds" ref="0x4065b3f8" loc="18:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="Leds" ref="0x4065b730" loc="18:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Leds" scoped="" ref="0x4065b3f8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Leds" scoped="" ref="0x4065b730"/></type-interface>
       <instance>
         <interfacedef-ref qname="Leds"/>
       </instance>
       <interface-functions>
-        <function-ref name="led0Off" scoped="" ref="0x4065b5d0"/>
-        <function-ref name="led0Toggle" scoped="" ref="0x4065b6b0"/>
-        <function-ref name="led1On" scoped="" ref="0x4065b790"/>
-        <function-ref name="led1Toggle" scoped="" ref="0x4065b870"/>
-        <function-ref name="led2Toggle" scoped="" ref="0x4065b950"/>
-        <function-ref name="get" scoped="" ref="0x4065ba30"/>
-        <function-ref name="led1Off" scoped="" ref="0x4065bb10"/>
-        <function-ref name="led2Off" scoped="" ref="0x4065be90"/>
-        <function-ref name="set" scoped="" ref="0x4065bbf0"/>
-        <function-ref name="led0On" scoped="" ref="0x4065bcd0"/>
-        <function-ref name="led2On" scoped="" ref="0x4065bdb0"/>
+        <function-ref name="led0Off" scoped="" ref="0x4065b908"/>
+        <function-ref name="led0Toggle" scoped="" ref="0x4065b9e8"/>
+        <function-ref name="led1On" scoped="" ref="0x4065bac8"/>
+        <function-ref name="led1Toggle" scoped="" ref="0x4065bba8"/>
+        <function-ref name="led2Toggle" scoped="" ref="0x4065bc88"/>
+        <function-ref name="get" scoped="" ref="0x4065bd68"/>
+        <function-ref name="led1Off" scoped="" ref="0x4065be48"/>
+        <function-ref name="led2Off" scoped="" ref="0x4065a1d8"/>
+        <function-ref name="set" scoped="" ref="0x4065bf28"/>
+        <function-ref name="led0On" scoped="" ref="0x4065a018"/>
+        <function-ref name="led2On" scoped="" ref="0x4065a0f8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="ForwardData" ref="0x40673800" loc="33:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="1" name="ForwardData" ref="0x40673a78" loc="33:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardData" scoped="" ref="0x40673800"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardData" scoped="" ref="0x40673a78"/></type-interface>
       <instance>
         <interfacedef-ref qname="SetNow"/>
         <arguments>
@@ -6340,12 +6340,12 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setNow" scoped="" ref="0x40673e48"/>
+        <function-ref name="setNow" scoped="" ref="0x406720d8"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="CommandQueue" ref="0x40664c30" loc="26:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="CommandQueue" ref="0x40664d70" loc="26:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="CommandQueue" scoped="" ref="0x40664c30"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="CommandQueue" scoped="" ref="0x40664d70"/></type-interface>
       <instance>
         <interfacedef-ref qname="Queue"/>
         <arguments>
@@ -6355,28 +6355,28 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="head" scoped="" ref="0x40677980"/>
-        <function-ref name="enqueue" scoped="" ref="0x40676088"/>
-        <function-ref name="element" scoped="" ref="0x406763d8"/>
-        <function-ref name="maxSize" scoped="" ref="0x40677728"/>
-        <function-ref name="dequeue" scoped="" ref="0x40677cf0"/>
-        <function-ref name="empty" scoped="" ref="0x40677278"/>
-        <function-ref name="size" scoped="" ref="0x406774d0"/>
+        <function-ref name="head" scoped="" ref="0x40677ac8"/>
+        <function-ref name="enqueue" scoped="" ref="0x406761d0"/>
+        <function-ref name="element" scoped="" ref="0x40676520"/>
+        <function-ref name="maxSize" scoped="" ref="0x40677870"/>
+        <function-ref name="dequeue" scoped="" ref="0x40677e38"/>
+        <function-ref name="empty" scoped="" ref="0x406773c0"/>
+        <function-ref name="size" scoped="" ref="0x40677618"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="SerialPacketForwarderInit" ref="0x406768c8" loc="30:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="1" name="SerialPacketForwarderInit" ref="0x40676a10" loc="30:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x406768c8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="SerialPacketForwarderInit" scoped="" ref="0x40676a10"/></type-interface>
       <instance>
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x40676aa0"/>
+        <function-ref name="init" scoped="" ref="0x40676be8"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="ForwardStatus" ref="0x406722a0" loc="34:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="1" name="ForwardStatus" ref="0x40672520" loc="34:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardStatus" scoped="" ref="0x406722a0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="ForwardStatus" scoped="" ref="0x40672520"/></type-interface>
       <instance>
         <interfacedef-ref qname="SetNow"/>
         <arguments>
@@ -6386,46 +6386,46 @@
         </arguments>
       </instance>
       <interface-functions>
-        <function-ref name="setNow" scoped="" ref="0x40672968"/>
+        <function-ref name="setNow" scoped="" ref="0x40672be8"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="PacketTypes" ref="0x4066d2a0" loc="22:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="PacketTypes" ref="0x4066d5c0" loc="22:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="PacketTypes" scoped="" ref="0x4066d2a0"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="PacketTypes" scoped="" ref="0x4066d5c0"/></type-interface>
       <instance>
         <interfacedef-ref qname="PacketTypes"/>
       </instance>
       <interface-functions>
-        <function-ref name="asciihexToNum" scoped="" ref="0x4066da98"/>
-        <function-ref name="getTypeOfPacket" scoped="" ref="0x4066d558"/>
-        <function-ref name="statusPacketToStr" scoped="" ref="0x4066d638"/>
-        <function-ref name="dataPacketToStr" scoped="" ref="0x4066d718"/>
-        <function-ref name="strToCommandPacket" scoped="" ref="0x4066d7f8"/>
-        <function-ref name="strToDataPacket" scoped="" ref="0x4066d8d8"/>
-        <function-ref name="commandPacketToStr" scoped="" ref="0x4066d478"/>
-        <function-ref name="strToStatusPacket" scoped="" ref="0x4066d9b8"/>
+        <function-ref name="asciihexToNum" scoped="" ref="0x4066ddb8"/>
+        <function-ref name="getTypeOfPacket" scoped="" ref="0x4066d878"/>
+        <function-ref name="statusPacketToStr" scoped="" ref="0x4066d958"/>
+        <function-ref name="dataPacketToStr" scoped="" ref="0x4066da38"/>
+        <function-ref name="strToCommandPacket" scoped="" ref="0x4066db18"/>
+        <function-ref name="strToDataPacket" scoped="" ref="0x4066dbf8"/>
+        <function-ref name="commandPacketToStr" scoped="" ref="0x4066d798"/>
+        <function-ref name="strToStatusPacket" scoped="" ref="0x4066dcd8"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="UartControl" ref="0x4065ae00" loc="21:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="UartControl" ref="0x4066d158" loc="21:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartControl" scoped="" ref="0x4065ae00"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="UartControl" scoped="" ref="0x4066d158"/></type-interface>
       <instance>
         <interfacedef-ref qname="StdControl"/>
       </instance>
       <interface-functions>
-        <function-ref name="start" scoped="" ref="0x4066d010"/>
-        <function-ref name="stop" scoped="" ref="0x4066d0f0"/>
+        <function-ref name="start" scoped="" ref="0x4066d330"/>
+        <function-ref name="stop" scoped="" ref="0x4066d410"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="forwardNextPacketTask" ref="0x406719e8" loc="41:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
+    <interface provided="0" name="forwardNextPacketTask" ref="0x40671ce0" loc="41:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/SerialPacketForwarderP.nc">
       <component-ref qname="SerialPacketForwarderP"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="forwardNextPacketTask" scoped="" ref="0x406719e8"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="forwardNextPacketTask" scoped="" ref="0x40671ce0"/></type-interface>
       <instance>
         <interfacedef-ref qname="TaskBasic"/>
       </instance>
       <interface-functions>
-        <function-ref name="postTask" scoped="" ref="0x40671bc0"/>
-        <function-ref name="runTask" scoped="" ref="0x40671ca0"/>
+        <function-ref name="postTask" scoped="" ref="0x40671eb8"/>
+        <function-ref name="runTask" scoped="" ref="0x4066f010"/>
       </interface-functions>
     </interface>
     <interface provided="1" name="PacketTypes" ref="0x406d8ad0" loc="13:/home/alpsayin/tinyos_workspace/SerialPacketForwarder/src/PacketTypesP.nc">
@@ -6610,8 +6610,8 @@
       <instance>
         <interfacedef-ref qname="Alarm"/>
         <arguments>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -6659,8 +6659,8 @@
       <instance>
         <interfacedef-ref qname="Alarm"/>
         <arguments>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -6747,8 +6747,8 @@
       <instance>
         <interfacedef-ref qname="Alarm"/>
         <arguments>
-          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40560100"/>
-            <typename><typedef-ref name="T62khz" ref="0x405602a8"/></typename>
+          <type-tag size="I:0" alignment="I:1"><struct-ref name="T62khz" ref="0x40545c70"/>
+            <typename><typedef-ref name="T62khz" ref="0x40545e18"/></typename>
           </type-tag>
           <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:1">
             <typename><typedef-ref name="uint32_t" ref="0x401bb848"/></typename>
@@ -8547,12 +8547,12 @@
     </interfacedef>
     <interfacedef qname="AtmegaCounter" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
       <parameters>
-        <typedef name="size_type" ref="0x40584328" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+        <typedef name="size_type" ref="0x40591038" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
           <interfacedef-ref qname="AtmegaCounter"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40584328"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40591038"/></type-var>
         </typedef>
       </parameters>
-      <function command="" provided="0" name="setMode" ref="0x405909c8" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="setMode" ref="0x4058f700" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8563,14 +8563,14 @@
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="mode" ref="0x40590870" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+          <variable name="mode" ref="0x4058f5a8" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
             <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
               <typename><typedef-ref name="uint8_t" ref="0x401bab68"/></typename>
             </type-int>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="test" ref="0x40591538" loc="51:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="test" ref="0x40590260" loc="51:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8582,17 +8582,17 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="get" ref="0x40584820" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="get" ref="0x40591530" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
-          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40584328"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40591038"/></type-var>
           <function-parameters>
           </function-parameters>
         </type-function>
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="reset" ref="0x405918f0" loc="54:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="reset" ref="0x40590618" loc="54:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8602,7 +8602,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="getMode" ref="0x40590dd8" loc="73:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="getMode" ref="0x4058fb10" loc="73:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8614,7 +8614,7 @@
         <parameters>
         </parameters>
       </function>
-      <function event="" provided="0" name="overflow" ref="0x40591158" loc="48:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function event="" provided="0" name="overflow" ref="0x40591e58" loc="48:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8624,7 +8624,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="isOn" ref="0x40590470" loc="65:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="isOn" ref="0x4058f1a8" loc="65:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8636,21 +8636,21 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="set" ref="0x40584d60" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="set" ref="0x40591a70" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
           <function-parameters>
-            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40584328"/></type-var>
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40591038"/></type-var>
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="value" ref="0x40584c08" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
-            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40584328"/></type-var>
+          <variable name="value" ref="0x40591918" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x40591038"/></type-var>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="start" ref="0x40591cb8" loc="59:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="start" ref="0x405909e0" loc="59:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8660,7 +8660,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="stop" ref="0x40590090" loc="62:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
+      <function command="" provided="0" name="stop" ref="0x40590d90" loc="62:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCounter.nc">
         <interfacedef-ref qname="AtmegaCounter"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8673,12 +8673,12 @@
     </interfacedef>
     <interfacedef qname="AtmegaCapture" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
       <parameters>
-        <typedef name="size_type" ref="0x405a8998" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+        <typedef name="size_type" ref="0x405a7618" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
           <interfacedef-ref qname="AtmegaCapture"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405a8998"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405a7618"/></type-var>
         </typedef>
       </parameters>
-      <function command="" provided="0" name="setMode" ref="0x405b3168" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="setMode" ref="0x405b3cf8" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8689,14 +8689,14 @@
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="mode" ref="0x405b3010" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+          <variable name="mode" ref="0x405b3ba0" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
             <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
               <typename><typedef-ref name="uint8_t" ref="0x401bab68"/></typename>
             </type-int>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="test" ref="0x405a5b98" loc="51:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="test" ref="0x405a4830" loc="51:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8708,7 +8708,7 @@
         <parameters>
         </parameters>
       </function>
-      <function event="" provided="0" name="fired" ref="0x405a57b8" loc="48:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function event="" provided="0" name="fired" ref="0x405a4450" loc="48:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8718,17 +8718,17 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="get" ref="0x405a8e90" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="get" ref="0x405a7b10" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
-          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405a8998"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405a7618"/></type-var>
           <function-parameters>
           </function-parameters>
         </type-function>
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="reset" ref="0x405b4010" loc="54:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="reset" ref="0x405a4be8" loc="54:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8738,7 +8738,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="getMode" ref="0x405b3578" loc="73:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="getMode" ref="0x405b2138" loc="73:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8750,7 +8750,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="isOn" ref="0x405b4b68" loc="65:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="isOn" ref="0x405b37a0" loc="65:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8762,21 +8762,21 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="set" ref="0x405a53f0" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="set" ref="0x405a4088" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
           <function-parameters>
-            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405a8998"/></type-var>
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405a7618"/></type-var>
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="value" ref="0x405a5298" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
-            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405a8998"/></type-var>
+          <variable name="value" ref="0x405a7ef8" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x405a7618"/></type-var>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="start" ref="0x405b43d8" loc="59:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="start" ref="0x405b3010" loc="59:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8786,7 +8786,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="stop" ref="0x405b4788" loc="62:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
+      <function command="" provided="0" name="stop" ref="0x405b33c0" loc="62:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCapture.nc">
         <interfacedef-ref qname="AtmegaCapture"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8799,12 +8799,12 @@
     </interfacedef>
     <interfacedef qname="AtmegaCompare" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
       <parameters>
-        <typedef name="size_type" ref="0x4059d010" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+        <typedef name="size_type" ref="0x4059fd00" loc="35:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
           <interfacedef-ref qname="AtmegaCompare"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4059d010"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4059fd00"/></type-var>
         </typedef>
       </parameters>
-      <function command="" provided="0" name="setMode" ref="0x405aa690" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="setMode" ref="0x405a9390" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8815,14 +8815,14 @@
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="mode" ref="0x405aa538" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+          <variable name="mode" ref="0x405a9238" loc="70:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
             <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
               <typename><typedef-ref name="uint8_t" ref="0x401bab68"/></typename>
             </type-int>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="test" ref="0x405ab210" loc="51:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="test" ref="0x4059cef8" loc="51:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8834,7 +8834,7 @@
         <parameters>
         </parameters>
       </function>
-      <function event="" provided="0" name="fired" ref="0x4059de10" loc="48:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function event="" provided="0" name="fired" ref="0x4059cb18" loc="48:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8844,7 +8844,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="force" ref="0x405aae68" loc="78:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="force" ref="0x405a9b68" loc="78:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8854,17 +8854,17 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="get" ref="0x4059d508" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="get" ref="0x4059c210" loc="40:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
-          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4059d010"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4059fd00"/></type-var>
           <function-parameters>
           </function-parameters>
         </type-function>
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="reset" ref="0x405ab5c8" loc="54:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="reset" ref="0x405aa2c8" loc="54:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8874,7 +8874,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="getMode" ref="0x405aaaa0" loc="73:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="getMode" ref="0x405a97a0" loc="73:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8886,7 +8886,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="isOn" ref="0x405aa138" loc="65:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="isOn" ref="0x405aae20" loc="65:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
@@ -8898,21 +8898,21 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="set" ref="0x4059da48" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="set" ref="0x4059c750" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
           <function-parameters>
-            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4059d010"/></type-var>
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4059fd00"/></type-var>
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="value" ref="0x4059d8f0" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
-            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4059d010"/></type-var>
+          <variable name="value" ref="0x4059c5f8" loc="43:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4059fd00"/></type-var>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="start" ref="0x405ab990" loc="59:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="start" ref="0x405aa690" loc="59:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8922,7 +8922,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="stop" ref="0x405abd40" loc="62:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
+      <function command="" provided="0" name="stop" ref="0x405aaa40" loc="62:/opt/tinyos-main/src/tinyos-main/tos/chips/atm128rfa1/timer/AtmegaCompare.nc">
         <interfacedef-ref qname="AtmegaCompare"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
@@ -8989,26 +8989,26 @@
         <long>&#10;  Interface to a FIFO list (queue) that contains items&#10;  of a specific type. The queue has a maximum size.&#10;&#10;  @author Philip Levis&#10;  @author Kyle Jamieson&#10;  @date   $Date: 2008-06-04 03:00:31 $&#10;</long>
       </documentation>
       <parameters>
-        <typedef name="t" ref="0x4066a010" loc="43:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+        <typedef name="t" ref="0x4066c2a0" loc="43:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
           <interfacedef-ref qname="Queue"/>
-          <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066a010"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066c2a0"/></type-var>
         </typedef>
       </parameters>
-      <function command="" provided="0" name="head" ref="0x40669210" loc="73:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+      <function command="" provided="0" name="head" ref="0x406694a0" loc="73:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
         <documentation loc="67:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
           <short>&#10; Get the head of the queue without removing it.</short>
           <long>&#10; Get the head of the queue without removing it. If the queue&#10; is empty, the return value is undefined.&#10;&#10; @return 't ONE' The head of the queue.&#10;</long>
         </documentation>
         <interfacedef-ref qname="Queue"/>
         <type-function size="I:1" alignment="I:1">
-          <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066a010"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066c2a0"/></type-var>
           <function-parameters>
           </function-parameters>
         </type-function>
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="enqueue" ref="0x40668168" loc="90:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+      <function command="" provided="0" name="enqueue" ref="0x406673b0" loc="90:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
         <documentation loc="83:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
           <short>&#10; Enqueue an element to the tail of the queue.</short>
           <long>&#10; Enqueue an element to the tail of the queue.&#10;&#10; @param 't ONE newVal' - the element to enqueue&#10; @return SUCCESS if the element was enqueued successfully, FAIL&#10;                 if it was not enqueued.&#10;</long>
@@ -9019,12 +9019,12 @@
             <typename><typedef-ref name="error_t" ref="0x40307a98"/></typename>
           </type-int>
           <function-parameters>
-            <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066a010"/></type-var>
+            <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066c2a0"/></type-var>
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="newVal" ref="0x40668010" loc="90:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
-            <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066a010"/></type-var>
+          <variable name="newVal" ref="0x40667258" loc="90:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+            <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066c2a0"/></type-var>
             <attribute-value>
               <attribute-ref name="one" ref="0x401b8840"/>
               <value-structured>
@@ -9034,14 +9034,14 @@
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="element" ref="0x40668a60" loc="101:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+      <function command="" provided="0" name="element" ref="0x40667ca8" loc="101:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
         <documentation loc="92:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
           <short>&#10; Return the nth element of the queue without dequeueing it, &#10; where 0 is the head of the queue and (size - 1) is the tail.</short>
           <long>&#10; Return the nth element of the queue without dequeueing it, &#10; where 0 is the head of the queue and (size - 1) is the tail. &#10; If the element requested is larger than the current queue size,&#10; the return value is undefined.&#10;&#10; @param index - the index of the element to return&#10; @return 't ONE' the requested element in the queue.&#10;</long>
         </documentation>
         <interfacedef-ref qname="Queue"/>
         <type-function size="I:1" alignment="I:1">
-          <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066a010"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066c2a0"/></type-var>
           <function-parameters>
             <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
               <typename><typedef-ref name="uint8_t" ref="0x401bab68"/></typename>
@@ -9049,14 +9049,14 @@
           </function-parameters>
         </type-function>
         <parameters>
-          <variable name="idx" ref="0x40668908" loc="101:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+          <variable name="idx" ref="0x40667b50" loc="101:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
             <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
               <typename><typedef-ref name="uint8_t" ref="0x401bab68"/></typename>
             </type-int>
           </variable>
         </parameters>
       </function>
-      <function command="" provided="0" name="maxSize" ref="0x4066adb0" loc="65:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+      <function command="" provided="0" name="maxSize" ref="0x40669070" loc="65:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
         <documentation loc="60:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
           <short>&#10; The maximum number of elements the queue can hold.</short>
           <long>&#10; The maximum number of elements the queue can hold.&#10;&#10; @return The maximum queue size.&#10;</long>
@@ -9072,21 +9072,21 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="dequeue" ref="0x406698b8" loc="81:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+      <function command="" provided="0" name="dequeue" ref="0x40669b48" loc="81:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
         <documentation loc="75:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
           <short>&#10; Remove the head of the queue.</short>
           <long>&#10; Remove the head of the queue. If the queue is empty, the return&#10; value is undefined.&#10;&#10; @return 't ONE' The head of the queue.&#10;</long>
         </documentation>
         <interfacedef-ref qname="Queue"/>
         <type-function size="I:1" alignment="I:1">
-          <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066a010"/></type-var>
+          <type-var size="U:" alignment="U:"><typedef-ref name="t" scoped="" ref="0x4066c2a0"/></type-var>
           <function-parameters>
           </function-parameters>
         </type-function>
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="empty" ref="0x4066a4b0" loc="50:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+      <function command="" provided="0" name="empty" ref="0x4066c740" loc="50:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
         <documentation loc="45:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
           <short>&#10; Returns if the queue is empty.</short>
           <long>&#10; Returns if the queue is empty.&#10;&#10; @return Whether the queue is empty.&#10;</long>
@@ -9102,7 +9102,7 @@
         <parameters>
         </parameters>
       </function>
-      <function command="" provided="0" name="size" ref="0x4066a8f8" loc="58:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
+      <function command="" provided="0" name="size" ref="0x4066cb88" loc="58:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
         <documentation loc="52:/opt/tinyos-main/src/tinyos-main/tos/interfaces/Queue.nc">
           <short>&#10; The number of elements currently in the queue.</short>
           <long>&#10; The number of elements currently in the queue.&#10; Always less than or equal to maxSize().&#10;&#10; @return The number of elements in the queue.&#10;</long>

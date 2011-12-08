@@ -49,7 +49,7 @@ implementation
     status_packet_t gStatusPacket;
     
     char receiveBuffer[64];	
-	norace uint8_t pos;
+	uint8_t pos;
 
 
 	command error_t SerialPacketForwarderInit.init()
@@ -82,8 +82,8 @@ implementation
         call UartByte.send(byte);
         if(byte == '[')
         {
-            pos=0;
             atomic {
+            	pos=0;
             	receiveBuffer[pos++]=byte;
             }
             started=1;

@@ -23,7 +23,7 @@
         <configurationname>GizmoSimple</configurationname>
       </gizmo_options>
       <runprofile version="6">
-        <args>-h0 -b1 -w1 -v -f -a01 -t255m -l -p/dev/ttyUSB0</args>
+        <args>-h0 -b1 -w1 -v -f -a01 -t255m -p/dev/ttyUSB0</args>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>0</console-type>
