@@ -38,17 +38,11 @@ implementation
 {
 	
 	#define COMMAND_RECEIVE_BUFFER_SIZE 64
-	//TODO implement a circular send buffer
 	task void processReceiveBufferTask();
 	task void forwardNextPacketTask();
-	const uint8_t hexTable[16] = "0123456789abcdef";
 
     norace bool started;
     bool enabled;
-    
-    command_packet_t gCommandPacket;
-    data_packet_t gDataPacket;
-    status_packet_t gStatusPacket;
     
     char receiveBuffer[COMMAND_RECEIVE_BUFFER_SIZE];	
 	uint8_t pos;
@@ -77,7 +71,7 @@ implementation
 	
 	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
 	{
-		// TODO  UartStream.receiveDone not used
+		// UartStream.receiveDone not used
 	}
 	async event void UartStream.receivedByte(uint8_t byte)
 	{
@@ -119,34 +113,31 @@ implementation
 
 	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error)
 	{
-		//TODO  UartStream.sendDone not used
+		// UartStream.sendDone not used
 	}
 	task void processReceiveBufferTask()
 	{
-		//TODO atomic copy of receive buffer to a local buffer	
     	uint8_t localBuf[COMMAND_RECEIVE_BUFFER_SIZE];
 		uint8_t type;
-	    data_packet_t localDataPacket;
+//	    data_packet_t localDataPacket;
+//	    status_packet_t localStatusPacket;
 	    command_packet_t localCommandPacket;
-	    status_packet_t localStatusPacket;
 	    
 	    atomic {
-	    	strncpy((char*)localBuf, (char*)receiveBuffer, pos<=COMMAND_RECEIVE_BUFFER_SIZE?pos:COMMAND_RECEIVE_BUFFER_SIZE);
+	    	memcpy((char*)localBuf, (char*)receiveBuffer, pos<=COMMAND_RECEIVE_BUFFER_SIZE?pos:COMMAND_RECEIVE_BUFFER_SIZE);
 	    	localBuf[pos]=0;
     	}
 	    type=call PacketTypes.getTypeOfPacket(localBuf);
 	    if(type!=PACKET_ERROR)
 	    {
-	    	call Leds.led0Toggle();
+//	    	call Leds.led0Toggle();
 	    }
 	    if(type == PACKET_COMMAND)
 	    {
 	        type=call PacketTypes.strToCommandPacket(&localCommandPacket, localBuf);
 	        if(type == PACKET_ERROR)
 	            return;
-	        //TODO we don't need to copy actually, think about it
-	        gCommandPacket = localCommandPacket;
-			signal CommandNotification.notify(gCommandPacket);
+			signal CommandNotification.notify(localCommandPacket);
 	    }
 //	    else if(type == PACKET_DATA)
 //	    {

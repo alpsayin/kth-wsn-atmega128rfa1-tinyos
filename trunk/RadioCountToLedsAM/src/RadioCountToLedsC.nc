@@ -166,11 +166,11 @@ implementation
 			msgLen = sprintf(msgBuf, "this board's ieee802.15.4 address is %d\n", call AMPacket.address());
 			call UartStream.send(msgBuf, msgLen);
 			call DisseminationControl.start();
-			call RoutingControl.start();
 			if(TOS_NODE_ID==2)
 			{
 				call RootControl.setRoot();
 			}
+			call RoutingControl.start();
 			printAddressRegisters();
 			call MilliTimer.startPeriodic(1000);
 			call TemperatureTimer.startPeriodic(500);
