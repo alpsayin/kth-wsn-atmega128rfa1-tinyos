@@ -1,18 +1,25 @@
 
 #include "ControllerConfig.h"
 
+#ifdef DEBUG_MODE
+#include <stdio.h>
+#endif
+
 module ControllerP{
 	
 	provides interface Init;
 	
 	//----------------------Connect to SensorC------------------------------
 	provides {
-		
+	
+		interface Set<uint8_t> as SPEnable;
 		interface Notify<status_packet_t>;
 			
 	}
 	
 	uses {
+		
+		interface Init as InitSensorC;
 		
 		interface Get<status_packet_t> as GetStatus;
 		interface Get<data_packet_t> as GetData;
@@ -34,7 +41,6 @@ module ControllerP{
 #ifdef DEBUG_MODE
 		interface StdControl as UartControl;
 		interface UartStream;
-		interface UartByte;
 #endif
 		
 		interface Notify<command_packet_t> as CommandNotification;
@@ -45,9 +51,13 @@ module ControllerP{
 	}
 	//----------------------------------------------------------------------
 	
-	//----------------------Connect to HplAtm128GeneralIOC------------------
+	//----------------------Connect to IOInterfaceC-------------------------
 	uses {
 		interface GeneralIO as CheckRoot;
+		interface GeneralIO as LightSensorEnable;
+		interface GeneralIO as HumiditySensorEnable;
+		interface GeneralIO as PressureSensorEnable;
+		interface GeneralIO as VoltageSensorEnable;
 	}
 	//----------------------------------------------------------------------
 	
@@ -55,15 +65,40 @@ module ControllerP{
 implementation{
 	
 	bool IAmRoot;
-		
+	
+#ifdef DEBUG_MODE
+/*********************************************************/
+	void PrintAValue(uint8_t Titile, uint16_t val)
+	{
+		uint16_t msgLen,msgBuf[16];
+		call UartStream.send(&Titile, 1);
+		msgLen = sprintf(msgBuf, " = %d\r\n", val);
+		call UartStream.send(msgBuf, msgLen);
+	}
+/*********************************************************/
+#endif
+	
 	command error_t Init.init(){
-		
+
 		call CheckRoot.makeInput();
-		IAmRoot = call CheckRoot.get();
+		IAmRoot = !(call CheckRoot.get());	//port with internal pull-up, default value is '1', reverse it here
 		if(IAmRoot)		//if I am root, setup the serial part
-		{
-			;
-		}
+			call CommandNotification.enable();
+		else
+			call CommandNotification.disable();
+		
+		call InitSensorC.init();
+
+
+		
+#ifdef DEBUG_MODE
+/*********************************************************/
+
+		call UartControl.start();
+
+
+/*********************************************************/
+#endif
 		
 		return SUCCESS;
 	}
@@ -76,7 +111,7 @@ implementation{
 		{
 			call ForwardData.setNow(SampleDataBuffer[i_ForwardDataToSerial]);
 		}
-		return SUCCESS
+		return SUCCESS;
 	}
 
 //
@@ -145,7 +180,7 @@ implementation{
 //this function will be executed if there is a command received from serial port
 	event void CommandNotification.notify(command_packet_t val){
 		status_packet_t status_temp,status_new;
-//		bool correct=FALSE;
+
 		//TODO broadcast this val to radio first
 		
 		status_temp = call GetStatus.get();
@@ -216,4 +251,10 @@ implementation{
 /***********************************************************/
 #endif
 
+	command void SPEnable.set(uint8_t val){
+		// TODO set the power supply for the sensors by set the value to the pins
+		// with xxxSensorEnable interface
+		//
+		// for future work
+	}
 }

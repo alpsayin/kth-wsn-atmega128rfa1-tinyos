@@ -18,7 +18,7 @@ module SensorControlP{
 	provides {
 	
 		interface Init;						//for initial
-
+		
 //		interface Set<status_packet_t>;
 		interface Get<status_packet_t> as GetStatus;	//provide the status for the upper components to check the state
 		interface Get<data_packet_t> as GetData;		//transport the data from the history buffer to upper components
@@ -26,6 +26,8 @@ module SensorControlP{
 	}
 	
 	uses {
+		
+		interface Set<uint8_t> as SPEnable;		//SensorPowerEnable
 		
 		interface Read<data_packet_t> as ReadAdc;		//read a sample from SensorSubsystemC
 		interface Timer<TMilli> as Timer0;			//internal timer for periodical reading
@@ -61,6 +63,7 @@ implementation{
 #ifdef LED_SENSOR_ENABLE
 		call Leds.led0Toggle();
 #endif
+		call SPEnable.set(0xff);			//open all 8 sensors' power supply(some of them are reserved)
 		call ReadAdc.read();
 		
 	}
@@ -167,6 +170,9 @@ implementation{
 				call Notify.enable();
 			}
 		}
+		
+		call SPEnable.set(0x00);				//shut down all 8 sensors' power supply(some of them are reserved)
+		
 	}
 
 	command data_packet_t GetData.get(){		//read a sample out from data buffer(Queue) if it is not empty
@@ -179,4 +185,5 @@ implementation{
 			return (call StoreData.dequeue());
 			
 	}
+
 }

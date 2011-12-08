@@ -27,6 +27,9 @@ configuration SensorControlC{
 	
 	uses {
 		
+		interface Set<uint8_t> as SPEnable;		//SensorPowerEnable
+		
+		
 		interface Read<data_packet_t> as ReadAdc;
 		interface Queue<data_packet_t> as StoreData;
 		interface Notify<status_packet_t>;
@@ -50,6 +53,8 @@ implementation{
 	Notify		= SensorControlP;
 	
 	SensorControlP.Timer0 -> Timer0;
+	
+	SPEnable	= SensorControlP;
 	
 #ifdef LED_SENSOR_ENABLE
 	Leds = SensorControlP.Leds;
