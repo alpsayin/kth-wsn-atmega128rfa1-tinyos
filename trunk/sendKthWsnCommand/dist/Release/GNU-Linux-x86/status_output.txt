@@ -1,3 +1,0 @@
-#	node_id	burst_interval	interval_type	history_enable	burst_enable
-
-2	16	days	1	1	
