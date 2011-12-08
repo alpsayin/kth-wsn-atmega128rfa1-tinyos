@@ -1,11 +1,14 @@
+
+#include "packet_types.h"
+
 configuration SerialPacketSocketAppC {}
 implementation
 {
 	components MainC, SerialPacketSocketC, PlatformSerialC, LedsC;
 	components new PacketTypesP() as PacketTypesImpl;
-	components new QueueC(data_packet_t, 255) as DataQueue;
-	components new QueueC(command_packet_t, 32) as CommandQueue;
-	components new QueueC(status_packet_t, 32) as StatusQueue;
+	components new QueueC(data_packet_t, QUEUE_SIZE_SERIAL_DATA) as DataQueue;
+	components new QueueC(command_packet_t, QUEUE_SIZE_SERIAL_COMMAND) as CommandQueue;
+	components new QueueC(status_packet_t, QUEUE_SIZE_SERIAL_STATUS) as StatusQueue;
 	
 	SerialPacketSocketC.PacketTypes -> PacketTypesImpl;
 	SerialPacketSocketC.Boot -> MainC.Boot;
