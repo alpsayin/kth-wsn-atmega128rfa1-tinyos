@@ -2,10 +2,12 @@
 #include "ControllerConfig.h"
 
 module ControllerP{
+	
+	provides interface Init;
+	
 	//----------------------Connect to SensorC------------------------------
 	provides {
 		
-		interface Init;
 		interface Notify<status_packet_t>;
 			
 	}
@@ -29,11 +31,11 @@ module ControllerP{
 	//provides {}
 	
 	uses {
-		
+#ifdef DEBUG_MODE
 		interface StdControl as UartControl;
 		interface UartStream;
 		interface UartByte;
-		
+#endif
 		
 		interface Notify<command_packet_t> as CommandNotification;
 		interface SetNow<command_packet_t> as ForwardCommand;
@@ -65,6 +67,18 @@ implementation{
 		
 		return SUCCESS;
 	}
+
+	error_t ForwardDataToSerial(data_packet_t * SampleDataBuffer,uint8_t i_Limitation)
+	{
+		uint8_t i_ForwardDataToSerial;
+		
+		for(i_ForwardDataToSerial = 0;i_ForwardDataToSerial<i_Limitation;i_ForwardDataToSerial++)
+		{
+			call ForwardData.setNow(SampleDataBuffer[i_ForwardDataToSerial]);
+		}
+		return SUCCESS
+	}
+
 //
 //Every time this function called, it means the SensorC wants to send some data out, read all the data_packet_t
 //one by one until see a data packet marked from source '0'. then send them out together
@@ -73,28 +87,36 @@ implementation{
 //as an example
 //
 	command error_t Notify.enable(){
+	
 		data_packet_t SampleDataBuffer[CONTROLLER_BUFFER_SIZE];
 		
-		uint8_t i,iteration;
+		uint8_t i_Notify_enable;
 		
-		i = 0;
+		i_Notify_enable = 0;
 		do
 		{
-			if(i < CONTROLLER_BUFFER_SIZE)
+			if(i_Notify_enable < CONTROLLER_BUFFER_SIZE)
 			{
-				SampleDataBuffer[i] = call GetData.get();
-				i++;
+				SampleDataBuffer[i_Notify_enable] = call GetData.get();
+				i_Notify_enable++;
 			}
 			else
 			{
 				//send all the data in this buffer, need to be added later
+				if(IAmRoot)
+					ForwardDataToSerial(SampleDataBuffer,CONTROLLER_BUFFER_SIZE);
+				//else
+					//;//TODO send from radio
 				//--------------here---------------
 				SampleDataBuffer[0] = call GetData.get();
-				i = 1;
+				i_Notify_enable = 1;
 			}
 		
-		}while(SampleDataBuffer[i-1].source != 0);
-		
+		}while(SampleDataBuffer[i_Notify_enable-1].source != 0);
+		if(IAmRoot)
+			ForwardDataToSerial(SampleDataBuffer, ((i_Notify_enable>0)?(i_Notify_enable-1):(0)));
+		//else
+			//;//TODO send from radio
 		return SUCCESS;
 	}
 
@@ -115,7 +137,7 @@ implementation{
 			}
 			else
 			{
-				//send this data through radio
+				//TODO send this data through radio
 			}
 		}
 	}
