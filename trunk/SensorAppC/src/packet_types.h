@@ -2,7 +2,7 @@
  * File:   packet_types.h
  * Author: alpsayin
  *
- * Created on December 2, 2011, 12:08 AM
+ * Created on December 7, 2011, 12:08 AM
  */
 
 #ifndef PACKET_TYPES_H
@@ -10,7 +10,7 @@
 
 #include <inttypes.h>
 
-//#define DEFAULT_TIMER_BOUNDARY 48		//commented by zn, moved to SensorConfig.h
+//#define DEFAULT_TIMER_BOUNDARY 48 //as: will be defined in another file
 
 #ifdef	__cplusplus
 extern "C" {
@@ -24,7 +24,7 @@ extern "C" {
 #define HIGH(n) ((n>>4) & 0x0F)
 #endif
 
-//[0:111OpVaAddr]
+//[0:WHBOpVaAddr]
 #define SIZE_COMMAND (3+3+2+2+4+1)
 //[1:Dat1Dat2Dat3Dat4Dat5Addr]
 #define SIZE_DATA (3+(7*4)+1)
@@ -36,6 +36,13 @@ extern "C" {
 #define HUMIDITY data3
 #define LUMINOSITY data4
 #define BATTERY data5
+
+#define QUEUE_SIZE_SERIAL_DATA 255
+#define QUEUE_SIZE_SERIAL_STATUS 32
+#define QUEUE_SIZE_SERIAL_COMMAND 32
+
+#define HEX2ASCII(x) ((x>=0&&x<=15)?(x<10?(x+'0'):(x-10+'a')):'N')
+#define ASCII2HEX(c) ((c>='0'&&c<='9')?(c-'0'):(c>='a'&&c<='f')?(c-'a'):(c>='A'&&c<='F')?(c-'A'):0)
 
     typedef struct status_packet
     {
@@ -95,15 +102,16 @@ extern "C" {
         PACKET_DATA,
         PACKET_STATUS
     };
-    
+
+#ifdef ALIX
     int strToCommandPacket(command_packet_t* cp, char* buf);
     int strToDataPacket(data_packet_t* dp, char* buf);
     int strToStatusPacket(status_packet_t* sp, char* buf);
-    int commandToBuffer(command_packet_t* cp, char* buf);
     int commandPacketToStr(command_packet_t* dp, char* buf);
     int dataPacketToStr(data_packet_t* dp, char* buf);
     int statusPacketToStr(status_packet_t* dp, char* buf);
     int getTypeOfPacket(char* buf);
+#endif
 
 
 #ifdef	__cplusplus
@@ -111,3 +119,4 @@ extern "C" {
 #endif
 
 #endif	/* PACKET_TYPES_H */
+

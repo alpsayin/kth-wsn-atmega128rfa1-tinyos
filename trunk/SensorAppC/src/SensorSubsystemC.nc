@@ -30,19 +30,25 @@ implementation{
 	
 	components SensorSubsystemP;
 	
-	components new PlatformSensorC(Sensor_Channel_T) as TempSensor;
-	components new PlatformSensorC(Sensor_Channel_6) as vol0;
-	components new PlatformSensorC(Sensor_Channel_4) as vol1;
-	components new PlatformSensorC(Sensor_Channel_2) as vol2;
-	components new PlatformSensorC(Sensor_Channel_3) as vol3;
+	components new PlatformSensorC(PRE_DEFINE_CHANNEL_1) as Data1;
+	components new PlatformSensorC(PRE_DEFINE_CHANNEL_2) as Data2;
+	components new PlatformSensorC(PRE_DEFINE_CHANNEL_3) as Data3;
+	components new PlatformSensorC(PRE_DEFINE_CHANNEL_4) as Data4;
+	components new PlatformSensorC(PRE_DEFINE_CHANNEL_5) as Data5;
+	components new PlatformSensorC(PRE_DEFINE_CHANNEL_6) as Data6;
+	components new PlatformSensorC(PRE_DEFINE_CHANNEL_7) as Data7;
+	components new PlatformSensorC(PRE_DEFINE_CHANNEL_8) as Data8;
 
 	Read		= SensorSubsystemP.Read;
 	ReadOne		= SensorSubsystemP.ReadOne;
 	
-	SensorSubsystemP.TempADC -> TempSensor.Read;
-	SensorSubsystemP.vol0ADC -> vol0.Read;
-	SensorSubsystemP.vol1ADC -> vol1.Read;
-	SensorSubsystemP.vol2ADC -> vol2.Read;
-	SensorSubsystemP.vol3ADC -> vol3.Read;
+	SensorSubsystemP.Data1ADC -> Data1.Read;
+	SensorSubsystemP.Data2ADC -> Data2.Read;
+	SensorSubsystemP.Data3ADC -> Data3.Read;
+	SensorSubsystemP.Data4ADC -> Data4.Read;
+	SensorSubsystemP.Data5ADC -> Data5.Read;
+	SensorSubsystemP.Data6ADC -> Data6.Read;
+	SensorSubsystemP.Data7ADC -> Data7.Read;
+	SensorSubsystemP.Data8ADC -> Data8.Read;
 	
 }

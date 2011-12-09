@@ -34,7 +34,25 @@
 
 #define LED_SENSOR_ENABLE
 
-#define CONSTANT_NODE_ID
+#define PRE_DEFINE_CHANNEL_1 Sensor_Channel_T	//Temperature
+#define PRE_DEFINE_CHANNEL_2 Sensor_Channel_T	//
+#define PRE_DEFINE_CHANNEL_3 Sensor_Channel_4	//Humidity
+#define PRE_DEFINE_CHANNEL_4 Sensor_Channel_6	//Light
+#define PRE_DEFINE_CHANNEL_5 Sensor_Channel_T	//
+#define PRE_DEFINE_CHANNEL_6 Sensor_Channel_T	//Reserved
+#define PRE_DEFINE_CHANNEL_7 Sensor_Channel_T	//Reserved
+#define PRE_DEFINE_CHANNEL_8 Sensor_Channel_T	//Reserved
+
+
+#define CHANNEL_1_EN 
+//#define CHANNEL_2_EN
+#define CHANNEL_3_EN
+#define CHANNEL_4_EN
+//#define CHANNEL_5_EN
+//#define CHANNEL_6_EN
+//#define CHANNEL_7_EN
+//#define CHANNEL_8_EN
+
 
 
 #endif /* SENSOR_CONFIG_H */

@@ -25,11 +25,14 @@ module SensorSubsystemP{
 	
 	uses {
 		
-		interface Read<uint16_t> as TempADC;
-		interface Read<uint16_t> as vol0ADC;
-		interface Read<uint16_t> as vol1ADC;
-		interface Read<uint16_t> as vol2ADC;
-		interface Read<uint16_t> as vol3ADC;
+		interface Read<uint16_t> as Data1ADC;
+		interface Read<uint16_t> as Data2ADC;
+		interface Read<uint16_t> as Data3ADC;
+		interface Read<uint16_t> as Data4ADC;
+		interface Read<uint16_t> as Data5ADC;
+		interface Read<uint16_t> as Data6ADC;
+		interface Read<uint16_t> as Data7ADC;
+		interface Read<uint16_t> as Data8ADC;
 		
 	}
 }
@@ -42,12 +45,7 @@ implementation{
 		
 		mode = TRUE;
 		
-		call TempADC.read();
-//		call vol0ADC.read();
-//		call vol1ADC.read();
-//		call vol2ADC.read();
-//		call vol3ADC.read();
-		
+		call Data1ADC.read();
 		
 		return SUCCESS;
 	}
@@ -57,53 +55,82 @@ implementation{
 		
 		mode = FALSE;
 		
-		call TempADC.read();
-//		call vol0ADC.read();
-//		call vol1ADC.read();
-//		call vol2ADC.read();
-//		call vol3ADC.read();
+		call Data1ADC.read();
 		
 		return SUCCESS;
 	}
 	
 
-	event void TempADC.readDone(error_t result, uint16_t val){
-		
+	event void Data1ADC.readDone(error_t result, uint16_t val){
+
+#ifdef CHANNEL_1_EN
 		if(SUCCESS == result)
-			sensorData.TEMPERATURE = val;
-			
-		call vol0ADC.read();
+			sensorData.data1 = val;
+#endif
+		call Data2ADC.read();
 	}
 
-	event void vol0ADC.readDone(error_t result, uint16_t val){
-		
+	event void Data2ADC.readDone(error_t result, uint16_t val){
+
+#ifdef CHANNEL_2_EN
 		if(SUCCESS == result)
-			sensorData.PRESSURE = val;
-			
-		call vol1ADC.read();
+			sensorData.data2 = val;
+#endif
+		call Data3ADC.read();
 	}
 
-	event void vol1ADC.readDone(error_t result, uint16_t val){
-		
+	event void Data3ADC.readDone(error_t result, uint16_t val){
+
+#ifdef CHANNEL_3_EN
 		if(SUCCESS == result)
-			sensorData.HUMIDITY = val;
-		
-		call vol2ADC.read();
+			sensorData.data3 = val;
+#endif
+		call Data4ADC.read();
 	}
 
-	event void vol2ADC.readDone(error_t result, uint16_t val){
-		
+	event void Data4ADC.readDone(error_t result, uint16_t val){
+
+#ifdef CHANNEL_4_EN
 		if(SUCCESS == result)
-			sensorData.LUMINOSITY = val;
-		
-		call vol3ADC.read();
+			sensorData.data4 = val;
+#endif
+		call Data5ADC.read();
 	}
 
-	event void vol3ADC.readDone(error_t result, uint16_t val){
-		
+	event void Data5ADC.readDone(error_t result, uint16_t val){
+
+#ifdef CHANNEL_5_EN
 		if(SUCCESS == result)
-			sensorData.BATTERY = val;
+			sensorData.data5 = val;
+#endif
+		call Data6ADC.read();
+	}
+
+	event void Data6ADC.readDone(error_t result, uint16_t val){
+
+#ifdef CHANNEL_6_EN
+		if(SUCCESS == result)
+			sensorData.data6 = val;
+#endif
+		call Data7ADC.read();
+	}
+
+	event void Data7ADC.readDone(error_t result, uint16_t val){
 		
+#ifdef CHANNEL_7_EN
+		if(SUCCESS == result)
+			sensorData.data7 = val;
+#endif
+		call Data8ADC.read();
+	}
+
+	event void Data8ADC.readDone(error_t result, uint16_t val){
+		
+#ifdef CHANNEL_8_EN
+		if(SUCCESS == result)
+			sensorData.data8 = val;
+#endif
+
 		if(mode)
 			signal Read.readDone(SUCCESS, sensorData);
 		else

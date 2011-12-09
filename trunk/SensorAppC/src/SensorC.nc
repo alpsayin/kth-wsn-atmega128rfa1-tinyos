@@ -31,7 +31,7 @@ configuration SensorC{
 		interface Init;
 		
 		interface Get<status_packet_t> as GetStatus;
-		interface Get<data_packet_t> as GetData;
+		interface ArrayPipe<data_packet_t> as GetData;
 		interface Read<data_packet_t> as GetDataOne;
 	
 	}

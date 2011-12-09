@@ -1,3 +1,17 @@
+//
+//
+//  IOInterfaceC.nc
+//
+//  aa
+//
+//  Created by Tian Junzhe on 12/9/11.
+//  Copyright 2011 KTH. All rights reserved.
+//
+//	zn
+//
+//
+
+
 configuration IOInterfaceC{
 	
 	provides {
