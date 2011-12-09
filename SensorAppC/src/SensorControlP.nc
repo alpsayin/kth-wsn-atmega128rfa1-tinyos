@@ -50,7 +50,7 @@ implementation{
         status.burstEnable		= 0;
         status.reserved			= 0;
         status.intervalType		= 0;
-        status.burstInterval	= 0;
+        status.burstInterval	= 10;
         status.node_id			= NODE_ID;
         
         DataZERO.source = 0;
@@ -70,7 +70,7 @@ implementation{
 	
 	error_t flushBuffer()
 	{
-		while(call StoreData.empty())
+		while(!call StoreData.empty())
 		{
 			call StoreData.dequeue();
 		}
@@ -128,8 +128,10 @@ implementation{
 	}
 
 	event void ReadAdc.readDone(error_t result, data_packet_t val){	//after the sampling of the adc, this function will executed one time
-				
-		val.source = status.node_id;
+		static uint16_t sequenceNumber = 0;
+		
+		val.source	= status.node_id;
+		val.seqNo	= sequenceNumber++;
 		
 		if(SUCCESS == result)
 		{
@@ -162,11 +164,13 @@ implementation{
 					call StoreData.enqueue(val);
 				}
 			}
-			
 			else
 			{
 				flushBuffer();
 				call StoreData.enqueue(val);
+#ifdef LED_SENSOR_ENABLE
+				call Leds.led1Toggle();
+#endif
 				call Notify.enable();
 			}
 		}
@@ -177,7 +181,7 @@ implementation{
 
 	command data_packet_t GetData.get(){		//read a sample out from data buffer(Queue) if it is not empty
 			
-		if(call StoreData.size())
+		if(call StoreData.empty())
 		{
 			return DataZERO;
 		}

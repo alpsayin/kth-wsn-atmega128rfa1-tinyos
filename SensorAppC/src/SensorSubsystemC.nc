@@ -31,8 +31,8 @@ implementation{
 	components SensorSubsystemP;
 	
 	components new PlatformSensorC(Sensor_Channel_T) as TempSensor;
-	components new PlatformSensorC(Sensor_Channel_0) as vol0;
-	components new PlatformSensorC(Sensor_Channel_1) as vol1;
+	components new PlatformSensorC(Sensor_Channel_6) as vol0;
+	components new PlatformSensorC(Sensor_Channel_4) as vol1;
 	components new PlatformSensorC(Sensor_Channel_2) as vol2;
 	components new PlatformSensorC(Sensor_Channel_3) as vol3;
 

@@ -29,9 +29,17 @@ module ControllerP{
 	//----------------------------------------------------------------------
 	
 	//----------------------Connect to RadioSubsystem-----------------------
-	//provides {}
-	
-	//uses {}
+	uses 
+	{
+		//these interfaces should be used by Controller to send packets/receive commands
+		//if a root is going to be set, it must be set with RootControl before Init
+		interface RootControl as RadioSubsystemRootControl;
+		interface Init as RadioSubsystemInit;
+		interface SetNow<data_packet_t> as SetRadioData;
+		interface SetNow<command_packet_t> as SetRadioCommand;
+		interface SetNow<status_packet_t> as SetRadioStatus;
+		interface Notify<command_packet_t> as NotifyRadioCommand;
+	}
 	//----------------------------------------------------------------------
 	
 	//----------------------Connect to SerialC------------------------------
@@ -40,13 +48,14 @@ module ControllerP{
 	uses {
 #ifdef DEBUG_MODE
 		interface StdControl as UartControl;
+		interface UartByte;
 		interface UartStream;
 #endif
 		
-		interface Notify<command_packet_t> as CommandNotification;
-		interface SetNow<command_packet_t> as ForwardCommand;
-		interface SetNow<data_packet_t> as ForwardData;
-		interface SetNow<status_packet_t> as ForwardStatus;
+//		interface Notify<command_packet_t> as CommandNotification;
+//		interface SetNow<command_packet_t> as ForwardCommand;
+//		interface SetNow<data_packet_t> as ForwardData;
+//		interface SetNow<status_packet_t> as ForwardStatus;
 		
 	}
 	//----------------------------------------------------------------------
@@ -70,10 +79,20 @@ implementation{
 /*********************************************************/
 	void PrintAValue(uint8_t Titile, uint16_t val)
 	{
-		uint16_t msgLen,msgBuf[16];
-		call UartStream.send(&Titile, 1);
-		msgLen = sprintf(msgBuf, " = %d\r\n", val);
-		call UartStream.send(msgBuf, msgLen);
+		uint8_t msgLen,msgBuf[32];
+		while(call UartStream.send(&Titile, 1)!=SUCCESS);
+		msgLen = sprintf(msgBuf, " = %d ", val);
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		if(Titile == 'q')
+		{
+			msgLen = sprintf(msgBuf, "\n\r");
+			while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		}
+		if(Titile == 'i')
+		{
+			msgLen = sprintf(msgBuf, "\n\n\r");
+			while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		}
 	}
 /*********************************************************/
 #endif
@@ -89,7 +108,7 @@ implementation{
 		
 		call InitSensorC.init();
 
-
+		
 		
 #ifdef DEBUG_MODE
 /*********************************************************/
@@ -103,13 +122,13 @@ implementation{
 		return SUCCESS;
 	}
 
-	error_t ForwardDataToSerial(data_packet_t * SampleDataBuffer,uint8_t i_Limitation)
+	error_t ForwardDataToRadio(data_packet_t * SampleDataBuffer,uint8_t i_Limitation)
 	{
-		uint8_t i_ForwardDataToSerial;
+		uint8_t ForwardDataToRadio;
 		
-		for(i_ForwardDataToSerial = 0;i_ForwardDataToSerial<i_Limitation;i_ForwardDataToSerial++)
+		for(ForwardDataToRadio = 0;ForwardDataToRadio<i_Limitation;ForwardDataToRadio++)
 		{
-			call ForwardData.setNow(SampleDataBuffer[i_ForwardDataToSerial]);
+			while(SUCCESS!=call SetRadioData.setNow(SampleDataBuffer[ForwardDataToRadio]));
 		}
 		return SUCCESS;
 	}
@@ -124,15 +143,33 @@ implementation{
 	command error_t Notify.enable(){
 	
 		data_packet_t SampleDataBuffer[CONTROLLER_BUFFER_SIZE];
-		
 		uint8_t i_Notify_enable;
 		
-		i_Notify_enable = 0;
+		SampleDataBuffer[0] = call GetData.get();
+		
+#ifdef DEBUG_MODE
+		PrintAValue('s',SampleDataBuffer[0].source);
+		PrintAValue('T',SampleDataBuffer[0].data1);
+		PrintAValue('L',SampleDataBuffer[0].data2);
+		PrintAValue('H',SampleDataBuffer[0].data3);
+		PrintAValue('q',SampleDataBuffer[0].seqNo);
+#endif
+		i_Notify_enable = 1;
+		
 		do
 		{
 			if(i_Notify_enable < CONTROLLER_BUFFER_SIZE)
 			{
 				SampleDataBuffer[i_Notify_enable] = call GetData.get();
+
+#ifdef DEBUG_MODE		
+				PrintAValue('s',SampleDataBuffer[i_Notify_enable].source);
+				PrintAValue('T',SampleDataBuffer[i_Notify_enable].data1);
+				PrintAValue('L',SampleDataBuffer[i_Notify_enable].data2);
+				PrintAValue('H',SampleDataBuffer[i_Notify_enable].data3);
+				PrintAValue('q',SampleDataBuffer[i_Notify_enable].seqNo);
+#endif
+		
 				i_Notify_enable++;
 			}
 			else
@@ -148,6 +185,11 @@ implementation{
 			}
 		
 		}while(SampleDataBuffer[i_Notify_enable-1].source != 0);
+		
+#ifdef DEBUG_MODE		
+		PrintAValue('i',i_Notify_enable);
+#endif
+		
 		if(IAmRoot)
 			ForwardDataToSerial(SampleDataBuffer, ((i_Notify_enable>0)?(i_Notify_enable-1):(0)));
 		//else
@@ -166,19 +208,19 @@ implementation{
 	event void GetDataOne.readDone(error_t result, data_packet_t val){
 		if(SUCCESS == result)
 		{
-			if(IAmRoot)
-			{
-				call ForwardData.setNow(val);
-			}
-			else
-			{
-				//TODO send this data through radio
-			}
+//			if(IAmRoot)
+//			{
+				call SetRadioData.setNow(val);
+//			}
+//			else
+//			{
+//				//TODO send this data through radio
+//			}
 		}
 	}
 
 //this function will be executed if there is a command received from serial port
-	event void CommandNotification.notify(command_packet_t val){
+	event void NotifyRadioCommand.notify(command_packet_t val){
 		status_packet_t status_temp,status_new;
 
 		//TODO broadcast this val to radio first

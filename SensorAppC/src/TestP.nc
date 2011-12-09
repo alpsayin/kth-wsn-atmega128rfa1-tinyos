@@ -39,8 +39,19 @@ module TestP{
 implementation{
 	
 	event void Boot.booted(){
+		
+		command_packet_t aa;
+		
 		call Init.init();
 		
+		aa.address	= 100;
+		aa.WE		= 1;
+		aa.BE		= 1;
+		aa.HE		= 1;
+		aa.opcode	= 0;
+		aa.value	= 1;
+		
+		signal CommandNotification.notify(aa);
 		
 	}
 
@@ -74,4 +85,5 @@ implementation{
 		// TODO Auto-generated method stub
 		return SUCCESS;
 	}
+
 }
