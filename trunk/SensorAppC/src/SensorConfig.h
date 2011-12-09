@@ -32,7 +32,7 @@
 #define DEFAULT_TIMER_BOUNDARY	48ul	//unit: day
 
 
-//#define LED_SENSOR_ENABLE
+#define LED_SENSOR_ENABLE
 
 #define CONSTANT_NODE_ID
 

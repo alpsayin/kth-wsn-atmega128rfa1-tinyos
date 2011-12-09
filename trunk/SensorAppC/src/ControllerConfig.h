@@ -14,5 +14,7 @@
 #define BROADCAST_ID 0xFFFF
 
 
+#define LED_CONTROLLER_ENABLE
+
 
 #endif /* CONTROLLER_CONFIG_H */

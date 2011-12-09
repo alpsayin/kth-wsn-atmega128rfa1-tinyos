@@ -26,9 +26,9 @@ configuration ControllerC{
 	uses {
 		
 		interface Notify<command_packet_t> as CommandNotification;
-		interface SetNow<command_packet_t> as ForwardCommand;
-		interface SetNow<data_packet_t> as ForwardData;
-		interface SetNow<status_packet_t> as ForwardStatus;
+		interface Set<command_packet_t> as ForwardCommand;
+		interface Set<data_packet_t> as ForwardData;
+		interface Set<status_packet_t> as ForwardStatus;
 		
 	}
 
@@ -45,13 +45,32 @@ implementation{
 	GetDataOne	= ControllerP.GetDataOne;
 	Notify		= ControllerP.Notify;
 
+//	CommandNotification	= ControllerP;
+//	ForwardStatus		= ControllerP;
+//	ForwardData			= ControllerP;
+//	ForwardCommand		= ControllerP;
+
+
 #ifdef DEBUG_MODE
 	components PlatformSerialC;
 	ControllerP.UartControl -> PlatformSerialC.UartControl;
+	ControllerP.UartByte	-> PlatformSerialC.UartByte;
 	ControllerP.UartStream	-> PlatformSerialC.UartStream;
 #endif
 	
 	components RadioSubsystemC;
+
+	ForwardCommand			= RadioSubsystemC.ForwardCommand;
+	ForwardData				= RadioSubsystemC.ForwardData;
+	ForwardStatus			= RadioSubsystemC.ForwardStatus;
+	CommandNotification		= RadioSubsystemC.NotifySerialCommand;
+	
+
+
+
+
+
+
 
 	components IOInterfaceC;
 	ControllerP.CheckRoot			-> IOInterfaceC.CheckRoot;
