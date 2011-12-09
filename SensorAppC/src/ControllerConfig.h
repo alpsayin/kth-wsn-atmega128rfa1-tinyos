@@ -1,8 +1,21 @@
+//
+//
+//  ControllerConfig.h
+//
+//  aa
+//
+//  Created by Tian Junzhe on 12/9/11.
+//  Copyright 2011 KTH. All rights reserved.
+//
+//	zn
+//
+//
+
+
+
 #ifndef CONTROLLER_CONFIG_H
 #define CONTROLLER_CONFIG_H
 
-
-#define DEBUG_MODE
 
 
 #include "packet_types.h"

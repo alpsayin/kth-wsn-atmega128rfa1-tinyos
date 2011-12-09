@@ -16,23 +16,57 @@ configuration bb{}
 
 implementation{
 	components MainC;
+
 	components SensorC;
 	components ControllerC;
+//	components RadioSubsystemC;
+//	components SerialPacketForwarderC;
+
 	components TestP;
 	
+	components new TimerMilliC() as TimerTest;
+	
+	
+	
+//	ControllerC.Boot	-> MainC.Boot;
+	
 	SensorC.Init		<- ControllerC.InitSensorC;
-	SensorC.SPEnable	-> ControllerC;
 	SensorC.GetData		<- ControllerC;
 	SensorC.GetDataOne	<- ControllerC;
 	SensorC.GetStatus	<- ControllerC;
+	SensorC.SPEnable	-> ControllerC;
 	SensorC.Notify		-> ControllerC;
 	
-	MainC.Boot <- TestP.Boot;
+//	ControllerC.RadioSubsystemRootControl	-> RadioSubsystemC;
+//	ControllerC.RadioSubsystemInit			-> RadioSubsystemC;
+//	ControllerC.SetRadioCommand				-> RadioSubsystemC;
+//	ControllerC.SetRadioData				-> RadioSubsystemC;
+//	ControllerC.SetRadioStatus				-> RadioSubsystemC;
+//	ControllerC.NotifyRadioCommand			-> RadioSubsystemC;
+//	
+//	RadioSubsystemC.ForwardCommand		->SerialPacketForwarderC;
+//	RadioSubsystemC.ForwardData			->SerialPacketForwarderC;
+//	RadioSubsystemC.ForwardStatus		->SerialPacketForwarderC;
+//	RadioSubsystemC.NotifySerialCommand	->SerialPacketForwarderC;
 	
-	ControllerC.CommandNotification -> TestP.CommandNotification;
-	ControllerC.ForwardCommand		-> TestP.ForwardCommand;
-	ControllerC.ForwardData			-> TestP.ForwardData;
-	ControllerC.ForwardStatus		-> TestP.ForwardStatus;
-	ControllerC.Init				<- TestP.Init;
+	
+	components PlatformSerialC;
+	
+	TestP.Timer_TestP -> TimerTest.Timer;
+	
+	TestP.UartControl -> PlatformSerialC.UartControl;
+	TestP.UartByte	-> PlatformSerialC.UartByte;
+	TestP.UartStream	-> PlatformSerialC.UartStream;
+	
+	ControllerC.Init						<- TestP;
+	ControllerC.RadioSubsystemRootControl	-> TestP;
+	ControllerC.RadioSubsystemInit			-> TestP;
+	ControllerC.SetRadioCommand				-> TestP;
+	ControllerC.SetRadioData				-> TestP;
+	ControllerC.SetRadioStatus				-> TestP;
+	ControllerC.NotifyRadioCommand			-> TestP;
+	
+	
+	MainC.Boot <- TestP.Boot;
 	
 }

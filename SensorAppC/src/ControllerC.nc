@@ -1,41 +1,53 @@
+//
+//
+//  ControllerC.nc
+//
+//  aa
+//
+//  Created by Tian Junzhe on 12/9/11.
+//  Copyright 2011 KTH. All rights reserved.
+//
+//	zn
+//
+//
+
 
 #include "ControllerConfig.h"
 
 configuration ControllerC{
 
+	uses interface Boot;
+	provides interface Init;
+	//----------------------Connect to SensorC------------------------------
 	provides {
-		
-		interface Init;
-		
 		interface Set<uint8_t> as SPEnable;
-		interface Notify<status_packet_t>;
-			
+		interface Notify<status_packet_t>;	
 	}
-	
 	uses {
-		
 		interface Init as InitSensorC;
-		
 		interface Get<status_packet_t> as GetStatus;
-		interface Get<data_packet_t> as GetData;
+		interface ArrayPipe<data_packet_t> as GetData;
 		interface Read<data_packet_t> as GetDataOne;
-		
 	}
-	
-//-----------------------connect to Serial Port------------------------------
-	uses {
-		
-		interface Notify<command_packet_t> as CommandNotification;
-		interface Set<command_packet_t> as ForwardCommand;
-		interface Set<data_packet_t> as ForwardData;
-		interface Set<status_packet_t> as ForwardStatus;
-		
+	//----------------------Connect to RadioSubsystem-----------------------
+	uses 
+	{
+		//these interfaces should be used by Controller to send packets/receive commands
+		//if a root is going to be set, it must be set with RootControl before Init
+		interface RootControl as RadioSubsystemRootControl;
+		interface Init as RadioSubsystemInit;
+		interface SetNow<data_packet_t> as SetRadioData;
+		interface SetNow<command_packet_t> as SetRadioCommand;
+		interface SetNow<status_packet_t> as SetRadioStatus;
+		interface Notify<command_packet_t> as NotifyRadioCommand;
 	}
-
 }
 implementation{
 	
 	components ControllerP;
+	
+	Boot		= ControllerP.Boot;
+	
 	Init		= ControllerP.Init;
 	InitSensorC = ControllerP.InitSensorC;
 	
@@ -43,35 +55,20 @@ implementation{
 	GetStatus	= ControllerP.GetStatus;
 	GetData		= ControllerP.GetData;
 	GetDataOne	= ControllerP.GetDataOne;
-	Notify		= ControllerP.Notify;
+	Notify		= ControllerP.SensorNotification;
 
 //	CommandNotification	= ControllerP;
 //	ForwardStatus		= ControllerP;
 //	ForwardData			= ControllerP;
 //	ForwardCommand		= ControllerP;
 
-
-#ifdef DEBUG_MODE
-	components PlatformSerialC;
-	ControllerP.UartControl -> PlatformSerialC.UartControl;
-	ControllerP.UartByte	-> PlatformSerialC.UartByte;
-	ControllerP.UartStream	-> PlatformSerialC.UartStream;
-#endif
+	RadioSubsystemRootControl	= ControllerP.RadioSubsystemRootControl;
+	RadioSubsystemInit			= ControllerP.RadioSubsystemInit;
+	SetRadioStatus				= ControllerP.SetRadioStatus;
+	SetRadioData				= ControllerP.SetRadioData;
+	SetRadioCommand				= ControllerP.SetRadioCommand;
+	NotifyRadioCommand			= ControllerP.NotifyRadioCommand;
 	
-	components RadioSubsystemC;
-
-	ForwardCommand			= RadioSubsystemC.ForwardCommand;
-	ForwardData				= RadioSubsystemC.ForwardData;
-	ForwardStatus			= RadioSubsystemC.ForwardStatus;
-	CommandNotification		= RadioSubsystemC.NotifySerialCommand;
-	
-
-
-
-
-
-
-
 	components IOInterfaceC;
 	ControllerP.CheckRoot			-> IOInterfaceC.CheckRoot;
 	ControllerP.LightSensorEnable	-> IOInterfaceC.LightSensorEnable;

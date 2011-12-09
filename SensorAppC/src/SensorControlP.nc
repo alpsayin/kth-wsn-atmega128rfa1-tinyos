@@ -21,7 +21,7 @@ module SensorControlP{
 		
 //		interface Set<status_packet_t>;
 		interface Get<status_packet_t> as GetStatus;	//provide the status for the upper components to check the state
-		interface Get<data_packet_t> as GetData;		//transport the data from the history buffer to upper components
+		interface ArrayPipe<data_packet_t> as GetData;		//transport the data from the history buffer to upper components
 	
 	}
 	
@@ -96,11 +96,10 @@ implementation{
 	
 	event void Notify.notify(status_packet_t val){	//configure the sensor status
 		
-		status_packet_t status_temp = status;
+//		status_packet_t status_temp = status;
 		status = val;
-#ifdef CONSTANT_NODE_ID 
-		status.node_id = status_temp.node_id;
-#endif
+//		status.node_id = status_temp.node_id;
+
 		if(status.historyEnable | status.burstEnable)
 		{
 #if TIMING_PHASE_SHIFT==0
@@ -113,14 +112,10 @@ implementation{
 		else
 			call Timer0.stop();
 
-		if((0 == status.historyEnable) && (1 == status_temp.historyEnable))	//flush the native data buffer
+		if(!status.historyEnable)// && (1 == status_temp.historyEnable))	//flush the native data buffer
 		{
 				flushBuffer();
 		}
-//		if(val.node_id)
-//		{
-//			status.node_id = NODE_ID;
-//		}		
 	}
 
 	command status_packet_t GetStatus.get(){		//read the sensor status out
@@ -178,16 +173,30 @@ implementation{
 		call SPEnable.set(0x00);				//shut down all 8 sensors' power supply(some of them are reserved)
 		
 	}
-
-	command data_packet_t GetData.get(){		//read a sample out from data buffer(Queue) if it is not empty
-			
-		if(call StoreData.empty())
+	
+	//get data from the history buffer
+	//return value is the number of the packets in the array
+	//if the array is full, return len
+	command uint8_t GetData.getArray(data_packet_t* val, uint8_t len){
+		
+		uint8_t i_Sensor_Buffer_GetData = 0;
+		
+		while(TRUE)
 		{
-			return DataZERO;
+			if((len==i_Sensor_Buffer_GetData) || (call StoreData.empty()))
+			{
+					return i_Sensor_Buffer_GetData;
+			}
+			else
+				val[i_Sensor_Buffer_GetData++] = call StoreData.dequeue();
 		}
-		else
-			return (call StoreData.dequeue());
-			
+		
 	}
+
+/**************Not used here***********************************/
+	command error_t GetData.sendArray(data_packet_t *val, uint8_t len){
+		return SUCCESS;
+	}
+/**************************************************************/
 
 }
