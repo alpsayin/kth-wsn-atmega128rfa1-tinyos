@@ -9,6 +9,7 @@ configuration RadioSubsystemC
 		//if a root is going to be set, it must be set with RootControl before Init
 		interface RootControl as RadioSubsystemRootControl;
 		interface Init as RadioSubsystemInit;
+		interface ArrayPipe<data_packet_t> as SetRadioHistory;
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
@@ -29,6 +30,7 @@ implementation
 	components RadioSubsystemP;
 	
 	RadioSubsystemInit = RadioSubsystemP.RadioSubsystemInit;
+	SetRadioHistory = RadioSubsystemP.SetRadioHistory;
 	SetRadioData = RadioSubsystemP.SetRadioData;
 	SetRadioStatus = RadioSubsystemP.SetRadioStatus;
 	SetRadioCommand = RadioSubsystemP.SetRadioCommand;
@@ -42,11 +44,8 @@ implementation
 	//components MainC;
 	//MainC.SoftwareInit -> RadioSubsystemP.RadioSubsystemInit;
 	
-	
-  components ActiveMessageC;
-  RadioSubsystemP.AMControl -> ActiveMessageC;
-//  RadioSubsystemP.AMPacket -> ActiveMessageC.AMPacket;
-  
+	components ActiveMessageC;
+	RadioSubsystemP.AMControl -> ActiveMessageC;
 	
 	components LedsC;
   	RadioSubsystemP.Leds -> LedsC;
