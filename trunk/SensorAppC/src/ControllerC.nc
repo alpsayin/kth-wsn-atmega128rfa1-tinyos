@@ -41,10 +41,17 @@ configuration ControllerC{
 		interface SetNow<status_packet_t> as SetRadioStatus;
 		interface Notify<command_packet_t> as NotifyRadioCommand;
 	}
+	//----------------------Connect to SerialPacketForwarder----------------
+	uses
+	{
+		interface Init as SerialPacketForwarderInit;
+	}
 }
 implementation{
 	
 	components ControllerP;
+	components IOInterfaceC;
+	
 	
 	Boot		= ControllerP.Boot;
 	
@@ -64,12 +71,15 @@ implementation{
 
 	RadioSubsystemRootControl	= ControllerP.RadioSubsystemRootControl;
 	RadioSubsystemInit			= ControllerP.RadioSubsystemInit;
+	SerialPacketForwarderInit	= ControllerP.SerialPacketForwarderInit;
 	SetRadioStatus				= ControllerP.SetRadioStatus;
 	SetRadioData				= ControllerP.SetRadioData;
 	SetRadioCommand				= ControllerP.SetRadioCommand;
 	NotifyRadioCommand			= ControllerP.NotifyRadioCommand;
 	
-	components IOInterfaceC;
+	
+	
+	
 	ControllerP.CheckRoot			-> IOInterfaceC.CheckRoot;
 	ControllerP.LightSensorEnable	-> IOInterfaceC.LightSensorEnable;
 	ControllerP.HumiditySensorEnable-> IOInterfaceC.HumiditySensorEnable;

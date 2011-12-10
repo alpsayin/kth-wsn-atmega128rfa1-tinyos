@@ -54,23 +54,6 @@ module TestP{
 implementation{
 
 /*********************************************************/
-	void PrintAValue(uint8_t Titile, uint16_t val)
-	{
-		uint8_t msgLen,msgBuf[32];
-		while(call UartStream.send(&Titile, 1)!=SUCCESS);
-		msgLen = sprintf(msgBuf, " = %d ", val);
-		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
-		if(Titile == 'q')
-		{
-			msgLen = sprintf(msgBuf, "\n\r");
-			while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
-		}
-		if(Titile == 'i')
-		{
-			msgLen = sprintf(msgBuf, "\n\n\r");
-			while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
-		}
-	}
 
 	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error){
 		// TODO Auto-generated method stub
@@ -89,16 +72,27 @@ implementation{
 	
 	event void Boot.booted(){
 		
-		
+		uint8_t msgLen,msgBuf[128];
 		
 /*********************************************************/
 		call UartControl.start();
 /*********************************************************/
 		
+		msgLen = sprintf(msgBuf, "\n\r**********************************************\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		msgLen = sprintf(msgBuf, "\n\r   This is a test program for Sensor Node\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		msgLen = sprintf(msgBuf, "\n\r   Testing components: SensorC\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		msgLen = sprintf(msgBuf, "\n\r                       ControllerC\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		msgLen = sprintf(msgBuf, "\n\r**********************************************\n\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		
 		
 		while(SUCCESS!=call Init.init());
 		
-		call Timer_TestP.startPeriodic(23000);
+		call Timer_TestP.startPeriodic(33333);
 		
 	}
 
@@ -110,15 +104,25 @@ implementation{
 	
 
 	command error_t RadioSubsystemRootControl.setRoot(){
+		uint8_t msgLen,msgBuf[32];
+		
+		msgLen = sprintf(msgBuf, "\n\rI am set as Root\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		
 		return SUCCESS;
 	}
 
 	command error_t RadioSubsystemRootControl.unsetRoot(){
+		uint8_t msgLen,msgBuf[32];
+		
+		msgLen = sprintf(msgBuf, "\n\rI am unset as Root\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		
 		return SUCCESS;
 	}
 
 	command bool RadioSubsystemRootControl.isRoot(){
-		return TRUE;
+		return FALSE;
 	}
 
 	command error_t RadioSubsystemInit.init(){
@@ -129,7 +133,7 @@ implementation{
 		
 		uint8_t msgLen,msgBuf[128];
 		
-		msgLen = sprintf(msgBuf, "C:WE-%d\tHE-%d\tBE-%d\tOP-%d\tVL-%d\tAD-%d\n\r"
+		msgLen = sprintf(msgBuf, "\n\r\tC:WE-%d\tHE-%d\tBE-%d\tOP-%d\tVL-%d\tAD-%d\n\n\r"
 			,val.WE, val.HE, val.BE, val.opcode, val.value, val.address);
 		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
 		
@@ -140,7 +144,7 @@ implementation{
 	async command error_t SetRadioData.setNow(data_packet_t val){
 		uint8_t msgLen,msgBuf[128];
 		
-		msgLen = sprintf(msgBuf, "D:S-%d\tD1-%d\tD2-%d\tD3-%d\tD4-%d\tD5-%d\tSq-%d\n\r"
+		msgLen = sprintf(msgBuf, "\tD:S-%d\tD1-%d\tD2-%d\tD3-%d\tD4-%d\tD5-%d\tSq-%d\n\r"
 			,val.source, val.data1, val.data2, val.data3, val.data4, val.data5, val.seqNo);
 		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
 		
@@ -150,7 +154,7 @@ implementation{
 	async command error_t SetRadioStatus.setNow(status_packet_t val){
 		uint8_t msgLen,msgBuf[128];
 		
-		msgLen = sprintf(msgBuf, "S:ID-%d\tHE-%d\tBE-%d\tRS-%d\tIT-%d\tBI-%d\n\r"
+		msgLen = sprintf(msgBuf, "\n\r\tS:ID-%d\tHE-%d\tBE-%d\tRS-%d\tIT-%d\tBI-%d\n\n\r"
 			,val.node_id, val.historyEnable, val.burstEnable, val.reserved, val.intervalType, val.burstInterval);
 		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
 		
@@ -173,24 +177,84 @@ implementation{
 
 	event void Timer_TestP.fired(){
 		static uint8_t counter = 0;
+		static uint8_t op_counter = 0;
 		command_packet_t aa;
 		
 		
 		uint8_t msgLen,msgBuf[128];
 		
-		msgLen = sprintf(msgBuf, "\n\rOPCODE: %d\n\n\r", counter);
+		msgLen = sprintf(msgBuf, "\n\rcase: %d\n\r", counter);
 		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
 		
-		aa.address	= 100;
-		aa.WE		= 1;
-		aa.BE		= 1;
-		aa.HE		= 1;
-		aa.opcode	= counter;
-		aa.value	= 1;
+		switch(counter)
+		{
+			case 0:
+				aa.address	= 101;		//echo command not for me
+				aa.WE		= 1;
+				aa.BE		= 1;
+				aa.HE		= 1;
+				aa.opcode	= 1;
+				aa.value	= 1;
+				break;
+			case 1:
+				aa.address	= 101;		//configer command not for me
+				aa.WE		= 1;
+				aa.BE		= 1;
+				aa.HE		= 1;
+				aa.opcode	= 0;
+				aa.value	= 1;
+				break;
+			case 2:
+				aa.address	= 100;		//echo command for me
+				aa.WE		= 0;
+				aa.BE		= 1;
+				aa.HE		= 1;
+				aa.opcode	= 1;
+				aa.value	= 1;
+				break;
+			case 3:
+				aa.address	= 100;		//write enable test
+				aa.WE		= 0;
+				aa.BE		= 1;
+				aa.HE		= 1;
+				aa.opcode	= 0;
+				aa.value	= 1;
+				break;
+			case 4:
+				aa.address	= 100;		//burst enable test
+				aa.WE		= 1;
+				aa.BE		= 1;
+				aa.HE		= 0;
+				aa.opcode	= 0;
+				aa.value	= 1;
+				break;
+			case 5:
+				aa.address	= 100;		//history enable test
+				aa.WE		= 1;
+				aa.BE		= 0;
+				aa.HE		= 1;
+				aa.opcode	= 0;
+				aa.value	= 1;
+				break;
+			case 6:
+				aa.address	= 100;		//enable both history and burst
+				aa.WE		= 1;
+				aa.BE		= 1;
+				aa.HE		= 1;
+				aa.opcode	= 0;
+				aa.value	= 1;
+				break;
+			default:
+				aa.opcode	= op_counter;		// test for different opcode, from 0
+				op_counter = ((++op_counter) % 9);
+		}		
+		
+		msgLen = sprintf(msgBuf, "\topcode: %d\n\n\r", aa.opcode);
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
 		
 		signal NotifyRadioCommand.notify(aa);
-		
-		counter = ((++counter) % 8);
-		
+		counter++;
+		if(counter > 20)
+			call Timer_TestP.stop();
 	}
 }

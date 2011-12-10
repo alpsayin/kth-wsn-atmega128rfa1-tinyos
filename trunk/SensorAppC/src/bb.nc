@@ -11,6 +11,7 @@
 //
 //
 
+//#define DEBUG_SENSOR_MODE
 
 configuration bb{}
 
@@ -19,43 +20,50 @@ implementation{
 
 	components SensorC;
 	components ControllerC;
-//	components RadioSubsystemC;
-//	components SerialPacketForwarderC;
-
+#ifndef DEBUG_SENSOR_MODE
+	components RadioSubsystemC;
+	components SerialPacketForwarderC;
+#else
+	components PlatformSerialC;
 	components TestP;
-	
 	components new TimerMilliC() as TimerTest;
+#endif	
 	
 	
-	
-//	ControllerC.Boot	-> MainC.Boot;
-	
+#ifndef DEBUG_SENSOR_MODE	
+	ControllerC.Boot	-> MainC.Boot;
+#endif
+
 	SensorC.Init		<- ControllerC.InitSensorC;
 	SensorC.GetData		<- ControllerC;
 	SensorC.GetDataOne	<- ControllerC;
 	SensorC.GetStatus	<- ControllerC;
 	SensorC.SPEnable	-> ControllerC;
 	SensorC.Notify		-> ControllerC;
+
+#ifndef DEBUG_SENSOR_MODE
+	ControllerC.RadioSubsystemRootControl	-> RadioSubsystemC;
+	ControllerC.RadioSubsystemInit			-> RadioSubsystemC;
+	ControllerC.SetRadioCommand				-> RadioSubsystemC;
+	ControllerC.SetRadioData				-> RadioSubsystemC;
+	ControllerC.SetRadioStatus				-> RadioSubsystemC;
+	ControllerC.NotifyRadioCommand			-> RadioSubsystemC;
 	
-//	ControllerC.RadioSubsystemRootControl	-> RadioSubsystemC;
-//	ControllerC.RadioSubsystemInit			-> RadioSubsystemC;
-//	ControllerC.SetRadioCommand				-> RadioSubsystemC;
-//	ControllerC.SetRadioData				-> RadioSubsystemC;
-//	ControllerC.SetRadioStatus				-> RadioSubsystemC;
-//	ControllerC.NotifyRadioCommand			-> RadioSubsystemC;
-//	
-//	RadioSubsystemC.ForwardCommand		->SerialPacketForwarderC;
-//	RadioSubsystemC.ForwardData			->SerialPacketForwarderC;
-//	RadioSubsystemC.ForwardStatus		->SerialPacketForwarderC;
-//	RadioSubsystemC.NotifySerialCommand	->SerialPacketForwarderC;
+	ControllerC.SerialPacketForwarderInit	-> SerialPacketForwarderC;
 	
+	RadioSubsystemC.ForwardCommand		-> SerialPacketForwarderC;
+	RadioSubsystemC.ForwardData			-> SerialPacketForwarderC;
+	RadioSubsystemC.ForwardStatus		-> SerialPacketForwarderC;
+	RadioSubsystemC.NotifySerialCommand	-> SerialPacketForwarderC;
+
+#else
 	
-	components PlatformSerialC;
-	
+	MainC.Boot <- TestP.Boot;
+
 	TestP.Timer_TestP -> TimerTest.Timer;
 	
-	TestP.UartControl -> PlatformSerialC.UartControl;
-	TestP.UartByte	-> PlatformSerialC.UartByte;
+	TestP.UartControl	-> PlatformSerialC.UartControl;
+	TestP.UartByte		-> PlatformSerialC.UartByte;
 	TestP.UartStream	-> PlatformSerialC.UartStream;
 	
 	ControllerC.Init						<- TestP;
@@ -66,7 +74,5 @@ implementation{
 	ControllerC.SetRadioStatus				-> TestP;
 	ControllerC.NotifyRadioCommand			-> TestP;
 	
-	
-	MainC.Boot <- TestP.Boot;
-	
+#endif	
 }

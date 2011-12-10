@@ -44,9 +44,9 @@ module RadioSubsystemP
 		interface Send as StatusCollectionSend;
 		interface Receive as StatusCollectionReceive;
 		
-		interface Set<data_packet_t> as ForwardData;
-		interface Set<status_packet_t> as ForwardStatus;
-		interface Set<command_packet_t> as ForwardCommand;
+		interface SetNow<data_packet_t> as ForwardData;
+		interface SetNow<status_packet_t> as ForwardStatus;
+		interface SetNow<command_packet_t> as ForwardCommand;
 		interface Notify<command_packet_t> as NotifySerialCommand;
 	}
 
@@ -104,7 +104,7 @@ implementation
 	event message_t * DataCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
 	{
 		data_packet_t* dataPtr = (data_packet_t*)payload;
-		while(call ForwardData.set(*dataPtr)!=SUCCESS);
+		while(call ForwardData.setNow(*dataPtr)!=SUCCESS);
 		return msg;
 	}
 
@@ -114,7 +114,7 @@ implementation
 		data_packet_t* historyPtr = (data_packet_t*)payload;
 		for(i=0; i<RADIO_HISTORY_SIZE; i++)
 		{
-			while(call ForwardData.set(historyPtr[i])!=SUCCESS);
+			while(call ForwardData.setNow(historyPtr[i])!=SUCCESS);
 		}
 		return msg;
 	}
@@ -122,14 +122,14 @@ implementation
 	event message_t * CommandCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
 	{
 		command_packet_t* commandPtr = (command_packet_t*)payload;
-		while(call ForwardCommand.set(*commandPtr)!=SUCCESS);
+		while(call ForwardCommand.setNow(*commandPtr)!=SUCCESS);
 		return msg;
 	}
 
 	event message_t * StatusCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
 	{
 		status_packet_t* statusPtr = (status_packet_t*)payload;
-		while(call ForwardStatus.set(*statusPtr)!=SUCCESS);
+		while(call ForwardStatus.setNow(*statusPtr)!=SUCCESS);
 		return msg;
 	}
 

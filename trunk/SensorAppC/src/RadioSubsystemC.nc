@@ -19,9 +19,9 @@ configuration RadioSubsystemC
 	{
 		//these interfaces should be wired to SerialPacketForwarderC
 		//they shouldn't be used by controller
-		interface Set<data_packet_t> as ForwardData;
-		interface Set<status_packet_t> as ForwardStatus;
-		interface Set<command_packet_t> as ForwardCommand;
+		interface SetNow<data_packet_t> as ForwardData;
+		interface SetNow<status_packet_t> as ForwardStatus;
+		interface SetNow<command_packet_t> as ForwardCommand;
 		interface Notify<command_packet_t> as NotifySerialCommand;
 	}
 }
