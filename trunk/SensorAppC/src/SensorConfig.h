@@ -20,9 +20,12 @@
 #include "packet_types.h"
 #include "PlatformSensorChannel.h"
 
-#define NODE_ID 100					//Only for testing
+#ifndef NODE_ID
+#define NODE_ID 100
+#endif
 
-#define BUFFER_SIZE 20
+#define BUFFER_SIZE 255
+//#define BUFFER_SIZE 10
 
 //TIMER_UNIT	TSecond
 #define TIMER_SCALE 1000
