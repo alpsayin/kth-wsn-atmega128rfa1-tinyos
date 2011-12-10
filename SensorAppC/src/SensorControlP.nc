@@ -41,8 +41,8 @@ module SensorControlP{
 }
 implementation{
 
-	status_packet_t status;
-	data_packet_t DataZERO;
+	static status_packet_t status;
+	static data_packet_t tempData;
 
 	command error_t Init.init(){			//initial function
 		
@@ -53,8 +53,6 @@ implementation{
         status.burstInterval	= 10;
         status.node_id			= NODE_ID;
         
-        DataZERO.source = 0;
-		
 		return SUCCESS;
 	}
 
@@ -66,15 +64,6 @@ implementation{
 		call SPEnable.set(0xff);			//open all 8 sensors' power supply(some of them are reserved)
 		call ReadAdc.read();
 		
-	}
-	
-	error_t flushBuffer()
-	{
-		while(!call StoreData.empty())
-		{
-			call StoreData.dequeue();
-		}
-		return SUCCESS;
 	}
 	
 	uint32_t calcTimerPeriod()				//calculate the timer period from status values configured
@@ -96,11 +85,9 @@ implementation{
 	
 	event void Notify.notify(status_packet_t val){	//configure the sensor status
 		
-//		status_packet_t status_temp = status;
 		status = val;
-//		status.node_id = status_temp.node_id;
 
-		if(status.historyEnable | status.burstEnable)
+		if((status.historyEnable || status.burstEnable) && (0 != status.burstInterval))
 		{
 #if TIMING_PHASE_SHIFT==0
 			call Timer0.startPeriodic(calcTimerPeriod());
@@ -111,11 +98,6 @@ implementation{
 		}
 		else
 			call Timer0.stop();
-
-		if(!status.historyEnable)// && (1 == status_temp.historyEnable))	//flush the native data buffer
-		{
-				flushBuffer();
-		}
 	}
 
 	command status_packet_t GetStatus.get(){		//read the sensor status out
@@ -130,43 +112,38 @@ implementation{
 		
 		if(SUCCESS == result)
 		{
-			if(BUFFER_SIZE == call StoreData.size())
-			{
-#ifdef LED_SENSOR_ENABLE
-				call Leds.led2On();
-#endif
-				call StoreData.dequeue();
-			}
-#ifdef LED_SENSOR_ENABLE
-			else
-				call Leds.led2Off();
-#endif
 			if(status.historyEnable)
 			{
-				if(status.burstEnable)
+				if(BUFFER_SIZE == call StoreData.size())
 				{
-					call StoreData.enqueue(val);
-					if(BUFFER_SIZE == call StoreData.size())
-					{
+#ifdef LED_SENSOR_ENABLE
+					call Leds.led2On();
+#endif
+					call StoreData.dequeue();
+				}
+#ifdef LED_SENSOR_ENABLE
+				else
+					call Leds.led2Off();
+#endif	
+				call StoreData.enqueue(val);
+				if((status.burstEnable) && (BUFFER_SIZE == call StoreData.size()))
+				{
 #ifdef LED_SENSOR_ENABLE
 						call Leds.led1Toggle();
 #endif
 						call Notify.enable();
-					}
-				}
-				else
-				{
-					call StoreData.enqueue(val);
 				}
 			}
 			else
 			{
-				flushBuffer();
-				call StoreData.enqueue(val);
+				if(status.burstEnable)
+				{
+					tempData = val;
 #ifdef LED_SENSOR_ENABLE
-				call Leds.led1Toggle();
+					call Leds.led1Toggle();
 #endif
-				call Notify.enable();
+					call Notify.enable();
+				}
 			}
 		}
 		
@@ -181,14 +158,22 @@ implementation{
 		
 		uint8_t i_Sensor_Buffer_GetData = 0;
 		
-		while(TRUE)
+		if((!status.historyEnable) && (status.burstEnable))
 		{
-			if((len==i_Sensor_Buffer_GetData) || (call StoreData.empty()))
+			val[0] = tempData;
+			return 1;
+		}
+		else
+		{
+			while(TRUE)
 			{
-					return i_Sensor_Buffer_GetData;
+				if((len==i_Sensor_Buffer_GetData) || (call StoreData.empty()))
+				{
+						return i_Sensor_Buffer_GetData;
+				}
+				else
+					val[i_Sensor_Buffer_GetData++] = call StoreData.dequeue();
 			}
-			else
-				val[i_Sensor_Buffer_GetData++] = call StoreData.dequeue();
 		}
 		
 	}

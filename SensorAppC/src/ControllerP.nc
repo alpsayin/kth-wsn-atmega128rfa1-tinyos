@@ -54,6 +54,13 @@ module ControllerP{
 	}
 	//----------------------------------------------------------------------
 	
+	//----------------------Connect to SerialPacketForwarder----------------
+	uses
+	{
+		interface Init as SerialPacketForwarderInit;
+	}
+	//----------------------------------------------------------------------
+	
 	//----------------------Connect to IOInterfaceC-------------------------
 	uses {
 		interface GeneralIO as CheckRoot;
@@ -81,23 +88,24 @@ implementation{
 
 		IAmRoot = !(call CheckRoot.get());	//port with internal pull-up, default value is '1', reverse it here
 		
-		if(IAmRoot)		//if I am root, setup the serial part
+		if(IAmRoot)		//if I am root, setup radio and serial parts
+		{
+			while(SUCCESS!=call SerialPacketForwarderInit.init());
 			while(SUCCESS!=call RadioSubsystemRootControl.setRoot());
-		else
+		}
+		else			//if not, only setup radio part
 			while(SUCCESS!=call RadioSubsystemRootControl.unsetRoot());
 		
-		//TODO Check whether the RadioSubsystem do the initialization of Serial Port or not
-		//while(SUCCESS!=SerialInit.init());
-		
-		
 		while(SUCCESS!=call RadioSubsystemInit.init());
+
+		
 	
 		return SUCCESS;
 	}
 
 //
-//Every time this function called, it means the SensorC wants to send some data out, read all the data_packet_t
-//one by one until see a data packet marked from source '0'. then send them out together
+//Every time this function called, it means the SensorC wants to send some data out, read data_packet_t
+//with SampleDataBuffer, if the buffer is full, send the content and read the rest
 //
 //this task can be done in several steps, which means, read 5 out, send, read another 5 out, send, like this way
 //as an example
@@ -162,7 +170,7 @@ implementation{
 					call SensorNotification.enable();
 					break;
 				case COMMAND_READ_STATUS:
-					call SetRadioStatus.setNow(call GetStatus.get());
+					call SetRadioStatus.setNow(status_temp);
 					break;
 				case COMMAND_INTERVAL_SECONDS:
 					status_new.intervalType = INTERVAL_TYPE_SECONDS;

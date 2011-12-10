@@ -62,9 +62,11 @@ implementation{
 	GetStatus	= SensorControlC.GetStatus;
 	GetData		= SensorControlC.GetData;
 	Notify		= SensorControlC.Notify;
+	
 	GetDataOne	= SensorSubsystemC.ReadOne;
 	
 	SensorControlC.ReadAdc		-> SensorSubsystemC.Read;
+	
 	SensorControlC.StoreData	-> SensorBuffer.Queue;	
 	
 }

@@ -30,7 +30,7 @@ implementation{
 
 	components HplAtm128GeneralIOC as IO;
 	
-	CheckRoot				= IO.PortD6;
+	CheckRoot				= IO.PortE6;
 	LightSensorEnable		= IO.PortB0;
 	HumiditySensorEnable	= IO.PortB1;
 	PressureSensorEnable	= IO.PortB2;

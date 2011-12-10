@@ -22,7 +22,7 @@
 
 #define NODE_ID 100					//Only for testing
 
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 20
 
 //TIMER_UNIT	TSecond
 #define TIMER_SCALE 1000

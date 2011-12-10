@@ -20,7 +20,7 @@
 
 #include "packet_types.h"
 
-#define CONTROLLER_BUFFER_SIZE 10
+#define CONTROLLER_BUFFER_SIZE 5
 
 #define SET_ROOT_PIN PortB7
 
