@@ -69,6 +69,7 @@ implementation{
 	uint32_t calcTimerPeriod()				//calculate the timer period from status values configured
 	{
 		if(status.burstInterval)
+		{
 			switch(status.intervalType)
 			{
 				case 0:
@@ -79,15 +80,18 @@ implementation{
 					return (status.burstInterval * 3600 * TIMER_SCALE);
 				case 3:
 					return (status.burstInterval < DEFAULT_TIMER_BOUNDARY)?(status.burstInterval * 86400 * TIMER_SCALE):(DEFAULT_TIMER_BOUNDARY * 86400 * TIMER_SCALE);
+				default:
+					;
 			}
-		return DEFAULT_TIMER_PERIOD;
+		}
+		return (DEFAULT_TIMER_PERIOD * TIMER_SCALE);
 	}
 	
 	event void Notify.notify(status_packet_t val){	//configure the sensor status
 		
 		status = val;
 
-		if((status.historyEnable || status.burstEnable) && (0 != status.burstInterval))
+		if(status.historyEnable || status.burstEnable)
 		{
 #if TIMING_PHASE_SHIFT==0
 			call Timer0.startPeriodic(calcTimerPeriod());
@@ -109,6 +113,7 @@ implementation{
 		
 		val.source	= status.node_id;
 		val.seqNo	= sequenceNumber++;
+		_SensorDataPreCalc(&val);
 		
 		if(SUCCESS == result)
 		{
