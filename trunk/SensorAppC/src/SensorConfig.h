@@ -65,7 +65,7 @@ inline void _SensorDataPreCalc(data_packet_t* val)
 	val->data1 = (val->data1+(val->data1>>3))-273;		//Temperature: T = (Voltage*1.13)-273
 	val->data2 = val->data2;							//
 	val->data3 = val->data3;							//Humidity: Nothing to do
-	val->data4 = (~val->data4) & 0x3FF;					//Light: L = 1023 - Voltage
+	val->data4 = (~(val->data4)) & 0x3FF;					//Light: L = 1023 - Voltage
 	val->data5 = val->data5;							//
 //	val->data6 = val->data6;							//reserved
 //	val->data7 = val->data7;							//reserved
