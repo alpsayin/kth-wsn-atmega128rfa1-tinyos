@@ -2,14 +2,6 @@
 #include "packet_types.h"
 #include <stdio.h>
 #include "TimerConfig.h"
-	
-#ifndef LOW
-#define LOW(n) (n & 0x0F)
-#endif
-
-#ifndef HIGH
-#define HIGH(n) ((n>>4) & 0x0F)
-#endif
 
 module SerialPacketForwarderP @safe() 
 {
