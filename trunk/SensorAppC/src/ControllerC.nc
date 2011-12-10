@@ -36,7 +36,7 @@ configuration ControllerC{
 		//if a root is going to be set, it must be set with RootControl before Init
 		interface RootControl as RadioSubsystemRootControl;
 		interface Init as RadioSubsystemInit;
-		interface ArrayPipe<data_packet_t> as SetRadioHistory; // alp: not wired yet
+		interface ArrayPipe<data_packet_t> as SetRadioHistory;
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
@@ -65,13 +65,10 @@ implementation{
 	GetDataOne	= ControllerP.GetDataOne;
 	Notify		= ControllerP.SensorNotification;
 
-//	CommandNotification	= ControllerP;
-//	ForwardStatus		= ControllerP;
-//	ForwardData			= ControllerP;
-//	ForwardCommand		= ControllerP;
 
 	RadioSubsystemRootControl	= ControllerP.RadioSubsystemRootControl;
 	RadioSubsystemInit			= ControllerP.RadioSubsystemInit;
+	SetRadioHistory				= ControllerP.SetRadioHistory;
 	SerialPacketForwarderInit	= ControllerP.SerialPacketForwarderInit;
 	SetRadioStatus				= ControllerP.SetRadioStatus;
 	SetRadioData				= ControllerP.SetRadioData;

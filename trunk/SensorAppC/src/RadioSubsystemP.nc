@@ -135,7 +135,7 @@ implementation
 	async command error_t SetRadioData.setNow(data_packet_t val)
 	{
 		error_t err;
-		data_packet_t* msgDataPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, sizeof(data_packet_t));
+		data_packet_t* msgDataPtr;
 		
 		atomic {
 			if(locked)
@@ -144,6 +144,9 @@ implementation
 			}
 			locked = TRUE;
 		}
+		
+		msgDataPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, sizeof(data_packet_t));
+		
 		atomic {
 			*msgDataPtr = val;
 		}
@@ -192,7 +195,7 @@ implementation
 	async command error_t SetRadioCommand.setNow(command_packet_t val)
 	{
 		error_t err;
-		command_packet_t* msgCommandPtr = (command_packet_t*)call CommandCollectionSend.getPayload(&packet, sizeof(command_packet_t));
+		command_packet_t* msgCommandPtr;
 		
 		atomic {
 			if(locked)
@@ -201,6 +204,9 @@ implementation
 			}
 			locked = TRUE;
 		}
+		
+		msgCommandPtr = (command_packet_t*)call CommandCollectionSend.getPayload(&packet, sizeof(command_packet_t));
+		
 		atomic {
 			*msgCommandPtr = val;
 		}
