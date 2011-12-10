@@ -1,5 +1,7 @@
-#ifndef RADIO_CONFIG_H
-#define RADIO_CONFIG_H
+#ifndef RADIO_SUBSYSTEM_CONFIG_H
+#define RADIO_SUBSYSTEM_CONFIG_H
+
+
 
 #include "ControllerConfig.h"
 
@@ -27,4 +29,6 @@
 
 #define RADIO_HISTORY_SIZE (CONTROLLER_BUFFER_SIZE)
 
-#endif /* RADIO_CONFIG_H */
+
+
+#endif /* RADIO_SUBSYSTEM_CONFIG_H */

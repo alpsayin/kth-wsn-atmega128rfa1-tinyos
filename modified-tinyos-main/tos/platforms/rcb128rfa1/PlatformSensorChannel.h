@@ -18,5 +18,5 @@
 #define Sensor_Channel_23_10x  ATM128_ADC_DIFF_ADC32_10x
 #define Sensor_Channel_23_200x ATM128_ADC_DIFF_ADC32_200x
 
-  
+#define Sensor_Channel_GND ATM128_ADC_SNGL_GND
 

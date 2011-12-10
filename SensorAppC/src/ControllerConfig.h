@@ -20,12 +20,11 @@
 
 #include "packet_types.h"
 
-#define CONTROLLER_BUFFER_SIZE 5
+#define CONTROLLER_BUFFER_SIZE 20
+//#define CONTROLLER_BUFFER_SIZE 5
 
-#define SET_ROOT_PIN PortB7
 
 #define BROADCAST_ID 0xFFFF
-
 
 #define LED_CONTROLLER_ENABLE
 

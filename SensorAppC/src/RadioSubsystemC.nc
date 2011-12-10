@@ -1,5 +1,4 @@
-
-#include "RadioConfig.h"
+#include "RadioSubsystemConfig.h"
 #include "packet_types.h"
 
 configuration RadioSubsystemC
@@ -42,6 +41,12 @@ implementation
 	
 	//components MainC;
 	//MainC.SoftwareInit -> RadioSubsystemP.RadioSubsystemInit;
+	
+	
+  components ActiveMessageC;
+  RadioSubsystemP.AMControl -> ActiveMessageC;
+//  RadioSubsystemP.AMPacket -> ActiveMessageC.AMPacket;
+  
 	
 	components LedsC;
   	RadioSubsystemP.Leds -> LedsC;

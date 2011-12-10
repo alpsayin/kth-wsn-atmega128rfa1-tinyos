@@ -1,8 +1,5 @@
- 
- 
- 
 #include "Timer.h"
-#include "RadioConfig.h"
+#include "RadioSubsystemConfig.h"
 
 #include <stdio.h>
 #include "packet_types.h"
@@ -14,7 +11,9 @@ module RadioSubsystemP
 	{
 		interface Init as RadioSubsystemInit;	
 		
-		interface SetNow<data_packet_t[RADIO_HISTORY_SIZE]> as SetRadioHistory;
+//		interface SetNow<data_packet_t[RADIO_HISTORY_SIZE]> as SetRadioHistory;
+		interface ArrayPipe<data_packet_t> as SetRadioHistory;
+		
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
@@ -136,6 +135,8 @@ implementation
 	async command error_t SetRadioData.setNow(data_packet_t val)
 	{
 		error_t err;
+		data_packet_t* msgDataPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, sizeof(data_packet_t));
+		
 		atomic {
 			if(locked)
 			{
@@ -143,7 +144,6 @@ implementation
 			}
 			locked = TRUE;
 		}
-		data_packet_t* msgDataPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, sizeof(data_packet_t));
 		atomic {
 			*msgDataPtr = val;
 		}
@@ -155,12 +155,12 @@ implementation
 		return err;
 	}
 
-	async command error_t SetRadioHistory.setNow(data_packet_t val[RADIO_HISTORY_SIZE])
+	command error_t SetRadioHistory.sendArray(data_packet_t *val, uint8_t len)
 	{
 		error_t err;
 		uint8_t i;
 		data_packet_t* msgHistoryPtr;
-		if(RADIO_HISTORY_SIZE > call DataCollectionSend.maxPayloadLength())
+		if(len > call DataCollectionSend.maxPayloadLength())
 		{
 			return ESIZE;
 		}
@@ -174,7 +174,7 @@ implementation
 		}
 		msgHistoryPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, sizeof(data_packet_t));
 		atomic {
-			memcpy(msgHistoryPtr, val, RADIO_HISTORY_SIZE);
+			memcpy(msgHistoryPtr, val, len);
 		}
 		err = call DataCollectionSend.send(&packet, sizeof(data_packet_t));
 		if(err!=SUCCESS)
@@ -184,9 +184,16 @@ implementation
 		return err;
 	}
 	
+	command uint8_t SetRadioHistory.getArray(data_packet_t *val, uint8_t len){
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	async command error_t SetRadioCommand.setNow(command_packet_t val)
 	{
 		error_t err;
+		command_packet_t* msgCommandPtr = (command_packet_t*)call CommandCollectionSend.getPayload(&packet, sizeof(command_packet_t));
+		
 		atomic {
 			if(locked)
 			{
@@ -194,7 +201,6 @@ implementation
 			}
 			locked = TRUE;
 		}
-		command_packet_t* msgCommandPtr = (command_packet_t*)call CommandCollectionSend.getPayload(&packet, sizeof(command_packet_t));
 		atomic {
 			*msgCommandPtr = val;
 		}
@@ -209,6 +215,8 @@ implementation
 	async command error_t SetRadioStatus.setNow(status_packet_t val)
 	{
 		error_t err;
+		status_packet_t* msgStatusPtr = (status_packet_t*)call StatusCollectionSend.getPayload(&packet, sizeof(status_packet_t));
+		
 		atomic {
 			if(locked)
 			{
@@ -216,7 +224,6 @@ implementation
 			}
 			locked = TRUE;
 		}
-		status_packet_t* msgStatusPtr = (status_packet_t*)call StatusCollectionSend.getPayload(&packet, sizeof(status_packet_t));
 		atomic {
 			*msgStatusPtr = val;
 		}
@@ -265,4 +272,5 @@ implementation
 	{
 		locked = FALSE;
 	}
+
 }
