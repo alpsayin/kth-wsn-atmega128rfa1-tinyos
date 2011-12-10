@@ -32,10 +32,14 @@ module TestP{
 		//if a root is going to be set, it must be set with RootControl before Init
 		interface RootControl as RadioSubsystemRootControl;
 		interface Init as RadioSubsystemInit;
+		interface ArrayPipe<data_packet_t> as SetRadioHistory;
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
 		interface Notify<command_packet_t> as NotifyRadioCommand;
+		
+		interface Init as SerialPacketForwarderInit;
+	
 	}	
 	
 	
@@ -256,5 +260,32 @@ implementation{
 		counter++;
 		if(counter > 20)
 			call Timer_TestP.stop();
+	}
+
+	command error_t SerialPacketForwarderInit.init(){
+		uint8_t msgLen,msgBuf[64];
+		
+		msgLen = sprintf(msgBuf, "\n\rInit SerialPacketForwarder\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		
+		return SUCCESS;
+	}
+
+	command error_t SetRadioHistory.sendArray(data_packet_t *val, uint8_t len){
+		uint8_t msgLen,msgBuf[64];
+		
+		msgLen = sprintf(msgBuf, "\n\rSetRadioHistory.sendArray is Called Here\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		
+		return SUCCESS;
+	}
+
+	command uint8_t SetRadioHistory.getArray(data_packet_t *val, uint8_t len){
+		uint8_t msgLen,msgBuf[64];
+		
+		msgLen = sprintf(msgBuf, "\n\rSetRadioHistory.getArray is Called Here\n\r");
+		while(call UartStream.send(msgBuf, msgLen)!=SUCCESS);
+		
+		return SUCCESS;
 	}
 }
