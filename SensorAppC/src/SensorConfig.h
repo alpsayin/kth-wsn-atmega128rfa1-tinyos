@@ -60,7 +60,7 @@
 inline void _SensorDataPreCalc(data_packet_t* val)
 {
 /****************************************************************************
- * 			Add Personal SensorDatapreCalc actions below					*
+ * 			Add Personal SensorDataPreCalc actions below					*
  ****************************************************************************/
 	val->data1 = (val->data1+(val->data1>>3))-273;		//Temperature: T = (Voltage*1.13)-273
 	val->data2 = val->data2;							//
