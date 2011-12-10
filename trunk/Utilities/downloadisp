@@ -1,0 +1,10 @@
+
+#MUST BE executed in source code folder
+
+make rcb128rfa1
+
+cd build/rcb128rfa1/
+
+sudo avrdude -p m128rfa1 -c avrispmkii -P usb -U flash:w:main.ihex
+
+cd ../../
