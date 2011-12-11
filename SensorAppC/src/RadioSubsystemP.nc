@@ -11,9 +11,8 @@ module RadioSubsystemP
 	{
 		interface Init as RadioSubsystemInit;	
 		
-//		interface SetNow<data_packet_t[RADIO_HISTORY_SIZE]> as SetRadioHistory;
+		//the length provided to the functions of ArrayPipe should be array lengths, not byte lengths
 		interface ArrayPipe<data_packet_t> as SetRadioHistory;
-		
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
@@ -66,7 +65,7 @@ implementation
 		return call AMControl.start();
 	}
 	
-	//AMControl::StdControl Functions
+	//AMControl::SplitControl Functions
 	event void AMControl.startDone(error_t err) 
 	{
 		if (err == SUCCESS) //if radio started successfully
