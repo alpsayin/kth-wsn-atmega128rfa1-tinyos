@@ -9,6 +9,7 @@ configuration RadioSubsystemC
 		//if a root is going to be set, it must be set with RootControl before Init
 		interface RootControl as RadioSubsystemRootControl;
 		interface Init as RadioSubsystemInit;
+		//the length provided to the functions of ArrayPipe should be array lengths, not byte lengths
 		interface ArrayPipe<data_packet_t> as SetRadioHistory;
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
@@ -41,6 +42,8 @@ implementation
 	ForwardCommand = RadioSubsystemP.ForwardCommand;
 	NotifySerialCommand = RadioSubsystemP.NotifySerialCommand;
 	
+	// these might be uncommented to automatic initialization of RadioSubsystem
+	// but we need to set the root first
 	//components MainC;
 	//MainC.SoftwareInit -> RadioSubsystemP.RadioSubsystemInit;
 	
@@ -52,7 +55,9 @@ implementation
 
 	components DisseminationC;
 	RadioSubsystemP.DisseminationControl -> DisseminationC;
-	  
+	
+	//all disseminators and collections must have a unique key
+	//these values are hardwired here
 	components new DisseminatorC(command_packet_t, 0xaa) as DissCommand;
 	RadioSubsystemP.CommandValue -> DissCommand;
 	RadioSubsystemP.CommandUpdate -> DissCommand;
@@ -65,6 +70,7 @@ implementation
 	RadioSubsystemP.CommandCollectionReceive -> Collector.Receive[0xdd];
 	RadioSubsystemP.HistoryCollectionReceive -> Collector.Receive[0xee];
   
+  	// the keys to senders and receivers must be respectively same
 	components new CollectionSenderC(0xbb) as DataCollectionSender;
 	RadioSubsystemP.DataCollectionSend -> DataCollectionSender;
 	
