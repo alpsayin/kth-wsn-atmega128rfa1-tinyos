@@ -37,23 +37,31 @@ implementation
     bool enabled;
     
     char receiveBuffer[COMMAND_RECEIVE_BUFFER_SIZE];	
+    char temporaryBuffer[COMMAND_RECEIVE_BUFFER_SIZE];	
+    uint8_t temporaryPos;
 	uint8_t pos;
 
-
+	//SerialPacketForwarderInit::Init functions
+	//init: initializes the uart system and enabled the command notifications
 	command error_t SerialPacketForwarderInit.init()
 	{
 		call UartControl.start();
 		call CommandNotification.enable();
 		return SUCCESS;
 	}
-	
+
+	//CommandNotification::Notify<command_packet_t> functions
+	//disable: disables the uart peripheral	
 	command error_t CommandNotification.disable()
 	{
 		if(started)
 			return EBUSY;
+		enabled=FALSE;
+		started=FALSE;
 		return call UartControl.stop();
 	}
-
+	
+	//enable: enables the uart peripheral, also reset the buffer
 	command error_t CommandNotification.enable()
 	{
 		enabled=TRUE;
@@ -61,114 +69,99 @@ implementation
 		return call UartControl.start();
 	}
 	
-	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
-	{
-		// UartStream.receiveDone not used
-	}
-	async event void UartStream.receivedByte(uint8_t byte)
-	{
-        call UartByte.send(byte);
-        if(byte == '[')
-        {
-            atomic {
-            	pos=0;
-        		receiveBuffer[pos++]=byte;
-            }
-            started=1;
-        }
-        else if(byte == ']' && started)
-        {
-        	atomic{
-        		if(pos<COMMAND_RECEIVE_BUFFER_SIZE)
-        		{
-		            receiveBuffer[pos++]=byte;
-		            receiveBuffer[pos]=0;
-	            }
-	            else
-	            	pos=0;
-            }
-            started=0;
-			post processReceiveBufferTask();
-        }
-        else if(started)
-        {
-        	atomic {
-        		if(pos<COMMAND_RECEIVE_BUFFER_SIZE)
-        		{
-            		receiveBuffer[pos++]=byte;
-        		}
-	            else
-	            	pos=0;
-        	}
-        }
-	}
-
+	//UartStream::UartStream functions
+	//sendDone: not used
 	async event void UartStream.sendDone(uint8_t *buf, uint16_t len, error_t error)
 	{
 		// UartStream.sendDone not used
 	}
-	task void processReceiveBufferTask()
+	//receiveDone: not used
+	async event void UartStream.receiveDone(uint8_t *buf, uint16_t len, error_t error)
 	{
-    	uint8_t localBuf[COMMAND_RECEIVE_BUFFER_SIZE];
-		uint8_t type;
-//	    data_packet_t localDataPacket;
-//	    status_packet_t localStatusPacket;
-	    command_packet_t localCommandPacket;
-	    
-	    atomic {
-	    	memcpy((char*)localBuf, (char*)receiveBuffer, pos<=COMMAND_RECEIVE_BUFFER_SIZE?pos:COMMAND_RECEIVE_BUFFER_SIZE);
-	    	localBuf[pos]=0;
-    	}
-	    type=call PacketTypes.getTypeOfPacket(localBuf);
-	    if(type!=PACKET_ERROR)
-	    {
-//	    	call Leds.led0Toggle();
-	    }
-	    if(type == PACKET_COMMAND)
-	    {
-	        type=call PacketTypes.strToCommandPacket(&localCommandPacket, localBuf);
-	        if(type == PACKET_ERROR)
-	            return;
-			signal CommandNotification.notify(localCommandPacket);
-	    }
-//	    else if(type == PACKET_DATA)
-//	    {
-//	        type=call PacketTypes.strToDataPacket(&localDataPacket, localBuf);
-//	        if(type == PACKET_ERROR)
-//	            return;
-//	    }
-//	    else if(type == PACKET_STATUS)
-//	    {
-//	        type=call PacketTypes.strToStatusPacket(&localStatusPacket, localBuf);
-//	        if(type == PACKET_ERROR)
-//	            return;
-//	    }
+		// UartStream.receiveDone not used
+	}
+	
+	//receivedByte: ISR Context! puts the characters into a buffer and posts a process task if necessary
+	async event void UartStream.receivedByte(uint8_t byte)
+	{
+		//echo back
+		//TODO disable echoing, since ALIX would think that it's a received packet
+        call UartByte.send(byte);
+        //check the incoming charpos
+        if(byte == '[') //if it's a starting delimiter
+        {
+            atomic {
+            	pos=0; //reset buffer position
+        		receiveBuffer[pos++]=byte; //write the char into buffer and increment pos
+            }
+            started=TRUE; //set started true
+        }
+        else if(started) //if we are started (meaning that if we are between brackets)
+        {
+        	atomic {
+        		if(pos<COMMAND_RECEIVE_BUFFER_SIZE) //if pos is within limits
+        		{
+            		receiveBuffer[pos++]=byte; //save the char and increment pos
+        		}
+	            else //if not reset the buffer (shouldn't happen if it's a correct packet)
+	            	pos=0; //if we are not within limits, do not overflow reset the pos
+        	}
+        }
+        else if(byte == ']' && started) //if it's a ending delimiter
+        {
+        	atomic{
+        		if(pos+1<COMMAND_RECEIVE_BUFFER_SIZE) //if pos is within limits
+        		{
+		            receiveBuffer[pos++]=byte; //save the char and increment the pos
+		            receiveBuffer[pos]=0; //null terminate the received string (for convenience)
+	            }
+	            else //if not reset the buffer (shouldn't happen if it's a correct packet)
+	            	pos=0;
+            }
+            started=FALSE; //set started false, we just received a packet
+            //copy the received packet into a temporary buffer, so that next incoming character doesn't overwrite the receive buffer
+            //this operation is a little expensive, but necessary to protect data
+		    atomic {
+		    	memcpy((char*)temporaryBuffer, (char*)receiveBuffer, pos<=COMMAND_RECEIVE_BUFFER_SIZE?pos:COMMAND_RECEIVE_BUFFER_SIZE);
+		    	temporaryBuffer[pos]=0;
+		    	temporaryPos = pos;
+    		}
+			post processReceiveBufferTask(); //post a task to process it
+        }
 	}
 
+	//ForwardCommand::SetNow<command_packet_t> functions
+	//setNow: put the command packet into a buffer and post a task to process it
 	async command error_t ForwardCommand.setNow(command_packet_t val)
 	{
-		error_t err = call CommandQueue.enqueue(val);
-		if(err == SUCCESS)
-			post forwardNextPacketTask();
+		error_t err = call CommandQueue.enqueue(val); //enqueue the packet
+		if(err == SUCCESS) //if it's successful
+			post forwardNextPacketTask(); //post the task to forward it
 		return err;
 	}
 
+	//ForwardData::SetNow<data_packet_t> functions
+	//setNow: put the data packet into a buffer and post a task to process it
 	async command error_t ForwardData.setNow(data_packet_t val)
 	{
-		error_t err = call DataQueue.enqueue(val);
-		if(err == SUCCESS)
-			post forwardNextPacketTask();
+		error_t err = call DataQueue.enqueue(val); //enqueue the packet
+		if(err == SUCCESS) //if it's successful
+			post forwardNextPacketTask(); //post the task to forward it
 		return err;
 	}
 
+	//ForwardCommand::SetNow<status_packet_t> functions
+	//setNow: put the command packet into a buffer and post a task to process it
 	async command error_t ForwardStatus.setNow(status_packet_t val)
 	{
-		error_t err = call StatusQueue.enqueue(val);
-		if(err == SUCCESS)
-			post forwardNextPacketTask();
+		error_t err = call StatusQueue.enqueue(val); //enqueue the packet
+		if(err == SUCCESS) //if it's successful
+			post forwardNextPacketTask(); //post the task to forward it
 		return err;
 	}
 	
+	//TASK: forwardNextPacketTask()
+	//this task checks the queue's for packets to be forwarded and forwards them through UART
 	task void forwardNextPacketTask()
 	{
     	uint8_t localBuf[64];
@@ -176,34 +169,80 @@ implementation
 	    status_packet_t localStatusPacket;
 	    data_packet_t localDataPacket;
 	    command_packet_t localCommandPacket;
-		if(!call DataQueue.empty())
+		if(!call DataQueue.empty()) // if data queue is not empty
 		{
-			localDataPacket = call DataQueue.head();
-			len = call PacketTypes.dataPacketToStr(&localDataPacket, localBuf);
-			if(call UartStream.send(localBuf, len)==SUCCESS)
-				call DataQueue.dequeue();
+			localDataPacket = call DataQueue.head(); //peek at the head
+			len = call PacketTypes.dataPacketToStr(&localDataPacket, localBuf); //convert it to a string
+			if(call UartStream.send(localBuf, len)==SUCCESS) //try to send it
+				call DataQueue.dequeue(); //if sending is successful -> remove it from the queue
 			else
-				post forwardNextPacketTask();
+				post forwardNextPacketTask(); //if not successful -> do not remove and try again	
 		}
-		if(!call StatusQueue.empty())
+		if(!call StatusQueue.empty()) //if status queue is not empty 
 		{
-			localStatusPacket = call StatusQueue.head();
-			len = call PacketTypes.statusPacketToStr(&localStatusPacket, localBuf);
-			if(call UartStream.send(localBuf, len)==SUCCESS)
-				call StatusQueue.dequeue();
+			localStatusPacket = call StatusQueue.head(); //peek at the head
+			len = call PacketTypes.statusPacketToStr(&localStatusPacket, localBuf); //convert it to a string
+			if(call UartStream.send(localBuf, len)==SUCCESS) //try to send it
+				call StatusQueue.dequeue(); //if sending is successful -> remove it from the queue
 			else
-				post forwardNextPacketTask();
+				post forwardNextPacketTask(); //if not successful -> do not remove and try again	
 		}
-		if(!call CommandQueue.empty())
+		if(!call CommandQueue.empty()) //if command queue is not empty
 		{
-			localCommandPacket = call CommandQueue.head();
-			len = call PacketTypes.commandPacketToStr(&localCommandPacket, localBuf);
-			if(call UartStream.send(localBuf, len)==SUCCESS)
-				call CommandQueue.dequeue();
+			localCommandPacket = call CommandQueue.head(); //peek at the head
+			len = call PacketTypes.commandPacketToStr(&localCommandPacket, localBuf); //convert it to a string
+			if(call UartStream.send(localBuf, len)==SUCCESS) //try to send it
+				call CommandQueue.dequeue(); //try to send it
 			else
-				post forwardNextPacketTask();
+				post forwardNextPacketTask(); //if not successful -> do not remove and try again	
 		}
-		if(!call DataQueue.empty() || !call StatusQueue.empty() || !call CommandQueue.empty())
-			post forwardNextPacketTask();
+		if(!call DataQueue.empty() || !call StatusQueue.empty() || !call CommandQueue.empty()) //after all these operations if one of the queue is still not empty
+			post forwardNextPacketTask(); //post itself again to empty the queue
+	}
+	
+	//TASK: processReceiveBufferTask()
+	//this task checks the incoming packet between square brackets to see if it's a meaningful packet
+	task void processReceiveBufferTask()
+	{
+    	uint8_t localBuf[COMMAND_RECEIVE_BUFFER_SIZE];
+		uint8_t localPos;
+		uint8_t type;
+//	    data_packet_t localDataPacket;
+//	    status_packet_t localStatusPacket;
+	    command_packet_t localCommandPacket;
+	    
+	    //copy the temporaryBuffer to a localbuffer (double buffering)
+	    atomic {
+	    	memcpy((char*)localBuf, (char*)temporaryBuffer, temporaryPos<=COMMAND_RECEIVE_BUFFER_SIZE?temporaryPos:COMMAND_RECEIVE_BUFFER_SIZE);
+	    	localBuf[temporaryPos]=0;
+	    	localPos = temporaryPos;
+    	}
+    	//try to get the type of packet
+	    type=call PacketTypes.getTypeOfPacket(localBuf);
+	    if(type!=PACKET_ERROR) //if it's a known type of packet
+	    {
+	    	//toggle led, only for debugging
+//	    	call Leds.led0Toggle();
+	    }
+	    if(type == PACKET_COMMAND) //if it's a command type (that's the only type we can get, but we check for convenience)
+	    {
+	    	//try to convert the string into an actual packet
+	        type=call PacketTypes.strToCommandPacket(&localCommandPacket, localBuf);
+	        if(type != PACKET_COMMAND) //check the type again for convenience
+	            return; //if type doesn't match, return
+			signal CommandNotification.notify(localCommandPacket); //signal the arriving command packet from UART to controller
+	    }
+//	    else if(type == PACKET_DATA)
+//	    {
+//	        type=call PacketTypes.strToDataPacket(&localDataPacket, localBuf);
+//	        if(type != PACKET_DATA)
+//	            return;
+//	    }
+//	    else if(type == PACKET_STATUS)
+//	    {
+//	        type=call PacketTypes.strToStatusPacket(&localStatusPacket, localBuf);
+//	        if(type != PACKET_STATUS)
+//	            return;
+//	    }
 	}
 }
