@@ -208,7 +208,9 @@ implementation
 		//set locked=false if we are unsuccessful
 		if(err!=SUCCESS)
 		{
-			locked = FALSE;
+			atomic {
+				locked = FALSE;
+			}
 		}
 		return err;
 	}
@@ -285,7 +287,9 @@ implementation
 		//set locked=false if it's unsuccessful
 		if(err!=SUCCESS)
 		{
-			locked = FALSE;
+			atomic {
+				locked = FALSE;
+			}
 		}
 		return err;
 	}
@@ -319,7 +323,9 @@ implementation
 		//set locked=false if it's unsuccessful
 		if(err!=SUCCESS)
 		{
-			locked = FALSE;
+			atomic {
+				locked = FALSE;
+			}
 		}
 		return err;
 	}
@@ -329,7 +335,9 @@ implementation
 	event void DataCollectionSend.sendDone(message_t *msg, error_t error)
 	{
 		//release the lock
-		locked = FALSE;
+		atomic {
+			locked = FALSE;
+		}
 	}
 	
 	//CommandCollectionSend:CollectionSend functions
@@ -337,7 +345,9 @@ implementation
 	event void CommandCollectionSend.sendDone(message_t *msg, error_t error)
 	{
 		//release the lock
-		locked = FALSE;
+		atomic {
+			locked = FALSE;
+		}
 	}
 	
 	//StatusCollectionSend:CollectionSend functions
@@ -345,7 +355,9 @@ implementation
 	event void StatusCollectionSend.sendDone(message_t *msg, error_t error)
 	{
 		//release the lock
-		locked = FALSE;
+		atomic {
+			locked = FALSE;
+		}
 	}
 	
 	//HistoryCollectionSend:CollectionSend functions
@@ -353,7 +365,9 @@ implementation
 	event void HistoryCollectionSend.sendDone(message_t *msg, error_t error)
 	{
 		//release the lock
-		locked = FALSE;
+		atomic {
+			locked = FALSE;
+		}
 	}
 
 }
