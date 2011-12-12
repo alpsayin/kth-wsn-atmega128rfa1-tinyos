@@ -2,6 +2,7 @@
 #include "packet_types.h"
 #include <stdio.h>
 #include "TimerConfig.h"
+#include "SensorAppCommon.h"
 
 module SerialPacketForwarderP @safe() 
 {
@@ -56,7 +57,10 @@ implementation
 	//start: enables the bi-directional forwarding system, should be called before enabling the notifications
 	command error_t SerialPacketForwarderControl.start()
 	{
-		enabled=TRUE;
+		atomic {
+			enabled=TRUE;
+		}
+		//call UartControl.start();
 		call UartControl.start();
 		return call CommandNotification.enable();
 	}
@@ -66,7 +70,9 @@ implementation
 	{
 		if(started)
 			return EBUSY;
-		enabled=FALSE;
+		atomic {
+			enabled=FALSE;
+		}
 		call CommandNotification.disable();
 		return call UartControl.stop();
 	}
