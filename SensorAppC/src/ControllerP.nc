@@ -73,6 +73,13 @@ module ControllerP{
 	}
 	//----------------------------------------------------------------------
 	
+	//----------------------Connect to LedsC----------------
+	uses
+	{
+		interface Leds;
+	}
+	//----------------------------------------------------------------------
+	
 }
 implementation{
 	
@@ -117,23 +124,31 @@ implementation{
 //
 	command error_t SensorNotification.enable(){
 	
+		error_t err;
 		static data_packet_t SampleDataBuffer[CONTROLLER_BUFFER_SIZE];
 		
 		uint8_t i_Packet_Number;
 		uint8_t i_SetDataToRadio;
 		
-		do
-		{
+		//do {
 			
 			i_Packet_Number = !CONTROLLER_BUFFER_SIZE;
 			i_Packet_Number = call GetData.getArray(SampleDataBuffer, CONTROLLER_BUFFER_SIZE);
 			
-			for(i_SetDataToRadio = 0;i_SetDataToRadio<i_Packet_Number;i_SetDataToRadio++)
+			if(i_Packet_Number == 0)
+				return SUCCESS;
+			do
 			{
-				while(SUCCESS!=call SetRadioData.setNow(SampleDataBuffer[i_SetDataToRadio]));
+				err=call SetRadioHistory.sendArray(SampleDataBuffer, i_Packet_Number);		
 			}
+			while(err!=SUCCESS && err!=ESIZE);
+			//Good old times...
+//			for(i_SetDataToRadio = 0;i_SetDataToRadio<i_Packet_Number;i_SetDataToRadio++)
+//			{
+//				while(SUCCESS!=call SetRadioData.setNow(SampleDataBuffer[i_SetDataToRadio]));
+//			}
 		
-		}while(CONTROLLER_BUFFER_SIZE==i_Packet_Number);
+		//}while(CONTROLLER_BUFFER_SIZE==i_Packet_Number);
 		
 		return SUCCESS;
 	}

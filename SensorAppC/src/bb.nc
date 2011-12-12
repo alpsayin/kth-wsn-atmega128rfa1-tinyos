@@ -51,6 +51,7 @@ implementation{
 	ControllerC.SetRadioCommand				-> RadioSubsystemC;
 	ControllerC.SetRadioData				-> RadioSubsystemC;
 	ControllerC.SetRadioStatus				-> RadioSubsystemC;
+	ControllerC.SetRadioHistory				-> RadioSubsystemC;
 	ControllerC.NotifyRadioCommand			-> RadioSubsystemC;
 	
 	ControllerC.SerialPacketForwarderControl -> SerialPacketForwarderC;
