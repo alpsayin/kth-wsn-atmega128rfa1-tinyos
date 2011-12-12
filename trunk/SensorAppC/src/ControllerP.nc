@@ -179,15 +179,19 @@ implementation{
 					break;
 				case COMMAND_INTERVAL_SECONDS:
 					status_new.intervalType = INTERVAL_TYPE_SECONDS;
+					status_new.burstInterval	= val.value;
 					break; 
 				case COMMAND_INTERVAL_MINUTES:
 					status_new.intervalType = INTERVAL_TYPE_MINUTES;
+					status_new.burstInterval	= val.value;
 					break;
 				case COMMAND_INTERVAL_HOURS:
 					status_new.intervalType = INTERVAL_TYPE_HOURS;
+					status_new.burstInterval	= val.value;
 					break;
 				case COMMAND_INTERVAL_DAYS:
 					status_new.intervalType = INTERVAL_TYPE_DAYS;
+					status_new.burstInterval	= val.value;
 					break;
 				case COMMAND_ECHO:
 					call SetRadioCommand.setNow(val);
@@ -198,11 +202,10 @@ implementation{
 			{
 				status_new.burstEnable		= val.BE;
 				status_new.historyEnable	= val.HE;
-				status_new.burstInterval	= val.value;
 				status_new.node_id			= status_temp.node_id;
 					
-				signal SensorNotification.notify(status_new);
 			}
+			signal SensorNotification.notify(status_new);
 		}
 	}
 

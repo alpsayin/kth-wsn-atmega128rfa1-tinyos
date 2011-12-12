@@ -33,5 +33,20 @@
         </environment>
       </runprofile>
     </conf>
+    <conf name="ReleaseFile" type="1">
+      <gizmo_options version="3">
+        <configurationname>GizmoSimple</configurationname>
+      </gizmo_options>
+      <runprofile version="6">
+        <args>-h0 -b1 -w1 -v -f -a01 -t255m -p/home/alpsayin/tinyos_workspace/fakeSerialPort2.txt</args>
+        <rundir></rundir>
+        <buildfirst>true</buildfirst>
+        <console-type>0</console-type>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
   </confs>
 </configurationDescriptor>
