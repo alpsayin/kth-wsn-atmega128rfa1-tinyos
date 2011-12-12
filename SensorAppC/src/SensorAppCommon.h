@@ -13,5 +13,10 @@
 #error set an actual _DEFINED_TOS_AM_ADDRESS
 #endif
 
+#define QUEUE_SIZE_SERIAL_DATA 255
+#define QUEUE_SIZE_SERIAL_STATUS 32
+#define QUEUE_SIZE_SERIAL_COMMAND 32
+
 #define TRY_3_TIMES(x) (((call x)!=SUCCESS)?((call x)!=SUCCESS)?(call x):SUCCESS:SUCCESS)
+
 #endif /* SENSOR_APP_COMMON_H */
