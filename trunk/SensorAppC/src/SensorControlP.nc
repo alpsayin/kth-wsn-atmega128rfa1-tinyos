@@ -11,6 +11,7 @@
 //
 //
 
+#include "SensorAppCommon.h"
 #include "SensorConfig.h"
 
 module SensorControlP{

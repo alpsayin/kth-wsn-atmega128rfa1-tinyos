@@ -11,6 +11,7 @@
 //
 //
 
+#include "SensorAppCommon.h"
 #include "SensorConfig.h"
 #include "ControllerConfig.h"
 #include "RadioConfig.h"

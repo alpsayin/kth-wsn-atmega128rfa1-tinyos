@@ -20,8 +20,7 @@
 //
 
 
-
-
+#include "SensorAppCommon.h"
 #include "SensorConfig.h"
 
 configuration SensorC{
