@@ -60,6 +60,14 @@ implementation{
 		return SUCCESS;
 	}
 	
+	void FormDataPacket()
+	{
+		static uint16_t sequenceNumber = 0;
+		
+		sensorData.source	= NODE_ID;
+		sensorData.seqNo	= sequenceNumber++;
+		_SensorDataPreCalc(&sensorData);
+	}
 
 	event void Data1ADC.readDone(error_t result, uint16_t val){
 
@@ -130,12 +138,13 @@ implementation{
 		if(SUCCESS == result)
 			sensorData.data8 = val;
 #endif
-
+		FormDataPacket();
 		if(mode)
 			signal Read.readDone(SUCCESS, sensorData);
 		else
 			signal ReadOne.readDone(SUCCESS, sensorData);
 	}
+	
 
 	
 }
