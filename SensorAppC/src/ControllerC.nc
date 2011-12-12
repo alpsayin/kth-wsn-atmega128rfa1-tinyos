@@ -46,6 +46,7 @@ configuration ControllerC{
 	uses
 	{
 		interface Init as SerialPacketForwarderInit;
+		interface StdControl as SerialPacketForwarderControl;
 	}
 }
 implementation{
@@ -66,6 +67,7 @@ implementation{
 	Notify		= ControllerP.SensorNotification;
 
 
+	SerialPacketForwarderControl= ControllerP.SerialPacketForwarderControl;
 	RadioSubsystemRootControl	= ControllerP.RadioSubsystemRootControl;
 	RadioSubsystemInit			= ControllerP.RadioSubsystemInit;
 	SetRadioHistory				= ControllerP.SetRadioHistory;
