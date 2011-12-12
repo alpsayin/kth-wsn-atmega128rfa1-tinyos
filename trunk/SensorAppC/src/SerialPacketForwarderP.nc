@@ -57,7 +57,8 @@ implementation
 	command error_t SerialPacketForwarderControl.start()
 	{
 		enabled=TRUE;
-		return call UartControl.start();
+		call UartControl.start();
+		return call CommandNotification.enable();
 	}
 	
 	//stop: disables the bi-directional forwarding system
@@ -66,6 +67,7 @@ implementation
 		if(started)
 			return EBUSY;
 		enabled=FALSE;
+		call CommandNotification.disable();
 		return call UartControl.stop();
 	}
 
@@ -81,7 +83,7 @@ implementation
 			commandReceptionEnabled = TRUE;
 		}
 		started=FALSE;
-		return call UartControl.start();
+		return SUCCESS;
 	}
 	
 	//disable: disables the command reception, doesnt touch the forwarding
@@ -97,7 +99,7 @@ implementation
 			commandReceptionEnabled = FALSE;
 		}
 		started=FALSE;
-		return call UartControl.stop();
+		return SUCCESS;
 	}
 	
 	//UartStream::UartStream functions
