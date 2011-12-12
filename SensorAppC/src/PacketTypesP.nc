@@ -201,6 +201,34 @@ implementation
 	    buf[i] = 0;
 	    return i;
 	}
+	
+  	async command error_t PacketTypes.dataPacketTohistoryPacket(data_packet_t* dp, history_packet_t* hp)
+  	{
+  		hp->seqNo = dp->seqNo;
+  		hp->source = dp->source;
+  		hp->data1H = dp->data1>>8;
+  		hp->data1L = dp->data1&0xFF; 
+  		hp->data2H = dp->data1>>8;
+  		hp->data2L = dp->data1&0xFF; 
+  		hp->data3H = dp->data1>>8;
+  		hp->data3L = dp->data1&0xFF; 
+  		hp->data4H = dp->data1>>8;
+  		hp->data4L = dp->data1&0xFF; 
+  		hp->data5H = dp->data1>>8;
+  		hp->data5L = dp->data1&0xFF; 
+  		return SUCCESS;	
+  	}
+  	async command error_t PacketTypes.historyPacketToDataPacket(data_packet_t* dp, history_packet_t* hp)
+  	{
+		dp->seqNo = hp->seqNo;
+		dp->source = hp->source;
+		dp->data1 = hp->data1H<<8 | hp->data1L;
+		dp->data2 = hp->data2H<<8 | hp->data2L;
+		dp->data3 = hp->data3H<<8 | hp->data3L;
+		dp->data4 = hp->data4H<<8 | hp->data4L;
+		dp->data5 = hp->data5H<<8 | hp->data5L;	
+  		return SUCCESS;	
+  	}
 	async command uint8_t PacketTypes.statusPacketToStr(status_packet_t* sp, uint8_t* buf)
 	{
 	    uint8_t i=0;

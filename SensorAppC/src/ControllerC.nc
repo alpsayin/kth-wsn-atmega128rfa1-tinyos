@@ -36,7 +36,7 @@ configuration ControllerC{
 		//if a root is going to be set, it must be set with RootControl before Init
 		interface RootControl as RadioSubsystemRootControl;
 		interface Init as RadioSubsystemInit;
-		interface ArrayPipe<data_packet_t> as SetRadioHistory;
+		interface ArrayPipe<history_packet_t> as SetRadioHistory;
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
@@ -53,7 +53,8 @@ implementation{
 	
 	components ControllerP;
 	components IOInterfaceC;
-	components LedsC;	
+	components LedsC;
+	components new PacketTypesP();	
 	
 	Boot		= ControllerP.Boot;
 	
@@ -78,7 +79,7 @@ implementation{
 	NotifyRadioCommand			= ControllerP.NotifyRadioCommand;
 	
 	
-	
+	ControllerP.PacketTypes			-> PacketTypesP;
 	ControllerP.Leds				-> LedsC;
 	ControllerP.CheckRoot			-> IOInterfaceC.CheckRoot;
 	ControllerP.LightSensorEnable	-> IOInterfaceC.LightSensorEnable;

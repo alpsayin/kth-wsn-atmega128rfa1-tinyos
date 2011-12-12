@@ -11,7 +11,7 @@ module RadioSubsystemP
 		interface Init as RadioSubsystemInit;	
 		
 		//the length provided to the functions of ArrayPipe should be array lengths, not byte lengths
-		interface ArrayPipe<data_packet_t> as SetRadioHistory;
+		interface ArrayPipe<history_packet_t> as SetRadioHistory;
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
@@ -20,6 +20,8 @@ module RadioSubsystemP
 	uses 
 	{
 		interface Leds;
+		
+		interface PacketTypes;
 		
 		interface SplitControl as AMControl;
  
@@ -150,11 +152,12 @@ implementation
 	event message_t * HistoryCollectionReceive.receive(message_t *msg, void *payload, uint8_t len)
 	{
 		uint8_t i;
-		data_packet_t* historyPtr = (data_packet_t*)payload; //open the payload
+		history_packet_t* historyPtr = (history_packet_t*)payload; //open the payload
+		data_packet_t tempData;
 		for(i=0; i<RADIO_HISTORY_SIZE; i++) //forward the data with RADIO_HISTORY_SIZE
 		{
-			//TODO check RADIO_HISTORY_SIZE
-			while(call ForwardData.setNow(historyPtr[i])!=SUCCESS);
+			call PacketTypes.historyPacketToDataPacket(&tempData, &(historyPtr[i]));
+			while(call ForwardData.setNow(tempData)!=SUCCESS);
 		}
 		return msg;
 	}
@@ -215,13 +218,13 @@ implementation
 
 	//SetRadioHistory:ArrayPipe<data_packet_t> functions
 	//sendArray: should be used to send history through radio to root
-	command error_t SetRadioHistory.sendArray(data_packet_t *val, uint8_t len)
+	command error_t SetRadioHistory.sendArray(history_packet_t *val, uint8_t len)
 	{
 		error_t err;
 		uint8_t i;
-		data_packet_t* msgHistoryPtr;
+		history_packet_t* msgHistoryPtr;
 		
-		if(len*sizeof(data_packet_t) > call HistoryCollectionSend.maxPayloadLength())
+		if(len*sizeof(history_packet_t) > call HistoryCollectionSend.maxPayloadLength())
 			return ESIZE;
 		//check if radio is not busy
 		atomic {
@@ -232,8 +235,7 @@ implementation
 			locked = TRUE;
 		}
 		//get payload with size of array in bytes
-		call Leds.set( sizeof(history_packet_t) );
-		msgHistoryPtr = (data_packet_t*)call HistoryCollectionSend.getPayload(&packet, len*sizeof(data_packet_t));
+		msgHistoryPtr = (history_packet_t*)call HistoryCollectionSend.getPayload(&packet, len*sizeof(history_packet_t));
 		atomic {
 			for(i=0; i<len; i++)
 			{
@@ -242,7 +244,7 @@ implementation
 			}
 		}
 		//try to send it
-		err = call HistoryCollectionSend.send(&packet, len*sizeof(data_packet_t));
+		err = call HistoryCollectionSend.send(&packet, len*sizeof(history_packet_t));
 		//set locked=false if it's not successful
 		if(err!=SUCCESS)
 		{
@@ -254,7 +256,7 @@ implementation
 	}
 	
 	//getArray: not used in this direction
-	command uint8_t SetRadioHistory.getArray(data_packet_t *val, uint8_t len)
+	command uint8_t SetRadioHistory.getArray(history_packet_t *val, uint8_t len)
 	{
 		// always returns 0
 		return 0;
