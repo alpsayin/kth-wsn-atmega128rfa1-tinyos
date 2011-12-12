@@ -24,8 +24,6 @@
 #define NODE_ID 100
 #endif
 
-#define BUFFER_SIZE 255
-//#define BUFFER_SIZE 10
 
 //TIMER_UNIT	TSecond
 #define TIMER_SCALE 1000
