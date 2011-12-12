@@ -20,6 +20,8 @@ module SerialPacketForwarderP @safe()
 	provides
 	{
 		interface Init as SerialPacketForwarderInit;
+		interface StdControl as SerialPacketForwarderControl;
+		//should be wired to the radiosubsystem interfaces
 		interface Notify<command_packet_t> as CommandNotification;
 		interface SetNow<command_packet_t> as ForwardCommand;
 		interface SetNow<data_packet_t> as ForwardData;
@@ -35,6 +37,7 @@ implementation
 
     norace bool started;
     bool enabled;
+    bool commandReceptionEnabled;
     
     char receiveBuffer[COMMAND_RECEIVE_BUFFER_SIZE];	
     char temporaryBuffer[COMMAND_RECEIVE_BUFFER_SIZE];	
@@ -42,31 +45,59 @@ implementation
 	uint8_t pos;
 
 	//SerialPacketForwarderInit::Init functions
-	//init: initializes the uart system and enabled the command notifications
+	//init: initializes the uart system and enables the command notifications
 	command error_t SerialPacketForwarderInit.init()
 	{
-		call UartControl.start();
 		call CommandNotification.enable();
 		return SUCCESS;
 	}
 
-	//CommandNotification::Notify<command_packet_t> functions
-	//disable: disables the uart peripheral	
-	command error_t CommandNotification.disable()
+	//SerialPacketForwarderControl::StdControl functions
+	//start: enables the bi-directional forwarding system, should be called before enabling the notifications
+	command error_t SerialPacketForwarderControl.start()
+	{
+		enabled=TRUE;
+		return call UartControl.start();
+	}
+	
+	//stop: disables the bi-directional forwarding system
+	command error_t SerialPacketForwarderControl.stop()
 	{
 		if(started)
 			return EBUSY;
 		enabled=FALSE;
-		started=FALSE;
 		return call UartControl.stop();
 	}
-	
-	//enable: enables the uart peripheral, also reset the buffer
+
+	//CommandNotification::Notify<command_packet_t> functions
+	//enable: enables the command reception, also reset the buffer, doesnt touch the forwarding
 	command error_t CommandNotification.enable()
 	{
-		enabled=TRUE;
+		//check if enabled, if not enabled return OFF error code
+		if(!enabled)
+			return EOFF;
+		//set reception true
+		atomic {
+			commandReceptionEnabled = TRUE;
+		}
 		started=FALSE;
 		return call UartControl.start();
+	}
+	
+	//disable: disables the command reception, doesnt touch the forwarding
+	command error_t CommandNotification.disable()
+	{
+		//check if enabled, if not enabled return OFF error code
+		if(!enabled)
+			return EOFF;
+		if(started)
+			return EBUSY;
+		//set reception false, forwarding to the uart is still active
+		atomic {
+			commandReceptionEnabled = FALSE;
+		}
+		started=FALSE;
+		return call UartControl.stop();
 	}
 	
 	//UartStream::UartStream functions
@@ -84,15 +115,22 @@ implementation
 	//receivedByte: ISR Context! puts the characters into a buffer and posts a process task if necessary
 	async event void UartStream.receivedByte(uint8_t byte)
 	{
+		uint8_t incoming;
+		incoming = byte;
+		//check if command reception is enabled
+		if(!enabled)
+			return;
+		if(!commandReceptionEnabled)
+			return;
 		//echo back
 		//TODO disable echoing, since ALIX would think that it's a received packet
-        call UartByte.send(byte);
+        call UartByte.send(incoming);
         //check the incoming charpos
-        if(byte == '[') //if it's a starting delimiter
+        if(incoming == '[') //if it's a starting delimiter
         {
             atomic {
             	pos=0; //reset buffer position
-        		receiveBuffer[pos++]=byte; //write the char into buffer and increment pos
+        		receiveBuffer[pos++]=incoming; //write the char into buffer and increment pos
             }
             started=TRUE; //set started true
         }
@@ -101,18 +139,18 @@ implementation
         	atomic {
         		if(pos<COMMAND_RECEIVE_BUFFER_SIZE) //if pos is within limits
         		{
-            		receiveBuffer[pos++]=byte; //save the char and increment pos
+            		receiveBuffer[pos++]=incoming; //save the char and increment pos
         		}
 	            else //if not reset the buffer (shouldn't happen if it's a correct packet)
 	            	pos=0; //if we are not within limits, do not overflow reset the pos
         	}
         }
-        else if(byte == ']' && started) //if it's a ending delimiter
+        else if(incoming == ']' && started) //if it's a ending delimiter
         {
         	atomic{
         		if(pos+1<COMMAND_RECEIVE_BUFFER_SIZE) //if pos is within limits
         		{
-		            receiveBuffer[pos++]=byte; //save the char and increment the pos
+		            receiveBuffer[pos++]=incoming; //save the char and increment the pos
 		            receiveBuffer[pos]=0; //null terminate the received string (for convenience)
 	            }
 	            else //if not reset the buffer (shouldn't happen if it's a correct packet)
@@ -134,7 +172,11 @@ implementation
 	//setNow: put the command packet into a buffer and post a task to process it
 	async command error_t ForwardCommand.setNow(command_packet_t val)
 	{
-		error_t err = call CommandQueue.enqueue(val); //enqueue the packet
+		error_t err;
+		//check if enabled, if not enabled return OFF error code
+		if(!enabled)
+			return EOFF;
+		err = call CommandQueue.enqueue(val); //enqueue the packet
 		if(err == SUCCESS) //if it's successful
 			post forwardNextPacketTask(); //post the task to forward it
 		return err;
@@ -144,7 +186,11 @@ implementation
 	//setNow: put the data packet into a buffer and post a task to process it
 	async command error_t ForwardData.setNow(data_packet_t val)
 	{
-		error_t err = call DataQueue.enqueue(val); //enqueue the packet
+		error_t err;
+		//check if enabled, if not enabled return OFF error code
+		if(!enabled)
+			return EOFF;
+		err = call DataQueue.enqueue(val); //enqueue the packet
 		if(err == SUCCESS) //if it's successful
 			post forwardNextPacketTask(); //post the task to forward it
 		return err;
@@ -154,7 +200,11 @@ implementation
 	//setNow: put the command packet into a buffer and post a task to process it
 	async command error_t ForwardStatus.setNow(status_packet_t val)
 	{
-		error_t err = call StatusQueue.enqueue(val); //enqueue the packet
+		error_t err;
+		//check if enabled, if not enabled return OFF error code
+		if(!enabled)
+			return EOFF;
+		err = call StatusQueue.enqueue(val); //enqueue the packet
 		if(err == SUCCESS) //if it's successful
 			post forwardNextPacketTask(); //post the task to forward it
 		return err;
@@ -169,6 +219,13 @@ implementation
 	    status_packet_t localStatusPacket;
 	    data_packet_t localDataPacket;
 	    command_packet_t localCommandPacket;
+	    
+	    //if we are not enabled we shouldn't even come here, just checking for convenience
+	    if(!enabled)
+	    	return;
+	    if(!commandReceptionEnabled)
+	    	return;
+	    	
 		if(!call DataQueue.empty()) // if data queue is not empty
 		{
 			localDataPacket = call DataQueue.head(); //peek at the head
@@ -211,6 +268,12 @@ implementation
 //	    status_packet_t localStatusPacket;
 	    command_packet_t localCommandPacket;
 	    
+	    //if we are not enabled we shouldn't even come here, just checking for convenience
+	    if(!enabled)
+	    	return;
+	    if(!commandReceptionEnabled)
+	    	return;
+	    	
 	    //copy the temporaryBuffer to a localbuffer (double buffering)
 	    atomic {
 	    	memcpy((char*)localBuf, (char*)temporaryBuffer, temporaryPos<=COMMAND_RECEIVE_BUFFER_SIZE?temporaryPos:COMMAND_RECEIVE_BUFFER_SIZE);
