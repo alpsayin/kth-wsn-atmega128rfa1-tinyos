@@ -1,5 +1,6 @@
 
 #include "packet_types.h"
+#include "SensorAppCommon.h"
 
 configuration SerialPacketForwarderC
 {

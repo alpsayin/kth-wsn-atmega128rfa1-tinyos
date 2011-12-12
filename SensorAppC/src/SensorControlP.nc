@@ -114,7 +114,7 @@ implementation{
 		{
 			if(status.historyEnable)
 			{
-				if(BUFFER_SIZE == call StoreData.size())
+				if(SENSOR_BUFFER_SIZE == call StoreData.size())
 				{
 #ifdef LED_SENSOR_ENABLE
 					call Leds.led2On();
@@ -126,7 +126,7 @@ implementation{
 					call Leds.led2Off();
 #endif	
 				call StoreData.enqueue(val);
-				if((status.burstEnable) && (BUFFER_SIZE == call StoreData.size()))
+				if((status.burstEnable) && (SENSOR_BUFFER_SIZE == call StoreData.size()))
 				{
 #ifdef LED_SENSOR_ENABLE
 						call Leds.led1Toggle();

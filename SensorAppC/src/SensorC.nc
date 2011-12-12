@@ -50,7 +50,7 @@ implementation{
 
 	components SensorControlC;
 	components SensorSubsystemC;
-	components new QueueC(data_packet_t, BUFFER_SIZE) as SensorBuffer;
+	components new QueueC(data_packet_t, SENSOR_BUFFER_SIZE) as SensorBuffer;
 	
 #ifdef LED_SENSOR_ENABLE
 	components LedsC;

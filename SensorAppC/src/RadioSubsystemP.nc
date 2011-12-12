@@ -1,9 +1,8 @@
-#include "Timer.h"
-#include "RadioSubsystemConfig.h"
 
+#include "Timer.h"
 #include <stdio.h>
 #include "packet_types.h"
-
+#include "SensorAppCommon.h"
 
 module RadioSubsystemP
 {

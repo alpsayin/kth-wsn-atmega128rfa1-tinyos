@@ -1,4 +1,4 @@
-#include "RadioSubsystemConfig.h"
+
 #include "packet_types.h"
 
 configuration RadioSubsystemC

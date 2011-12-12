@@ -11,11 +11,7 @@
 //
 //
 
-#define NORMAL_RUN					0
-#define TEST_SENSOR_AND_CONTROLLER	1
-#define TEST_SERIAL_PORT			2
-
-#define DEBUG_MODE NORMAL_RUN
+#include "SensorAppCommon.h"
 
 configuration bb{}
 

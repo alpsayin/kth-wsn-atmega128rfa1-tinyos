@@ -20,9 +20,6 @@
 
 #include "packet_types.h"
 
-#define CONTROLLER_BUFFER_SIZE 20
-//#define CONTROLLER_BUFFER_SIZE 5
-
 
 #define BROADCAST_ID 0xFFFF
 
