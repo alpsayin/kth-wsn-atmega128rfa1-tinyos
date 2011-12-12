@@ -11,5 +11,8 @@ interface PacketTypes
     async command uint8_t dataPacketToStr(data_packet_t* dp, uint8_t* buf);
     async command uint8_t statusPacketToStr(status_packet_t* dp, uint8_t* buf);
     
+  	async command error_t dataPacketTohistoryPacket(data_packet_t*, history_packet_t*);
+  	async command error_t historyPacketToDataPacket(data_packet_t*, history_packet_t*);
+    
     async command uint8_t getTypeOfPacket(uint8_t* buf);	
 } 

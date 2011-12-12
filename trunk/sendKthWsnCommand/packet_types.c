@@ -3,7 +3,6 @@
 #include <inttypes.h>
 #include "packet_types.h"
 
-
 int strToCommandPacket(command_packet_t* cp, char* buf)
 {
     //TODO CHANGE THIS
@@ -222,4 +221,33 @@ int statusPacketToStr(status_packet_t* sp, char* buf)
     buf[i++]=']';
     buf[i]=0;
     return i;
+}
+
+int dataPacketTohistoryPacket(data_packet_t* dp, history_packet_t* hp)
+{
+    hp->seqNo=dp->seqNo;
+    hp->source=dp->source;
+    hp->data1H=dp->data1 >> 8;
+    hp->data1L=dp->data1 & 0xFF;
+    hp->data2H=dp->data1 >> 8;
+    hp->data2L=dp->data1 & 0xFF;
+    hp->data3H=dp->data1 >> 8;
+    hp->data3L=dp->data1 & 0xFF;
+    hp->data4H=dp->data1 >> 8;
+    hp->data4L=dp->data1 & 0xFF;
+    hp->data5H=dp->data1 >> 8;
+    hp->data5L=dp->data1 & 0xFF;
+    return 0;
+}
+
+int historyPacketToDataPacket(data_packet_t* dp, history_packet_t* hp)
+{
+    dp->seqNo=hp->seqNo;
+    dp->source=hp->source;
+    dp->data1=hp->data1H << 8 | hp->data1L;
+    dp->data2=hp->data2H << 8 | hp->data2L;
+    dp->data3=hp->data3H << 8 | hp->data3L;
+    dp->data4=hp->data4H << 8 | hp->data4L;
+    dp->data5=hp->data5H << 8 | hp->data5L;
+    return 0;
 }

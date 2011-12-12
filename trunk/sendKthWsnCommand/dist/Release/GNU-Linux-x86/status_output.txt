@@ -1,0 +1,1 @@
+#	node_id	burst_interval	interval_type	history_enable	burst_enable

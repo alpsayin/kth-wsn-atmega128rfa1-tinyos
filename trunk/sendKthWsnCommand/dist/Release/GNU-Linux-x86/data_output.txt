@@ -1,0 +1,4 @@
+#	source	seqNo	temperature	pressure	humidity	luminosity	battery
+
+2	475	24	24	24	24	24	
+2	476	24	24	24	24	24	

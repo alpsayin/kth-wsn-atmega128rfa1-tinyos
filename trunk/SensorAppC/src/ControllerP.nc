@@ -47,7 +47,7 @@ module ControllerP{
 		//if a root is going to be set, it must be set with RootControl before Init
 		interface RootControl as RadioSubsystemRootControl;
 		interface Init as RadioSubsystemInit;
-		interface ArrayPipe<data_packet_t> as SetRadioHistory;
+		interface ArrayPipe<history_packet_t> as SetRadioHistory;
 		interface SetNow<data_packet_t> as SetRadioData;
 		interface SetNow<command_packet_t> as SetRadioCommand;
 		interface SetNow<status_packet_t> as SetRadioStatus;
@@ -77,6 +77,13 @@ module ControllerP{
 	uses
 	{
 		interface Leds;
+	}
+	//----------------------------------------------------------------------
+	
+	//----------------------Connect to PacketTypesP----------------
+	uses
+	{
+		interface PacketTypes;
 	}
 	//----------------------------------------------------------------------
 	
@@ -126,29 +133,31 @@ implementation{
 	
 		error_t err;
 		static data_packet_t SampleDataBuffer[CONTROLLER_BUFFER_SIZE];
+		static history_packet_t HistoryBuffer[CONTROLLER_BUFFER_SIZE];
 		
+		uint8_t i;
 		uint8_t i_Packet_Number;
-		uint8_t i_SetDataToRadio;
 		
-		//do {
+		i_Packet_Number = !CONTROLLER_BUFFER_SIZE;
+		
+		do {
 			
-			i_Packet_Number = !CONTROLLER_BUFFER_SIZE;
 			i_Packet_Number = call GetData.getArray(SampleDataBuffer, CONTROLLER_BUFFER_SIZE);
 			
 			if(i_Packet_Number == 0)
 				return SUCCESS;
+				
+			for(i=0; i<i_Packet_Number; i++)
+				call PacketTypes.dataPacketTohistoryPacket(&(SampleDataBuffer[i]), &(HistoryBuffer[i]));	
+			
 			do
 			{
-				err=call SetRadioHistory.sendArray(SampleDataBuffer, i_Packet_Number);		
+				err=call SetRadioHistory.sendArray(HistoryBuffer, i_Packet_Number);		
 			}
 			while(err!=SUCCESS && err!=ESIZE);
-			//Good old times...
-//			for(i_SetDataToRadio = 0;i_SetDataToRadio<i_Packet_Number;i_SetDataToRadio++)
-//			{
-//				while(SUCCESS!=call SetRadioData.setNow(SampleDataBuffer[i_SetDataToRadio]));
-//			}
+			call Leds.set(err+1);
 		
-		//}while(CONTROLLER_BUFFER_SIZE==i_Packet_Number);
+		}while(i_Packet_Number==CONTROLLER_BUFFER_SIZE);
 		
 		return SUCCESS;
 	}

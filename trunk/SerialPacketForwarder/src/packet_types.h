@@ -36,27 +36,35 @@ extern "C" {
 #define HUMIDITY data3
 #define LUMINOSITY data4
 #define BATTERY data5
+#ifdef ALIX
+    static inline uint8_t ascii2hex(uint8_t c)
+#else
+    inline uint8_t ascii2hex(uint8_t c)
+#endif 
+    {
+        if (c >= '0' && c <= '9')
+            return c - '0';
+        if (c >= 'a' && c <= 'f')
+            return c - 'a' + 10;
+        if (c >= 'A' && c <= 'F')
+            return c - 'A' + 10;
+        return 0;
+    }
 
-	inline uint8_t ascii2hex(uint8_t c)
-	{
-		if(c>='0' && c<='9')
-			return c-'0';
-		if(c>='a' && c<='f')
-			return c-'a'+10;
-		if(c>='A' && c<='F')
-			return c-'A'+10;
-		return 0;		
-	}
-	
-	inline uint8_t hex2ascii(uint8_t n)
-	{
-		if(n<10)
-			return (0x30 | (n&0x0f));	
-		else if(n<16)
-			return (n-10+'a');
-		else
-			return 'N';
-	}
+
+#ifdef ALIX
+    static inline uint8_t hex2ascii(uint8_t n)
+#else
+     inline uint8_t hex2ascii(uint8_t n)
+#endif
+    {
+        if (n < 10)
+            return (0x30 | (n & 0x0f));
+        else if (n < 16)
+            return (n - 10 + 'a');
+        else
+            return 'N';
+    }
 
     typedef struct status_packet
     {
@@ -115,7 +123,7 @@ extern "C" {
 
     enum
     {
-        COMMAND_CONFIGURE = 0, //h0b1 works, h1b1 stucks, h1b0 stucks after trying to read history
+        COMMAND_CONFIGURE = 0, //h0b1 works, h1b1 stucks, h1b1 works
         COMMAND_ECHO, //works
         COMMAND_READ_DATA, //works, TODO check the content
         COMMAND_READ_HISTORY, 
@@ -142,6 +150,8 @@ extern "C" {
     int dataPacketToStr(data_packet_t* dp, char* buf);
     int statusPacketToStr(status_packet_t* dp, char* buf);
     int getTypeOfPacket(char* buf);
+  	int dataPacketTohistoryPacket(data_packet_t*, history_packet_t*);
+  	int historyPacketToDataPacket(data_packet_t*, history_packet_t*);
 #endif
 
 
