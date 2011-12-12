@@ -6,6 +6,7 @@ configuration SerialPacketForwarderC
 	provides
 	{
 		interface Init as SerialPacketForwarderInit;
+		interface StdControl as SerialPacketForwarderControl;
 		//should be wired to the radiosubsystem interfaces
 		interface Notify<command_packet_t> as CommandNotification;
 		interface SetNow<command_packet_t> as ForwardCommand;
@@ -34,6 +35,7 @@ implementation
 	SerialPacketForwarderP.CommandQueue -> CommandQueue;
 	
 	SerialPacketForwarderInit = SerialPacketForwarderP.SerialPacketForwarderInit;
+	SerialPacketForwarderControl = SerialPacketForwarderP.SerialPacketForwarderControl;
 	CommandNotification = SerialPacketForwarderP.CommandNotification;
 	ForwardCommand = SerialPacketForwarderP.ForwardCommand;
 	ForwardData = SerialPacketForwarderP.ForwardData;
