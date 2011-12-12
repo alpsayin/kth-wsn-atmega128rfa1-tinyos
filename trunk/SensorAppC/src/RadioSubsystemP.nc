@@ -220,12 +220,9 @@ implementation
 		error_t err;
 		uint8_t i;
 		data_packet_t* msgHistoryPtr;
-		//check the array length in bytes
-		if(len*sizeof(data_packet_t) > call DataCollectionSend.maxPayloadLength())
-		{
-			return ESIZE;
-		}
 		
+		if(len*sizeof(data_packet_t) > call HistoryCollectionSend.maxPayloadLength())
+			return ESIZE;
 		//check if radio is not busy
 		atomic {
 			if(locked)
@@ -234,22 +231,24 @@ implementation
 			}
 			locked = TRUE;
 		}
-		
 		//get payload with size of array in bytes
-		msgHistoryPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, len*sizeof(data_packet_t));
+		call Leds.set( sizeof(history_packet_t) );
+		msgHistoryPtr = (data_packet_t*)call HistoryCollectionSend.getPayload(&packet, len*sizeof(data_packet_t));
 		atomic {
-			for(i=0; i<RADIO_HISTORY_SIZE; i++)
+			for(i=0; i<len; i++)
 			{
 				//memcpy(msgHistoryPtr, val, len*sizeof(data_packet_t)); //copy the array
 				msgHistoryPtr[i] = val[i];
 			}
 		}
 		//try to send it
-		err = call DataCollectionSend.send(&packet, sizeof(data_packet_t));
+		err = call HistoryCollectionSend.send(&packet, len*sizeof(data_packet_t));
 		//set locked=false if it's not successful
 		if(err!=SUCCESS)
 		{
-			locked = FALSE;
+			atomic {
+				locked = FALSE;
+			}
 		}
 		return err;
 	}

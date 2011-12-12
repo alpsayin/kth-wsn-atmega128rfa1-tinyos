@@ -53,7 +53,7 @@ implementation{
 	
 	components ControllerP;
 	components IOInterfaceC;
-	
+	components LedsC;	
 	
 	Boot		= ControllerP.Boot;
 	
@@ -70,8 +70,8 @@ implementation{
 	SerialPacketForwarderControl= ControllerP.SerialPacketForwarderControl;
 	RadioSubsystemRootControl	= ControllerP.RadioSubsystemRootControl;
 	RadioSubsystemInit			= ControllerP.RadioSubsystemInit;
-	SetRadioHistory				= ControllerP.SetRadioHistory;
 	SerialPacketForwarderInit	= ControllerP.SerialPacketForwarderInit;
+	SetRadioHistory				= ControllerP.SetRadioHistory;
 	SetRadioStatus				= ControllerP.SetRadioStatus;
 	SetRadioData				= ControllerP.SetRadioData;
 	SetRadioCommand				= ControllerP.SetRadioCommand;
@@ -79,7 +79,7 @@ implementation{
 	
 	
 	
-	
+	ControllerP.Leds				-> LedsC;
 	ControllerP.CheckRoot			-> IOInterfaceC.CheckRoot;
 	ControllerP.LightSensorEnable	-> IOInterfaceC.LightSensorEnable;
 	ControllerP.HumiditySensorEnable-> IOInterfaceC.HumiditySensorEnable;

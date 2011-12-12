@@ -316,7 +316,7 @@ implementation
 		    return FAIL;
 		}
 		
-		return call Uart1StreamBlocking.send(buf, len);
+		//return call Uart1StreamBlocking.send(buf, len);
 		if(len==0 || len>UART1_BUFFER_SIZE)
 			return FAIL;
 		atomic

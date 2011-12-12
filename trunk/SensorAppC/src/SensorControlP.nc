@@ -35,9 +35,9 @@ module SensorControlP{
 		interface Queue<data_packet_t> as StoreData;	//store sample in the history buffer
 
 		interface Notify<status_packet_t>;				//set interface for upper components and generate a notify signal when the buffer is full
-#ifdef LED_SENSOR_ENABLE
+
 		interface Leds;
-#endif
+
 	}
 }
 implementation{
@@ -51,7 +51,7 @@ implementation{
         status.burstEnable		= 0;
         status.reserved			= 0;
         status.intervalType		= 0;
-        status.burstInterval	= 10;
+        status.burstInterval	= 1;
         status.node_id			= NODE_ID;
         
 		return SUCCESS;
@@ -127,7 +127,7 @@ implementation{
 					call Leds.led2Off();
 #endif	
 				call StoreData.enqueue(val);
-				if((status.burstEnable) && (SENSOR_BUFFER_SIZE == call StoreData.size()))
+				if((status.burstEnable==1) && (SENSOR_BUFFER_SIZE == call StoreData.size()))
 				{
 #ifdef LED_SENSOR_ENABLE
 						call Leds.led1Toggle();
@@ -158,7 +158,6 @@ implementation{
 	command uint8_t GetData.getArray(data_packet_t* val, uint8_t len){
 		
 		uint8_t i_Sensor_Buffer_GetData = 0;
-		
 		if((!status.historyEnable) && (status.burstEnable))
 		{
 			val[0] = tempData;
@@ -176,7 +175,7 @@ implementation{
 					val[i_Sensor_Buffer_GetData++] = call StoreData.dequeue();
 			}
 		}
-		
+		return i_Sensor_Buffer_GetData;
 	}
 
 /**************Not used here***********************************/

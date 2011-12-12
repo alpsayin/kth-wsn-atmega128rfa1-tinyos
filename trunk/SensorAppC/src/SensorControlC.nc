@@ -33,9 +33,7 @@ configuration SensorControlC{
 		interface Read<data_packet_t> as ReadAdc;
 		interface Queue<data_packet_t> as StoreData;
 		interface Notify<status_packet_t>;
-#ifdef LED_SENSOR_ENABLE
-		interface Leds;
-#endif
+		
 	}
 	
 }
@@ -56,7 +54,6 @@ implementation{
 	
 	SPEnable	= SensorControlP;
 	
-#ifdef LED_SENSOR_ENABLE
-	Leds = SensorControlP.Leds;
-#endif
+	components LedsC;
+	SensorControlP.Leds -> LedsC;
 }

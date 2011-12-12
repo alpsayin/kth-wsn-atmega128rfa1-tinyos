@@ -86,6 +86,23 @@ extern "C" {
         uint16_t data5 ; //2 byte
         uint16_t seqNo ; //2 byte
     } data_packet_t;
+    
+    typedef struct history_packet //size 10 bytes hopefully
+    {
+        uint16_t source; //2 byte __
+        uint16_t seqNo : 14 ; //    |- 2 bytes
+        uint16_t data1H : 2 ; // ___|
+        uint16_t data2H : 2 ; //  |
+        uint16_t data3H : 2 ; //  |_
+        uint16_t data4H : 2 ; //  |_|- 1 byte
+        uint16_t data5H : 2 ; // _|
+        uint16_t data1L : 8 ; //1 byte
+        uint16_t data2L : 8 ; //1 byte
+        uint16_t data3L : 8 ; //1 byte
+        uint16_t data4L : 8 ; //1 byte
+        uint16_t data5L : 8 ; //1 byte
+    } history_packet_t;
+
 
     typedef struct command_packet {
         uint8_t WE : 1;
