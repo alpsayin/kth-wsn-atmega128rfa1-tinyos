@@ -64,6 +64,7 @@ implementation{
 	RadioSubsystemC.ForwardData			-> SerialPacketForwarderC;
 	RadioSubsystemC.ForwardStatus		-> SerialPacketForwarderC;
 	RadioSubsystemC.NotifySerialCommand	-> SerialPacketForwarderC;
+	
 
 #else
 

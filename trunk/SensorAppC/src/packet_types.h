@@ -37,10 +37,6 @@ extern "C" {
 #define LUMINOSITY data4
 #define BATTERY data5
 
-#define QUEUE_SIZE_SERIAL_DATA 255
-#define QUEUE_SIZE_SERIAL_STATUS 32
-#define QUEUE_SIZE_SERIAL_COMMAND 32
-
 #define HEX2ASCII(x) ((x>=0&&x<=15)?(x<10?(x+'0'):(x-10+'a')):'N')
 #define ASCII2HEX(c) ((c>='0'&&c<='9')?(c-'0'):(c>='a'&&c<='f')?(c-'a'):(c>='A'&&c<='F')?(c-'A'):0)
 
