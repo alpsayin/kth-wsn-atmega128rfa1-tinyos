@@ -18,8 +18,8 @@
 
 
 
+#include "SensorAppCommon.h"
 #include "packet_types.h"
-
 
 #define BROADCAST_ID 0xFFFF
 
