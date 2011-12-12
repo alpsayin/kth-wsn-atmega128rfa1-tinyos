@@ -59,6 +59,7 @@ module ControllerP{
 	uses
 	{
 		interface Init as SerialPacketForwarderInit;
+		interface StdControl as SerialPacketForwarderControl;
 	}
 	//----------------------------------------------------------------------
 	
@@ -93,10 +94,13 @@ implementation{
 		{
 			while(SUCCESS!=call SerialPacketForwarderInit.init());
 			while(SUCCESS!=call RadioSubsystemRootControl.setRoot());
+			while(SUCCESS!=call SerialPacketForwarderControl.start());
 		}
 		else			//if not, only setup radio part
+		  {
 			while(SUCCESS!=call RadioSubsystemRootControl.unsetRoot());
-		
+			while(SUCCESS!=call SerialPacketForwarderControl.stop());
+		  }
 		while(SUCCESS!=call RadioSubsystemInit.init());
 
 		
