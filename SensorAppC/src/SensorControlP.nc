@@ -109,11 +109,6 @@ implementation{
 	}
 
 	event void ReadAdc.readDone(error_t result, data_packet_t val){	//after the sampling of the adc, this function will executed one time
-		static uint16_t sequenceNumber = 0;
-		
-		val.source	= status.node_id;
-		val.seqNo	= sequenceNumber++;
-		_SensorDataPreCalc(&val);
 		
 		if(SUCCESS == result)
 		{

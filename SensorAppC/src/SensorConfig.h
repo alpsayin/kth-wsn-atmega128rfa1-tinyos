@@ -35,7 +35,7 @@
 #define DEFAULT_TIMER_BOUNDARY	48ul	//unit: day
 
 
-#define LED_SENSOR_ENABLE
+//#define LED_SENSOR_ENABLE
 
 #define PRE_DEFINE_CHANNEL_1 Sensor_Channel_T	//Temperature
 #define PRE_DEFINE_CHANNEL_2 Sensor_Channel_T	//
