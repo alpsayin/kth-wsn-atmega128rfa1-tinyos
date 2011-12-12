@@ -22,3 +22,11 @@ CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/sendkthwsncommand
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Release=sendkthwsncommand.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/sendkthwsncommand.tar
+# ReleaseFile configuration
+CND_PLATFORM_ReleaseFile=GNU-Linux-x86
+CND_ARTIFACT_DIR_ReleaseFile=dist/ReleaseFile/GNU-Linux-x86
+CND_ARTIFACT_NAME_ReleaseFile=sendkthwsncommand
+CND_ARTIFACT_PATH_ReleaseFile=dist/ReleaseFile/GNU-Linux-x86/sendkthwsncommand
+CND_PACKAGE_DIR_ReleaseFile=dist/ReleaseFile/GNU-Linux-x86/package
+CND_PACKAGE_NAME_ReleaseFile=sendkthwsncommand.tar
+CND_PACKAGE_PATH_ReleaseFile=dist/ReleaseFile/GNU-Linux-x86/package/sendkthwsncommand.tar

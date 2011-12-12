@@ -20,24 +20,24 @@ implementation
 	    uint8_t len = SIZE_COMMAND;
 	    if(buf[i++] != '[')
 	        return PACKET_ERROR;
-	    if( ASCII2HEX(buf[i++]) != PACKET_COMMAND)
+	    if( ascii2hex(buf[i++]) != PACKET_COMMAND)
 	        return PACKET_ERROR;
 	    if(buf[i++] != ':')
 	        return PACKET_ERROR;
 	    if(buf[len-1] != ']')
 	        return PACKET_ERROR;
 	    //copy the actual data flags, opcode, value, address
-	    cp->WE = buf[i++]!=0;
-	    cp->HE = buf[i++]!=0;
-	    cp->BE = buf[i++]!=0;
-	    cp->opcode = ASCII2HEX(buf[i++])<<4;
-	    cp->opcode |= ASCII2HEX(buf[i++]);
-	    cp->value = ASCII2HEX(buf[i++])<<4;
-	    cp->value |= ASCII2HEX(buf[i++]);
-	    cp->address = ASCII2HEX(buf[i++])<<12;
-	    cp->address |= ASCII2HEX(buf[i++])<<8;
-	    cp->address |= ASCII2HEX(buf[i++])<<4;
-	    cp->address |= ASCII2HEX(buf[i++]); 
+	    cp->WE = buf[i++]!='0';
+	    cp->HE = buf[i++]!='0';
+	    cp->BE = buf[i++]!='0';
+	    cp->opcode = ascii2hex(buf[i++])<<4;
+	    cp->opcode |= ascii2hex(buf[i++]);
+	    cp->value = ascii2hex(buf[i++])<<4;
+	    cp->value |= ascii2hex(buf[i++]);
+	    cp->address = ascii2hex(buf[i++])<<12;
+	    cp->address |= ascii2hex(buf[i++])<<8;
+	    cp->address |= ascii2hex(buf[i++])<<4;
+	    cp->address |= ascii2hex(buf[i++]); 
 	
 	    if(buf[i] != ']')
 	        return PACKET_ERROR;
@@ -50,41 +50,41 @@ implementation
 	    uint8_t len = SIZE_DATA;
 	    if(buf[i++] != '[')
 	        return PACKET_ERROR;
-	    if( ASCII2HEX(buf[i++]) != PACKET_DATA)
+	    if( ascii2hex(buf[i++]) != PACKET_DATA)
 	        return PACKET_ERROR;
 	    if(buf[i++] != ':')
 	        return PACKET_ERROR;
 	    if(buf[len-1] != ']')
 	        return PACKET_ERROR;
 	    //copy the actual data flags, opcode, value, address
-	    dp->data1 = ASCII2HEX(buf[i++])<<12;
-	    dp->data1 |= ASCII2HEX(buf[i++])<<8;
-	    dp->data1 |= ASCII2HEX(buf[i++])<<4;
-	    dp->data1 |= ASCII2HEX(buf[i++]);
-	    dp->data2 = ASCII2HEX(buf[i++])<<12;
-	    dp->data2 |= ASCII2HEX(buf[i++])<<8;
-	    dp->data2 |= ASCII2HEX(buf[i++])<<4;
-	    dp->data2 |= ASCII2HEX(buf[i++]);
-	    dp->data3 = ASCII2HEX(buf[i++])<<12;
-	    dp->data3 |= ASCII2HEX(buf[i++])<<8;
-	    dp->data3 |= ASCII2HEX(buf[i++])<<4;
-	    dp->data3 |= ASCII2HEX(buf[i++]);
-	    dp->data4 = ASCII2HEX(buf[i++])<<12;
-	    dp->data4 |= ASCII2HEX(buf[i++])<<8;
-	    dp->data4 |= ASCII2HEX(buf[i++])<<4;
-	    dp->data4 |= ASCII2HEX(buf[i++]);
-	    dp->data5 = ASCII2HEX(buf[i++])<<12;
-	    dp->data5 |= ASCII2HEX(buf[i++])<<8;
-	    dp->data5 |= ASCII2HEX(buf[i++])<<4;
-	    dp->data5 |= ASCII2HEX(buf[i++]);
-	    dp->source = ASCII2HEX(buf[i++])<<12;
-	    dp->source |= ASCII2HEX(buf[i++])<<8;
-	    dp->source |= ASCII2HEX(buf[i++])<<4;
-	    dp->source |= ASCII2HEX(buf[i++]);
-	    dp->seqNo = ASCII2HEX(buf[i++])<<12;
-	    dp->seqNo |= ASCII2HEX(buf[i++])<<8;
-	    dp->seqNo |= ASCII2HEX(buf[i++])<<4;
-	    dp->seqNo |= ASCII2HEX(buf[i++]);
+	    dp->data1 = ascii2hex(buf[i++])<<12;
+	    dp->data1 |= ascii2hex(buf[i++])<<8;
+	    dp->data1 |= ascii2hex(buf[i++])<<4;
+	    dp->data1 |= ascii2hex(buf[i++]);
+	    dp->data2 = ascii2hex(buf[i++])<<12;
+	    dp->data2 |= ascii2hex(buf[i++])<<8;
+	    dp->data2 |= ascii2hex(buf[i++])<<4;
+	    dp->data2 |= ascii2hex(buf[i++]);
+	    dp->data3 = ascii2hex(buf[i++])<<12;
+	    dp->data3 |= ascii2hex(buf[i++])<<8;
+	    dp->data3 |= ascii2hex(buf[i++])<<4;
+	    dp->data3 |= ascii2hex(buf[i++]);
+	    dp->data4 = ascii2hex(buf[i++])<<12;
+	    dp->data4 |= ascii2hex(buf[i++])<<8;
+	    dp->data4 |= ascii2hex(buf[i++])<<4;
+	    dp->data4 |= ascii2hex(buf[i++]);
+	    dp->data5 = ascii2hex(buf[i++])<<12;
+	    dp->data5 |= ascii2hex(buf[i++])<<8;
+	    dp->data5 |= ascii2hex(buf[i++])<<4;
+	    dp->data5 |= ascii2hex(buf[i++]);
+	    dp->source = ascii2hex(buf[i++])<<12;
+	    dp->source |= ascii2hex(buf[i++])<<8;
+	    dp->source |= ascii2hex(buf[i++])<<4;
+	    dp->source |= ascii2hex(buf[i++]);
+	    dp->seqNo = ascii2hex(buf[i++])<<12;
+	    dp->seqNo |= ascii2hex(buf[i++])<<8;
+	    dp->seqNo |= ascii2hex(buf[i++])<<4;
+	    dp->seqNo |= ascii2hex(buf[i++]);
 	
 	    if(buf[i] != ']')
 	        return PACKET_ERROR;
@@ -97,20 +97,20 @@ implementation
 	    uint8_t len = SIZE_STATUS;
 	    if(buf[i++] != '[')
 	        return PACKET_ERROR;
-	    if(ASCII2HEX(buf[i++]) != PACKET_STATUS)
+	    if(ascii2hex(buf[i++]) != PACKET_STATUS)
 	        return PACKET_ERROR;
 	    if(buf[i++] != ':')
 	        return PACKET_ERROR;
 	    if(buf[len-1] != ']')
 	        return PACKET_ERROR;
 	    //copy the actual node_id, burst interval, interval type, history enable, burst enable
-	    sp->node_id = ASCII2HEX(buf[i++])<<12;
-	    sp->node_id |= ASCII2HEX(buf[i++])<<8;
-	    sp->node_id |= ASCII2HEX(buf[i++])<<4;
-	    sp->node_id |= ASCII2HEX(buf[i++]);
-	    sp->burstInterval = ASCII2HEX(buf[i++])<<4;
-	    sp->burstInterval |= ASCII2HEX(buf[i++]);
-	    sp->intervalType = ASCII2HEX(buf[i++]);
+	    sp->node_id = ascii2hex(buf[i++])<<12;
+	    sp->node_id |= ascii2hex(buf[i++])<<8;
+	    sp->node_id |= ascii2hex(buf[i++])<<4;
+	    sp->node_id |= ascii2hex(buf[i++]);
+	    sp->burstInterval = ascii2hex(buf[i++])<<4;
+	    sp->burstInterval |= ascii2hex(buf[i++]);
+	    sp->intervalType = ascii2hex(buf[i++]);
 	    sp->historyEnable = buf[i++]&0x01;
 	    sp->burstEnable = buf[i++]&0x01;
 	
@@ -125,7 +125,7 @@ implementation
 	        return PACKET_ERROR;
 	    if(buf[2]!=':')
 	        return PACKET_ERROR;
-	    switch( (type=ASCII2HEX(buf[1])) )
+	    switch( (type=ascii2hex(buf[1])) )
 	    {
 	        case PACKET_COMMAND: len = SIZE_COMMAND; break;
 	        case PACKET_DATA: len = SIZE_DATA; break;
@@ -141,37 +141,37 @@ implementation
 	    uint8_t i=0;
 	    //header
 	    buf[i++]='[';
-	    buf[i++]=HEX2ASCII(PACKET_DATA);
+	    buf[i++]=hex2ascii(PACKET_DATA);
 	    buf[i++]=':';
 	    //data
-	    buf[i++] = HEX2ASCII(HIGH((dp->data1)>>8));
-	    buf[i++] = HEX2ASCII(LOW((dp->data1)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data1)));
-	    buf[i++] = HEX2ASCII(LOW((dp->data1)));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data2)>>8));
-	    buf[i++] = HEX2ASCII(LOW((dp->data2)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data2)));
-	    buf[i++] = HEX2ASCII(LOW((dp->data2)));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data3)>>8));
-	    buf[i++] = HEX2ASCII(LOW((dp->data3)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data3)));
-	    buf[i++] = HEX2ASCII(LOW((dp->data3)));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data4)>>8));
-	    buf[i++] = HEX2ASCII(LOW((dp->data4)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data4)));
-	    buf[i++] = HEX2ASCII(LOW((dp->data4)));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data5)>>8));
-	    buf[i++] = HEX2ASCII(LOW((dp->data5)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((dp->data5)));
-	    buf[i++] = HEX2ASCII(LOW((dp->data5)));
-	    buf[i++] = HEX2ASCII(HIGH((dp->source)>>8));
-	    buf[i++] = HEX2ASCII(LOW((dp->source)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((dp->source)));
-	    buf[i++] = HEX2ASCII(LOW((dp->source)));
-	    buf[i++] = HEX2ASCII(HIGH((dp->seqNo)>>8));
-	    buf[i++] = HEX2ASCII(LOW((dp->seqNo)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((dp->seqNo)));
-	    buf[i++] = HEX2ASCII(LOW((dp->seqNo)));
+	    buf[i++] = hex2ascii(HIGH((dp->data1)>>8));
+	    buf[i++] = hex2ascii(LOW((dp->data1)>>8));
+	    buf[i++] = hex2ascii(HIGH((dp->data1)));
+	    buf[i++] = hex2ascii(LOW((dp->data1)));
+	    buf[i++] = hex2ascii(HIGH((dp->data2)>>8));
+	    buf[i++] = hex2ascii(LOW((dp->data2)>>8));
+	    buf[i++] = hex2ascii(HIGH((dp->data2)));
+	    buf[i++] = hex2ascii(LOW((dp->data2)));
+	    buf[i++] = hex2ascii(HIGH((dp->data3)>>8));
+	    buf[i++] = hex2ascii(LOW((dp->data3)>>8));
+	    buf[i++] = hex2ascii(HIGH((dp->data3)));
+	    buf[i++] = hex2ascii(LOW((dp->data3)));
+	    buf[i++] = hex2ascii(HIGH((dp->data4)>>8));
+	    buf[i++] = hex2ascii(LOW((dp->data4)>>8));
+	    buf[i++] = hex2ascii(HIGH((dp->data4)));
+	    buf[i++] = hex2ascii(LOW((dp->data4)));
+	    buf[i++] = hex2ascii(HIGH((dp->data5)>>8));
+	    buf[i++] = hex2ascii(LOW((dp->data5)>>8));
+	    buf[i++] = hex2ascii(HIGH((dp->data5)));
+	    buf[i++] = hex2ascii(LOW((dp->data5)));
+	    buf[i++] = hex2ascii(HIGH((dp->source)>>8));
+	    buf[i++] = hex2ascii(LOW((dp->source)>>8));
+	    buf[i++] = hex2ascii(HIGH((dp->source)));
+	    buf[i++] = hex2ascii(LOW((dp->source)));
+	    buf[i++] = hex2ascii(HIGH((dp->seqNo)>>8));
+	    buf[i++] = hex2ascii(LOW((dp->seqNo)>>8));
+	    buf[i++] = hex2ascii(HIGH((dp->seqNo)));
+	    buf[i++] = hex2ascii(LOW((dp->seqNo)));
 	    //footer
 	    buf[i++] = ']';
 	    buf[i] = 0;
@@ -182,20 +182,20 @@ implementation
 	    uint8_t i=0;
 	    //header
 	    buf[i++]='[';
-	    buf[i++]=HEX2ASCII(PACKET_COMMAND);
+	    buf[i++]=hex2ascii(PACKET_COMMAND);
 	    buf[i++]=':';
 	    //data
-	    buf[i++] = HEX2ASCII(cp->WE);
-	    buf[i++] = HEX2ASCII(cp->HE);
-	    buf[i++] = HEX2ASCII(cp->BE);
-	    buf[i++] = HEX2ASCII(HIGH((cp->opcode)));
-	    buf[i++] = HEX2ASCII(LOW((cp->opcode)));
-	    buf[i++] = HEX2ASCII(HIGH((cp->value)));
-	    buf[i++] = HEX2ASCII(LOW((cp->value)));
-	    buf[i++] = HEX2ASCII(HIGH((cp->address)>>8));
-	    buf[i++] = HEX2ASCII(LOW((cp->address)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((cp->address)));
-	    buf[i++] = HEX2ASCII(LOW((cp->address)));
+	    buf[i++] = hex2ascii(cp->WE);
+	    buf[i++] = hex2ascii(cp->HE);
+	    buf[i++] = hex2ascii(cp->BE);
+	    buf[i++] = hex2ascii(HIGH((cp->opcode)));
+	    buf[i++] = hex2ascii(LOW((cp->opcode)));
+	    buf[i++] = hex2ascii(HIGH((cp->value)));
+	    buf[i++] = hex2ascii(LOW((cp->value)));
+	    buf[i++] = hex2ascii(HIGH((cp->address)>>8));
+	    buf[i++] = hex2ascii(LOW((cp->address)>>8));
+	    buf[i++] = hex2ascii(HIGH((cp->address)));
+	    buf[i++] = hex2ascii(LOW((cp->address)));
 	    //footer
 	    buf[i++] = ']';
 	    buf[i] = 0;
@@ -206,18 +206,18 @@ implementation
 	    uint8_t i=0;
 	    //header
 	    buf[i++]='[';
-	    buf[i++]=HEX2ASCII(PACKET_STATUS);
+	    buf[i++]=hex2ascii(PACKET_STATUS);
 	    buf[i++]=':';
 	    //data
-	    buf[i++] = HEX2ASCII(HIGH((sp->node_id)>>8));
-	    buf[i++] = HEX2ASCII(LOW((sp->node_id)>>8));
-	    buf[i++] = HEX2ASCII(HIGH((sp->node_id)));
-	    buf[i++] = HEX2ASCII(LOW((sp->node_id)));
-	    buf[i++] = HEX2ASCII(HIGH((sp->burstInterval)));
-	    buf[i++] = HEX2ASCII(LOW((sp->burstInterval)));
-	    buf[i++] = HEX2ASCII(sp->intervalType);
-	    buf[i++] = HEX2ASCII(sp->historyEnable);
-	    buf[i++] = HEX2ASCII(sp->burstEnable);
+	    buf[i++] = hex2ascii(HIGH((sp->node_id)>>8));
+	    buf[i++] = hex2ascii(LOW((sp->node_id)>>8));
+	    buf[i++] = hex2ascii(HIGH((sp->node_id)));
+	    buf[i++] = hex2ascii(LOW((sp->node_id)));
+	    buf[i++] = hex2ascii(HIGH((sp->burstInterval)));
+	    buf[i++] = hex2ascii(LOW((sp->burstInterval)));
+	    buf[i++] = hex2ascii(sp->intervalType);
+	    buf[i++] = hex2ascii(sp->historyEnable);
+	    buf[i++] = hex2ascii(sp->burstEnable);
 	    //footer
 	    buf[i++] = ']';
 	    buf[i] = 0;

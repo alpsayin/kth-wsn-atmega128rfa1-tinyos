@@ -91,5 +91,37 @@
         </asmTool>
       </compileType>
     </conf>
+    <conf name="ReleaseFile" type="1">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+          <commandlineTool>gcc</commandlineTool>
+          <commandLine>-march=i586 -Os -static</commandLine>
+          <preprocessorList>
+            <Elem>ALIX</Elem>
+            <Elem>RELEASE</Elem>
+          </preprocessorList>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <commandLine>-march=i586 -Os -static</commandLine>
+          <preprocessorList>
+            <Elem>RELEASE</Elem>
+            <Elem>ALIX</Elem>
+          </preprocessorList>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+    </conf>
   </confs>
 </configurationDescriptor>

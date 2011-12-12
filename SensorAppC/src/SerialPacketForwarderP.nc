@@ -142,17 +142,6 @@ implementation
             }
             started=TRUE; //set started true
         }
-        else if(started) //if we are started (meaning that if we are between brackets)
-        {
-        	atomic {
-        		if(pos<COMMAND_RECEIVE_BUFFER_SIZE) //if pos is within limits
-        		{
-            		receiveBuffer[pos++]=incoming; //save the char and increment pos
-        		}
-	            else //if not reset the buffer (shouldn't happen if it's a correct packet)
-	            	pos=0; //if we are not within limits, do not overflow reset the pos
-        	}
-        }
         else if(incoming == ']' && started) //if it's a ending delimiter
         {
         	atomic{
@@ -173,6 +162,17 @@ implementation
 		    	temporaryPos = pos;
     		}
 			post processReceiveBufferTask(); //post a task to process it
+        }
+        else if(started) //if we are started (meaning that if we are between brackets)
+        {
+        	atomic {
+        		if(pos<COMMAND_RECEIVE_BUFFER_SIZE) //if pos is within limits
+        		{
+            		receiveBuffer[pos++]=incoming; //save the char and increment pos
+        		}
+	            else //if not reset the buffer (shouldn't happen if it's a correct packet)
+	            	pos=0; //if we are not within limits, do not overflow reset the pos
+        	}
         }
 	}
 
@@ -275,7 +275,6 @@ implementation
 //	    data_packet_t localDataPacket;
 //	    status_packet_t localStatusPacket;
 	    command_packet_t localCommandPacket;
-	    
 	    //if we are not enabled we shouldn't even come here, just checking for convenience
 	    if(!enabled)
 	    	return;
@@ -300,7 +299,7 @@ implementation
 	    	//try to convert the string into an actual packet
 	        type=call PacketTypes.strToCommandPacket(&localCommandPacket, localBuf);
 	        if(type != PACKET_COMMAND) //check the type again for convenience
-	            return; //if type doesn't match, return
+	            return; //if type doesn't match, return	
 			signal CommandNotification.notify(localCommandPacket); //signal the arriving command packet from UART to controller
 	    }
 //	    else if(type == PACKET_DATA)

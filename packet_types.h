@@ -37,12 +37,26 @@ extern "C" {
 #define LUMINOSITY data4
 #define BATTERY data5
 
-#define QUEUE_SIZE_SERIAL_DATA 255
-#define QUEUE_SIZE_SERIAL_STATUS 32
-#define QUEUE_SIZE_SERIAL_COMMAND 32
-
-#define HEX2ASCII(x) ((x>=0&&x<=15)?(x<10?(x+'0'):(x-10+'a')):'N')
-#define ASCII2HEX(c) ((c>='0'&&c<='9')?(c-'0'):(c>='a'&&c<='f')?(c-'a'):(c>='A'&&c<='F')?(c-'A'):0)
+	inline uint8_t ascii2hex(uint8_t c)
+	{
+		if(c>='0' && c<='9')
+			return c-'0';
+		if(c>='a' && c<='f')
+			return c-'a'+10;
+		if(c>='A' && c<='F')
+			return c-'A'+10;
+		return 0;		
+	}
+	
+	inline uint8_t hex2ascii(uint8_t n)
+	{
+		if(n<10)
+			return (0x30 | (n&0x0f));	
+		else if(n<16)
+			return (n-10+'a');
+		else
+			return 'N';
+	}
 
     typedef struct status_packet
     {
@@ -62,7 +76,7 @@ extern "C" {
         INTERVAL_TYPE_DAYS
     };
     
-    typedef struct data_packet //size 12 bytes
+    typedef struct data_packet //size 14 bytes
     {
         uint16_t source; //2 byte
         uint16_t data1 ; //2 byte
@@ -84,15 +98,15 @@ extern "C" {
 
     enum
     {
-        COMMAND_CONFIGURE = 0,
-        COMMAND_ECHO,
-        COMMAND_READ_DATA,
-        COMMAND_READ_HISTORY,
-        COMMAND_READ_STATUS,
-        COMMAND_INTERVAL_SECONDS, 
-        COMMAND_INTERVAL_MINUTES,
-        COMMAND_INTERVAL_HOURS,
-        COMMAND_INTERVAL_DAYS
+        COMMAND_CONFIGURE = 0, //h0b1 works, h1b1 stucks, h1b0 stucks after trying to read history
+        COMMAND_ECHO, //works
+        COMMAND_READ_DATA, //works, TODO check the content
+        COMMAND_READ_HISTORY, 
+        COMMAND_READ_STATUS, //works
+        COMMAND_INTERVAL_SECONDS, //works
+        COMMAND_INTERVAL_MINUTES, //works
+        COMMAND_INTERVAL_HOURS, //works
+        COMMAND_INTERVAL_DAYS //works
     };
 
     enum

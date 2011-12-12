@@ -130,7 +130,7 @@ implementation
 		receiveBusy=TRUE; //set receive busy
 		if(commandDisseminationEnabled) //if reception of commands is enabled
 		{
-			receivedCommandPacket = *call CommandValue.get(); //get the command pointer
+			receivedCommandPacket = *call CommandValue.get(); //get the command pointer	
 			signal NotifyRadioCommand.notify(receivedCommandPacket); //notify the controller
 		}
 		receiveBusy=FALSE;
@@ -238,7 +238,11 @@ implementation
 		//get payload with size of array in bytes
 		msgHistoryPtr = (data_packet_t*)call DataCollectionSend.getPayload(&packet, len*sizeof(data_packet_t));
 		atomic {
-			memcpy(msgHistoryPtr, val, len*sizeof(data_packet_t)); //copy the array
+			for(i=0; i<RADIO_HISTORY_SIZE; i++)
+			{
+				//memcpy(msgHistoryPtr, val, len*sizeof(data_packet_t)); //copy the array
+				msgHistoryPtr[i] = val[i];
+			}
 		}
 		//try to send it
 		err = call DataCollectionSend.send(&packet, sizeof(data_packet_t));
@@ -250,7 +254,6 @@ implementation
 		return err;
 	}
 	
-	//SetRadioHistory:ArrayPipe<data_packet_t> functions
 	//getArray: not used in this direction
 	command uint8_t SetRadioHistory.getArray(data_packet_t *val, uint8_t len)
 	{
