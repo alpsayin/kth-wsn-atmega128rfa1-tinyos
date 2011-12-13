@@ -1,3 +1,3 @@
 #	source	write_enable	history_enable	burst_enable	operation	value
 
-2	1	1	1	read_history	0	
+65535	1	1	1	configure	0	
