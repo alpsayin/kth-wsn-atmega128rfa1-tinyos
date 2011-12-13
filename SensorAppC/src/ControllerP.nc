@@ -147,16 +147,23 @@ implementation{
 			if(i_Packet_Number == 0)
 				return SUCCESS;
 				
-			for(i=0; i<i_Packet_Number; i++)
-				call PacketTypes.dataPacketTohistoryPacket(&(SampleDataBuffer[i]), &(HistoryBuffer[i]));	
-			
-			do
+			if(i_Packet_Number > 1)
 			{
-				err=call SetRadioHistory.sendArray(HistoryBuffer, i_Packet_Number);		
+				for(i=0; i<i_Packet_Number; i++)
+					call PacketTypes.dataPacketTohistoryPacket(&(SampleDataBuffer[i]), &(HistoryBuffer[i]));	
+				
+				do
+				{
+					err=call SetRadioHistory.sendArray(HistoryBuffer, i_Packet_Number);		
+				}
+				while(err!=SUCCESS && err!=ESIZE);
+				call Leds.set(err+1);
 			}
-			while(err!=SUCCESS && err!=ESIZE);
-			call Leds.set(err+1);
-		
+			else
+			{
+				call SetRadioData.setNow(SampleDataBuffer[0]);
+			}
+			
 		}while(i_Packet_Number==CONTROLLER_BUFFER_SIZE);
 		
 		return SUCCESS;
