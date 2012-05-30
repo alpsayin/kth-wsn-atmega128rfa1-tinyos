@@ -589,280 +589,463 @@
  600      2077 6869 
  600      6C65 206C 
  600      6F6F 700D 
- 601               		.section	.text.main,"ax",@progbits
- 602               	.global	main
- 604               	main:
- 605               	.LFB15:
- 606               	.LSM114:
- 607               	/* prologue: function */
- 608               	/* frame size = 0 */
- 609               	/* stack size = 0 */
- 610               	.L__stack_usage = 0
- 611               	.LVL12:
- 612               	.LSM115:
- 613 0000 0E94 0000 		call setupClock
- 614               	.LSM116:
- 615 0004 0E94 0000 		call setupUSART0
- 616               	.LSM117:
- 617 0008 0E94 0000 		call setupUSART1
- 618               	.LSM118:
- 619 000c 0E94 0000 		call setupIO
- 620               	.LSM119:
- 621 0010 0E94 0000 		call setupAdc
- 622               	.LSM120:
- 623               	/* #APP */
- 624               	 ;  285 "main.c" 1
- 625 0014 7894      		sei
- 626               	 ;  0 "" 2
- 627               	.LSM121:
- 628               	/* #NOAPP */
- 629 0016 8091 7A00 		lds r24,122
- 630 001a 8064      		ori r24,lo8(64)
- 631 001c 8093 7A00 		sts 122,r24
- 632               	.LSM122:
- 633 0020 729A      		sbi 46-32,2
- 634               	.LSM123:
- 635 0022 739A      		sbi 46-32,3
- 636               	.LSM124:
- 637 0024 749A      		sbi 46-32,4
- 638               	.LSM125:
- 639 0026 80E0      		ldi r24,lo8(.LC3)
- 640 0028 90E0      		ldi r25,hi8(.LC3)
- 641 002a 65E1      		ldi r22,lo8(21)
- 642 002c 0E94 0000 		call printStr
- 643               	.L33:
- 644               	.LSM126:
- 645 0030 8091 0000 		lds r24,serial_flag
- 646 0034 8130      		cpi r24,lo8(1)
- 647 0036 01F4      		brne .L31
- 648               	.LSM127:
- 649 0038 1092 0000 		sts serial_flag,__zero_reg__
- 650               	.L31:
- 651               	.LSM128:
- 652 003c 8091 0000 		lds r24,serial_flag
- 653 0040 8230      		cpi r24,lo8(2)
- 654 0042 01F4      		brne .L32
- 655               	.LSM129:
- 656 0044 1092 0000 		sts serial_flag,__zero_reg__
- 657               	.L32:
- 658               	.LSM130:
- 659 0048 8091 0000 		lds r24,adc_flag
- 660               	.LSM131:
- 661 004c 00C0      		rjmp .L33
- 662               	.LFE15:
- 664               		.section	.text.__vector_29,"ax",@progbits
- 665               	.global	__vector_29
- 667               	__vector_29:
- 668               	.LFB16:
- 669               	.LSM132:
- 670 0000 1F92      		push __zero_reg__
- 671 0002 0F92      		push r0
- 672 0004 0FB6      		in r0,__SREG__
- 673 0006 0F92      		push r0
- 674 0008 1124      		clr __zero_reg__
- 675 000a 8F93      		push r24
- 676 000c 9F93      		push r25
- 677               	/* prologue: Signal */
- 678               	/* frame size = 0 */
- 679               	/* stack size = 5 */
- 680               	.L__stack_usage = 5
- 681               	.LSM133:
- 682 000e 81E0      		ldi r24,lo8(1)
- 683 0010 8093 0000 		sts adc_flag,r24
- 684               	.LSM134:
- 685 0014 8091 7800 		lds r24,120
- 686 0018 9091 7900 		lds r25,120+1
- 687 001c 9093 0000 		sts adcVal+1,r25
- 688 0020 8093 0000 		sts adcVal,r24
- 689               	/* epilogue start */
- 690               	.LSM135:
- 691 0024 9F91      		pop r25
- 692 0026 8F91      		pop r24
- 693 0028 0F90      		pop r0
- 694 002a 0FBE      		out __SREG__,r0
- 695 002c 0F90      		pop r0
- 696 002e 1F90      		pop __zero_reg__
- 697 0030 1895      		reti
- 698               	.LFE16:
- 700               		.section	.text.__vector_25,"ax",@progbits
- 701               	.global	__vector_25
- 703               	__vector_25:
- 704               	.LFB17:
- 705               	.LSM136:
- 706 0000 1F92      		push __zero_reg__
- 707 0002 0F92      		push r0
- 708 0004 0FB6      		in r0,__SREG__
- 709 0006 0F92      		push r0
- 710 0008 0BB6      		in r0,91-32
- 711 000a 0F92      		push r0
- 712 000c 1124      		clr __zero_reg__
- 713 000e 8F93      		push r24
- 714 0010 EF93      		push r30
- 715 0012 FF93      		push r31
- 716               	/* prologue: Signal */
- 717               	/* frame size = 0 */
- 718               	/* stack size = 7 */
- 719               	.L__stack_usage = 7
- 720               	.LSM137:
- 721 0014 E6EC      		ldi r30,lo8(198)
- 722 0016 F0E0      		ldi r31,hi8(198)
- 723 0018 8081      		ld r24,Z
- 724 001a 8093 0000 		sts myByte0,r24
- 725               	.LSM138:
- 726 001e 8091 0000 		lds r24,myByte0
- 727 0022 8083      		st Z,r24
- 728               	.LSM139:
- 729 0024 8091 0000 		lds r24,myByte0
- 730 0028 8093 CE00 		sts 206,r24
- 731               	.LSM140:
- 732 002c 81E0      		ldi r24,lo8(1)
- 733 002e 8093 0000 		sts serial_flag,r24
- 734               	/* epilogue start */
- 735               	.LSM141:
- 736 0032 FF91      		pop r31
- 737 0034 EF91      		pop r30
- 738 0036 8F91      		pop r24
- 739 0038 0F90      		pop r0
- 740 003a 0BBE      		out 91-32,r0
- 741 003c 0F90      		pop r0
- 742 003e 0FBE      		out __SREG__,r0
- 743 0040 0F90      		pop r0
- 744 0042 1F90      		pop __zero_reg__
- 745 0044 1895      		reti
- 746               	.LFE17:
- 748               		.section	.text.__vector_36,"ax",@progbits
- 749               	.global	__vector_36
- 751               	__vector_36:
- 752               	.LFB18:
- 753               	.LSM142:
- 754 0000 1F92      		push __zero_reg__
- 755 0002 0F92      		push r0
- 756 0004 0FB6      		in r0,__SREG__
- 757 0006 0F92      		push r0
- 758 0008 0BB6      		in r0,91-32
- 759 000a 0F92      		push r0
- 760 000c 1124      		clr __zero_reg__
- 761 000e 8F93      		push r24
- 762 0010 EF93      		push r30
- 763 0012 FF93      		push r31
- 764               	/* prologue: Signal */
- 765               	/* frame size = 0 */
- 766               	/* stack size = 7 */
- 767               	.L__stack_usage = 7
- 768               	.LSM143:
- 769 0014 EEEC      		ldi r30,lo8(206)
- 770 0016 F0E0      		ldi r31,hi8(206)
- 771 0018 8081      		ld r24,Z
- 772 001a 8093 0000 		sts myByte1,r24
- 773               	.LSM144:
- 774 001e 8091 0000 		lds r24,myByte1
- 775 0022 8083      		st Z,r24
- 776               	.LSM145:
- 777 0024 8091 0000 		lds r24,myByte1
- 778 0028 8093 C600 		sts 198,r24
- 779               	.LSM146:
- 780 002c 82E0      		ldi r24,lo8(2)
- 781 002e 8093 0000 		sts serial_flag,r24
- 782               	/* epilogue start */
- 783               	.LSM147:
- 784 0032 FF91      		pop r31
- 785 0034 EF91      		pop r30
- 786 0036 8F91      		pop r24
- 787 0038 0F90      		pop r0
- 788 003a 0BBE      		out 91-32,r0
- 789 003c 0F90      		pop r0
- 790 003e 0FBE      		out __SREG__,r0
- 791 0040 0F90      		pop r0
- 792 0042 1F90      		pop __zero_reg__
- 793 0044 1895      		reti
- 794               	.LFE18:
- 796               		.section	.text.__vector_default,"ax",@progbits
- 797               	.global	__vector_default
- 799               	__vector_default:
- 800               	.LFB19:
- 801               	.LSM148:
- 802 0000 1F92      		push __zero_reg__
- 803 0002 0F92      		push r0
- 804 0004 0FB6      		in r0,__SREG__
- 805 0006 0F92      		push r0
- 806 0008 1124      		clr __zero_reg__
- 807 000a 8F93      		push r24
- 808 000c 9F93      		push r25
- 809               	/* prologue: Signal */
- 810               	/* frame size = 0 */
- 811               	/* stack size = 5 */
- 812               	.L__stack_usage = 5
- 813               	.LSM149:
- 814 000e 8EB1      		in r24,46-32
- 815 0010 90E1      		ldi r25,lo8(16)
- 816 0012 8927      		eor r24,r25
- 817 0014 8EB9      		out 46-32,r24
- 818               	/* epilogue start */
- 819               	.LSM150:
- 820 0016 9F91      		pop r25
- 821 0018 8F91      		pop r24
- 822 001a 0F90      		pop r0
- 823 001c 0FBE      		out __SREG__,r0
- 824 001e 0F90      		pop r0
- 825 0020 1F90      		pop __zero_reg__
- 826 0022 1895      		reti
- 827               	.LFE19:
- 829               	.global	hexTable
- 830               		.data
- 833               	hexTable:
- 834 0048 3031 3233 		.ascii	"0123456789ABCDEF"
- 834      3435 3637 
- 834      3839 4142 
- 834      4344 4546 
- 835               	.global	myByte0
- 838               	myByte0:
- 839 0058 55        		.byte	85
- 840               	.global	myByte1
- 843               	myByte1:
- 844 0059 58        		.byte	88
- 845               	.global	adcVal
- 846               	.global	adcVal
- 847               		.section .bss
- 850               	adcVal:
- 851 0000 0000      		.skip 2,0
- 852               	.global	adc_flag
- 853               	.global	adc_flag
- 856               	adc_flag:
- 857 0002 00        		.skip 1,0
- 858               	.global	serial_flag
- 859               	.global	serial_flag
- 862               	serial_flag:
- 863 0003 00        		.skip 1,0
- 984               	.Letext0:
+ 601               	.LC4:
+ 602 0048 0D0A 4144 		.string	"\r\nADC(hex) = "
+ 602      4328 6865 
+ 602      7829 203D 
+ 602      2000 
+ 603               	.LC5:
+ 604 0056 4144 4328 		.string	"ADC(dec) = %d\r\n"
+ 604      6465 6329 
+ 604      203D 2025 
+ 604      640D 0A00 
+ 605               	.LC6:
+ 606 0066 4144 4328 		.string	"ADC(Volts) = %d mV\r\n"
+ 606      566F 6C74 
+ 606      7329 203D 
+ 606      2025 6420 
+ 606      6D56 0D0A 
+ 607               		.section	.text.main,"ax",@progbits
+ 608               	.global	main
+ 610               	main:
+ 611               	.LFB15:
+ 612               	.LSM114:
+ 613 0000 AF92      		push r10
+ 614 0002 BF92      		push r11
+ 615 0004 CF92      		push r12
+ 616 0006 DF92      		push r13
+ 617 0008 EF92      		push r14
+ 618 000a FF92      		push r15
+ 619 000c 0F93      		push r16
+ 620 000e 1F93      		push r17
+ 621 0010 DF93      		push r29
+ 622 0012 CF93      		push r28
+ 623 0014 CDB7      		in r28,__SP_L__
+ 624 0016 DEB7      		in r29,__SP_H__
+ 625 0018 C058      		subi r28,lo8(-(-128))
+ 626 001a D040      		sbci r29,hi8(-(-128))
+ 627 001c 0FB6      		in __tmp_reg__,__SREG__
+ 628 001e F894      		cli
+ 629 0020 DEBF      		out __SP_H__,r29
+ 630 0022 0FBE      		out __SREG__,__tmp_reg__
+ 631 0024 CDBF      		out __SP_L__,r28
+ 632               	/* prologue: function */
+ 633               	/* frame size = 128 */
+ 634               	/* stack size = 138 */
+ 635               	.L__stack_usage = 138
+ 636               	.LVL12:
+ 637               	.LSM115:
+ 638 0026 0E94 0000 		call setupClock
+ 639               	.LSM116:
+ 640 002a 0E94 0000 		call setupUSART0
+ 641               	.LSM117:
+ 642 002e 0E94 0000 		call setupUSART1
+ 643               	.LSM118:
+ 644 0032 0E94 0000 		call setupIO
+ 645               	.LSM119:
+ 646 0036 0E94 0000 		call setupAdc
+ 647               	.LSM120:
+ 648               	/* #APP */
+ 649               	 ;  285 "main.c" 1
+ 650 003a 7894      		sei
+ 651               	 ;  0 "" 2
+ 652               	.LSM121:
+ 653               	/* #NOAPP */
+ 654 003c 8091 7A00 		lds r24,122
+ 655 0040 8064      		ori r24,lo8(64)
+ 656 0042 8093 7A00 		sts 122,r24
+ 657               	.LSM122:
+ 658 0046 729A      		sbi 46-32,2
+ 659               	.LSM123:
+ 660 0048 739A      		sbi 46-32,3
+ 661               	.LSM124:
+ 662 004a 749A      		sbi 46-32,4
+ 663               	.LSM125:
+ 664 004c 80E0      		ldi r24,lo8(.LC3)
+ 665 004e 90E0      		ldi r25,hi8(.LC3)
+ 666 0050 65E1      		ldi r22,lo8(21)
+ 667 0052 0E94 0000 		call printStr
+ 668               	.LSM126:
+ 669 0056 8E01      		movw r16,r28
+ 670 0058 0F5F      		subi r16,lo8(-(1))
+ 671 005a 1F4F      		sbci r17,hi8(-(1))
+ 672 005c 40E0      		ldi r20,lo8(.LC5)
+ 673 005e C42E      		mov r12,r20
+ 674 0060 40E0      		ldi r20,hi8(.LC5)
+ 675 0062 D42E      		mov r13,r20
+ 676               	.LSM127:
+ 677 0064 30E0      		ldi r19,lo8(.LC6)
+ 678 0066 A32E      		mov r10,r19
+ 679 0068 30E0      		ldi r19,hi8(.LC6)
+ 680 006a B32E      		mov r11,r19
+ 681               	.LVL13:
+ 682               	.L37:
+ 683               	.LSM128:
+ 684 006c 8091 0000 		lds r24,serial_flag
+ 685 0070 8130      		cpi r24,lo8(1)
+ 686 0072 01F4      		brne .L31
+ 687               	.LSM129:
+ 688 0074 1092 0000 		sts serial_flag,__zero_reg__
+ 689               	.L31:
+ 690               	.LSM130:
+ 691 0078 8091 0000 		lds r24,serial_flag
+ 692 007c 8230      		cpi r24,lo8(2)
+ 693 007e 01F4      		brne .L32
+ 694               	.LSM131:
+ 695 0080 1092 0000 		sts serial_flag,__zero_reg__
+ 696               	.L32:
+ 697               	.LSM132:
+ 698 0084 8091 0000 		lds r24,adc_flag
+ 699 0088 8823      		tst r24
+ 700 008a 01F0      		breq .L37
+ 701               	.LSM133:
+ 702 008c 80E0      		ldi r24,lo8(.LC4)
+ 703 008e 90E0      		ldi r25,hi8(.LC4)
+ 704 0090 6BE0      		ldi r22,lo8(11)
+ 705 0092 0E94 0000 		call printStr
+ 706               	.LSM134:
+ 707 0096 8091 0000 		lds r24,adcVal
+ 708 009a 9091 0000 		lds r25,adcVal+1
+ 709 009e 0E94 0000 		call print_uint16
+ 710               	.LSM135:
+ 711 00a2 8091 0000 		lds r24,adcVal
+ 712 00a6 9091 0000 		lds r25,adcVal+1
+ 713 00aa 00D0      		rcall .
+ 714 00ac 00D0      		rcall .
+ 715 00ae 00D0      		rcall .
+ 716 00b0 EDB7      		in r30,__SP_L__
+ 717 00b2 FEB7      		in r31,__SP_H__
+ 718 00b4 3196      		adiw r30,1
+ 719 00b6 ADB7      		in r26,__SP_L__
+ 720 00b8 BEB7      		in r27,__SP_H__
+ 721 00ba 1296      		adiw r26,1+1
+ 722 00bc 1C93      		st X,r17
+ 723 00be 0E93      		st -X,r16
+ 724 00c0 1197      		sbiw r26,1
+ 725 00c2 D382      		std Z+3,r13
+ 726 00c4 C282      		std Z+2,r12
+ 727 00c6 9583      		std Z+5,r25
+ 728 00c8 8483      		std Z+4,r24
+ 729 00ca 0E94 0000 		call sprintf
+ 730 00ce 682F      		mov r22,r24
+ 731               	.LVL14:
+ 732               	.LSM136:
+ 733 00d0 EDB7      		in r30,__SP_L__
+ 734 00d2 FEB7      		in r31,__SP_H__
+ 735 00d4 3696      		adiw r30,6
+ 736 00d6 0FB6      		in __tmp_reg__,__SREG__
+ 737 00d8 F894      		cli
+ 738 00da FEBF      		out __SP_H__,r31
+ 739 00dc 0FBE      		out __SREG__,__tmp_reg__
+ 740 00de EDBF      		out __SP_L__,r30
+ 741 00e0 C801      		movw r24,r16
+ 742               	.LVL15:
+ 743 00e2 0E94 0000 		call printStr
+ 744               	.LVL16:
+ 745               	.LSM137:
+ 746 00e6 6091 0000 		lds r22,adcVal
+ 747 00ea 7091 0000 		lds r23,adcVal+1
+ 748               	.LVL17:
+ 749               	.LSM138:
+ 750 00ee 8DB7      		in r24,__SP_L__
+ 751 00f0 9EB7      		in r25,__SP_H__
+ 752 00f2 0897      		sbiw r24,8
+ 753 00f4 0FB6      		in __tmp_reg__,__SREG__
+ 754 00f6 F894      		cli
+ 755 00f8 9EBF      		out __SP_H__,r25
+ 756 00fa 0FBE      		out __SREG__,__tmp_reg__
+ 757 00fc 8DBF      		out __SP_L__,r24
+ 758 00fe EDB6      		in r14,__SP_L__
+ 759 0100 FEB6      		in r15,__SP_H__
+ 760 0102 0894      		sec
+ 761 0104 E11C      		adc r14,__zero_reg__
+ 762 0106 F11C      		adc r15,__zero_reg__
+ 763 0108 ADB7      		in r26,__SP_L__
+ 764 010a BEB7      		in r27,__SP_H__
+ 765 010c 1296      		adiw r26,1+1
+ 766 010e 1C93      		st X,r17
+ 767 0110 0E93      		st -X,r16
+ 768 0112 1197      		sbiw r26,1
+ 769 0114 F701      		movw r30,r14
+ 770 0116 B382      		std Z+3,r11
+ 771 0118 A282      		std Z+2,r10
+ 772               	.LSM139:
+ 773 011a 80E0      		ldi r24,lo8(0)
+ 774 011c 90E0      		ldi r25,hi8(0)
+ 775 011e 20E4      		ldi r18,lo8(1600)
+ 776 0120 36E0      		ldi r19,hi8(1600)
+ 777 0122 40E0      		ldi r20,hlo8(1600)
+ 778 0124 50E0      		ldi r21,hhi8(1600)
+ 779 0126 0E94 0000 		call __mulsi3
+ 780               	.LVL18:
+ 781 012a 2AE0      		ldi r18,10
+ 782 012c 9695      	1:	lsr r25
+ 783 012e 8795      		ror r24
+ 784 0130 7795      		ror r23
+ 785 0132 6795      		ror r22
+ 786 0134 2A95      		dec r18
+ 787 0136 01F4      		brne 1b
+ 788               	.LSM140:
+ 789 0138 D701      		movw r26,r14
+ 790 013a 1496      		adiw r26,4
+ 791 013c 6D93      		st X+,r22
+ 792 013e 7D93      		st X+,r23
+ 793 0140 8D93      		st X+,r24
+ 794 0142 9C93      		st X,r25
+ 795 0144 1797      		sbiw r26,4+3
+ 796 0146 0E94 0000 		call sprintf
+ 797 014a 682F      		mov r22,r24
+ 798               	.LVL19:
+ 799               	.LSM141:
+ 800 014c EDB7      		in r30,__SP_L__
+ 801 014e FEB7      		in r31,__SP_H__
+ 802 0150 3896      		adiw r30,8
+ 803 0152 0FB6      		in __tmp_reg__,__SREG__
+ 804 0154 F894      		cli
+ 805 0156 FEBF      		out __SP_H__,r31
+ 806 0158 0FBE      		out __SREG__,__tmp_reg__
+ 807 015a EDBF      		out __SP_L__,r30
+ 808 015c C801      		movw r24,r16
+ 809               	.LVL20:
+ 810 015e 0E94 0000 		call printStr
+ 811               	.LVL21:
+ 812               	.LSM142:
+ 813 0162 1092 0000 		sts adc_flag,__zero_reg__
+ 814               	.LSM143:
+ 815 0166 8091 7A00 		lds r24,122
+ 816 016a 8064      		ori r24,lo8(64)
+ 817 016c 8093 7A00 		sts 122,r24
+ 818               	.LVL22:
+ 819               	.LBB4:
+ 820               	.LBB5:
+ 821               	.LSM144:
+ 822 0170 8FEF      		 ldi r24,lo8(1599999)
+ 823 0172 99E6      	    ldi r25,hi8(1599999)
+ 824 0174 A8E1      	    ldi r26,hlo8(1599999)
+ 825 0176 8150      	    1:subi r24,1
+ 826 0178 9040      	    sbci r25,0
+ 827 017a A040      	    sbci r26,0
+ 828 017c 01F4      	    brne 1b
+ 829 017e 00C0      		rjmp .
+ 830 0180 0000      		nop
+ 831 0182 00C0      		rjmp .L37
+ 832               	.LBE5:
+ 833               	.LBE4:
+ 834               	.LFE15:
+ 836               		.section	.text.__vector_29,"ax",@progbits
+ 837               	.global	__vector_29
+ 839               	__vector_29:
+ 840               	.LFB16:
+ 841               	.LSM145:
+ 842 0000 1F92      		push __zero_reg__
+ 843 0002 0F92      		push r0
+ 844 0004 0FB6      		in r0,__SREG__
+ 845 0006 0F92      		push r0
+ 846 0008 1124      		clr __zero_reg__
+ 847 000a 8F93      		push r24
+ 848 000c 9F93      		push r25
+ 849               	/* prologue: Signal */
+ 850               	/* frame size = 0 */
+ 851               	/* stack size = 5 */
+ 852               	.L__stack_usage = 5
+ 853               	.LSM146:
+ 854 000e 81E0      		ldi r24,lo8(1)
+ 855 0010 8093 0000 		sts adc_flag,r24
+ 856               	.LSM147:
+ 857 0014 8091 7800 		lds r24,120
+ 858 0018 9091 7900 		lds r25,120+1
+ 859 001c 9093 0000 		sts adcVal+1,r25
+ 860 0020 8093 0000 		sts adcVal,r24
+ 861               	/* epilogue start */
+ 862               	.LSM148:
+ 863 0024 9F91      		pop r25
+ 864 0026 8F91      		pop r24
+ 865 0028 0F90      		pop r0
+ 866 002a 0FBE      		out __SREG__,r0
+ 867 002c 0F90      		pop r0
+ 868 002e 1F90      		pop __zero_reg__
+ 869 0030 1895      		reti
+ 870               	.LFE16:
+ 872               		.section	.text.__vector_25,"ax",@progbits
+ 873               	.global	__vector_25
+ 875               	__vector_25:
+ 876               	.LFB17:
+ 877               	.LSM149:
+ 878 0000 1F92      		push __zero_reg__
+ 879 0002 0F92      		push r0
+ 880 0004 0FB6      		in r0,__SREG__
+ 881 0006 0F92      		push r0
+ 882 0008 0BB6      		in r0,91-32
+ 883 000a 0F92      		push r0
+ 884 000c 1124      		clr __zero_reg__
+ 885 000e 8F93      		push r24
+ 886 0010 EF93      		push r30
+ 887 0012 FF93      		push r31
+ 888               	/* prologue: Signal */
+ 889               	/* frame size = 0 */
+ 890               	/* stack size = 7 */
+ 891               	.L__stack_usage = 7
+ 892               	.LSM150:
+ 893 0014 E6EC      		ldi r30,lo8(198)
+ 894 0016 F0E0      		ldi r31,hi8(198)
+ 895 0018 8081      		ld r24,Z
+ 896 001a 8093 0000 		sts myByte0,r24
+ 897               	.LSM151:
+ 898 001e 8091 0000 		lds r24,myByte0
+ 899 0022 8083      		st Z,r24
+ 900               	.LSM152:
+ 901 0024 8091 0000 		lds r24,myByte0
+ 902 0028 8093 CE00 		sts 206,r24
+ 903               	.LSM153:
+ 904 002c 81E0      		ldi r24,lo8(1)
+ 905 002e 8093 0000 		sts serial_flag,r24
+ 906               	/* epilogue start */
+ 907               	.LSM154:
+ 908 0032 FF91      		pop r31
+ 909 0034 EF91      		pop r30
+ 910 0036 8F91      		pop r24
+ 911 0038 0F90      		pop r0
+ 912 003a 0BBE      		out 91-32,r0
+ 913 003c 0F90      		pop r0
+ 914 003e 0FBE      		out __SREG__,r0
+ 915 0040 0F90      		pop r0
+ 916 0042 1F90      		pop __zero_reg__
+ 917 0044 1895      		reti
+ 918               	.LFE17:
+ 920               		.section	.text.__vector_36,"ax",@progbits
+ 921               	.global	__vector_36
+ 923               	__vector_36:
+ 924               	.LFB18:
+ 925               	.LSM155:
+ 926 0000 1F92      		push __zero_reg__
+ 927 0002 0F92      		push r0
+ 928 0004 0FB6      		in r0,__SREG__
+ 929 0006 0F92      		push r0
+ 930 0008 0BB6      		in r0,91-32
+ 931 000a 0F92      		push r0
+ 932 000c 1124      		clr __zero_reg__
+ 933 000e 8F93      		push r24
+ 934 0010 EF93      		push r30
+ 935 0012 FF93      		push r31
+ 936               	/* prologue: Signal */
+ 937               	/* frame size = 0 */
+ 938               	/* stack size = 7 */
+ 939               	.L__stack_usage = 7
+ 940               	.LSM156:
+ 941 0014 EEEC      		ldi r30,lo8(206)
+ 942 0016 F0E0      		ldi r31,hi8(206)
+ 943 0018 8081      		ld r24,Z
+ 944 001a 8093 0000 		sts myByte1,r24
+ 945               	.LSM157:
+ 946 001e 8091 0000 		lds r24,myByte1
+ 947 0022 8083      		st Z,r24
+ 948               	.LSM158:
+ 949 0024 8091 0000 		lds r24,myByte1
+ 950 0028 8093 C600 		sts 198,r24
+ 951               	.LSM159:
+ 952 002c 82E0      		ldi r24,lo8(2)
+ 953 002e 8093 0000 		sts serial_flag,r24
+ 954               	/* epilogue start */
+ 955               	.LSM160:
+ 956 0032 FF91      		pop r31
+ 957 0034 EF91      		pop r30
+ 958 0036 8F91      		pop r24
+ 959 0038 0F90      		pop r0
+ 960 003a 0BBE      		out 91-32,r0
+ 961 003c 0F90      		pop r0
+ 962 003e 0FBE      		out __SREG__,r0
+ 963 0040 0F90      		pop r0
+ 964 0042 1F90      		pop __zero_reg__
+ 965 0044 1895      		reti
+ 966               	.LFE18:
+ 968               		.section	.text.__vector_default,"ax",@progbits
+ 969               	.global	__vector_default
+ 971               	__vector_default:
+ 972               	.LFB19:
+ 973               	.LSM161:
+ 974 0000 1F92      		push __zero_reg__
+ 975 0002 0F92      		push r0
+ 976 0004 0FB6      		in r0,__SREG__
+ 977 0006 0F92      		push r0
+ 978 0008 1124      		clr __zero_reg__
+ 979 000a 8F93      		push r24
+ 980 000c 9F93      		push r25
+ 981               	/* prologue: Signal */
+ 982               	/* frame size = 0 */
+ 983               	/* stack size = 5 */
+ 984               	.L__stack_usage = 5
+ 985               	.LSM162:
+ 986 000e 8EB1      		in r24,46-32
+ 987 0010 90E1      		ldi r25,lo8(16)
+ 988 0012 8927      		eor r24,r25
+ 989 0014 8EB9      		out 46-32,r24
+ 990               	/* epilogue start */
+ 991               	.LSM163:
+ 992 0016 9F91      		pop r25
+ 993 0018 8F91      		pop r24
+ 994 001a 0F90      		pop r0
+ 995 001c 0FBE      		out __SREG__,r0
+ 996 001e 0F90      		pop r0
+ 997 0020 1F90      		pop __zero_reg__
+ 998 0022 1895      		reti
+ 999               	.LFE19:
+ 1001               	.global	hexTable
+ 1002               		.data
+ 1005               	hexTable:
+ 1006 007b 3031 3233 		.ascii	"0123456789ABCDEF"
+ 1006      3435 3637 
+ 1006      3839 4142 
+ 1006      4344 4546 
+ 1007               	.global	myByte0
+ 1010               	myByte0:
+ 1011 008b 55        		.byte	85
+ 1012               	.global	myByte1
+ 1015               	myByte1:
+ 1016 008c 58        		.byte	88
+ 1017               	.global	adcVal
+ 1018               	.global	adcVal
+ 1019               		.section .bss
+ 1022               	adcVal:
+ 1023 0000 0000      		.skip 2,0
+ 1024               	.global	adc_flag
+ 1025               	.global	adc_flag
+ 1028               	adc_flag:
+ 1029 0002 00        		.skip 1,0
+ 1030               	.global	serial_flag
+ 1031               	.global	serial_flag
+ 1034               	serial_flag:
+ 1035 0003 00        		.skip 1,0
+ 1156               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccIHBf0V.s:2      *ABS*:0000003f __SREG__
-     /tmp/ccIHBf0V.s:3      *ABS*:0000003e __SP_H__
-     /tmp/ccIHBf0V.s:4      *ABS*:0000003d __SP_L__
-     /tmp/ccIHBf0V.s:5      *ABS*:00000034 __CCP__
-     /tmp/ccIHBf0V.s:6      *ABS*:00000000 __tmp_reg__
-     /tmp/ccIHBf0V.s:7      *ABS*:00000001 __zero_reg__
-     /tmp/ccIHBf0V.s:19     .text.printStr:00000000 printStr
-     /tmp/ccIHBf0V.s:69     .text.print_uint16:00000000 print_uint16
-     /tmp/ccIHBf0V.s:157    .text.setupUSART1:00000000 setupUSART1
-     /tmp/ccIHBf0V.s:258    .text.setupUSART0:00000000 setupUSART0
-     /tmp/ccIHBf0V.s:359    .text.setupClock:00000000 setupClock
-     /tmp/ccIHBf0V.s:386    .text.setupIO:00000000 setupIO
-     /tmp/ccIHBf0V.s:434    .text.setupAdc:00000000 setupAdc
-     /tmp/ccIHBf0V.s:477    .text.setupAdcComplex:00000000 setupAdcComplex
-     /tmp/ccIHBf0V.s:604    .text.main:00000000 main
-     /tmp/ccIHBf0V.s:862    .bss:00000003 serial_flag
-     /tmp/ccIHBf0V.s:856    .bss:00000002 adc_flag
-     /tmp/ccIHBf0V.s:667    .text.__vector_29:00000000 __vector_29
-     /tmp/ccIHBf0V.s:850    .bss:00000000 adcVal
-     /tmp/ccIHBf0V.s:703    .text.__vector_25:00000000 __vector_25
-     /tmp/ccIHBf0V.s:838    .data:00000058 myByte0
-     /tmp/ccIHBf0V.s:751    .text.__vector_36:00000000 __vector_36
-     /tmp/ccIHBf0V.s:843    .data:00000059 myByte1
-     /tmp/ccIHBf0V.s:799    .text.__vector_default:00000000 __vector_default
-     /tmp/ccIHBf0V.s:833    .data:00000048 hexTable
+     /tmp/ccTpO7Al.s:2      *ABS*:0000003f __SREG__
+     /tmp/ccTpO7Al.s:3      *ABS*:0000003e __SP_H__
+     /tmp/ccTpO7Al.s:4      *ABS*:0000003d __SP_L__
+     /tmp/ccTpO7Al.s:5      *ABS*:00000034 __CCP__
+     /tmp/ccTpO7Al.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccTpO7Al.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccTpO7Al.s:19     .text.printStr:00000000 printStr
+     /tmp/ccTpO7Al.s:69     .text.print_uint16:00000000 print_uint16
+     /tmp/ccTpO7Al.s:157    .text.setupUSART1:00000000 setupUSART1
+     /tmp/ccTpO7Al.s:258    .text.setupUSART0:00000000 setupUSART0
+     /tmp/ccTpO7Al.s:359    .text.setupClock:00000000 setupClock
+     /tmp/ccTpO7Al.s:386    .text.setupIO:00000000 setupIO
+     /tmp/ccTpO7Al.s:434    .text.setupAdc:00000000 setupAdc
+     /tmp/ccTpO7Al.s:477    .text.setupAdcComplex:00000000 setupAdcComplex
+     /tmp/ccTpO7Al.s:610    .text.main:00000000 main
+     /tmp/ccTpO7Al.s:1034   .bss:00000003 serial_flag
+     /tmp/ccTpO7Al.s:1028   .bss:00000002 adc_flag
+     /tmp/ccTpO7Al.s:1022   .bss:00000000 adcVal
+     /tmp/ccTpO7Al.s:839    .text.__vector_29:00000000 __vector_29
+     /tmp/ccTpO7Al.s:875    .text.__vector_25:00000000 __vector_25
+     /tmp/ccTpO7Al.s:1010   .data:0000008b myByte0
+     /tmp/ccTpO7Al.s:923    .text.__vector_36:00000000 __vector_36
+     /tmp/ccTpO7Al.s:1015   .data:0000008c myByte1
+     /tmp/ccTpO7Al.s:971    .text.__vector_default:00000000 __vector_default
+     /tmp/ccTpO7Al.s:1005   .data:0000007b hexTable
 
 UNDEFINED SYMBOLS
 sprintf
+__mulsi3
 __do_copy_data
 __do_clear_bss
