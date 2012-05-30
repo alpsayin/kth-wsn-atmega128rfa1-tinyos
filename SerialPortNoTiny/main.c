@@ -305,17 +305,18 @@ int main(void)
 	{
 	  serial_flag = 0;
 	}
-      if(adc_flag && 0)
+      if(adc_flag)
   	{
-  	  printStr("ADC = ",STRLEN("ADC = "));
+  	  printStr("\r\nADC(hex) = ",STRLEN("ADC(hex) = "));
   	  print_uint16(adcVal);
-  	  msgLen = sprintf(msgBuffer, "ADC = %d\r\n", adcVal);
+  	  msgLen = sprintf(msgBuffer, "ADC(dec) = %d\r\n", adcVal);
   	  printStr(msgBuffer, msgLen);
   	  voltage = ((uint32_t)adcVal*1600)/1024;
-  	  msgLen = sprintf(msgBuffer, "ADC = %d mV\r\n", voltage);
+  	  msgLen = sprintf(msgBuffer, "ADC(Volts) = %d mV\r\n", voltage);
   	  printStr(msgBuffer, msgLen);
   	  adc_flag = 0;
   	  SET_BIT(ADCSRA, ADSC);
+	  _delay_ms(1000);
   	}
       //UDR1 = myByte;
       //while(!READ_BIT(UCSR1A, UDRE1)){}
